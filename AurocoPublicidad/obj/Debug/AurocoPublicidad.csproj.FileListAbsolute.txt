@@ -1,11 +1,3 @@
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.AssemblyReference.cache
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.FrmContratos.resources
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.Login.resources
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.MDIPrincipal.resources
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.Properties.MDIParent1.resources
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.Properties.Resources.resources
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.GenerateResource.cache
-C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInputs.cache
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe.config
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\AurocoPublicidad.pdb
@@ -42,6 +34,15 @@ C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\System.M
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.AssemblyReference.cache
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.FrmContratos.resources
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.FrmOrden.resources
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.Login.resources
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.MDIPrincipal.resources
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.Properties.MDIParent1.resources
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.Properties.Resources.resources
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.GenerateResource.cache
+C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInputs.cache
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CopyComplete
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 C:\Users\vtore\source\repos\AurocoPublicidad\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb

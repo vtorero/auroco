@@ -32,7 +32,7 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM CONTRATOS order by id DESC");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,INVERSION,MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES FROM CONTRATOS co, CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -46,10 +46,57 @@ $app->get("/contratos",function() use ($app,$db){
 
 });
 
+
+$app->get("/monedas",function() use($db,$app){
+    $resultado = $db->query("SELECT * FROM MONEDAS order by idMONEDAS");
+   $monedas=array();
+   while ($fila = $resultado->fetch_object()) {
+   $monedas[]=$fila;
+   }
+
+   echo  json_encode($monedas);
+
+    });
+
+
+
 $app->post("/contrato",function() use($db,$app){
     $json = $app->request->getBody();
-   $data = json_decode($json, true);
-   echo  json_encode($data);
+   $data = json_decode($json,false);
+
+
+   try {
+
+    $datos=$db->query("SELECT CONCAT('T0',max(id)+1) ultimo_id FROM CONTRATOS;");
+
+                $identificador=array();
+
+                while ($d = $datos->fetch_object()) {
+
+                 $identificador=$d;
+                 }
+
+
+
+   $sql="call p_contrato('{$identificador->ultimo_id}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->C_MONTO_PAGAR},{$data->C_MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
+
+
+
+
+   $stmt = mysqli_prepare($db,$sql);
+    mysqli_stmt_execute($stmt);
+
+   $result = array("status"=>true,"numero"=>"112","message"=>"Contrato registrado correctamente");
+
+   }
+   catch(PDOException $e) {
+
+    $result = array("STATUS"=>false,"message"=>$e->getMessage());
+
+   }
+
+    echo  json_encode($result);
+
 });
 
 
@@ -70,6 +117,25 @@ $app->post("/login",function() use($db,$app){
    }
    echo  json_encode($data);
 });
+
+$app->post("/contrato",function() use($db,$app){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT * FROM usuarios where usuario='".$data['usuario']."' and password='".$data['password']."'");
+   $usuario=array();
+   while ($fila = $resultado->fetch_object()) {
+   $usuario[]=$fila;
+   }
+   if(count($usuario)==1){
+       $data = array("status"=>true,"rows"=>1,"data"=>$usuario);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($data);
+});
+
+
 
 
 $app->get("/clientes",function() use ($app,$db){

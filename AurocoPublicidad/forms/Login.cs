@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using AurocoPublicidad.util;
 
 namespace AurocoPublicidad
 {
@@ -41,6 +42,7 @@ namespace AurocoPublicidad
 
             if (nombre == "True")
             {
+                Global.sessionUsuario = usuarioR.usuario;
                 //MessageBox.Show("Acceso autorizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Form childForm = new MDIPrincipal();
                 childForm.Show();
@@ -50,7 +52,7 @@ namespace AurocoPublicidad
             }
             else
             {
-                MessageBox.Show("Acceso denegado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuario y/o contraseña incorrectos", "Control de acceso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
         
