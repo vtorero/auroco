@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
+
 
 namespace AurocoPublicidad.forms
 {
@@ -29,11 +37,11 @@ namespace AurocoPublicidad.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             DataGridViewRowCollection filas = dataGridOrden.Rows;
 
             filas.Add();
-            
+
         }
 
         private void FrmOrden_Load(object sender, EventArgs e)
@@ -48,5 +56,34 @@ namespace AurocoPublicidad.forms
             dataGridOrden.Columns.Insert(0, comboBoxColumn);
             //dataGridOrden.Columns.Add(comboBoxColumn);
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inicioVigencia_Validated(object sender, EventArgs e)
+        {
+
+            pintaDias();
+
+
+
+        }
+
+        private string pintaDias()
+        {
+            var fecha = inicioVigencia.Value;
+            L1.Text = generico.traduceDia(fecha.DayOfWeek.ToString());
+            L2.Text = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString());
+            L3.Text = generico.traduceDia(fecha.AddDays(2).DayOfWeek.ToString());
+            return fecha.ToString();
+
+        }
     }
 }
+
+
+
+ 
+

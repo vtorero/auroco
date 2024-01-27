@@ -30,12 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrden));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboCliente = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboMoneda = new System.Windows.Forms.ComboBox();
+            this.comboCliente = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.programa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,12 +70,20 @@
             this.d30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
+            this.L1 = new System.Windows.Forms.Label();
+            this.L2 = new System.Windows.Forms.Label();
+            this.L3 = new System.Windows.Forms.Label();
+            this.finVigencia = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.finVigencia);
+            this.groupBox1.Controls.Add(this.inicioVigencia);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboMoneda);
             this.groupBox1.Controls.Add(this.comboCliente);
@@ -87,26 +94,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
-            // 
-            // comboCliente
-            // 
-            this.comboCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboCliente.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(77, 28);
-            this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(460, 24);
-            this.comboCliente.TabIndex = 22;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Cliente:";
             // 
             // label4
             // 
@@ -128,6 +115,26 @@
             this.comboMoneda.Size = new System.Drawing.Size(196, 21);
             this.comboMoneda.TabIndex = 23;
             this.comboMoneda.SelectedIndexChanged += new System.EventHandler(this.comboMoneda_SelectedIndexChanged);
+            // 
+            // comboCliente
+            // 
+            this.comboCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboCliente.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboCliente.FormattingEnabled = true;
+            this.comboCliente.Location = new System.Drawing.Point(77, 28);
+            this.comboCliente.Name = "comboCliente";
+            this.comboCliente.Size = new System.Drawing.Size(460, 24);
+            this.comboCliente.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Cliente:";
             // 
             // dataGridOrden
             // 
@@ -169,20 +176,10 @@
             this.d30,
             this.d31,
             this.total});
-            this.dataGridOrden.Location = new System.Drawing.Point(38, 311);
+            this.dataGridOrden.Location = new System.Drawing.Point(38, 355);
             this.dataGridOrden.Name = "dataGridOrden";
             this.dataGridOrden.Size = new System.Drawing.Size(1153, 209);
             this.dataGridOrden.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1086, 282);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Agregar Linea";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // programa
             // 
@@ -390,11 +387,69 @@
             this.total.HeaderText = "Total";
             this.total.Name = "total";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1086, 282);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Agregar Linea";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // inicioVigencia
+            // 
+            this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.inicioVigencia.Location = new System.Drawing.Point(77, 104);
+            this.inicioVigencia.Name = "inicioVigencia";
+            this.inicioVigencia.Size = new System.Drawing.Size(93, 20);
+            this.inicioVigencia.TabIndex = 25;
+            this.inicioVigencia.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.inicioVigencia.Validated += new System.EventHandler(this.inicioVigencia_Validated);
+            // 
+            // L1
+            // 
+            this.L1.AutoSize = true;
+            this.L1.Location = new System.Drawing.Point(488, 330);
+            this.L1.Name = "L1";
+            this.L1.Size = new System.Drawing.Size(13, 13);
+            this.L1.TabIndex = 3;
+            this.L1.Text = "..";
+            // 
+            // L2
+            // 
+            this.L2.AutoSize = true;
+            this.L2.Location = new System.Drawing.Point(509, 330);
+            this.L2.Name = "L2";
+            this.L2.Size = new System.Drawing.Size(13, 13);
+            this.L2.TabIndex = 4;
+            this.L2.Text = "..";
+            // 
+            // L3
+            // 
+            this.L3.AutoSize = true;
+            this.L3.Location = new System.Drawing.Point(530, 330);
+            this.L3.Name = "L3";
+            this.L3.Size = new System.Drawing.Size(13, 13);
+            this.L3.TabIndex = 5;
+            this.L3.Text = "..";
+            // 
+            // finVigencia
+            // 
+            this.finVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.finVigencia.Location = new System.Drawing.Point(233, 104);
+            this.finVigencia.Name = "finVigencia";
+            this.finVigencia.Size = new System.Drawing.Size(93, 20);
+            this.finVigencia.TabIndex = 26;
+            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1279, 643);
+            this.Controls.Add(this.L3);
+            this.Controls.Add(this.L2);
+            this.Controls.Add(this.L1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridOrden);
             this.Controls.Add(this.groupBox1);
@@ -406,6 +461,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -453,5 +509,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn d30;
         private System.Windows.Forms.DataGridViewTextBoxColumn d31;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DateTimePicker inicioVigencia;
+        private System.Windows.Forms.Label L1;
+        private System.Windows.Forms.Label L2;
+        private System.Windows.Forms.Label L3;
+        private System.Windows.Forms.DateTimePicker finVigencia;
     }
 }

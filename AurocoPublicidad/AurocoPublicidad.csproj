@@ -150,6 +150,7 @@
     <Compile Include="models\request\UsuarioRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="generico\Generico.cs" />
     <Compile Include="util\Global.cs" />
     <EmbeddedResource Include="forms\FrmContratos.resx">
       <DependentUpon>FrmContratos.cs</DependentUpon>

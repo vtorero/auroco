@@ -32,7 +32,7 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,INVERSION,MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES FROM CONTRATOS co, CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,INVERSION,MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -67,7 +67,7 @@ $app->post("/contrato",function() use($db,$app){
 
    try {
 
-    $datos=$db->query("SELECT CONCAT('T0',max(id)+1) ultimo_id FROM CONTRATOS;");
+    $datos=$db->query("SELECT CONCAT('T0',max(id)+1) ultimo_id FROM ORD_CONTRATOS;");
 
                 $identificador=array();
 
@@ -105,7 +105,7 @@ $app->post("/login",function() use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM usuarios where usuario='".$data['usuario']."' and password='".$data['password']."'");
+   $resultado = $db->query("SELECT * FROM ORD_USUARIOS where usuario='".$data['usuario']."' and password='".$data['password']."'");
    $usuario=array();
    while ($fila = $resultado->fetch_object()) {
    $usuario[]=$fila;
@@ -122,7 +122,7 @@ $app->post("/contrato",function() use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM usuarios where usuario='".$data['usuario']."' and password='".$data['password']."'");
+   $resultado = $db->query("SELECT * FROM ORD_USUARIO where usuario='".$data['usuario']."' and password='".$data['password']."'");
    $usuario=array();
    while ($fila = $resultado->fetch_object()) {
    $usuario[]=$fila;
@@ -142,7 +142,7 @@ $app->get("/clientes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM CLIENTES order by RAZON_SOCIAL ASC");
+   $resultado = $db->query("SELECT * FROM ORD_CLIENTES order by RAZON_SOCIAL ASC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
