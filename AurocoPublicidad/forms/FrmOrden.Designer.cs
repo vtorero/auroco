@@ -37,11 +37,6 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.L1 = new System.Windows.Forms.Label();
-            this.L2 = new System.Windows.Forms.Label();
-            this.L3 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +71,11 @@
             this.d30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.L1 = new System.Windows.Forms.Label();
+            this.L2 = new System.Windows.Forms.Label();
+            this.L3 = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.SuspendLayout();
@@ -196,53 +196,7 @@
             this.dataGridOrden.Name = "dataGridOrden";
             this.dataGridOrden.Size = new System.Drawing.Size(1153, 209);
             this.dataGridOrden.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1086, 282);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Agregar Linea";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // L1
-            // 
-            this.L1.AutoSize = true;
-            this.L1.Location = new System.Drawing.Point(488, 330);
-            this.L1.Name = "L1";
-            this.L1.Size = new System.Drawing.Size(13, 13);
-            this.L1.TabIndex = 3;
-            this.L1.Text = "..";
-            // 
-            // L2
-            // 
-            this.L2.AutoSize = true;
-            this.L2.Location = new System.Drawing.Point(509, 330);
-            this.L2.Name = "L2";
-            this.L2.Size = new System.Drawing.Size(13, 13);
-            this.L2.TabIndex = 4;
-            this.L2.Text = "..";
-            // 
-            // L3
-            // 
-            this.L3.AutoSize = true;
-            this.L3.Location = new System.Drawing.Point(530, 330);
-            this.L3.Name = "L3";
-            this.L3.Size = new System.Drawing.Size(13, 13);
-            this.L3.TabIndex = 5;
-            this.L3.Text = "..";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(1086, 586);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 45);
-            this.btnGuardar.TabIndex = 6;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.dataGridOrden.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellLeave);
             // 
             // horario
             // 
@@ -453,6 +407,53 @@
             // 
             this.total.HeaderText = "Total";
             this.total.Name = "total";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1086, 282);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Agregar Linea";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // L1
+            // 
+            this.L1.AutoSize = true;
+            this.L1.Location = new System.Drawing.Point(488, 330);
+            this.L1.Name = "L1";
+            this.L1.Size = new System.Drawing.Size(13, 13);
+            this.L1.TabIndex = 3;
+            this.L1.Text = "..";
+            // 
+            // L2
+            // 
+            this.L2.AutoSize = true;
+            this.L2.Location = new System.Drawing.Point(509, 330);
+            this.L2.Name = "L2";
+            this.L2.Size = new System.Drawing.Size(13, 13);
+            this.L2.TabIndex = 4;
+            this.L2.Text = "..";
+            // 
+            // L3
+            // 
+            this.L3.AutoSize = true;
+            this.L3.Location = new System.Drawing.Point(530, 330);
+            this.L3.Name = "L3";
+            this.L3.Size = new System.Drawing.Size(13, 13);
+            this.L3.TabIndex = 5;
+            this.L3.Text = "..";
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(1086, 586);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 45);
+            this.btnGuardar.TabIndex = 6;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // FrmOrden
             // 

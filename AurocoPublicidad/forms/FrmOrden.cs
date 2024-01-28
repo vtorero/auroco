@@ -91,12 +91,12 @@ namespace AurocoPublicidad.forms
 
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Programa";
-            comboBoxColumn.Name = "programa";
+            comboBoxColumn.Name = "Programa";
             comboBoxColumn.DisplayMember = "RAZON_SOCIAL";
             comboBoxColumn.ValueMember = "C_CLIENTE";
             comboBoxColumn.DataSource= lstC;
             comboBoxColumn.AutoComplete = true;
-            dataGridOrden.Columns.Insert(0, comboBoxColumn);
+            dataGridOrden.Columns.Insert(0,comboBoxColumn);
 
 
             // Obtén los datos del DataGridView
@@ -178,6 +178,11 @@ namespace AurocoPublicidad.forms
                 }
             }
 
+        }
+
+        private void dataGridOrden_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("cambio programa");
         }
     }
 }
