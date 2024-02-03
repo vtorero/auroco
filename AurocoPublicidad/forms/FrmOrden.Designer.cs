@@ -33,7 +33,7 @@
             this.finVigencia = new System.Windows.Forms.DateTimePicker();
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboMoneda = new System.Windows.Forms.ComboBox();
+            this.comboContratos = new System.Windows.Forms.ComboBox();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
@@ -85,7 +85,7 @@
             this.groupBox1.Controls.Add(this.finVigencia);
             this.groupBox1.Controls.Add(this.inicioVigencia);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboMoneda);
+            this.groupBox1.Controls.Add(this.comboContratos);
             this.groupBox1.Controls.Add(this.comboCliente);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(38, 12);
@@ -122,16 +122,16 @@
             this.label4.Text = "Contrato:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // comboMoneda
+            // comboContratos
             // 
-            this.comboMoneda.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboMoneda.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboMoneda.FormattingEnabled = true;
-            this.comboMoneda.Location = new System.Drawing.Point(599, 30);
-            this.comboMoneda.Name = "comboMoneda";
-            this.comboMoneda.Size = new System.Drawing.Size(196, 21);
-            this.comboMoneda.TabIndex = 23;
-            this.comboMoneda.SelectedIndexChanged += new System.EventHandler(this.comboMoneda_SelectedIndexChanged);
+            this.comboContratos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboContratos.FormattingEnabled = true;
+            this.comboContratos.Location = new System.Drawing.Point(599, 30);
+            this.comboContratos.Name = "comboContratos";
+            this.comboContratos.Size = new System.Drawing.Size(196, 21);
+            this.comboContratos.TabIndex = 23;
+            this.comboContratos.SelectedIndexChanged += new System.EventHandler(this.comboMoneda_SelectedIndexChanged);
             // 
             // comboCliente
             // 
@@ -143,6 +143,7 @@
             this.comboCliente.Name = "comboCliente";
             this.comboCliente.Size = new System.Drawing.Size(460, 24);
             this.comboCliente.TabIndex = 22;
+            this.comboCliente.SelectedValueChanged += new System.EventHandler(this.comboCliente_SelectedValueChanged);
             // 
             // label2
             // 
@@ -485,7 +486,7 @@
         private System.Windows.Forms.ComboBox comboCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboMoneda;
+        private System.Windows.Forms.ComboBox comboContratos;
         private System.Windows.Forms.DataGridView dataGridOrden;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker inicioVigencia;

@@ -68,11 +68,7 @@ namespace AurocoPublicidad.forms {
             return await sr.ReadToEndAsync();
         }
 
-        private void textBox2_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
-
+      
         private async void button1_Click(object sender, EventArgs e)
         {
             if ((!string.IsNullOrWhiteSpace(txtNroFisico.Text)) && (!string.IsNullOrWhiteSpace(comboCliente.Text))

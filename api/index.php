@@ -142,7 +142,7 @@ $app->get("/clientes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM ORD_CLIENTES order by RAZON_SOCIAL ASC");
+   $resultado = $db->query("SELECT * FROM ORD_CLIENTES order by c_cliente ASC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -155,6 +155,29 @@ $app->get("/clientes",function() use ($app,$db){
    echo  json_encode($contrato);
 
 });
+
+$app->post("/contratos_cliente",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, TRUE);
+
+
+   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS WHERE C_CLIENTE='{$data['C_CLIENTE']}'";
+
+
+   $resultado = $db->query($sql);
+   $contratos=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contratos[]=$fila;
+   }
+   if(count($contratos)>0){
+       $data = array("status"=>true,"rows"=>count($contratos),"data"=>$contratos);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contratos,TRUE);
+
+});
+
 
 
 $app->run();

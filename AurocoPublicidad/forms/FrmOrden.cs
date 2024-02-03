@@ -1,5 +1,8 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using AurocoPublicidad.models.request;
+using Google.Protobuf.WellKnownTypes;
+using MySqlX.XDevAPI;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +14,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 
@@ -47,9 +52,15 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private void FrmOrden_Load(object sender, EventArgs e)
+        private async void FrmOrden_Load(object sender, EventArgs e)
         {
-          
+            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.Items.Add("Selecciona un Cliente");
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+
         }
 
      
@@ -182,8 +193,84 @@ namespace AurocoPublicidad.forms
 
         private void dataGridOrden_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("cambio programa");
+            //MessageBox.Show("cambio programa");
         }
+
+        private void comboCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            
+
+        }
+
+        private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
+            {
+            string url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
+
+            string cod_cliente = comboCliente.SelectedValue.ToString();
+            string text_cliente = comboCliente.SelectedText.ToString();
+            if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
+            {
+                Cliente cliente = new Cliente();
+                cliente.C_CLIENTE = cod_cliente;
+                string resultado = Send<Cliente>(url, cliente, "POST");
+                Console.Write(resultado);   
+                //if (resultado.te) {                                              
+                List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
+                comboContratos.DataSource = lstC;
+                comboContratos.DisplayMember = "C_CONTRATO";
+                comboContratos.ValueMember = "C_CONTRATO";
+                
+                //else
+                //{
+                  //  MessageBox.Show("El cliente " + text_cliente + " no tiene contratos registrados");
+                //}
+
+            }
+
+
+        }
+
+        public string Send<T>(string url, T ObjectRequest, string method = "POST")
+        {
+            string result = "";
+
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                //serializar el objeto
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(ObjectRequest);
+
+                //peticion
+                WebRequest request = WebRequest.Create(url);
+                //header
+                request.Method = method;
+                request.PreAuthenticate = true;
+                request.ContentType = "application/json;charset=utf-8";
+                request.Timeout = 30000;
+
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    result = streamReader.ReadToEnd();
+                }
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+
+            return result;
+        }
+
     }
 }
 
