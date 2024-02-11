@@ -80,26 +80,18 @@ $app->post("/contrato",function() use($db,$app){
 
    $sql="call p_contrato('{$identificador->ultimo_id}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->C_MONTO_PAGAR},{$data->C_MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
 
-
-
-
    $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
 
    $result = array("status"=>true,"numero"=>"112","message"=>"Contrato registrado correctamente");
-
    }
    catch(PDOException $e) {
-
     $result = array("STATUS"=>false,"message"=>$e->getMessage());
-
    }
 
     echo  json_encode($result);
 
 });
-
-
 
 $app->post("/login",function() use($db,$app){
     $json = $app->request->getBody();
@@ -164,6 +156,27 @@ $app->post("/contratos_cliente",function() use ($app,$db){
    $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS WHERE C_CLIENTE='{$data['C_CLIENTE']}'";
 
 
+   $resultado = $db->query($sql);
+   $contratos=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contratos[]=$fila;
+   }
+   if(count($contratos)>0){
+       $data = array("status"=>true,"rows"=>count($contratos),"data"=>$contratos);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contratos,TRUE);
+
+});
+
+
+$app->get("/contrato_detalle/:id",function($id) use($db,$app){
+    $json = $app->request->getBody();
+   $data = json_decode($json, TRUE);
+
+
+   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS WHERE C_CONTRATO='{$id}'";
    $resultado = $db->query($sql);
    $contratos=array();
    while ($fila = $resultado->fetch_object()) {

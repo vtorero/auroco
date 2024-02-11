@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 
@@ -34,11 +35,6 @@ namespace AurocoPublicidad.forms
         }
 
         private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboMoneda_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -63,7 +59,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-     
+
         private void inicioVigencia_Validated(object sender, EventArgs e)
         {
 
@@ -92,9 +88,9 @@ namespace AurocoPublicidad.forms
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            string clientes = await  GetService("https://aprendeadistancia.online/api-auroco/clientes");
+            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
-            
+
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
 
@@ -105,16 +101,16 @@ namespace AurocoPublicidad.forms
             comboBoxColumn.Name = "Programa";
             comboBoxColumn.DisplayMember = "RAZON_SOCIAL";
             comboBoxColumn.ValueMember = "C_CLIENTE";
-            comboBoxColumn.DataSource= lstC;
+            comboBoxColumn.DataSource = lstC;
             comboBoxColumn.AutoComplete = true;
-            dataGridOrden.Columns.Insert(0,comboBoxColumn);
+            dataGridOrden.Columns.Insert(0, comboBoxColumn);
 
 
             // Obtén los datos del DataGridView
             List<Dictionary<string, object>> datos = ObtenerDatosDataGridView();
             //MessageBox.Show(datos + "");
             Console.Write(datos);
-            
+
 
 
             // Envía los datos al API REST
@@ -198,13 +194,13 @@ namespace AurocoPublicidad.forms
 
         private void comboCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            
+
+
 
         }
 
         private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
-            {
+        {
             string url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
 
             string cod_cliente = comboCliente.SelectedValue.ToString();
@@ -214,16 +210,16 @@ namespace AurocoPublicidad.forms
                 Cliente cliente = new Cliente();
                 cliente.C_CLIENTE = cod_cliente;
                 string resultado = Send<Cliente>(url, cliente, "POST");
-                Console.Write(resultado);   
+                Console.Write(resultado);
                 //if (resultado.te) {                                              
                 List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
                 comboContratos.DataSource = lstC;
                 comboContratos.DisplayMember = "C_CONTRATO";
                 comboContratos.ValueMember = "C_CONTRATO";
-                
+
                 //else
                 //{
-                  //  MessageBox.Show("El cliente " + text_cliente + " no tiene contratos registrados");
+                //  MessageBox.Show("El cliente " + text_cliente + " no tiene contratos registrados");
                 //}
 
             }
@@ -271,6 +267,35 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
+        private async void comboContrato_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try {
+                HttpClient clienteHttp = new HttpClient();
+                string codigo_contrato = comboContratos.SelectedIndex.ToString();
+
+                string urlApi = $"https://aprendeadistancia.online/api-auroco/index.php/contrato_detalle/T029"; // URL de tu servicio API con parámetros   
+
+                HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = await respuesta.Content.ReadAsStringAsync();
+                 
+                               
+
+                    // Procesar el contenido recibido y mostrarlo en TextBoxes
+                    // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
+                    dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+                    Console.WriteLine(data[0].INICIO_VIGENCIA);
+
+
+                }
+
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Aviso",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
     }
 }
 

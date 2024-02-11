@@ -76,12 +76,58 @@
             this.L2 = new System.Windows.Forms.Label();
             this.L3 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.cInicioVigencia = new System.Windows.Forms.TextBox();
+            this.cFinVigencia = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cMoneda = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cSaldo = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboIgv = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboMedio = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmbEjecutivo = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboCambio = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textProducto = new System.Windows.Forms.TextBox();
+            this.textMotivo = new System.Windows.Forms.TextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.textMotivo);
+            this.groupBox1.Controls.Add(this.textProducto);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.comboCambio);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.cmbEjecutivo);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.comboMedio);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.comboIgv);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.cSaldo);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cMoneda);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cFinVigencia);
+            this.groupBox1.Controls.Add(this.cInicioVigencia);
             this.groupBox1.Controls.Add(this.finVigencia);
             this.groupBox1.Controls.Add(this.inicioVigencia);
             this.groupBox1.Controls.Add(this.label4);
@@ -90,7 +136,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(38, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1153, 264);
+            this.groupBox1.Size = new System.Drawing.Size(1008, 264);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
@@ -98,7 +144,7 @@
             // finVigencia
             // 
             this.finVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.finVigencia.Location = new System.Drawing.Point(233, 104);
+            this.finVigencia.Location = new System.Drawing.Point(197, 145);
             this.finVigencia.Name = "finVigencia";
             this.finVigencia.Size = new System.Drawing.Size(93, 20);
             this.finVigencia.TabIndex = 26;
@@ -106,7 +152,7 @@
             // inicioVigencia
             // 
             this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.inicioVigencia.Location = new System.Drawing.Point(77, 104);
+            this.inicioVigencia.Location = new System.Drawing.Point(77, 145);
             this.inicioVigencia.Name = "inicioVigencia";
             this.inicioVigencia.Size = new System.Drawing.Size(93, 20);
             this.inicioVigencia.TabIndex = 25;
@@ -115,7 +161,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(543, 33);
+            this.label4.Location = new System.Drawing.Point(422, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 24;
@@ -127,11 +173,11 @@
             this.comboContratos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboContratos.FormattingEnabled = true;
-            this.comboContratos.Location = new System.Drawing.Point(599, 30);
+            this.comboContratos.Location = new System.Drawing.Point(470, 32);
             this.comboContratos.Name = "comboContratos";
-            this.comboContratos.Size = new System.Drawing.Size(196, 21);
+            this.comboContratos.Size = new System.Drawing.Size(86, 21);
             this.comboContratos.TabIndex = 23;
-            this.comboContratos.SelectedIndexChanged += new System.EventHandler(this.comboMoneda_SelectedIndexChanged);
+            this.comboContratos.SelectedIndexChanged += new System.EventHandler(this.comboContrato_SelectedIndexChanged);
             // 
             // comboCliente
             // 
@@ -141,7 +187,7 @@
             this.comboCliente.FormattingEnabled = true;
             this.comboCliente.Location = new System.Drawing.Point(77, 28);
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(460, 24);
+            this.comboCliente.Size = new System.Drawing.Size(325, 24);
             this.comboCliente.TabIndex = 22;
             this.comboCliente.SelectedValueChanged += new System.EventHandler(this.comboCliente_SelectedValueChanged);
             // 
@@ -193,9 +239,9 @@
             this.d30,
             this.d31,
             this.total});
-            this.dataGridOrden.Location = new System.Drawing.Point(38, 355);
+            this.dataGridOrden.Location = new System.Drawing.Point(38, 317);
             this.dataGridOrden.Name = "dataGridOrden";
-            this.dataGridOrden.Size = new System.Drawing.Size(1153, 209);
+            this.dataGridOrden.Size = new System.Drawing.Size(1008, 249);
             this.dataGridOrden.TabIndex = 1;
             this.dataGridOrden.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellLeave);
             // 
@@ -411,9 +457,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1086, 282);
+            this.button1.Location = new System.Drawing.Point(835, 586);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.Size = new System.Drawing.Size(105, 32);
             this.button1.TabIndex = 2;
             this.button1.Text = "Agregar Linea";
             this.button1.UseVisualStyleBackColor = true;
@@ -422,7 +468,7 @@
             // L1
             // 
             this.L1.AutoSize = true;
-            this.L1.Location = new System.Drawing.Point(488, 330);
+            this.L1.Location = new System.Drawing.Point(471, 290);
             this.L1.Name = "L1";
             this.L1.Size = new System.Drawing.Size(13, 13);
             this.L1.TabIndex = 3;
@@ -431,7 +477,7 @@
             // L2
             // 
             this.L2.AutoSize = true;
-            this.L2.Location = new System.Drawing.Point(509, 330);
+            this.L2.Location = new System.Drawing.Point(492, 290);
             this.L2.Name = "L2";
             this.L2.Size = new System.Drawing.Size(13, 13);
             this.L2.TabIndex = 4;
@@ -440,7 +486,7 @@
             // L3
             // 
             this.L3.AutoSize = true;
-            this.L3.Location = new System.Drawing.Point(530, 330);
+            this.L3.Location = new System.Drawing.Point(513, 290);
             this.L3.Name = "L3";
             this.L3.Size = new System.Drawing.Size(13, 13);
             this.L3.TabIndex = 5;
@@ -448,26 +494,228 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(1086, 586);
+            this.btnGuardar.Location = new System.Drawing.Point(946, 586);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 45);
+            this.btnGuardar.Size = new System.Drawing.Size(100, 32);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // cInicioVigencia
+            // 
+            this.cInicioVigencia.Location = new System.Drawing.Point(624, 31);
+            this.cInicioVigencia.Name = "cInicioVigencia";
+            this.cInicioVigencia.Size = new System.Drawing.Size(100, 20);
+            this.cInicioVigencia.TabIndex = 27;
+            // 
+            // cFinVigencia
+            // 
+            this.cFinVigencia.Location = new System.Drawing.Point(730, 32);
+            this.cFinVigencia.Name = "cFinVigencia";
+            this.cFinVigencia.Size = new System.Drawing.Size(100, 20);
+            this.cFinVigencia.TabIndex = 28;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(570, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Vigencia";
+            // 
+            // cMoneda
+            // 
+            this.cMoneda.Location = new System.Drawing.Point(887, 32);
+            this.cMoneda.Name = "cMoneda";
+            this.cMoneda.Size = new System.Drawing.Size(100, 20);
+            this.cMoneda.TabIndex = 30;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(837, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Moneda";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Saldo:";
+            // 
+            // cSaldo
+            // 
+            this.cSaldo.Location = new System.Drawing.Point(77, 66);
+            this.cSaldo.Name = "cSaldo";
+            this.cSaldo.Size = new System.Drawing.Size(136, 20);
+            this.cSaldo.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(230, 69);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "I.G.V:";
+            // 
+            // comboIgv
+            // 
+            this.comboIgv.FormattingEnabled = true;
+            this.comboIgv.Items.AddRange(new object[] {
+            "Si",
+            "No"});
+            this.comboIgv.Location = new System.Drawing.Point(271, 64);
+            this.comboIgv.Name = "comboIgv";
+            this.comboIgv.Size = new System.Drawing.Size(121, 21);
+            this.comboIgv.TabIndex = 35;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(24, 107);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "Medio:";
+            // 
+            // comboMedio
+            // 
+            this.comboMedio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboMedio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboMedio.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboMedio.FormattingEnabled = true;
+            this.comboMedio.Location = new System.Drawing.Point(77, 102);
+            this.comboMedio.Name = "comboMedio";
+            this.comboMedio.Size = new System.Drawing.Size(315, 24);
+            this.comboMedio.TabIndex = 37;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(410, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "Ejecutivo:";
+            // 
+            // cmbEjecutivo
+            // 
+            this.cmbEjecutivo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbEjecutivo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbEjecutivo.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEjecutivo.FormattingEnabled = true;
+            this.cmbEjecutivo.Location = new System.Drawing.Point(470, 102);
+            this.cmbEjecutivo.Name = "cmbEjecutivo";
+            this.cmbEjecutivo.Size = new System.Drawing.Size(315, 24);
+            this.cmbEjecutivo.TabIndex = 39;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(22, 147);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Rango:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(176, 147);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 13);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "al";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(324, 147);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 13);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Consumir en:";
+            // 
+            // comboCambio
+            // 
+            this.comboCambio.FormattingEnabled = true;
+            this.comboCambio.Items.AddRange(new object[] {
+            "Soles",
+            "Dolares"});
+            this.comboCambio.Location = new System.Drawing.Point(398, 145);
+            this.comboCambio.Name = "comboCambio";
+            this.comboCambio.Size = new System.Drawing.Size(121, 21);
+            this.comboCambio.TabIndex = 43;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(28, 187);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 44;
+            this.label12.Text = "Producto:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 214);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(42, 13);
+            this.label13.TabIndex = 45;
+            this.label13.Text = "Motivo:";
+            // 
+            // textProducto
+            // 
+            this.textProducto.Location = new System.Drawing.Point(77, 187);
+            this.textProducto.Name = "textProducto";
+            this.textProducto.Size = new System.Drawing.Size(315, 20);
+            this.textProducto.TabIndex = 46;
+            // 
+            // textMotivo
+            // 
+            this.textMotivo.Location = new System.Drawing.Point(77, 214);
+            this.textMotivo.Name = "textMotivo";
+            this.textMotivo.Size = new System.Drawing.Size(315, 20);
+            this.textMotivo.TabIndex = 47;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(413, 192);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(567, 43);
+            this.richTextBox1.TabIndex = 48;
+            this.richTextBox1.Text = "";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(427, 178);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(81, 13);
+            this.label14.TabIndex = 49;
+            this.label14.Text = "Observaciones:";
+            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 643);
+            this.ClientSize = new System.Drawing.Size(1072, 643);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.L3);
             this.Controls.Add(this.L2);
-            this.Controls.Add(this.L1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridOrden);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.L1);
+            this.Controls.Add(this.dataGridOrden);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmOrden";
             this.Text = "Ingresar Orden";
@@ -529,5 +777,28 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn d30;
         private System.Windows.Forms.DataGridViewTextBoxColumn d31;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox cFinVigencia;
+        private System.Windows.Forms.TextBox cInicioVigencia;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox cMoneda;
+        private System.Windows.Forms.ComboBox comboIgv;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox cSaldo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboMedio;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbEjecutivo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox textMotivo;
+        private System.Windows.Forms.TextBox textProducto;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comboCambio;
+        private System.Windows.Forms.Label label11;
     }
 }
