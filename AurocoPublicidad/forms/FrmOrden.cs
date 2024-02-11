@@ -285,7 +285,7 @@ namespace AurocoPublicidad.forms
                     // Procesar el contenido recibido y mostrarlo en TextBoxes
                     // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
                     dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
-                    Console.WriteLine(data[0].INICIO_VIGENCIA);
+                    cInicioVigencia.Text=(data[0].INICIO_VIGENCIA);
 
 
                 }
