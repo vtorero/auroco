@@ -267,34 +267,45 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
-        private async void comboContrato_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try {
-                HttpClient clienteHttp = new HttpClient();
-                string codigo_contrato = comboContratos.SelectedIndex.ToString();
+     
 
-                string urlApi = $"https://aprendeadistancia.online/api-auroco/index.php/contrato_detalle/T029"; // URL de tu servicio API con parámetros   
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void comboContratos_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                HttpClient clienteHttp = new HttpClient();
+                string codigo_contrato = comboContratos.SelectedValue.ToString();
+
+                string urlApi = $"https://aprendeadistancia.online/api-auroco/index.php/contrato_detalle/{codigo_contrato}"; // URL de tu servicio API con parámetros   
 
                 HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
                 if (respuesta.IsSuccessStatusCode)
                 {
                     string contenido = await respuesta.Content.ReadAsStringAsync();
-                 
-                               
+
+
 
                     // Procesar el contenido recibido y mostrarlo en TextBoxes
                     // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
                     dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
-                    cInicioVigencia.Text=(data[0].INICIO_VIGENCIA);
+                    cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
+                    cFinVigencia.Text = (data[0].FIN_VIGENCIA);
 
 
                 }
 
 
-            } catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message,"Aviso",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
