@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrden));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cNumeroFisico = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cTipoCambio = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -100,12 +106,6 @@
             this.L2 = new System.Windows.Forms.Label();
             this.L3 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.cTipoCambio = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cNumeroFisico = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.SuspendLayout();
@@ -154,6 +154,56 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
+            // 
+            // cNumeroFisico
+            // 
+            this.cNumeroFisico.Location = new System.Drawing.Point(498, 71);
+            this.cNumeroFisico.Name = "cNumeroFisico";
+            this.cNumeroFisico.ReadOnly = true;
+            this.cNumeroFisico.Size = new System.Drawing.Size(154, 20);
+            this.cNumeroFisico.TabIndex = 58;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(418, 73);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 13);
+            this.label18.TabIndex = 57;
+            this.label18.Text = "Número fisico:";
+            // 
+            // cTipoCambio
+            // 
+            this.cTipoCambio.Location = new System.Drawing.Point(739, 71);
+            this.cTipoCambio.Name = "cTipoCambio";
+            this.cTipoCambio.ReadOnly = true;
+            this.cTipoCambio.Size = new System.Drawing.Size(62, 20);
+            this.cTipoCambio.TabIndex = 56;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(667, 75);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 13);
+            this.label17.TabIndex = 55;
+            this.label17.Text = "Tipo/cambio";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(15, 238);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(53, 13);
+            this.label16.TabIndex = 54;
+            this.label16.Text = "Duración:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(77, 239);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 53;
             // 
             // label15
             // 
@@ -282,6 +332,9 @@
             this.comboMedio.Name = "comboMedio";
             this.comboMedio.Size = new System.Drawing.Size(315, 24);
             this.comboMedio.TabIndex = 37;
+            this.comboMedio.DropDownClosed += new System.EventHandler(this.comboMedio_DropDownClosed);
+            this.comboMedio.SelectedValueChanged += new System.EventHandler(this.comboMedio_SelectedValueChanged);
+            this.comboMedio.Click += new System.EventHandler(this.comboMedio_Click);
             // 
             // label7
             // 
@@ -731,56 +784,6 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(77, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 53;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(15, 238);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(53, 13);
-            this.label16.TabIndex = 54;
-            this.label16.Text = "Duración:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(667, 75);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(67, 13);
-            this.label17.TabIndex = 55;
-            this.label17.Text = "Tipo/cambio";
-            // 
-            // cTipoCambio
-            // 
-            this.cTipoCambio.Location = new System.Drawing.Point(739, 71);
-            this.cTipoCambio.Name = "cTipoCambio";
-            this.cTipoCambio.ReadOnly = true;
-            this.cTipoCambio.Size = new System.Drawing.Size(62, 20);
-            this.cTipoCambio.TabIndex = 56;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(418, 73);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(74, 13);
-            this.label18.TabIndex = 57;
-            this.label18.Text = "Número fisico:";
-            // 
-            // cNumeroFisico
-            // 
-            this.cNumeroFisico.Location = new System.Drawing.Point(498, 71);
-            this.cNumeroFisico.Name = "cNumeroFisico";
-            this.cNumeroFisico.ReadOnly = true;
-            this.cNumeroFisico.Size = new System.Drawing.Size(154, 20);
-            this.cNumeroFisico.TabIndex = 58;
             // 
             // FrmOrden
             // 

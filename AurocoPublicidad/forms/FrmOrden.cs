@@ -14,6 +14,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace AurocoPublicidad.forms
             comboMedio.Items.Add("Selecciona un medio");
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
-            comboMedio.ValueMember = "C_MEDIO";
+            comboMedio.ValueMember = "NOMBRE";
 
             string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
@@ -295,6 +296,7 @@ namespace AurocoPublicidad.forms
                 cFinVigencia.Text = null;
                 cNumeroFisico.Text = null;
                 cTipoCambio.Text = null;
+                cSaldo.Text = null;
 
                 HttpClient clienteHttp = new HttpClient();
                 string codigo_contrato = comboContratos.SelectedValue.ToString();
@@ -329,6 +331,52 @@ namespace AurocoPublicidad.forms
               // MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private async void comboMedio_SelectedValueChanged(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void comboMedio_DropDownClosed(object sender, EventArgs e)
+        {
+            cargaprograma();
+
+        }
+
+        public async void cargaprograma()
+        {
+            string canal = comboMedio.SelectedValue.ToString();
+
+            string programas = await GetService($"https://aprendeadistancia.online/api-auroco/medio_programas/{canal}");
+            List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas);
+
+            // comboCliente.DisplayMember = "PROGRAMA";
+            //comboCliente.ValueMember = "PROGRAMA";
+
+            //dataGridOrden.Columns.Insert(0, comboBoxColumn);
+
+            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+            comboBoxColumn.HeaderText = "Programa";
+            comboBoxColumn.Width = 210;
+            comboBoxColumn.Name = "Programa";
+            comboBoxColumn.DisplayMember = "PROGRAMA";
+            comboBoxColumn.ValueMember = "PROGRAMA";
+            comboBoxColumn.DataSource = lstC;
+            comboBoxColumn.AutoComplete = true;
+            dataGridOrden.Columns.Insert(0, comboBoxColumn);
+
+
+            // Obtén los datos del DataGridView
+            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView();
+            //MessageBox.Show(datos + "");
+            Console.Write(datos);
+        }
+
+        private void comboMedio_Click(object sender, EventArgs e)
+        {
+            cargaprograma();
         }
     }
 }
