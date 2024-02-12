@@ -57,6 +57,21 @@ namespace AurocoPublicidad.forms
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
 
+            string medios= await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
+            comboMedio.Items.Add("Selecciona un medio");
+            comboMedio.DataSource = lstM;
+            comboMedio.DisplayMember = "NOMBRE";
+            comboMedio.ValueMember = "C_MEDIO";
+
+            string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
+            List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
+            cmbEjecutivo.Items.Add("Selecciona un medio");
+            cmbEjecutivo.DataSource = lstE;
+            cmbEjecutivo.DisplayMember = "NOMBRES";
+            cmbEjecutivo.ValueMember = "C_EJECUTIVO";
+
+
         }
 
 
@@ -192,15 +207,13 @@ namespace AurocoPublicidad.forms
             //MessageBox.Show("cambio programa");
         }
 
-        private void comboCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-
-        }
+    
 
         private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
         {
+            comboContratos.DataSource = null;
+            comboContratos.Items.Clear();
+
             string url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
 
             string cod_cliente = comboCliente.SelectedValue.ToString();
@@ -278,6 +291,11 @@ namespace AurocoPublicidad.forms
         {
             try
             {
+                cInicioVigencia.Text = null;
+                cFinVigencia.Text = null;
+                cNumeroFisico.Text = null;
+                cTipoCambio.Text = null;
+
                 HttpClient clienteHttp = new HttpClient();
                 string codigo_contrato = comboContratos.SelectedValue.ToString();
 
@@ -295,6 +313,11 @@ namespace AurocoPublicidad.forms
                     dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
                     cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
                     cFinVigencia.Text = (data[0].FIN_VIGENCIA);
+                    cMoneda.Text = data[0].C_MONEDA;
+                    cTipoCambio.Text= data[0].TIPO_CAMBIO;
+                    cNumeroFisico.Text = data[0].NRO_FISICO;
+                    cSaldo.Text = data[0].saldo_actual;
+
 
 
                 }
@@ -303,7 +326,7 @@ namespace AurocoPublicidad.forms
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              // MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

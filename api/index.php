@@ -153,7 +153,7 @@ $app->post("/contratos_cliente",function() use ($app,$db){
    $data = json_decode($json, TRUE);
 
 
-   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS WHERE C_CLIENTE='{$data['C_CLIENTE']}'";
+   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}' order by C_CONTRATO ASC";
 
 
    $resultado = $db->query($sql);
@@ -167,6 +167,24 @@ $app->post("/contratos_cliente",function() use ($app,$db){
        $data = array("status"=>false,"rows"=>0,"data"=>null);
    }
    echo  json_encode($contratos,TRUE);
+
+});
+
+$app->get("/tabla/:tabla/:orden",function($tabla,$orden) use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT * FROM {$tabla} order by {$orden} ASC");
+   $datos=array();
+   while ($fila = $resultado->fetch_object()) {
+   $datos[]=$fila;
+   }
+   if(count($datos)>0){
+       $data = array("status"=>true,"rows"=>count($datos),"data"=>$datos);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($datos);
 
 });
 

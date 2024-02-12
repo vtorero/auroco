@@ -144,6 +144,8 @@
     <Compile Include="forms\MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="models\request\Ejecutivo.cs" />
+    <Compile Include="models\request\Medio.cs" />
     <Compile Include="models\request\Monedas.cs" />
     <Compile Include="models\request\Cliente.cs" />
     <Compile Include="models\request\Contrato.cs" />
