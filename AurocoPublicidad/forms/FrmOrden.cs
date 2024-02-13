@@ -14,13 +14,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 
 
@@ -33,6 +34,7 @@ namespace AurocoPublicidad.forms
         public FrmOrden()
         {
             InitializeComponent();
+            dataGridOrden.EditingControlShowing += dataGridOrden_EditingControlShowing;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -58,7 +60,7 @@ namespace AurocoPublicidad.forms
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
 
-            string medios= await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
             comboMedio.Items.Add("Selecciona un medio");
             comboMedio.DataSource = lstM;
@@ -104,23 +106,7 @@ namespace AurocoPublicidad.forms
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
-            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
-
-            comboCliente.DisplayMember = "RAZON_SOCIAL";
-            comboCliente.ValueMember = "C_CLIENTE";
-
-            //dataGridOrden.Columns.Insert(0, comboBoxColumn);
-
-            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-            comboBoxColumn.HeaderText = "Programa";
-            comboBoxColumn.Name = "Programa";
-            comboBoxColumn.DisplayMember = "RAZON_SOCIAL";
-            comboBoxColumn.ValueMember = "C_CLIENTE";
-            comboBoxColumn.DataSource = lstC;
-            comboBoxColumn.AutoComplete = true;
-            dataGridOrden.Columns.Insert(0, comboBoxColumn);
-
+        
 
             // Obtén los datos del DataGridView
             List<Dictionary<string, object>> datos = ObtenerDatosDataGridView();
@@ -131,7 +117,7 @@ namespace AurocoPublicidad.forms
 
             // Envía los datos al API REST
 
-            //await EnviarDatosAlApi(datos);
+            await EnviarDatosAlApi(datos);
         }
 
         private List<Dictionary<string, object>> ObtenerDatosDataGridView()
@@ -203,12 +189,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private void dataGridOrden_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            //MessageBox.Show("cambio programa");
-        }
 
-    
 
         private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -281,12 +262,9 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
-     
 
-        private void label15_Click(object sender, EventArgs e)
-        {
 
-        }
+
 
         private async void comboContratos_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -316,7 +294,7 @@ namespace AurocoPublicidad.forms
                     cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
                     cFinVigencia.Text = (data[0].FIN_VIGENCIA);
                     cMoneda.Text = data[0].C_MONEDA;
-                    cTipoCambio.Text= data[0].TIPO_CAMBIO;
+                    cTipoCambio.Text = data[0].TIPO_CAMBIO;
                     cNumeroFisico.Text = data[0].NRO_FISICO;
                     cSaldo.Text = data[0].saldo_actual;
 
@@ -328,16 +306,11 @@ namespace AurocoPublicidad.forms
             }
             catch (Exception ex)
             {
-              // MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private async void comboMedio_SelectedValueChanged(object sender, EventArgs e)
-        {
-           
-
-        }
 
         private void comboMedio_DropDownClosed(object sender, EventArgs e)
         {
@@ -347,6 +320,14 @@ namespace AurocoPublicidad.forms
 
         public async void cargaprograma()
         {
+            if (dataGridOrden.Columns.Contains("programa"))
+            {
+                dataGridOrden.Columns.Remove("programa");
+
+            }
+
+
+
             string canal = comboMedio.SelectedValue.ToString();
 
             string programas = await GetService($"https://aprendeadistancia.online/api-auroco/medio_programas/{canal}");
@@ -362,7 +343,7 @@ namespace AurocoPublicidad.forms
             comboBoxColumn.Width = 210;
             comboBoxColumn.Name = "Programa";
             comboBoxColumn.DisplayMember = "PROGRAMA";
-            comboBoxColumn.ValueMember = "PROGRAMA";
+            comboBoxColumn.ValueMember = "ID";
             comboBoxColumn.DataSource = lstC;
             comboBoxColumn.AutoComplete = true;
             dataGridOrden.Columns.Insert(0, comboBoxColumn);
@@ -374,12 +355,82 @@ namespace AurocoPublicidad.forms
             Console.Write(datos);
         }
 
-        private void comboMedio_Click(object sender, EventArgs e)
+        private void dataGridOrden_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            cargaprograma();
+            // Verificar si la celda actual es la que contiene un ComboBox
+            if (dataGridOrden.CurrentCell is DataGridViewComboBoxCell)
+            {
+                // Obtener el ComboBox
+                ComboBox comboBox = e.Control as ComboBox;
+                if (comboBox != null)
+                {
+                    // Suscribirse al evento de selección del ComboBox
+                    comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+                }
+            }
+        }
+
+        private async void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtener el ComboBox que disparó el evento
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox != null)
+            {
+                // Obtener el valor seleccionado
+
+                if (comboBox.SelectedValue != null)
+                {
+                    string selectedValue = comboBox.SelectedValue.ToString();
+                
+                    
+
+                    HttpClient clienteHttp = new HttpClient();
+
+
+                    string urlApi = $"https://aprendeadistancia.online/api-auroco/programa/{selectedValue}"; // URL de tu servicio API con parámetros   
+
+                    HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        string contenido = await respuesta.Content.ReadAsStringAsync();
+
+                        int currentRow = dataGridOrden.CurrentCell.RowIndex;
+              //          int currentColumn = dataGridOrden.CurrentCell.ColumnIndex;
+
+                        // Procesar el contenido recibido y mostrarlo en TextBoxes
+                        // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
+                        dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+                       
+                        
+                            foreach (var ansValue in data)
+                            {
+                            dataGridOrden.Rows[currentRow].Cells[1].Value = Convert.ToString(ansValue["DIAS"]) +" "+Convert.ToString(ansValue["PERIODO"]);
+                            dataGridOrden.Rows[currentRow].Cells[2].Value = "0.00";
+                            }
+                        
+
+
+                        //if (data.value.HasValues) { 
+                        //dataGridOrden.Rows[currentRow].Cells[1].Value = data[0].PERIODO;
+                        //dataGridOrden.Rows[currentRow].Cells[2].Value = data[0].DIAS;
+                        }
+
+                    }
+
+                }
+
+                // Obtener la fila y columna actual
+
+
+                // Hacer algo con el valor seleccionado, como mostrarlo en un MessageBox
+                //MessageBox.Show("Valor seleccionado en la fila " + currentRow.ToString() + ", columna " + currentColumn.ToString() + ": " + selectedValue);
+            }
         }
     }
-}
+
+
+
+
 
 
 

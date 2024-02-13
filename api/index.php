@@ -230,6 +230,24 @@ $app->get("/medio_programas/:medio",function($medio) use($db,$app){
 
 });
 
+$app->get("/programa/:id",function($id) use($db,$app){
+    $json = $app->request->getBody();
+   $data = json_decode($json, TRUE);
 
+
+   $sql="SELECT * FROM  aprendea_auroco.ORD_PROGRAMAS_AUT where  ID='{$id}' ORDER BY PROGRAMA";
+   $resultado = $db->query($sql);
+   $contratos=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contratos[]=$fila;
+   }
+   if(count($contratos)>0){
+       $data = array("status"=>true,"rows"=>count($contratos),"data"=>$contratos);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contratos,TRUE);
+
+});
 
 $app->run();

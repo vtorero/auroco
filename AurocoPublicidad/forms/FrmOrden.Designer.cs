@@ -213,7 +213,6 @@
             this.label15.Size = new System.Drawing.Size(15, 13);
             this.label15.TabIndex = 50;
             this.label15.Text = "al";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // label14
             // 
@@ -333,8 +332,6 @@
             this.comboMedio.Size = new System.Drawing.Size(315, 24);
             this.comboMedio.TabIndex = 37;
             this.comboMedio.DropDownClosed += new System.EventHandler(this.comboMedio_DropDownClosed);
-            this.comboMedio.SelectedValueChanged += new System.EventHandler(this.comboMedio_SelectedValueChanged);
-            this.comboMedio.Click += new System.EventHandler(this.comboMedio_Click);
             // 
             // label7
             // 
@@ -526,7 +523,8 @@
             this.dataGridOrden.Name = "dataGridOrden";
             this.dataGridOrden.Size = new System.Drawing.Size(1048, 249);
             this.dataGridOrden.TabIndex = 1;
-            this.dataGridOrden.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellLeave);
+      
+            this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
             // 
             // horario
             // 
