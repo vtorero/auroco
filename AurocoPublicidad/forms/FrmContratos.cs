@@ -88,12 +88,7 @@ namespace AurocoPublicidad.forms {
                 contratoR.C_MONTO_ORDENAR = Convert.ToDecimal(txtOrdenar.Text);
                 contratoR.OBSERVACIONES = txtObservaciones.Text;
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
-
-            
-            
-            
-
-            
+                      
 
             string resultado = Send<Contrato>(url, contratoR, "POST");
 

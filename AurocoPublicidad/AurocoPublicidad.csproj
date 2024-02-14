@@ -149,6 +149,7 @@
     <Compile Include="models\request\Monedas.cs" />
     <Compile Include="models\request\Cliente.cs" />
     <Compile Include="models\request\Contrato.cs" />
+    <Compile Include="models\request\Orden.cs" />
     <Compile Include="models\request\Programa.cs" />
     <Compile Include="models\request\UsuarioRequest.cs" />
     <Compile Include="Program.cs" />

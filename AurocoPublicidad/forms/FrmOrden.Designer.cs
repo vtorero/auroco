@@ -227,7 +227,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(413, 178);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(567, 81);
+            this.richTextBox1.Size = new System.Drawing.Size(599, 81);
             this.richTextBox1.TabIndex = 48;
             this.richTextBox1.Text = "";
             // 
@@ -307,9 +307,9 @@
             this.cmbEjecutivo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbEjecutivo.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEjecutivo.FormattingEnabled = true;
-            this.cmbEjecutivo.Location = new System.Drawing.Point(670, 143);
+            this.cmbEjecutivo.Location = new System.Drawing.Point(658, 143);
             this.cmbEjecutivo.Name = "cmbEjecutivo";
-            this.cmbEjecutivo.Size = new System.Drawing.Size(305, 24);
+            this.cmbEjecutivo.Size = new System.Drawing.Size(354, 24);
             this.cmbEjecutivo.TabIndex = 39;
             // 
             // label8
@@ -523,7 +523,6 @@
             this.dataGridOrden.Name = "dataGridOrden";
             this.dataGridOrden.Size = new System.Drawing.Size(1048, 249);
             this.dataGridOrden.TabIndex = 1;
-      
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
             // 
             // horario

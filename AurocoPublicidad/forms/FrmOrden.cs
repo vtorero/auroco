@@ -30,7 +30,7 @@ namespace AurocoPublicidad.forms
 {
     public partial class FrmOrden : Form
     {
-        private const string apiUrl = "https://tudominio.com/api/tuendpoint";
+        private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
         public FrmOrden()
         {
             InitializeComponent();
@@ -161,25 +161,37 @@ namespace AurocoPublicidad.forms
             using (HttpClient cliente = new HttpClient())
             {
                 // Serializa los datos a formato JSON
-                string datosJson = Newtonsoft.Json.JsonConvert.SerializeObject(datos);
+                Orden orden = new Orden();
+                orden.MEDIO = comboMedio.SelectedValue.ToString();
+                orden.C_CONTRATO= comboContratos.SelectedValue.ToString();
+                orden.orden = datos;
+             
+
+
+                string datosJson = Newtonsoft.Json.JsonConvert.SerializeObject(orden);
 
                 // Crea el contenido de la solicitud HTTP
-                StringContent contenido = new StringContent(datosJson, Encoding.UTF8, "application/json");
+                StringContent resultado = new StringContent(Send(apiUrl, orden, "POST"));
+
+                //StringContent contenido = new StringContent(datosJson, Encoding.UTF8, "application/json");
 
                 try
                 {
                     // Realiza la solicitud POST al API REST
-                    HttpResponseMessage respuesta = await cliente.PostAsync(apiUrl, contenido);
+                  //  HttpResponseMessage respuesta = await cliente.PostAsync(apiUrl, contenido);
+                    
+                    
+                   // JObject jObject = JObject.Parse(resultado);
 
                     // Maneja la respuesta según sea necesario
-                    if (respuesta.IsSuccessStatusCode)
+                  /*  if (respuesta.IsSuccessStatusCode)
                     {
                         MessageBox.Show("Datos enviados correctamente al API REST.");
                     }
                     else
                     {
                         MessageBox.Show($"Error al enviar datos al API REST. Código de estado: {respuesta.StatusCode}");
-                    }
+                    }*/
                 }
                 catch (Exception ex)
                 {

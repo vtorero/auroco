@@ -148,6 +148,18 @@ $app->get("/clientes",function() use ($app,$db){
 
 });
 
+$app->post("/orden",function() use ($app,$db){
+    $json = $app->request->getBody();
+    $data = json_decode($json,TRUE);
+
+    echo  json_encode($data);
+
+
+
+});
+
+
+
 $app->post("/contratos_cliente",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
