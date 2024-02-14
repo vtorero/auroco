@@ -737,7 +737,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(835, 586);
+            this.button1.Location = new System.Drawing.Point(804, 586);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 32);
             this.button1.TabIndex = 2;
@@ -774,9 +774,9 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(975, 586);
+            this.btnGuardar.Location = new System.Drawing.Point(946, 586);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 32);
+            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;

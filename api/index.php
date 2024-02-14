@@ -152,7 +152,20 @@ $app->post("/orden",function() use ($app,$db){
     $json = $app->request->getBody();
     $data = json_decode($json,TRUE);
 
-    echo  json_encode($data);
+try{
+    $sql="call SP_GRABA_ORDENES('T001','C001','M001','EJ009','PRODUCTO','MOTIVO','30','2024-02-01','2024-02-29','OBS')";
+    $stmt = mysqli_prepare($db,$sql);
+    mysqli_stmt_execute($stmt);
+
+    $result = array("status"=>true,"message"=>"Orden creada correctamente","data"=>$data);
+}
+catch(PDOException $e) {
+    $result = array("STATUS"=>false,"message"=>$e->getMessage());
+   }
+
+    echo  json_encode($result);
+
+
 
 
 

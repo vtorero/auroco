@@ -1,4 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
+using AurocoPublicidad.util;
 using Google.Protobuf.WellKnownTypes;
 using MySqlX.XDevAPI;
 using Newtonsoft.Json;
@@ -105,27 +106,47 @@ namespace AurocoPublicidad.forms
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
-        {
-        
 
+        {
             // Obtén los datos del DataGridView
-            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView();
+            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
             //MessageBox.Show(datos + "");
             Console.Write(datos);
-
-
-
             // Envía los datos al API REST
 
-            await EnviarDatosAlApi(datos);
+            Orden orden = new Orden();
+            orden.MEDIO = comboMedio.SelectedValue.ToString();
+            orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
+            orden.orden = datos;
+            orden.C_USUARIO = Global.sessionUsuario.ToString();
+
+
+            string resultado = Send<Orden>(apiUrl, orden, "POST");
+
+            JObject jObject = JObject.Parse(resultado);
+            JToken objeto = jObject["status"];
+            string status = (string)objeto;
+            Console.Write(resultado);
+
+            if (status == "True")
+            {
+                MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //  await EnviarDatosAlApi(datos);
+
+            }
+            else {
+                MessageBox.Show((string)jObject["message"], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
-        private List<Dictionary<string, object>> ObtenerDatosDataGridView()
+        private List<Dictionary<string, object>> ObtenerDatosDataGridView(DataGridView dgv)
         {
-            List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
+        List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
 
             // Itera a través de las filas del DataGridView
-            foreach (DataGridViewRow fila in dataGridOrden.Rows)
+            foreach (DataGridViewRow fila in dgv.Rows)
             {
                 // Verifica si la fila no es nueva y no es la fila de encabezado
                 if (!fila.IsNewRow)
@@ -136,7 +157,7 @@ namespace AurocoPublicidad.forms
                     foreach (DataGridViewCell celda in fila.Cells)
                     {
                         // Usa el nombre de la columna como clave y el valor de la celda como valor
-                        filaDatos[dataGridOrden.Columns[celda.ColumnIndex].Name] = celda.Value;
+                        filaDatos[dgv.Columns[celda.ColumnIndex].Name] = celda.Value;
                     }
 
                     // Agrega la fila de datos a la lista
@@ -362,7 +383,7 @@ namespace AurocoPublicidad.forms
 
 
             // Obtén los datos del DataGridView
-            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView();
+            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
             //MessageBox.Show(datos + "");
             Console.Write(datos);
         }

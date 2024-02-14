@@ -13,6 +13,8 @@ namespace AurocoPublicidad.models.request
         public string C_CONTRATO { get; set; }
         
         public List<Dictionary<string, object>> orden { get; set; }    
-      
+         public string C_USUARIO { get; set; }
+
+
     }
 }
