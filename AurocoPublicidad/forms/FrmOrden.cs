@@ -105,7 +105,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private async void btnGuardar_Click(object sender, EventArgs e)
+        private  void btnGuardar_Click(object sender, EventArgs e)
 
         {
             // Obtén los datos del DataGridView
@@ -115,7 +115,7 @@ namespace AurocoPublicidad.forms
             // Envía los datos al API REST
 
             Orden orden = new Orden();
-            orden.MEDIO = comboMedio.SelectedValue.ToString();
+            orden.C_MEDIO = comboMedio.SelectedValue.ToString();
             orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
             orden.orden = datos;
             orden.C_USUARIO = Global.sessionUsuario.ToString();
@@ -132,7 +132,7 @@ namespace AurocoPublicidad.forms
             {
                 MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //  await EnviarDatosAlApi(datos);
+                 // await EnviarDatosAlApi(datos);
 
             }
             else {
@@ -183,7 +183,7 @@ namespace AurocoPublicidad.forms
             {
                 // Serializa los datos a formato JSON
                 Orden orden = new Orden();
-                orden.MEDIO = comboMedio.SelectedValue.ToString();
+                orden.C_MEDIO = comboMedio.SelectedValue.ToString();
                 orden.C_CONTRATO= comboContratos.SelectedValue.ToString();
                 orden.orden = datos;
              
