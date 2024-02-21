@@ -17,6 +17,8 @@ namespace AurocoPublicidad.models.request
         public string FECHA_INICIO { get; set; }
         public string FECHA_FIN { get; set; }
 
+        public string C_EJECUTIVO {  get; set; }
+
         public string PRODUCTO{ get; set; }
         public string MOTIVO{ get; set; }
         public string DURACION{ get; set; }

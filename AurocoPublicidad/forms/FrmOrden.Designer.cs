@@ -35,10 +35,10 @@
             this.cTipoCambio = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textDuracion = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.textObservaciones = new System.Windows.Forms.RichTextBox();
             this.textMotivo = new System.Windows.Forms.TextBox();
             this.textProducto = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -117,10 +117,10 @@
             this.groupBox1.Controls.Add(this.cTipoCambio);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textDuracion);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.textObservaciones);
             this.groupBox1.Controls.Add(this.textMotivo);
             this.groupBox1.Controls.Add(this.textProducto);
             this.groupBox1.Controls.Add(this.label13);
@@ -198,12 +198,12 @@
             this.label16.TabIndex = 54;
             this.label16.Text = "Duración:";
             // 
-            // textBox1
+            // textDuracion
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 53;
+            this.textDuracion.Location = new System.Drawing.Point(77, 239);
+            this.textDuracion.Name = "textDuracion";
+            this.textDuracion.Size = new System.Drawing.Size(100, 20);
+            this.textDuracion.TabIndex = 53;
             // 
             // label15
             // 
@@ -223,13 +223,13 @@
             this.label14.TabIndex = 49;
             this.label14.Text = "Observaciones:";
             // 
-            // richTextBox1
+            // textObservaciones
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(413, 178);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(599, 81);
-            this.richTextBox1.TabIndex = 48;
-            this.richTextBox1.Text = "";
+            this.textObservaciones.Location = new System.Drawing.Point(413, 178);
+            this.textObservaciones.Name = "textObservaciones";
+            this.textObservaciones.Size = new System.Drawing.Size(599, 81);
+            this.textObservaciones.TabIndex = 48;
+            this.textObservaciones.Text = "";
             // 
             // textMotivo
             // 
@@ -423,7 +423,7 @@
             // 
             // finVigencia
             // 
-            this.finVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.finVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.finVigencia.Location = new System.Drawing.Point(197, 150);
             this.finVigencia.Name = "finVigencia";
             this.finVigencia.Size = new System.Drawing.Size(93, 20);
@@ -431,7 +431,7 @@
             // 
             // inicioVigencia
             // 
-            this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.inicioVigencia.Location = new System.Drawing.Point(77, 150);
             this.inicioVigencia.Name = "inicioVigencia";
             this.inicioVigencia.Size = new System.Drawing.Size(93, 20);
@@ -871,7 +871,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox textObservaciones;
         private System.Windows.Forms.TextBox textMotivo;
         private System.Windows.Forms.TextBox textProducto;
         private System.Windows.Forms.Label label13;
@@ -880,7 +880,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textDuracion;
         private System.Windows.Forms.TextBox cTipoCambio;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox cNumeroFisico;

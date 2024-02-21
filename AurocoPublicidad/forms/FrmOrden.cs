@@ -115,11 +115,20 @@ namespace AurocoPublicidad.forms
             // Envía los datos al API REST
 
             Orden orden = new Orden();
-            orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+            orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
             orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
+            orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+            orden.IGV = comboIgv.SelectedItem.ToString();
+            orden.CONSUMIR_EN = comboCambio.SelectedItem.ToString();
+            orden.FECHA_INICIO = inicioVigencia.Value.ToString();
+            orden.FECHA_FIN= finVigencia.Value.ToString();  
+            orden.C_EJECUTIVO= cmbEjecutivo.SelectedValue.ToString();
+            orden.PRODUCTO = textProducto.Text;
+            orden.MOTIVO = textMotivo.Text;
+            orden.DURACION = textDuracion.Text;
+            orden.OBSERVACIONES = textObservaciones.Text;
             orden.orden = datos;
             orden.C_USUARIO = Global.sessionUsuario.ToString();
-
 
             string resultado = Send<Orden>(apiUrl, orden, "POST");
 

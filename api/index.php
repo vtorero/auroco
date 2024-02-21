@@ -150,23 +150,30 @@ $app->get("/clientes",function() use ($app,$db){
 
 $app->post("/orden",function() use ($app,$db){
     $json = $app->request->getBody();
-    $data = json_decode($json,TRUE);
+    $data = json_decode($json,false);
+    $fecha1 = explode("/", $data->FECHA_INICIO);
+    $fecha2= explode("/", $data->FECHA_FIN);
+    $ano1=explode(" ",$fecha1[2]);
+    $ano2=explode(" ",$fecha2[2]);
+    $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
+    $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
 try{
-    $sql="call SP_GRABA_ORDENES('T001','C001','M001','EJ009','PRODUCTO','MOTIVO','30','2024-02-01','2024-02-29','OBS')";
+
+    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->OBSERVACIONES}',@SCODIGO,@PV_MENSAJE_ERROR)";
     $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
-
     $result = array("status"=>true,"message"=>"Orden creada correctamente","data"=>$data);
+
 }
 catch(PDOException $e) {
+
     $result = array("STATUS"=>false,"message"=>$e->getMessage());
    }
 
-    echo  json_encode($result);
+//echo  ($sql);
 
-
-
+  echo  json_encode($result);
 
 
 });
