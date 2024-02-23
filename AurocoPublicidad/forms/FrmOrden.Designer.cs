@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrden));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cNumeroFisico = new System.Windows.Forms.TextBox();
@@ -67,6 +68,8 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,14 +103,13 @@
             this.d29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.L1 = new System.Windows.Forms.Label();
-            this.L2 = new System.Windows.Forms.Label();
-            this.L3 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.totalOrden = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -518,226 +520,18 @@
             this.d29,
             this.d30,
             this.d31,
+            this.avisos,
             this.total});
-            this.dataGridOrden.Location = new System.Drawing.Point(38, 317);
+            this.dataGridOrden.Location = new System.Drawing.Point(38, 296);
             this.dataGridOrden.Name = "dataGridOrden";
-            this.dataGridOrden.Size = new System.Drawing.Size(1048, 249);
+            this.dataGridOrden.Size = new System.Drawing.Size(1116, 215);
             this.dataGridOrden.TabIndex = 1;
+            this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
-            // 
-            // horario
-            // 
-            this.horario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.horario.HeaderText = "Horario";
-            this.horario.Name = "horario";
-            this.horario.Width = 110;
-            // 
-            // costo
-            // 
-            this.costo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.costo.HeaderText = "Costo";
-            this.costo.Name = "costo";
-            this.costo.Width = 110;
-            // 
-            // d1
-            // 
-            this.d1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d1.HeaderText = "1";
-            this.d1.Name = "d1";
-            this.d1.Width = 20;
-            // 
-            // d2
-            // 
-            this.d2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d2.HeaderText = "2";
-            this.d2.Name = "d2";
-            this.d2.Width = 20;
-            // 
-            // d3
-            // 
-            this.d3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d3.HeaderText = "3";
-            this.d3.Name = "d3";
-            this.d3.Width = 20;
-            // 
-            // d4
-            // 
-            this.d4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d4.HeaderText = "4";
-            this.d4.Name = "d4";
-            this.d4.Width = 20;
-            // 
-            // d5
-            // 
-            this.d5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d5.HeaderText = "5";
-            this.d5.Name = "d5";
-            this.d5.Width = 20;
-            // 
-            // d6
-            // 
-            this.d6.HeaderText = "6";
-            this.d6.Name = "d6";
-            this.d6.Width = 20;
-            // 
-            // d7
-            // 
-            this.d7.HeaderText = "7";
-            this.d7.Name = "d7";
-            this.d7.Width = 20;
-            // 
-            // d8
-            // 
-            this.d8.HeaderText = "8";
-            this.d8.Name = "d8";
-            this.d8.Width = 20;
-            // 
-            // d9
-            // 
-            this.d9.HeaderText = "9";
-            this.d9.Name = "d9";
-            this.d9.Width = 20;
-            // 
-            // d10
-            // 
-            this.d10.HeaderText = "10";
-            this.d10.Name = "d10";
-            this.d10.Width = 20;
-            // 
-            // d11
-            // 
-            this.d11.HeaderText = "11";
-            this.d11.Name = "d11";
-            this.d11.Width = 20;
-            // 
-            // d12
-            // 
-            this.d12.HeaderText = "12";
-            this.d12.Name = "d12";
-            this.d12.Width = 20;
-            // 
-            // d13
-            // 
-            this.d13.HeaderText = "13";
-            this.d13.Name = "d13";
-            this.d13.Width = 20;
-            // 
-            // d14
-            // 
-            this.d14.HeaderText = "14";
-            this.d14.Name = "d14";
-            this.d14.Width = 20;
-            // 
-            // d15
-            // 
-            this.d15.HeaderText = "15";
-            this.d15.Name = "d15";
-            this.d15.Width = 20;
-            // 
-            // d16
-            // 
-            this.d16.HeaderText = "16";
-            this.d16.Name = "d16";
-            this.d16.Width = 20;
-            // 
-            // d17
-            // 
-            this.d17.HeaderText = "17";
-            this.d17.Name = "d17";
-            this.d17.Width = 20;
-            // 
-            // d18
-            // 
-            this.d18.HeaderText = "18";
-            this.d18.Name = "d18";
-            this.d18.Width = 20;
-            // 
-            // d19
-            // 
-            this.d19.HeaderText = "19";
-            this.d19.Name = "d19";
-            this.d19.Width = 20;
-            // 
-            // d20
-            // 
-            this.d20.HeaderText = "20";
-            this.d20.Name = "d20";
-            this.d20.Width = 20;
-            // 
-            // d21
-            // 
-            this.d21.HeaderText = "21";
-            this.d21.Name = "d21";
-            this.d21.Width = 20;
-            // 
-            // d22
-            // 
-            this.d22.HeaderText = "22";
-            this.d22.Name = "d22";
-            this.d22.Width = 20;
-            // 
-            // d23
-            // 
-            this.d23.HeaderText = "23";
-            this.d23.Name = "d23";
-            this.d23.Width = 20;
-            // 
-            // d24
-            // 
-            this.d24.HeaderText = "24";
-            this.d24.Name = "d24";
-            this.d24.Width = 20;
-            // 
-            // d25
-            // 
-            this.d25.HeaderText = "25";
-            this.d25.Name = "d25";
-            this.d25.Width = 20;
-            // 
-            // d26
-            // 
-            this.d26.HeaderText = "26";
-            this.d26.Name = "d26";
-            this.d26.Width = 20;
-            // 
-            // d27
-            // 
-            this.d27.HeaderText = "27";
-            this.d27.Name = "d27";
-            this.d27.Width = 20;
-            // 
-            // d28
-            // 
-            this.d28.HeaderText = "28";
-            this.d28.Name = "d28";
-            this.d28.Width = 20;
-            // 
-            // d29
-            // 
-            this.d29.HeaderText = "29";
-            this.d29.Name = "d29";
-            this.d29.Width = 20;
-            // 
-            // d30
-            // 
-            this.d30.HeaderText = "30";
-            this.d30.Name = "d30";
-            this.d30.Width = 20;
-            // 
-            // d31
-            // 
-            this.d31.HeaderText = "31";
-            this.d31.Name = "d31";
-            this.d31.Width = 20;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(804, 586);
+            this.button1.Location = new System.Drawing.Point(914, 564);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 32);
             this.button1.TabIndex = 2;
@@ -745,36 +539,9 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // L1
-            // 
-            this.L1.AutoSize = true;
-            this.L1.Location = new System.Drawing.Point(362, 290);
-            this.L1.Name = "L1";
-            this.L1.Size = new System.Drawing.Size(13, 13);
-            this.L1.TabIndex = 3;
-            this.L1.Text = "..";
-            // 
-            // L2
-            // 
-            this.L2.AutoSize = true;
-            this.L2.Location = new System.Drawing.Point(383, 290);
-            this.L2.Name = "L2";
-            this.L2.Size = new System.Drawing.Size(13, 13);
-            this.L2.TabIndex = 4;
-            this.L2.Text = "..";
-            // 
-            // L3
-            // 
-            this.L3.AutoSize = true;
-            this.L3.Location = new System.Drawing.Point(404, 290);
-            this.L3.Name = "L3";
-            this.L3.Size = new System.Drawing.Size(13, 13);
-            this.L3.TabIndex = 5;
-            this.L3.Text = "..";
-            // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(946, 586);
+            this.btnGuardar.Location = new System.Drawing.Point(1025, 564);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(129, 32);
             this.btnGuardar.TabIndex = 6;
@@ -782,17 +549,253 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // horario
+            // 
+            this.horario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.horario.HeaderText = "Horario";
+            this.horario.Name = "horario";
+            this.horario.ReadOnly = true;
+            this.horario.Width = 60;
+            // 
+            // costo
+            // 
+            this.costo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.costo.HeaderText = "Costo";
+            this.costo.Name = "costo";
+            this.costo.Width = 60;
+            // 
+            // d1
+            // 
+            this.d1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.d1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.d1.HeaderText = "1";
+            this.d1.Name = "d1";
+            this.d1.Width = 21;
+            // 
+            // d2
+            // 
+            this.d2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.d2.HeaderText = "2";
+            this.d2.Name = "d2";
+            this.d2.Width = 21;
+            // 
+            // d3
+            // 
+            this.d3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.d3.HeaderText = "3";
+            this.d3.Name = "d3";
+            this.d3.Width = 21;
+            // 
+            // d4
+            // 
+            this.d4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.d4.HeaderText = "4";
+            this.d4.Name = "d4";
+            this.d4.Width = 21;
+            // 
+            // d5
+            // 
+            this.d5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.d5.HeaderText = "5";
+            this.d5.Name = "d5";
+            this.d5.Width = 21;
+            // 
+            // d6
+            // 
+            this.d6.HeaderText = "6";
+            this.d6.Name = "d6";
+            this.d6.Width = 21;
+            // 
+            // d7
+            // 
+            this.d7.HeaderText = "7";
+            this.d7.Name = "d7";
+            this.d7.Width = 21;
+            // 
+            // d8
+            // 
+            this.d8.HeaderText = "8";
+            this.d8.Name = "d8";
+            this.d8.Width = 21;
+            // 
+            // d9
+            // 
+            this.d9.HeaderText = "9";
+            this.d9.Name = "d9";
+            this.d9.Width = 21;
+            // 
+            // d10
+            // 
+            this.d10.HeaderText = "10";
+            this.d10.Name = "d10";
+            this.d10.Width = 21;
+            // 
+            // d11
+            // 
+            this.d11.HeaderText = "11";
+            this.d11.Name = "d11";
+            this.d11.Width = 21;
+            // 
+            // d12
+            // 
+            this.d12.HeaderText = "12";
+            this.d12.Name = "d12";
+            this.d12.Width = 21;
+            // 
+            // d13
+            // 
+            this.d13.HeaderText = "13";
+            this.d13.Name = "d13";
+            this.d13.Width = 21;
+            // 
+            // d14
+            // 
+            this.d14.HeaderText = "14";
+            this.d14.Name = "d14";
+            this.d14.Width = 21;
+            // 
+            // d15
+            // 
+            this.d15.HeaderText = "15";
+            this.d15.Name = "d15";
+            this.d15.Width = 21;
+            // 
+            // d16
+            // 
+            this.d16.HeaderText = "16";
+            this.d16.Name = "d16";
+            this.d16.Width = 21;
+            // 
+            // d17
+            // 
+            this.d17.HeaderText = "17";
+            this.d17.Name = "d17";
+            this.d17.Width = 21;
+            // 
+            // d18
+            // 
+            this.d18.HeaderText = "18";
+            this.d18.Name = "d18";
+            this.d18.Width = 21;
+            // 
+            // d19
+            // 
+            this.d19.HeaderText = "19";
+            this.d19.Name = "d19";
+            this.d19.Width = 21;
+            // 
+            // d20
+            // 
+            this.d20.HeaderText = "20";
+            this.d20.Name = "d20";
+            this.d20.Width = 21;
+            // 
+            // d21
+            // 
+            this.d21.HeaderText = "21";
+            this.d21.Name = "d21";
+            this.d21.Width = 21;
+            // 
+            // d22
+            // 
+            this.d22.HeaderText = "22";
+            this.d22.Name = "d22";
+            this.d22.Width = 21;
+            // 
+            // d23
+            // 
+            this.d23.HeaderText = "23";
+            this.d23.Name = "d23";
+            this.d23.Width = 21;
+            // 
+            // d24
+            // 
+            this.d24.HeaderText = "24";
+            this.d24.Name = "d24";
+            this.d24.Width = 21;
+            // 
+            // d25
+            // 
+            this.d25.HeaderText = "25";
+            this.d25.Name = "d25";
+            this.d25.Width = 21;
+            // 
+            // d26
+            // 
+            this.d26.HeaderText = "26";
+            this.d26.Name = "d26";
+            this.d26.Width = 21;
+            // 
+            // d27
+            // 
+            this.d27.HeaderText = "27";
+            this.d27.Name = "d27";
+            this.d27.Width = 21;
+            // 
+            // d28
+            // 
+            this.d28.HeaderText = "28";
+            this.d28.Name = "d28";
+            this.d28.Width = 21;
+            // 
+            // d29
+            // 
+            this.d29.HeaderText = "29";
+            this.d29.Name = "d29";
+            this.d29.Width = 21;
+            // 
+            // d30
+            // 
+            this.d30.HeaderText = "30";
+            this.d30.Name = "d30";
+            this.d30.Width = 21;
+            // 
+            // d31
+            // 
+            this.d31.HeaderText = "31";
+            this.d31.Name = "d31";
+            this.d31.Width = 21;
+            // 
+            // avisos
+            // 
+            this.avisos.HeaderText = "Avisos";
+            this.avisos.Name = "avisos";
+            this.avisos.ReadOnly = true;
+            this.avisos.Width = 45;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            this.total.Width = 67;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.totalOrden);
+            this.groupBox2.Location = new System.Drawing.Point(854, 517);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(300, 41);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // totalOrden
+            // 
+            this.totalOrden.Location = new System.Drawing.Point(194, 15);
+            this.totalOrden.Name = "totalOrden";
+            this.totalOrden.Size = new System.Drawing.Size(100, 20);
+            this.totalOrden.TabIndex = 0;
+            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 643);
+            this.ClientSize = new System.Drawing.Size(1208, 643);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.L3);
-            this.Controls.Add(this.L2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.L1);
             this.Controls.Add(this.dataGridOrden);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmOrden";
@@ -801,8 +804,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -816,11 +820,38 @@
         private System.Windows.Forms.DataGridView dataGridOrden;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker inicioVigencia;
-        private System.Windows.Forms.Label L1;
-        private System.Windows.Forms.Label L2;
-        private System.Windows.Forms.Label L3;
         private System.Windows.Forms.DateTimePicker finVigencia;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox cFinVigencia;
+        private System.Windows.Forms.TextBox cInicioVigencia;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox cMoneda;
+        private System.Windows.Forms.ComboBox comboIgv;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox cSaldo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboMedio;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbEjecutivo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RichTextBox textObservaciones;
+        private System.Windows.Forms.TextBox textMotivo;
+        private System.Windows.Forms.TextBox textProducto;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comboCambio;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textDuracion;
+        private System.Windows.Forms.TextBox cTipoCambio;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox cNumeroFisico;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario;
         private System.Windows.Forms.DataGridViewTextBoxColumn costo;
         private System.Windows.Forms.DataGridViewTextBoxColumn d1;
@@ -854,36 +885,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn d29;
         private System.Windows.Forms.DataGridViewTextBoxColumn d30;
         private System.Windows.Forms.DataGridViewTextBoxColumn d31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox cFinVigencia;
-        private System.Windows.Forms.TextBox cInicioVigencia;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox cMoneda;
-        private System.Windows.Forms.ComboBox comboIgv;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox cSaldo;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboMedio;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cmbEjecutivo;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RichTextBox textObservaciones;
-        private System.Windows.Forms.TextBox textMotivo;
-        private System.Windows.Forms.TextBox textProducto;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboCambio;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textDuracion;
-        private System.Windows.Forms.TextBox cTipoCambio;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox cNumeroFisico;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox totalOrden;
     }
 }
