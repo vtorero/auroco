@@ -163,7 +163,7 @@ namespace AurocoPublicidad.forms
                 JObject jObject = JObject.Parse(resultado);
                 JToken objeto = jObject["status"];
                 string status = (string)objeto;
-                Console.Write(resultado);
+                Console.Write(resultado); 
 
                 if (status == "True")
                 {
