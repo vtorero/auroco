@@ -161,14 +161,19 @@ $app->post("/orden",function() use ($app,$db){
 try{
 
     $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->OBSERVACIONES}',@SCODIGO,@PV_MENSAJE_ERROR)";
+
+
     $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
-    $result = array("status"=>true,"message"=>"Orden creada correctamente","data"=>$data);
+    $resultado = $db->query("SELECT @SCODIGO,@PV_MENSAJE_ERROR");
+    $fila = $resultado->fetch_assoc();
+
+    $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data);
 
 }
 catch(PDOException $e) {
 
-    $result = array("STATUS"=>false,"message"=>$e->getMessage());
+    $result = array("STATUS"=>false,"message"=>$e->getMessage(),"mensaje"=>@PV_MENSAJE_ERROR);
    }
 
 //echo  ($sql);

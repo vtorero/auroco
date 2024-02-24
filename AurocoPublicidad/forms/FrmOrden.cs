@@ -169,7 +169,18 @@ namespace AurocoPublicidad.forms
                 {
                     MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // await EnviarDatosAlApi(datos);
+                   // comboCliente.SelectedIndex = 0;
+                    comboMedio.SelectedIndex = 0;
+                    comboIgv.SelectedIndex = 0;
+                    comboCambio.SelectedIndex = 0;
+                    textProducto.Text = "";
+                    textMotivo.Text = "";
+                    textDuracion.Text = "";
+                    textObservaciones.Text = "";
+                    dataGridOrden.Rows.Clear();
+                    totalOrden.Text= "";
+
+
 
                 }
                 else
