@@ -398,12 +398,7 @@ namespace AurocoPublicidad.forms
         }
 
 
-        private void comboMedio_DropDownClosed(object sender, EventArgs e)
-        {
-            cargaprograma();
-
-        }
-
+     
         public async void cargaprograma()
         {
             if (dataGridOrden.Columns.Contains("programa"))
@@ -427,7 +422,7 @@ namespace AurocoPublicidad.forms
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Programa";
             comboBoxColumn.Width = 210;
-            comboBoxColumn.Name = "Programa";
+            comboBoxColumn.Name = "programa";
             comboBoxColumn.DisplayMember = "PROGRAMA";
             comboBoxColumn.ValueMember = "ID";
             comboBoxColumn.DataSource = lstC;
@@ -571,6 +566,11 @@ namespace AurocoPublicidad.forms
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
+        }
+
+        private void comboMedio_Leave(object sender, EventArgs e)
+        {
+            cargaprograma();
         }
     }
 }
