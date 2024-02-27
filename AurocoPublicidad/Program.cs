@@ -17,7 +17,7 @@ namespace AurocoPublicidad
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmOrden());
+            Application.Run(new Login());
         }
     }
 }

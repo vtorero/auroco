@@ -160,23 +160,40 @@ $app->post("/orden",function() use ($app,$db){
 
 try{
 
-    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->OBSERVACIONES}',@SCODIGO,@PV_MENSAJE_ERROR)";
-
+    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->OBSERVACIONES}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
 
     $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
-    $resultado = $db->query("SELECT @SCODIGO,@PV_MENSAJE_ERROR");
+
+    $resultado = $db->query("SELECT @SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR");
     $fila = $resultado->fetch_assoc();
 
-    $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data);
+    if($fila['@VAL_ERROR']=='NO'){
+
+    foreach ($data->orden as $i => $item) {
+
+
+        for ($v=0; $v < (int)$item->d1; $v++) {
+        $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VAL_ERROR)";
+        $stmt = mysqli_prepare($db,$sql2);
+        mysqli_stmt_execute($stmt);
+    }
+
+        }
+
+
+        $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data);
+        }else{
+        $result = array("status"=>false,"message"=>$fila['@PV_MENSAJE_ERROR'],"data"=>$data);
+        }
 
 }
 catch(PDOException $e) {
 
     $result = array("STATUS"=>false,"message"=>$e->getMessage(),"mensaje"=>@PV_MENSAJE_ERROR);
-   }
 
-//echo  ($sql);
+}
+
 
   echo  json_encode($result);
 
@@ -251,8 +268,7 @@ $app->get("/medio_programas/:medio",function($medio) use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
 
-
-   $sql="SELECT p.* FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p, aprendea_auroco.ORD_MEDIOS m where m.NOMBRE=p.CANAL and CANAL='{$medio}' ORDER BY PROGRAMA;";
+    $sql="SELECT p.* FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p, aprendea_auroco.ORD_MEDIOS m where m.NOMBRE=p.CANAL and m.C_MEDIO='{$medio}' ORDER BY PROGRAMA";
    $resultado = $db->query($sql);
    $contratos=array();
    while ($fila = $resultado->fetch_object()) {

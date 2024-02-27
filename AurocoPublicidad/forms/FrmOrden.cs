@@ -68,7 +68,7 @@ namespace AurocoPublicidad.forms
             comboMedio.Items.Add("Selecciona un medio");
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
-            comboMedio.ValueMember = "NOMBRE";
+            comboMedio.ValueMember = "C_MEDIO";
 
             string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);

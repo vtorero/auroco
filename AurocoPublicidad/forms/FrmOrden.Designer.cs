@@ -68,11 +68,6 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.totalOrden = new System.Windows.Forms.TextBox();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +103,10 @@
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.avisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.totalOrden = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -530,52 +529,6 @@
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(914, 517);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Agregar Linea";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 6;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.totalOrden);
-            this.groupBox2.Location = new System.Drawing.Point(798, 470);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 41);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(208, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(34, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Total:";
-            // 
-            // totalOrden
-            // 
-            this.totalOrden.Location = new System.Drawing.Point(249, 15);
-            this.totalOrden.Name = "totalOrden";
-            this.totalOrden.Size = new System.Drawing.Size(100, 20);
-            this.totalOrden.TabIndex = 0;
-            // 
             // horario
             // 
             this.horario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -798,6 +751,42 @@
             this.total.ReadOnly = true;
             this.total.Width = 67;
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
+            this.btnGuardar.TabIndex = 6;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.totalOrden);
+            this.groupBox2.Location = new System.Drawing.Point(798, 470);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(356, 41);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(208, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(34, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Total:";
+            // 
+            // totalOrden
+            // 
+            this.totalOrden.Location = new System.Drawing.Point(249, 15);
+            this.totalOrden.Name = "totalOrden";
+            this.totalOrden.Size = new System.Drawing.Size(100, 20);
+            this.totalOrden.TabIndex = 0;
+            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -805,7 +794,6 @@
             this.ClientSize = new System.Drawing.Size(1174, 564);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridOrden);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -829,7 +817,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboContratos;
         private System.Windows.Forms.DataGridView dataGridOrden;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker inicioVigencia;
         private System.Windows.Forms.DateTimePicker finVigencia;
         private System.Windows.Forms.Button btnGuardar;
