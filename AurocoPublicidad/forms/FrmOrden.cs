@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 
 
@@ -559,6 +560,17 @@ namespace AurocoPublicidad.forms
                         
                     }
                     totalOrden.Text = totalorden.ToString();
+                }
+
+                if (dataGridOrden.Rows.Count == 0)
+                {
+                    // Si está vacío, desactivar el botón
+                    btnGuardar.Enabled = false;
+                }
+                else
+                {
+                    // Si no está vacío, activar el botón
+                    btnGuardar.Enabled = true;
                 }
             }
             catch (Exception ex)

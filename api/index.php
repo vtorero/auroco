@@ -175,8 +175,9 @@ try{
 
     foreach ($data->orden as $i => $item) {
 
-        for ($v=0; $v < (int)$item->d1; $v++) {
+        for ($v=0; $v < (int)$item->d1;$v++) {
             $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VAL_ERROR)";
+
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
