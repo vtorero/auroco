@@ -205,7 +205,7 @@
             this.textDuracion.Location = new System.Drawing.Point(77, 228);
             this.textDuracion.Name = "textDuracion";
             this.textDuracion.Size = new System.Drawing.Size(100, 20);
-            this.textDuracion.TabIndex = 53;
+            this.textDuracion.TabIndex = 11;
             // 
             // label15
             // 
@@ -230,7 +230,7 @@
             this.textObservaciones.Location = new System.Drawing.Point(413, 178);
             this.textObservaciones.Name = "textObservaciones";
             this.textObservaciones.Size = new System.Drawing.Size(670, 66);
-            this.textObservaciones.TabIndex = 48;
+            this.textObservaciones.TabIndex = 12;
             this.textObservaciones.Text = "";
             // 
             // textMotivo
@@ -238,14 +238,14 @@
             this.textMotivo.Location = new System.Drawing.Point(77, 205);
             this.textMotivo.Name = "textMotivo";
             this.textMotivo.Size = new System.Drawing.Size(315, 20);
-            this.textMotivo.TabIndex = 47;
+            this.textMotivo.TabIndex = 10;
             // 
             // textProducto
             // 
             this.textProducto.Location = new System.Drawing.Point(77, 181);
             this.textProducto.Name = "textProducto";
             this.textProducto.Size = new System.Drawing.Size(315, 20);
-            this.textProducto.TabIndex = 46;
+            this.textProducto.TabIndex = 9;
             // 
             // label13
             // 
@@ -274,7 +274,7 @@
             this.comboCambio.Location = new System.Drawing.Point(897, 72);
             this.comboCambio.Name = "comboCambio";
             this.comboCambio.Size = new System.Drawing.Size(83, 21);
-            this.comboCambio.TabIndex = 43;
+            this.comboCambio.TabIndex = 4;
             // 
             // label11
             // 
@@ -312,7 +312,7 @@
             this.cmbEjecutivo.Location = new System.Drawing.Point(616, 147);
             this.cmbEjecutivo.Name = "cmbEjecutivo";
             this.cmbEjecutivo.Size = new System.Drawing.Size(365, 24);
-            this.cmbEjecutivo.TabIndex = 39;
+            this.cmbEjecutivo.TabIndex = 8;
             // 
             // label8
             // 
@@ -332,7 +332,7 @@
             this.comboMedio.Location = new System.Drawing.Point(77, 102);
             this.comboMedio.Name = "comboMedio";
             this.comboMedio.Size = new System.Drawing.Size(315, 24);
-            this.comboMedio.TabIndex = 37;
+            this.comboMedio.TabIndex = 5;
             this.comboMedio.Leave += new System.EventHandler(this.comboMedio_Leave);
             // 
             // label7
@@ -353,7 +353,7 @@
             this.comboIgv.Location = new System.Drawing.Point(271, 66);
             this.comboIgv.Name = "comboIgv";
             this.comboIgv.Size = new System.Drawing.Size(121, 21);
-            this.comboIgv.TabIndex = 35;
+            this.comboIgv.TabIndex = 3;
             // 
             // label6
             // 
@@ -429,7 +429,7 @@
             this.finVigencia.Location = new System.Drawing.Point(197, 150);
             this.finVigencia.Name = "finVigencia";
             this.finVigencia.Size = new System.Drawing.Size(93, 20);
-            this.finVigencia.TabIndex = 26;
+            this.finVigencia.TabIndex = 7;
             // 
             // inicioVigencia
             // 
@@ -437,7 +437,7 @@
             this.inicioVigencia.Location = new System.Drawing.Point(77, 150);
             this.inicioVigencia.Name = "inicioVigencia";
             this.inicioVigencia.Size = new System.Drawing.Size(93, 20);
-            this.inicioVigencia.TabIndex = 25;
+            this.inicioVigencia.TabIndex = 6;
             this.inicioVigencia.Validated += new System.EventHandler(this.inicioVigencia_Validated);
             // 
             // label4
@@ -458,7 +458,7 @@
             this.comboContratos.Location = new System.Drawing.Point(470, 32);
             this.comboContratos.Name = "comboContratos";
             this.comboContratos.Size = new System.Drawing.Size(86, 21);
-            this.comboContratos.TabIndex = 23;
+            this.comboContratos.TabIndex = 2;
             this.comboContratos.SelectedValueChanged += new System.EventHandler(this.comboContratos_SelectedValueChanged);
             // 
             // comboCliente
@@ -470,7 +470,7 @@
             this.comboCliente.Location = new System.Drawing.Point(77, 28);
             this.comboCliente.Name = "comboCliente";
             this.comboCliente.Size = new System.Drawing.Size(315, 24);
-            this.comboCliente.TabIndex = 22;
+            this.comboCliente.TabIndex = 1;
             this.comboCliente.SelectedValueChanged += new System.EventHandler(this.comboCliente_SelectedValueChanged);
             // 
             // label2
@@ -525,7 +525,7 @@
             this.dataGridOrden.Location = new System.Drawing.Point(38, 276);
             this.dataGridOrden.Name = "dataGridOrden";
             this.dataGridOrden.Size = new System.Drawing.Size(1116, 185);
-            this.dataGridOrden.TabIndex = 1;
+            this.dataGridOrden.TabIndex = 13;
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
             // 
@@ -757,7 +757,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 6;
+            this.btnGuardar.TabIndex = 14;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);

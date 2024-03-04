@@ -34,7 +34,7 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,INVERSION,MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,INVERSION,MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -69,7 +69,7 @@ $app->post("/contrato",function() use($db,$app){
 
    try {
 
-    $datos=$db->query("SELECT CONCAT('T0',max(id)+1) ultimo_id FROM ORD_CONTRATOS;");
+    $datos=$db->query("SELECT CONCAT('TO',LPAD(substring(max(C_CONTRATO),3,11)+1,3,0)) as ultimo_id FROM ORD_CONTRATOS;");
 
                 $identificador=array();
 
@@ -82,10 +82,12 @@ $app->post("/contrato",function() use($db,$app){
 
    $sql="call p_contrato('{$identificador->ultimo_id}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->C_MONTO_PAGAR},{$data->C_MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
 
+
+
    $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
 
-   $result = array("status"=>true,"numero"=>"112","message"=>"Contrato registrado correctamente");
+   $result = array("status"=>true,"numero"=> $identificador->ultimo_id,"message"=>"Contrato registrado correctamente");
    }
    catch(PDOException $e) {
     $result = array("STATUS"=>false,"message"=>$e->getMessage());

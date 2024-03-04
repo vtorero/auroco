@@ -33,8 +33,22 @@ namespace AurocoPublicidad.forms {
         {
             string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
+            
             DgContratos.DataSource = lst;
-
+            DgContratos.Columns[0].HeaderText = "Código";
+            DgContratos.Columns[1].HeaderText = "Contrato";
+            DgContratos.Columns[2].HeaderText = "Cliente";
+            DgContratos.Columns[3].HeaderText = "Razon Social";
+            DgContratos.Columns[4].HeaderText = "Inicio vigencia";
+            DgContratos.Columns[5].HeaderText = "Fin vigencia";
+            DgContratos.Columns[6].HeaderText = "Nro Fisico";
+            DgContratos.Columns[7].HeaderText = "Moneda";
+            DgContratos.Columns[8].HeaderText = "Monto a pagar";
+            DgContratos.Columns[9].HeaderText = "Monto a Ordenar";
+            DgContratos.Columns[10].HeaderText = "Tipo de cambio";
+            DgContratos.Columns[11].HeaderText = "Observaciones";
+            DgContratos.Columns[12].HeaderText = "Usuario";
+            DgContratos.Columns[13].HeaderText = "F. Creación";
 
 
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
@@ -84,8 +98,8 @@ namespace AurocoPublicidad.forms {
                 contratoR.FIN_VIGENCIA = this.dataFechaFin.Value.ToString("yyyy-MM-dd");
                 contratoR.C_MONEDA = comboMoneda.Text;
                 contratoR.TIPO_CAMBIO = Convert.ToDecimal(txtTipoCambio.Text);
-                contratoR.C_MONTO_PAGAR = Convert.ToDecimal(txtMonto.Text);
-                contratoR.C_MONTO_ORDENAR = Convert.ToDecimal(txtOrdenar.Text);
+                contratoR.INVERSION= Convert.ToDecimal(txtMonto.Text);
+                contratoR.MONTO_ORDENAR= Convert.ToDecimal(txtOrdenar.Text);
                 contratoR.OBSERVACIONES = txtObservaciones.Text;
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
                       
