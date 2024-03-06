@@ -152,12 +152,13 @@ $app->post("/contrato",function() use($db,$app){
 
 
 
-$app->get("/clientes",function() use ($app,$db){
+$app->get("/clientes_orden",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM ORD_CLIENTES order by c_cliente ASC");
+   $resultado = $db->query("SELECT CL.C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES CL , ORD_CONTRATOS CO WHERE CL.C_CLIENTE=CO.C_CLIENTE group by C_CLIENTE,RAZON_SOCIAL ORDER  by CL.RAZON_SOCIAL ASC");
    $contrato=array();
+   $contrato[]=["C_CLIENTE"=>"0","RAZON_SOCIAL"=>"Seleccionar Cliente"];
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
    }
@@ -447,6 +448,7 @@ $app->post("/contratos_cliente",function() use ($app,$db){
 
    $resultado = $db->query($sql);
    $contratos=array();
+   $contratos[]=["ID"=>"0","C_CONTRATO"=>"Seleccionar","C_CLIENTE"=>""];
    while ($fila = $resultado->fetch_object()) {
    $contratos[]=$fila;
    }
@@ -462,9 +464,13 @@ $app->post("/contratos_cliente",function() use ($app,$db){
 $app->get("/tabla/:tabla/:orden",function($tabla,$orden) use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
-
    $resultado = $db->query("SELECT * FROM {$tabla} order by {$orden} ASC");
    $datos=array();
+   if($tabla='ORD_MEDIOS'){
+    $campo='C_MEDIO';
+   }
+
+   $datos[]=["ID"=>"0",$campo=>"0",$orden=>"Seleccionar"];
    while ($fila = $resultado->fetch_object()) {
    $datos[]=$fila;
    }

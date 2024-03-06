@@ -56,9 +56,8 @@ namespace AurocoPublicidad.forms
 
         private async void FrmOrden_Load(object sender, EventArgs e)
         {
-            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
+            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
-            comboCliente.Items.Add("Seleccionar");
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
@@ -66,14 +65,12 @@ namespace AurocoPublicidad.forms
 
             string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
-            comboMedio.Items.Add("Selecciona un medio");
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
             comboMedio.ValueMember = "C_MEDIO";
 
             string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
-            cmbEjecutivo.Items.Add("Selecciona un Ejecutivo");
             cmbEjecutivo.DataSource = lstE;
             cmbEjecutivo.DisplayMember = "NOMBRES";
             cmbEjecutivo.ValueMember = "C_EJECUTIVO";
@@ -179,6 +176,7 @@ namespace AurocoPublicidad.forms
                         // comboCliente.SelectedIndex = 0;
                         comboMedio.SelectedIndex = 0;
                         comboCliente.SelectedIndex = 0;
+                        cmbEjecutivo.SelectedIndex = 0;
                         comboIgv.SelectedIndex = 0;
                         comboCambio.SelectedIndex = 0;
                         textProducto.Text = "";
@@ -384,7 +382,7 @@ namespace AurocoPublicidad.forms
                 cTipoCambio.Text = "";
                 cSaldo.Text = "";
 
-                if (comboContratos.SelectedValue.ToString() != "") { 
+                
 
                 HttpClient clienteHttp = new HttpClient();
                 string codigo_contrato = comboContratos.SelectedValue.ToString();
@@ -414,7 +412,7 @@ namespace AurocoPublicidad.forms
 
                 }
 
-                }
+                
             }
             catch (Exception ex)
             {
