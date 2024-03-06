@@ -159,10 +159,11 @@
             // 
             // cNumeroFisico
             // 
+            this.cNumeroFisico.BackColor = System.Drawing.SystemColors.Info;
             this.cNumeroFisico.Location = new System.Drawing.Point(498, 71);
             this.cNumeroFisico.Name = "cNumeroFisico";
             this.cNumeroFisico.ReadOnly = true;
-            this.cNumeroFisico.Size = new System.Drawing.Size(154, 20);
+            this.cNumeroFisico.Size = new System.Drawing.Size(129, 20);
             this.cNumeroFisico.TabIndex = 58;
             // 
             // label18
@@ -176,10 +177,11 @@
             // 
             // cTipoCambio
             // 
-            this.cTipoCambio.Location = new System.Drawing.Point(739, 71);
+            this.cTipoCambio.BackColor = System.Drawing.SystemColors.Info;
+            this.cTipoCambio.Location = new System.Drawing.Point(750, 72);
             this.cTipoCambio.Name = "cTipoCambio";
             this.cTipoCambio.ReadOnly = true;
-            this.cTipoCambio.Size = new System.Drawing.Size(62, 20);
+            this.cTipoCambio.Size = new System.Drawing.Size(42, 20);
             this.cTipoCambio.TabIndex = 56;
             // 
             // label17
@@ -210,7 +212,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(722, 35);
+            this.label15.Location = new System.Drawing.Point(701, 35);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(15, 13);
             this.label15.TabIndex = 50;
@@ -271,9 +273,9 @@
             this.comboCambio.Items.AddRange(new object[] {
             "Soles",
             "Dolares"});
-            this.comboCambio.Location = new System.Drawing.Point(897, 72);
+            this.comboCambio.Location = new System.Drawing.Point(890, 72);
             this.comboCambio.Name = "comboCambio";
-            this.comboCambio.Size = new System.Drawing.Size(83, 21);
+            this.comboCambio.Size = new System.Drawing.Size(78, 21);
             this.comboCambio.TabIndex = 4;
             // 
             // label11
@@ -366,10 +368,11 @@
             // 
             // cSaldo
             // 
+            this.cSaldo.BackColor = System.Drawing.SystemColors.Info;
             this.cSaldo.Location = new System.Drawing.Point(77, 66);
             this.cSaldo.Name = "cSaldo";
             this.cSaldo.ReadOnly = true;
-            this.cSaldo.Size = new System.Drawing.Size(136, 20);
+            this.cSaldo.Size = new System.Drawing.Size(93, 20);
             this.cSaldo.TabIndex = 33;
             // 
             // label5
@@ -384,7 +387,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(852, 34);
+            this.label3.Location = new System.Drawing.Point(829, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 31;
@@ -392,7 +395,8 @@
             // 
             // cMoneda
             // 
-            this.cMoneda.Location = new System.Drawing.Point(904, 30);
+            this.cMoneda.BackColor = System.Drawing.SystemColors.Info;
+            this.cMoneda.Location = new System.Drawing.Point(892, 30);
             this.cMoneda.Name = "cMoneda";
             this.cMoneda.ReadOnly = true;
             this.cMoneda.Size = new System.Drawing.Size(76, 20);
@@ -401,7 +405,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(566, 34);
+            this.label1.Location = new System.Drawing.Point(563, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 29;
@@ -409,18 +413,20 @@
             // 
             // cFinVigencia
             // 
-            this.cFinVigencia.Location = new System.Drawing.Point(738, 32);
+            this.cFinVigencia.BackColor = System.Drawing.SystemColors.Info;
+            this.cFinVigencia.Location = new System.Drawing.Point(722, 32);
             this.cFinVigencia.Name = "cFinVigencia";
             this.cFinVigencia.ReadOnly = true;
-            this.cFinVigencia.Size = new System.Drawing.Size(100, 20);
+            this.cFinVigencia.Size = new System.Drawing.Size(79, 20);
             this.cFinVigencia.TabIndex = 28;
             // 
             // cInicioVigencia
             // 
+            this.cInicioVigencia.BackColor = System.Drawing.SystemColors.Info;
             this.cInicioVigencia.Location = new System.Drawing.Point(616, 32);
             this.cInicioVigencia.Name = "cInicioVigencia";
             this.cInicioVigencia.ReadOnly = true;
-            this.cInicioVigencia.Size = new System.Drawing.Size(100, 20);
+            this.cInicioVigencia.Size = new System.Drawing.Size(76, 20);
             this.cInicioVigencia.TabIndex = 27;
             // 
             // finVigencia

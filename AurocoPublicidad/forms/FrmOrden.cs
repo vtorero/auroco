@@ -135,64 +135,85 @@ namespace AurocoPublicidad.forms
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if ((!string.IsNullOrWhiteSpace(textProducto.Text)) && (!string.IsNullOrWhiteSpace(textMotivo.Text))
+       && (!string.IsNullOrWhiteSpace(comboIgv.Text))
+                   )
             {
-                // Obtén los datos del DataGridView
-                List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
-                //MessageBox.Show(datos + "");
-                Console.Write(datos);
-                // Envía los datos al API REST
 
-                Orden orden = new Orden();
-                orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
-                orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
-                orden.C_MEDIO = comboMedio.SelectedValue.ToString();
-                orden.IGV = comboIgv.SelectedItem.ToString();
-                orden.CONSUMIR_EN = comboCambio.SelectedItem.ToString();
-                orden.FECHA_INICIO = inicioVigencia.Value.ToString();
-                orden.FECHA_FIN = finVigencia.Value.ToString();
-                orden.C_EJECUTIVO = cmbEjecutivo.SelectedValue.ToString();
-                orden.PRODUCTO = textProducto.Text;
-                orden.MOTIVO = textMotivo.Text;
-                orden.DURACION = textDuracion.Text;
-                orden.OBSERVACIONES = textObservaciones.Text;
-                orden.orden = datos;
-                orden.C_USUARIO = Global.sessionUsuario.ToString();
 
-                string resultado = Send<Orden>(apiUrl, orden, "POST");
-
-                JObject jObject = JObject.Parse(resultado);
-                JToken objeto = jObject["status"];
-                string status = (string)objeto;
-                Console.Write(resultado); 
-
-                if (status == "True")
+                try
                 {
-                    MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Obtén los datos del DataGridView
+                    List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
+                    //MessageBox.Show(datos + "");
+                    Console.Write(datos);
+                    // Envía los datos al API REST
 
-                   // comboCliente.SelectedIndex = 0;
-                    comboMedio.SelectedIndex = 0;
-                    comboIgv.SelectedIndex = 0;
-                    comboCambio.SelectedIndex = 0;
-                    textProducto.Text = "";
-                    textMotivo.Text = "";
-                    textDuracion.Text = "";
-                    textObservaciones.Text = "";
-                    dataGridOrden.Rows.Clear();
-                    totalOrden.Text= "";
+                    Orden orden = new Orden();
+                    orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
+                    orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
+                    orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+                    orden.IGV = comboIgv.SelectedItem.ToString();
+                    orden.CONSUMIR_EN = comboCambio.SelectedItem.ToString();
+                    orden.FECHA_INICIO = inicioVigencia.Value.ToString();
+                    orden.FECHA_FIN = finVigencia.Value.ToString();
+                    orden.C_EJECUTIVO = cmbEjecutivo.SelectedValue.ToString();
+                    orden.PRODUCTO = textProducto.Text;
+                    orden.MOTIVO = textMotivo.Text;
+                    orden.DURACION = textDuracion.Text;
+                    orden.OBSERVACIONES = textObservaciones.Text;
+                    orden.orden = datos;
+                    orden.C_USUARIO = Global.sessionUsuario.ToString();
+
+                    string resultado = Send<Orden>(apiUrl, orden, "POST");
+
+                    JObject jObject = JObject.Parse(resultado);
+                    JToken objeto = jObject["status"];
+                    string status = (string)objeto;
+                    Console.Write(resultado);
+
+                    if (status == "True")
+                    {
+                        MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // comboCliente.SelectedIndex = 0;
+                        comboMedio.SelectedIndex = 0;
+                        comboCliente.SelectedIndex = 0;
+                        comboIgv.SelectedIndex = 0;
+                        comboCambio.SelectedIndex = 0;
+                        textProducto.Text = "";
+                        textMotivo.Text = "";
+                        textDuracion.Text = "";
+                        textObservaciones.Text = "";
+                        dataGridOrden.Rows.Clear();
+                        totalOrden.Text = "";
+
+                        cInicioVigencia.Text = "";
+                        cFinVigencia.Text = "";
+                        cNumeroFisico.Text = "";
+                        cTipoCambio.Text = "";
+                        cSaldo.Text = "";
+
+                    }
 
 
+                    else
+                    {
+                        MessageBox.Show((string)jObject["message"], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show((string)jObject["message"], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+            else
+            {
+                MessageBox.Show("Algunos campos requeridos estan vacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private List<Dictionary<string, object>> ObtenerDatosDataGridView(DataGridView dgv)
@@ -357,11 +378,13 @@ namespace AurocoPublicidad.forms
         {
             try
             {
-                cInicioVigencia.Text = null;
-                cFinVigencia.Text = null;
-                cNumeroFisico.Text = null;
-                cTipoCambio.Text = null;
-                cSaldo.Text = null;
+                cInicioVigencia.Text = "";
+                cFinVigencia.Text = "";
+                cNumeroFisico.Text = "";
+                cTipoCambio.Text = "";
+                cSaldo.Text = "";
+
+                if (comboContratos.SelectedValue.ToString() != "") { 
 
                 HttpClient clienteHttp = new HttpClient();
                 string codigo_contrato = comboContratos.SelectedValue.ToString();
@@ -383,13 +406,15 @@ namespace AurocoPublicidad.forms
                     cMoneda.Text = data[0].C_MONEDA;
                     cTipoCambio.Text = data[0].TIPO_CAMBIO;
                     cNumeroFisico.Text = data[0].NRO_FISICO;
-                    cSaldo.Text = data[0].saldo_actual;
+                    cSaldo.Text = data[0].SALDO_ACTUAL;
+
+
 
 
 
                 }
 
-
+                }
             }
             catch (Exception ex)
             {

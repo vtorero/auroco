@@ -35,7 +35,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,9 +50,10 @@
             this.dataFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.DgContratos = new System.Windows.Forms.DataGridView();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,12 +62,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.txtNroFisico);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.comboCliente);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnGuardar);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtOrdenar);
@@ -80,10 +82,9 @@
             this.groupBox1.Controls.Add(this.dataFechaInicio);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(903, 314);
+            this.groupBox1.Size = new System.Drawing.Size(903, 301);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -118,7 +119,7 @@
             this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboCliente.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(77, 45);
+            this.comboCliente.Location = new System.Drawing.Point(77, 46);
             this.comboCliente.Name = "comboCliente";
             this.comboCliente.Size = new System.Drawing.Size(460, 24);
             this.comboCliente.TabIndex = 20;
@@ -132,16 +133,16 @@
             this.button2.Text = "Resetear";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnGuardar
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(748, 240);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 40);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
+            this.btnGuardar.Location = new System.Drawing.Point(748, 240);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(116, 40);
+            this.btnGuardar.TabIndex = 18;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -263,37 +264,43 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Cliente:";
             // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Location = new System.Drawing.Point(77, 19);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(127, 20);
-            this.txtCodigo.TabIndex = 1;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.DgContratos);
-            this.groupBox3.Location = new System.Drawing.Point(12, 332);
+            this.groupBox3.Location = new System.Drawing.Point(12, 331);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(903, 267);
+            this.groupBox3.Size = new System.Drawing.Size(903, 319);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
             // DgContratos
             // 
             this.DgContratos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgContratos.Location = new System.Drawing.Point(6, 19);
+            this.DgContratos.Location = new System.Drawing.Point(0, 19);
             this.DgContratos.Name = "DgContratos";
             this.DgContratos.ReadOnly = true;
-            this.DgContratos.Size = new System.Drawing.Size(889, 229);
+            this.DgContratos.Size = new System.Drawing.Size(889, 285);
             this.DgContratos.TabIndex = 0;
             this.DgContratos.DoubleClick += new System.EventHandler(this.DgContratos_DoubleClick);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(77, 19);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigo.TabIndex = 24;
             // 
             // FrmContratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 636);
+            this.ClientSize = new System.Drawing.Size(927, 680);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -314,7 +321,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboMoneda;
         private System.Windows.Forms.DateTimePicker dataFechaFin;
@@ -328,7 +334,7 @@
         private System.Windows.Forms.TextBox txtMonto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView DgContratos;
@@ -336,5 +342,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtNroFisico;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.TextBox txtCodigo;
     }
 }

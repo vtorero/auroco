@@ -34,7 +34,7 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,INVERSION,MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -50,7 +50,7 @@ $app->get("/contratos",function() use ($app,$db){
 
 
 $app->get("/monedas",function() use($db,$app){
-    $resultado = $db->query("SELECT * FROM MONEDAS order by idMONEDAS");
+    $resultado = $db->query("SELECT * FROM aprendea_auroco.MONEDAS order by idMONEDAS desc");
    $monedas=array();
    while ($fila = $resultado->fetch_object()) {
    $monedas[]=$fila;
@@ -60,6 +60,25 @@ $app->get("/monedas",function() use($db,$app){
 
     });
 
+    $app->put("/contrato",function() use($db,$app){
+        $json = $app->request->getBody();
+        $data = json_decode($json,false);
+        try {
+
+            $sql="call P_CONTRATO_UPD('{$data->ID}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
+
+
+          $stmt = mysqli_prepare($db,$sql);
+            mysqli_stmt_execute($stmt);
+
+            $result = array("status"=>true,"message"=>"Contrato nro:{$data->ID} actualizado correctamente");
+        }
+        catch(PDOException $e) {
+
+            $result = array("status"=>false,"message"=>"Ocurrio un error");
+        }
+        echo  json_encode($result);
+    });
 
 
 $app->post("/contrato",function() use($db,$app){
@@ -69,25 +88,24 @@ $app->post("/contrato",function() use($db,$app){
 
    try {
 
-    $datos=$db->query("SELECT CONCAT('TO',LPAD(substring(max(C_CONTRATO),3,11)+1,3,0)) as ultimo_id FROM ORD_CONTRATOS;");
+    $datos=$db->query("SELECT CONCAT('TO',LPAD(substring(max(C_CONTRATO),3,11)+1,3,0)) as ultimo_id FROM ORD_CONTRATOS");
 
                 $identificador=array();
 
                 while ($d = $datos->fetch_object()) {
 
                  $identificador=$d;
-                 }
+                }
 
-
-
-   $sql="call p_contrato('{$identificador->ultimo_id}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->C_MONTO_PAGAR},{$data->C_MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
+    $sql="call p_contrato('{$identificador->ultimo_id}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
 
 
 
    $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
 
-   $result = array("status"=>true,"numero"=> $identificador->ultimo_id,"message"=>"Contrato registrado correctamente");
+   $result = array("status"=>true,"message"=>"Contrato registrado correctamente con el código: ".$identificador->ultimo_id);
+
    }
    catch(PDOException $e) {
     $result = array("STATUS"=>false,"message"=>$e->getMessage());
@@ -424,7 +442,7 @@ $app->post("/contratos_cliente",function() use ($app,$db){
    $data = json_decode($json, TRUE);
 
 
-   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}' order by C_CONTRATO ASC";
+   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}' AND INICIO_VIGENCIA<= CURDATE() AND FIN_VIGENCIA>=	CURDATE() order by C_CONTRATO ASC";
 
 
    $resultado = $db->query($sql);
@@ -464,8 +482,8 @@ $app->get("/contrato_detalle/:id",function($id) use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
 
+   $sql="SELECT ID,C_CONTRATO,C_CLIENTE,date_format(INICIO_VIGENCIA,'%d/%m/%Y') INICIO_VIGENCIA,date_format(FIN_VIGENCIA,'%d/%m/%Y') FIN_VIGENCIA,    NRO_FISICO,   C_MONEDA, INVERSION,INVER_IGV,MONTO_ORDENAR,MONTO_ORD_IGV,TIPO_CAMBIO,TASA_IGV,OBSERVACIONES,C_USUARIO,F_CREACION  ,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO='{$id}' ORDER BY N_MOVIMIENTO DESC LIMIT 1) SALDO_ACTUAL FROM aprendea_auroco.ORD_CONTRATOS WHERE C_CONTRATO='{$id}'";
 
-   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS WHERE C_CONTRATO='{$id}'";
    $resultado = $db->query($sql);
    $contratos=array();
    while ($fila = $resultado->fetch_object()) {

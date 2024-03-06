@@ -1,5 +1,6 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
+using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -23,6 +24,8 @@ namespace AurocoPublicidad.forms {
     public partial class FrmContratos : Form
     {
         int pos;
+        Boolean nuevo = true;
+        String metodo;
         public FrmContratos()
         {
             InitializeComponent();
@@ -85,13 +88,25 @@ namespace AurocoPublicidad.forms {
       
         private async void button1_Click(object sender, EventArgs e)
         {
-            if ((!string.IsNullOrWhiteSpace(txtNroFisico.Text)) && (!string.IsNullOrWhiteSpace(comboCliente.Text))
+            if (nuevo)
+            {
+                metodo = "POST";
+
+            }
+            else
+            {
+                metodo = "PUT";
+            }
+
+
+                if ((!string.IsNullOrWhiteSpace(txtNroFisico.Text)) && (!string.IsNullOrWhiteSpace(comboCliente.Text))
                 && (!string.IsNullOrWhiteSpace(comboMoneda.Text))
                             )
             {
 
                 string url = "https://aprendeadistancia.online/api-auroco/contrato";
                 Contrato contratoR = new Contrato();
+                contratoR.ID= txtCodigo.Text;
                 contratoR.NRO_FISICO = txtNroFisico.Text;
                 contratoR.C_CLIENTE = comboCliente.SelectedValue.ToString();
                 contratoR.INICIO_VIGENCIA = this.dataFechaInicio.Value.ToString("yyyy-MM-dd");
@@ -104,7 +119,7 @@ namespace AurocoPublicidad.forms {
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
                       
 
-            string resultado = Send<Contrato>(url, contratoR, "POST");
+            string resultado = Send<Contrato>(url, contratoR, metodo);
 
             JObject jObject = JObject.Parse(resultado);
             JToken objeto = jObject["status"];
@@ -113,11 +128,25 @@ namespace AurocoPublicidad.forms {
             if (status == "True")
             {
                 MessageBox.Show( (string) jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //Form childForm = new MDIPrincipal();
-                //childForm.Show();
-                //this.Hide();
+                    //Form childForm = new MDIPrincipal();
+                    //childForm.Show();
+                    //this.Hide();
+                    nuevo = true;
+                    txtCodigo.Text = "";
+                    txtTipoCambio.Text = "";
+                    txtMonto.Text = "";
+                    txtOrdenar.Text = "";
+                    txtObservaciones.Text = "";
+                    txtNroFisico.Text = ""; 
+                    btnGuardar.Text = "Guardar";
+                    comboCliente.SelectedIndex = 0;
+                    dataFechaInicio.Value=DateTime.Now;
+                    dataFechaFin.Value = DateTime.Now;
 
-               string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
+
+
+
+                    string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
                 List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
                 DgContratos.DataSource = lst;
 
@@ -181,6 +210,8 @@ namespace AurocoPublicidad.forms {
 
         private void DgContratos_DoubleClick(object sender, EventArgs e)
         {
+            nuevo = false;
+            btnGuardar.Text = "&Actualizar";
             pos = DgContratos.CurrentRow.Index;
             comboMoneda.SelectedText=null;
             txtCodigo.Text = Convert.ToString(DgContratos[1, pos].Value);
