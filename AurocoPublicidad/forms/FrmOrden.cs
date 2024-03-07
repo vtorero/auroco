@@ -75,7 +75,18 @@ namespace AurocoPublicidad.forms
             cmbEjecutivo.DisplayMember = "NOMBRES";
             cmbEjecutivo.ValueMember = "C_EJECUTIVO";
 
+            string monedas = await GetService("https://aprendeadistancia.online/api-auroco/monedas");
+            List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
+            comboCambio.DataSource = lstMo;
+            comboCambio.DisplayMember = "NOMBRE";
+            comboCambio.ValueMember = "VALOR";
 
+            comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
+            comboIgv.Items.Add(new ListItem("Si", "Si"));
+            comboIgv.Items.Add(new ListItem("No", "No"));
+
+            // Seleccionar el primer elemento por defecto
+            comboIgv.SelectedIndex = 0;
         }
 
 
@@ -175,6 +186,7 @@ namespace AurocoPublicidad.forms
 
                         // comboCliente.SelectedIndex = 0;
                         comboMedio.SelectedIndex = 0;
+                        comboContratos.SelectedIndex = 0;   
                         comboCliente.SelectedIndex = 0;
                         cmbEjecutivo.SelectedIndex = 0;
                         comboIgv.SelectedIndex = 0;
@@ -606,6 +618,28 @@ namespace AurocoPublicidad.forms
         private void comboMedio_Leave(object sender, EventArgs e)
         {
             cargaprograma();
+        }
+
+        public class ListItem
+        {
+            public string Value { get; set; }
+            public string Text { get; set; }
+
+            public ListItem(string value, string text)
+            {
+                Value = value;
+                Text = text;
+            }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

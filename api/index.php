@@ -149,7 +149,24 @@ $app->post("/contrato",function() use($db,$app){
    echo  json_encode($data);
 });
 
+$app->get("/clientes",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
 
+   $resultado = $db->query("SELECT CL.C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES CL ORDER  by CL.RAZON_SOCIAL ASC");
+   $contrato=array();
+   $contrato[]=["C_CLIENTE"=>"0","RAZON_SOCIAL"=>"Seleccionar Cliente"];
+   while ($fila = $resultado->fetch_object()) {
+   $contrato[]=$fila;
+   }
+   if(count($contrato)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contrato);
+
+});
 
 
 $app->get("/clientes_orden",function() use ($app,$db){

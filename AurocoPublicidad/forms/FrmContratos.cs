@@ -226,6 +226,11 @@ namespace AurocoPublicidad.forms {
             txtObservaciones.Text=Convert.ToString(DgContratos[11, pos].Value);
             //MessageBox.Show(pos+"","ss");
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
