@@ -188,6 +188,134 @@ $app->get("/clientes_orden",function() use ($app,$db){
 
 });
 
+
+$app->get("/orden/:id",function($id) use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+   $resultado = $db->query("SELECT ORD.ID,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
+         SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
+         SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
+         SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,
+         SUM(IF(DAY(ORD.FECHA)=05,XCONT,0)) d5,
+         SUM(IF(DAY(ORD.FECHA)=06,XCONT,0)) d6,
+         SUM(IF(DAY(ORD.FECHA)=07,XCONT,'')) d7,
+         SUM(IF(DAY(ORD.FECHA)=08,XCONT,0)) d8,
+         SUM(IF(DAY(ORD.FECHA)=09,XCONT,0)) d9,
+         SUM(IF(DAY(ORD.FECHA)=10,XCONT,0)) d10,
+         SUM(IF(DAY(ORD.FECHA)=11,XCONT,0)) d11,
+         SUM(IF(DAY(ORD.FECHA)=12,XCONT,0)) d12,
+         SUM(IF(DAY(ORD.FECHA)=13,XCONT,0)) d13,
+         SUM(IF(DAY(ORD.FECHA)=14,XCONT,0)) d14,
+         SUM(IF(DAY(ORD.FECHA)=15,XCONT,0)) d15,
+         SUM(IF(DAY(ORD.FECHA)=16,XCONT,0)) d16,
+         SUM(IF(DAY(ORD.FECHA)=17,XCONT,0)) d17,
+         SUM(IF(DAY(ORD.FECHA)=18,XCONT,0)) d18,
+         SUM(IF(DAY(ORD.FECHA)=19,XCONT,0)) d19,
+         SUM(IF(DAY(ORD.FECHA)=20,XCONT,0)) d20,
+         SUM(IF(DAY(ORD.FECHA)=21,XCONT,0)) d21,
+         SUM(IF(DAY(ORD.FECHA)=22,XCONT,0)) d22,
+         SUM(IF(DAY(ORD.FECHA)=23,XCONT,0)) d23,
+         SUM(IF(DAY(ORD.FECHA)=24,XCONT,0)) d24,
+         SUM(IF(DAY(ORD.FECHA)=25,XCONT,0)) d25,
+         SUM(IF(DAY(ORD.FECHA)=26,XCONT,0)) d26,
+         SUM(IF(DAY(ORD.FECHA)=27,XCONT,0)) d27,
+         SUM(IF(DAY(ORD.FECHA)=28,XCONT,0)) d28,
+         SUM(IF(DAY(ORD.FECHA)=29,XCONT,0)) d29,
+         SUM(IF(DAY(ORD.FECHA)=30,XCONT,0)) d30,
+         SUM(IF(DAY(ORD.FECHA)=31,XCONT,0)) d31
+       FROM
+   (select O.C_ORDEN,CL.RAZON_SOCIAL,O.C_MEDIO,M.NOMBRE,O.OBSERVACIONES,
+                  month(O.INICIO_VIGENCIA)  AS  INICIO_VIGENCIA,
+                  P.ID,
+                  P.PROGRAMA,
+                  sum(l.inversion_total) COSTO,
+                  O.PRODUCTO,
+                  O.MOTIVO,
+                  l.RATING,
+                  l.MILES,
+                  O.DURACION,
+                  l.INVERSION_TOTAL,
+                  FECHA,
+                  count(*)  XCONT
+             from ORDEN_LINEAS l,
+                  ORD_ORDENES        O,
+                  ORD_MEDIOS         M,
+                  ORD_PROGRAMAS_AUT  P,
+                  ORD_CONTRATOS      CO,
+                  ORD_CLIENTES       CL
+            where
+              CL.C_CLIENTE = CO.C_CLIENTE
+              and O.C_MEDIO=M.C_MEDIO
+              AND O.C_ORDEN = l.C_ORDEN
+             AND l.PROGRAMA = P.ID
+              AND O.C_CONTRATO=CO.C_CONTRATO AND l.C_ORDEN='{$id}'
+              group by O.C_ORDEN,
+               P.ID,
+                     CL.RAZON_SOCIAL,
+                     O.C_MEDIO,
+                     M.NOMBRE,
+                     O.OBSERVACIONES,
+                     O.INICIO_VIGENCIA,
+                     P.PROGRAMA,
+                     O.PRODUCTO,
+                     O.MOTIVO,
+                     l.RATING,
+                     l.MILES,
+                     O.DURACION,
+                     l.INVERSION_TOTAL,
+                     FECHA) ORD
+                     GROUP BY ORD.C_ORDEN,
+                     ORD.ID,
+                       ORD.RAZON_SOCIAL,
+           ORD.RAZON_SOCIAL,
+              ORD.C_MEDIO,
+          ORD.NOMBRE,
+          ORD.OBSERVACIONES,
+          ORD.INICIO_VIGENCIA,
+          ORD.PROGRAMA,
+        ORD.PRODUCTO,
+             ORD.MOTIVO,
+             ORD.RATING,
+             ORD.MILES,
+             ORD.DURACION,
+             ORD.INVERSION_TOTAL
+
+             ");
+   $datos=array();
+   while ($fila = $resultado->fetch_object()) {
+   $datos[]=$fila;
+   }
+   if(count($datos)>0){
+       $data = array("status"=>true,"rows"=>count($datos),"data"=>$datos);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($datos);
+
+});
+
+
+
+$app->get("/ordenes",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,C.RAZON_SOCIAL,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA FROM ORD_ORDENES O,ORD_CLIENTES C WHERE O.C_CLIENTE=C.C_CLIENTE ORDER  by O.ID DESC");
+   $ordenes=array();
+
+   while ($fila = $resultado->fetch_object()) {
+   $ordenes[]=$fila;
+   }
+   if(count($ordenes)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$ordenes);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($ordenes);
+
+});
+
+
 $app->post("/orden",function() use ($app,$db){
     $json = $app->request->getBody();
     $data = json_decode($json,false);

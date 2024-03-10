@@ -81,9 +81,9 @@
             // 
             this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.button1.Location = new System.Drawing.Point(323, 96);
+            this.button1.Location = new System.Drawing.Point(325, 104);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 55);
+            this.button1.Size = new System.Drawing.Size(117, 56);
             this.button1.TabIndex = 4;
             this.button1.Text = "Ingresar";
             this.button1.UseVisualStyleBackColor = true;
@@ -124,9 +124,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
-            this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Control de Acceso";
+            this.Text = "Control de Acceso (v.11.03.2024)";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

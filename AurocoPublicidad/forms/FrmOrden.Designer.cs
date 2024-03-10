@@ -31,6 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrden));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNumero = new System.Windows.Forms.TextBox();
+            this.LblNumero = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cNumeroFisico = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -68,6 +70,11 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.totalOrden = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,13 +110,6 @@
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.avisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.totalOrden = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.LblNumero = new System.Windows.Forms.Label();
-            this.txtNumero = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -161,6 +161,29 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
+            // 
+            // txtNumero
+            // 
+            this.txtNumero.BackColor = System.Drawing.Color.Cyan;
+            this.txtNumero.Enabled = false;
+            this.txtNumero.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumero.Location = new System.Drawing.Point(170, 15);
+            this.txtNumero.Name = "txtNumero";
+            this.txtNumero.Size = new System.Drawing.Size(207, 25);
+            this.txtNumero.TabIndex = 61;
+            this.txtNumero.Visible = false;
+            // 
+            // LblNumero
+            // 
+            this.LblNumero.AutoSize = true;
+            this.LblNumero.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNumero.Location = new System.Drawing.Point(31, 19);
+            this.LblNumero.Name = "LblNumero";
+            this.LblNumero.Size = new System.Drawing.Size(113, 16);
+            this.LblNumero.TabIndex = 60;
+            this.LblNumero.Text = "Número de Orden:";
+            this.LblNumero.Visible = false;
+            this.LblNumero.Click += new System.EventHandler(this.label20_Click);
             // 
             // label11
             // 
@@ -482,7 +505,6 @@
             this.label4.Size = new System.Drawing.Size(60, 16);
             this.label4.TabIndex = 24;
             this.label4.Text = "Contrato:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // comboContratos
             // 
@@ -564,6 +586,53 @@
             this.dataGridOrden.TabIndex = 13;
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
+            this.btnGuardar.TabIndex = 14;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.totalOrden);
+            this.groupBox2.Location = new System.Drawing.Point(798, 470);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(356, 41);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(208, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(34, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Total:";
+            // 
+            // totalOrden
+            // 
+            this.totalOrden.Location = new System.Drawing.Point(249, 15);
+            this.totalOrden.Name = "totalOrden";
+            this.totalOrden.Size = new System.Drawing.Size(100, 20);
+            this.totalOrden.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(890, 517);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "&Imprimir";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // horario
             // 
@@ -787,76 +856,6 @@
             this.total.ReadOnly = true;
             this.total.Width = 67;
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.totalOrden);
-            this.groupBox2.Location = new System.Drawing.Point(798, 470);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 41);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(208, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(34, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Total:";
-            // 
-            // totalOrden
-            // 
-            this.totalOrden.Location = new System.Drawing.Point(249, 15);
-            this.totalOrden.Name = "totalOrden";
-            this.totalOrden.Size = new System.Drawing.Size(100, 20);
-            this.totalOrden.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(890, 517);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "&Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // LblNumero
-            // 
-            this.LblNumero.AutoSize = true;
-            this.LblNumero.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNumero.Location = new System.Drawing.Point(31, 19);
-            this.LblNumero.Name = "LblNumero";
-            this.LblNumero.Size = new System.Drawing.Size(113, 16);
-            this.LblNumero.TabIndex = 60;
-            this.LblNumero.Text = "Número de Orden:";
-            this.LblNumero.Visible = false;
-            this.LblNumero.Click += new System.EventHandler(this.label20_Click);
-            // 
-            // txtNumero
-            // 
-            this.txtNumero.BackColor = System.Drawing.Color.Cyan;
-            this.txtNumero.Enabled = false;
-            this.txtNumero.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumero.Location = new System.Drawing.Point(170, 15);
-            this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(207, 25);
-            this.txtNumero.TabIndex = 61;
-            this.txtNumero.Visible = false;
-            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -923,6 +922,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox totalOrden;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label LblNumero;
+        private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario;
         private System.Windows.Forms.DataGridViewTextBoxColumn costo;
         private System.Windows.Forms.DataGridViewTextBoxColumn d1;
@@ -958,9 +961,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn d31;
         private System.Windows.Forms.DataGridViewTextBoxColumn avisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label LblNumero;
-        private System.Windows.Forms.TextBox txtNumero;
     }
 }

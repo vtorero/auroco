@@ -34,27 +34,36 @@ namespace AurocoPublicidad.forms
     public partial class FrmOrden : Form
     {
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public FrmOrden()
+        public  FrmOrden(string id)
         {
+           
             InitializeComponent();
+
+            if (id != null)
+            {
+                LblNumero.Visible = true;
+                txtNumero.Visible = true;
+                txtNumero.Text = id;
+                pintaDias();
+                cargarLineas(id);
+
+
+
+
+            }
+            else
+            {
+                LblNumero.Visible = false;
+                txtNumero.Visible = false;
+                txtNumero.Text = "";
+
+            }
+
             dataGridOrden.EditingControlShowing += dataGridOrden_EditingControlShowing;
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            DataGridViewRowCollection filas = dataGridOrden.Rows;
-
-            filas.Add();
-
-        }
-
-        private async void FrmOrden_Load(object sender, EventArgs e)
+    
+              private async void FrmOrden_Load(object sender, EventArgs e)
         {
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
@@ -99,13 +108,21 @@ namespace AurocoPublicidad.forms
 
         }
 
+        private async Task<List<OrdenesLinea>> cargarLineas(string id)
+        {
+            string ordenes = await GetService($"https://aprendeadistancia.online/api-auroco/orden/{id}");
+            List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes);
+             dataGridOrden.DataSource= lstC;
+            return lstC;    
+        }   
+
         private string pintaDias()
         {
             var fecha = inicioVigencia.Value;
 
             d1.ToolTipText = fecha.DayOfWeek.ToString();
-            d1.HeaderText = generico.traduceDia(fecha.DayOfWeek.ToString())+" "+fecha.Day.ToString();
-            d2.HeaderText = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()) + " " + fecha.AddDays(1).Day.ToString();
+            d2.HeaderText = generico.traduceDia(fecha.DayOfWeek.ToString())+" "+fecha.Day.ToString();
+            d3.HeaderText = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()) + " " + fecha.AddDays(1).Day.ToString();
             d3.HeaderText = generico.traduceDia(fecha.AddDays(2).DayOfWeek.ToString()) + " " + fecha.AddDays(2).Day.ToString();
             d4.HeaderText = generico.traduceDia(fecha.AddDays(3).DayOfWeek.ToString()) + " " + fecha.AddDays(3).Day.ToString();
             d5.HeaderText = generico.traduceDia(fecha.AddDays(4).DayOfWeek.ToString()) + " " + fecha.AddDays(4).Day.ToString();

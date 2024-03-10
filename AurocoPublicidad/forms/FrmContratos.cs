@@ -227,10 +227,7 @@ namespace AurocoPublicidad.forms {
             //MessageBox.Show(pos+"","ss");
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 
 

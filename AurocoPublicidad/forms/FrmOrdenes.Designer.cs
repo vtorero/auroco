@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgOrdenes = new System.Windows.Forms.DataGridView();
             this.Label4 = new System.Windows.Forms.Label();
             this.TxtDescMedio = new System.Windows.Forms.TextBox();
             this.txt_cliente = new System.Windows.Forms.TextBox();
@@ -39,16 +39,19 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.Label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgOrdenes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(44, 127);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1256, 300);
-            this.dataGridView1.TabIndex = 0;
+            this.dgOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrdenes.Location = new System.Drawing.Point(41, 127);
+            this.dgOrdenes.MultiSelect = false;
+            this.dgOrdenes.Name = "dgOrdenes";
+            this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgOrdenes.Size = new System.Drawing.Size(1256, 300);
+            this.dgOrdenes.TabIndex = 0;
+            this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
             // 
             // Label4
             // 
@@ -144,7 +147,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1195, 458);
+            this.button1.Location = new System.Drawing.Point(1222, 451);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 91;
@@ -166,10 +169,11 @@
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.Label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgOrdenes);
             this.Name = "FrmOrdenes";
             this.Text = "Listado de Ordenes";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmOrdenes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,7 +181,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgOrdenes;
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.TextBox TxtDescMedio;
         internal System.Windows.Forms.TextBox txt_cliente;
