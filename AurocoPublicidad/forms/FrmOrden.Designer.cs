@@ -76,6 +76,7 @@
             this.totalOrden = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idprograma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -546,6 +547,7 @@
             this.dataGridOrden.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridOrden.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.horario,
+            this.idprograma,
             this.costo,
             this.d1,
             this.d2,
@@ -641,6 +643,12 @@
             this.horario.Name = "horario";
             this.horario.ReadOnly = true;
             this.horario.Width = 60;
+            // 
+            // idprograma
+            // 
+            this.idprograma.HeaderText = "idprograma";
+            this.idprograma.Name = "idprograma";
+            this.idprograma.Visible = false;
             // 
             // costo
             // 
@@ -927,6 +935,7 @@
         private System.Windows.Forms.Label LblNumero;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idprograma;
         private System.Windows.Forms.DataGridViewTextBoxColumn costo;
         private System.Windows.Forms.DataGridViewTextBoxColumn d1;
         private System.Windows.Forms.DataGridViewTextBoxColumn d2;

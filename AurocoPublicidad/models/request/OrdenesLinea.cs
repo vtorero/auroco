@@ -9,6 +9,7 @@ namespace AurocoPublicidad.models.request
     internal class OrdenesLinea
     {
         public string ID { get; set; }
+        public string TEMA { get; set; }
         public string   d1{ get; set; }
         public string d2 { get; set; }
         public string d3 { get; set; }

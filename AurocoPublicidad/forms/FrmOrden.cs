@@ -1,29 +1,18 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
-using Google.Protobuf.WellKnownTypes;
-using MySqlX.XDevAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Metrics;
-using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+
 
 
 
@@ -34,29 +23,26 @@ namespace AurocoPublicidad.forms
     public partial class FrmOrden : Form
     {
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id)
+        public  FrmOrden(string id,string medio)
         {
-           
+             
             InitializeComponent();
 
-            if (id != null)
+            if (id != "")
             {
+            
+                cargaprograma(medio);
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
                 txtNumero.Text = id;
                 pintaDias();
                 cargarLineas(id);
-
-
-
-
             }
             else
             {
                 LblNumero.Visible = false;
                 txtNumero.Visible = false;
                 txtNumero.Text = "";
-
             }
 
             dataGridOrden.EditingControlShowing += dataGridOrden_EditingControlShowing;
@@ -65,6 +51,8 @@ namespace AurocoPublicidad.forms
     
               private async void FrmOrden_Load(object sender, EventArgs e)
         {
+
+          
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
@@ -77,6 +65,8 @@ namespace AurocoPublicidad.forms
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
             comboMedio.ValueMember = "C_MEDIO";
+           
+            
 
             string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
@@ -110,21 +100,74 @@ namespace AurocoPublicidad.forms
 
         private async Task<List<OrdenesLinea>> cargarLineas(string id)
         {
-            //dataGridOrden.Columns.Clear();
+
             string ordenes = await GetService($"https://aprendeadistancia.online/api-auroco/orden/{id}");
             List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes);
-
+            
             foreach (OrdenesLinea ord in lstC)
-            {
-                int rowIndex = dataGridOrden.Rows.Add();
-                dataGridOrden.Rows[rowIndex].Cells["horario"].Value = ord.ID;
-                Console.Write(ord.ID);
+            {   int rowIndex = dataGridOrden.Rows.Add();
+                dataGridOrden.Rows[rowIndex].Cells["idprograma"].Value = ord.ID;
+                dataGridOrden.Rows[rowIndex].Cells["programa"].Value = ord.ID;
+                dataGridOrden.Rows[rowIndex].Cells["horario"].Value = ord.TEMA;
+                if(ord.d1!="0"){dataGridOrden.Rows[rowIndex].Cells["d1"].Value=ord.d1;};
+                if(ord.d2!="0"){dataGridOrden.Rows[rowIndex].Cells["d2"].Value=ord.d2;};
+                if (ord.d3 != "0") { dataGridOrden.Rows[rowIndex].Cells["d3"].Value = ord.d3; };
+                if (ord.d4 != "0") { dataGridOrden.Rows[rowIndex].Cells["d4"].Value = ord.d4; };
+                if (ord.d5 != "0") { dataGridOrden.Rows[rowIndex].Cells["d5"].Value = ord.d5; };
+                if (ord.d6 != "0") { dataGridOrden.Rows[rowIndex].Cells["d6"].Value = ord.d6; };
+                if (ord.d7 != "0") { dataGridOrden.Rows[rowIndex].Cells["d7"].Value = ord.d7; };
+                if (ord.d8 != "0") { dataGridOrden.Rows[rowIndex].Cells["d8"].Value = ord.d8; };
+                if (ord.d9 != "0") { dataGridOrden.Rows[rowIndex].Cells["d9"].Value = ord.d9; };
+                if (ord.d10 != "0") { dataGridOrden.Rows[rowIndex].Cells["d10"].Value = ord.d10; };
+                if (ord.d11 != "0") { dataGridOrden.Rows[rowIndex].Cells["d11"].Value = ord.d11; };
+                if (ord.d12 != "0") { dataGridOrden.Rows[rowIndex].Cells["d12"].Value = ord.d12; };
+                if (ord.d13 != "0") { dataGridOrden.Rows[rowIndex].Cells["d13"].Value = ord.d13; };
+                if (ord.d14 != "0") { dataGridOrden.Rows[rowIndex].Cells["d14"].Value = ord.d14; };
+                if (ord.d15 != "0") { dataGridOrden.Rows[rowIndex].Cells["d15"].Value = ord.d15; };
+                if (ord.d16 != "0") { dataGridOrden.Rows[rowIndex].Cells["d16"].Value = ord.d16; };
+                if (ord.d17 != "0") { dataGridOrden.Rows[rowIndex].Cells["d17"].Value = ord.d17; };
+                if (ord.d18 != "0") { dataGridOrden.Rows[rowIndex].Cells["d18"].Value = ord.d18; };
+                if (ord.d19 != "0") { dataGridOrden.Rows[rowIndex].Cells["d19"].Value = ord.d19; };
+                if (ord.d20 != "0") { dataGridOrden.Rows[rowIndex].Cells["d20"].Value = ord.d20; };
+                if (ord.d21 != "0") { dataGridOrden.Rows[rowIndex].Cells["d21"].Value = ord.d21; };
+                if (ord.d22 != "0") { dataGridOrden.Rows[rowIndex].Cells["d22"].Value = ord.d22; };
+                if (ord.d23 != "0") { dataGridOrden.Rows[rowIndex].Cells["d23"].Value = ord.d23; };
+                if (ord.d24 != "0") { dataGridOrden.Rows[rowIndex].Cells["d24"].Value = ord.d24; };
+                if (ord.d25 != "0") { dataGridOrden.Rows[rowIndex].Cells["d25"].Value = ord.d25; };
+                if (ord.d26 != "0") { dataGridOrden.Rows[rowIndex].Cells["d26"].Value = ord.d26; };
+                if (ord.d27 != "0") { dataGridOrden.Rows[rowIndex].Cells["d27"].Value = ord.d27; };
+                if (ord.d28 != "0") { dataGridOrden.Rows[rowIndex].Cells["d28"].Value = ord.d28; };
+                if (ord.d29 != "0") { dataGridOrden.Rows[rowIndex].Cells["d29"].Value = ord.d29; };
+                if (ord.d30 != "0") { dataGridOrden.Rows[rowIndex].Cells["d30"].Value = ord.d30; };
+                if (ord.d31 != "0") { dataGridOrden.Rows[rowIndex].Cells["d31"].Value = ord.d31; };
+                
+
+
+
             }
+           
+            foreach (DataGridViewRow row in dataGridOrden.Rows)
+            {
+                var cellValue = row.Cells["programa"].Value?.ToString();
+                //int milliseconds2 = 50; Thread.Sleep(milliseconds2);
+                var codigo = row.Cells["idprograma"].Value?.ToString();
+                if (cellValue == codigo)
+                {
+                    row.Selected = true; // Selecciona la fila
+                    row.Cells["programa"].Selected = true; // Selecciona la celda específica
+                    dataGridOrden.CurrentCell = row.Cells["programa"]; // Establece la celda actual
+                }
+            }
+           
 
 
-                return lstC;    
+            return lstC;    
         }   
 
+ 
+      
+    
+   
         private string pintaDias()
         {
             var fecha = inicioVigencia.Value;
@@ -461,18 +504,14 @@ namespace AurocoPublicidad.forms
 
 
      
-        public async void cargaprograma()
+        public async void cargaprograma(string canal)
         {
             if (dataGridOrden.Columns.Contains("programa"))
             {
                 dataGridOrden.Columns.Remove("programa");
 
             }
-
-
-
-            string canal = comboMedio.SelectedValue.ToString();
-
+         
             string programas = await GetService($"https://aprendeadistancia.online/api-auroco/medio_programas/{canal}");
             List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas);
 
@@ -490,7 +529,7 @@ namespace AurocoPublicidad.forms
             // Obtén los datos del DataGridView
             List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
             //MessageBox.Show(datos + "");
-            Console.Write(datos);
+          //  Console.Write(datos);
         }
 
         private void dataGridOrden_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -639,7 +678,8 @@ namespace AurocoPublicidad.forms
 
         private void comboMedio_Leave(object sender, EventArgs e)
         {
-            cargaprograma();
+            
+            cargaprograma(comboMedio.SelectedValue.ToString());
         }
 
         public class ListItem

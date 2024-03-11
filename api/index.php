@@ -192,42 +192,43 @@ $app->get("/clientes_orden",function() use ($app,$db){
 $app->get("/orden/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
-   $resultado = $db->query("SELECT ORD.ID,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
+   $resultado = $db->query("SELECT ORD.ID,ORD.TEMA,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
          SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
          SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
          SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,
-         SUM(IF(DAY(ORD.FECHA)=05,XCONT,0)) d5,
-         SUM(IF(DAY(ORD.FECHA)=06,XCONT,0)) d6,
+         SUM(IF(DAY(ORD.FECHA)=05,XCONT,'')) d5,
+         SUM(IF(DAY(ORD.FECHA)=06,XCONT,'')) d6,
          SUM(IF(DAY(ORD.FECHA)=07,XCONT,'')) d7,
-         SUM(IF(DAY(ORD.FECHA)=08,XCONT,0)) d8,
-         SUM(IF(DAY(ORD.FECHA)=09,XCONT,0)) d9,
-         SUM(IF(DAY(ORD.FECHA)=10,XCONT,0)) d10,
-         SUM(IF(DAY(ORD.FECHA)=11,XCONT,0)) d11,
-         SUM(IF(DAY(ORD.FECHA)=12,XCONT,0)) d12,
-         SUM(IF(DAY(ORD.FECHA)=13,XCONT,0)) d13,
-         SUM(IF(DAY(ORD.FECHA)=14,XCONT,0)) d14,
-         SUM(IF(DAY(ORD.FECHA)=15,XCONT,0)) d15,
-         SUM(IF(DAY(ORD.FECHA)=16,XCONT,0)) d16,
-         SUM(IF(DAY(ORD.FECHA)=17,XCONT,0)) d17,
-         SUM(IF(DAY(ORD.FECHA)=18,XCONT,0)) d18,
-         SUM(IF(DAY(ORD.FECHA)=19,XCONT,0)) d19,
-         SUM(IF(DAY(ORD.FECHA)=20,XCONT,0)) d20,
-         SUM(IF(DAY(ORD.FECHA)=21,XCONT,0)) d21,
-         SUM(IF(DAY(ORD.FECHA)=22,XCONT,0)) d22,
-         SUM(IF(DAY(ORD.FECHA)=23,XCONT,0)) d23,
-         SUM(IF(DAY(ORD.FECHA)=24,XCONT,0)) d24,
-         SUM(IF(DAY(ORD.FECHA)=25,XCONT,0)) d25,
-         SUM(IF(DAY(ORD.FECHA)=26,XCONT,0)) d26,
-         SUM(IF(DAY(ORD.FECHA)=27,XCONT,0)) d27,
-         SUM(IF(DAY(ORD.FECHA)=28,XCONT,0)) d28,
-         SUM(IF(DAY(ORD.FECHA)=29,XCONT,0)) d29,
-         SUM(IF(DAY(ORD.FECHA)=30,XCONT,0)) d30,
-         SUM(IF(DAY(ORD.FECHA)=31,XCONT,0)) d31
+         SUM(IF(DAY(ORD.FECHA)=08,XCONT,'')) d8,
+         SUM(IF(DAY(ORD.FECHA)=09,XCONT,'')) d9,
+         SUM(IF(DAY(ORD.FECHA)=10,XCONT,'')) d10,
+         SUM(IF(DAY(ORD.FECHA)=11,XCONT,'')) d11,
+         SUM(IF(DAY(ORD.FECHA)=12,XCONT,'')) d12,
+         SUM(IF(DAY(ORD.FECHA)=13,XCONT,'')) d13,
+         SUM(IF(DAY(ORD.FECHA)=14,XCONT,'')) d14,
+         SUM(IF(DAY(ORD.FECHA)=15,XCONT,'')) d15,
+         SUM(IF(DAY(ORD.FECHA)=16,XCONT,'')) d16,
+         SUM(IF(DAY(ORD.FECHA)=17,XCONT,'')) d17,
+         SUM(IF(DAY(ORD.FECHA)=18,XCONT,'')) d18,
+         SUM(IF(DAY(ORD.FECHA)=19,XCONT,'')) d19,
+         SUM(IF(DAY(ORD.FECHA)=20,XCONT,'')) d20,
+         SUM(IF(DAY(ORD.FECHA)=21,XCONT,'')) d21,
+         SUM(IF(DAY(ORD.FECHA)=22,XCONT,'')) d22,
+         SUM(IF(DAY(ORD.FECHA)=23,XCONT,'')) d23,
+         SUM(IF(DAY(ORD.FECHA)=24,XCONT,'')) d24,
+         SUM(IF(DAY(ORD.FECHA)=25,XCONT,'')) d25,
+         SUM(IF(DAY(ORD.FECHA)=26,XCONT,'')) d26,
+         SUM(IF(DAY(ORD.FECHA)=27,XCONT,'')) d27,
+         SUM(IF(DAY(ORD.FECHA)=28,XCONT,'')) d28,
+         SUM(IF(DAY(ORD.FECHA)=29,XCONT,'')) d29,
+         SUM(IF(DAY(ORD.FECHA)=30,XCONT,'')) d30,
+         SUM(IF(DAY(ORD.FECHA)=31,XCONT,'')) d31
        FROM
    (select O.C_ORDEN,CL.RAZON_SOCIAL,O.C_MEDIO,M.NOMBRE,O.OBSERVACIONES,
                   month(O.INICIO_VIGENCIA)  AS  INICIO_VIGENCIA,
                   P.ID,
                   P.PROGRAMA,
+                  P.TEMA,
                   sum(l.inversion_total) COSTO,
                   O.PRODUCTO,
                   O.MOTIVO,
@@ -257,6 +258,7 @@ $app->get("/orden/:id",function($id) use ($app,$db){
                      O.OBSERVACIONES,
                      O.INICIO_VIGENCIA,
                      P.PROGRAMA,
+                     P.TEMA,
                      O.PRODUCTO,
                      O.MOTIVO,
                      l.RATING,
@@ -273,6 +275,7 @@ $app->get("/orden/:id",function($id) use ($app,$db){
           ORD.OBSERVACIONES,
           ORD.INICIO_VIGENCIA,
           ORD.PROGRAMA,
+          ORD.TEMA,
         ORD.PRODUCTO,
              ORD.MOTIVO,
              ORD.RATING,
@@ -285,11 +288,11 @@ $app->get("/orden/:id",function($id) use ($app,$db){
    while ($fila = $resultado->fetch_object()) {
    $datos[]=$fila;
    }
-   if(count($datos)>0){
+  /* if(count($datos)>0){
        $data = array("status"=>true,"rows"=>count($datos),"data"=>$datos);
    }else{
        $data = array("status"=>false,"rows"=>0,"data"=>null);
-   }
+   }*/
    echo  json_encode($datos);
 
 });
@@ -300,7 +303,7 @@ $app->get("/ordenes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,C.RAZON_SOCIAL,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA FROM ORD_ORDENES O,ORD_CLIENTES C WHERE O.C_CLIENTE=C.C_CLIENTE ORDER  by O.ID DESC");
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO, O.C_CLIENTE,C.RAZON_SOCIAL,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA FROM ORD_ORDENES O,ORD_CLIENTES C WHERE O.C_CLIENTE=C.C_CLIENTE ORDER  by O.ID DESC");
    $ordenes=array();
 
    while ($fila = $resultado->fetch_object()) {
@@ -654,17 +657,17 @@ $app->get("/medio_programas/:medio",function($medio) use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
 
-    $sql="SELECT p.* FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p, aprendea_auroco.ORD_MEDIOS m where m.NOMBRE=p.CANAL and m.C_MEDIO='{$medio}' ORDER BY PROGRAMA";
+    $sql="SELECT p.ID,PROGRAMA,p.TEMA FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p inner join aprendea_auroco.ORD_MEDIOS m where  m.C_MEDIO='{$medio}' AND m.NOMBRE=p.CANAL ORDER BY PROGRAMA;";
    $resultado = $db->query($sql);
    $contratos=array();
    while ($fila = $resultado->fetch_object()) {
    $contratos[]=$fila;
    }
-   if(count($contratos)>0){
+   /*if(count($contratos)>0){
        $data = array("status"=>true,"rows"=>count($contratos),"data"=>$contratos);
    }else{
        $data = array("status"=>false,"rows"=>0,"data"=>null);
-   }
+   }*/
    echo  json_encode($contratos,TRUE);
 
 });
