@@ -110,19 +110,28 @@ namespace AurocoPublicidad.forms
 
         private async Task<List<OrdenesLinea>> cargarLineas(string id)
         {
+            //dataGridOrden.Columns.Clear();
             string ordenes = await GetService($"https://aprendeadistancia.online/api-auroco/orden/{id}");
             List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes);
-             dataGridOrden.DataSource= lstC;
-            return lstC;    
+
+            foreach (OrdenesLinea ord in lstC)
+            {
+                int rowIndex = dataGridOrden.Rows.Add();
+                dataGridOrden.Rows[rowIndex].Cells["horario"].Value = ord.ID;
+                Console.Write(ord.ID);
+            }
+
+
+                return lstC;    
         }   
 
         private string pintaDias()
         {
             var fecha = inicioVigencia.Value;
 
-            d1.ToolTipText = fecha.DayOfWeek.ToString();
-            d2.HeaderText = generico.traduceDia(fecha.DayOfWeek.ToString())+" "+fecha.Day.ToString();
-            d3.HeaderText = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()) + " " + fecha.AddDays(1).Day.ToString();
+          
+            d1.HeaderText = generico.traduceDia(fecha.DayOfWeek.ToString())+" "+fecha.Day.ToString();
+            d2.HeaderText = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()) + " " + fecha.AddDays(1).Day.ToString();  
             d3.HeaderText = generico.traduceDia(fecha.AddDays(2).DayOfWeek.ToString()) + " " + fecha.AddDays(2).Day.ToString();
             d4.HeaderText = generico.traduceDia(fecha.AddDays(3).DayOfWeek.ToString()) + " " + fecha.AddDays(3).Day.ToString();
             d5.HeaderText = generico.traduceDia(fecha.AddDays(4).DayOfWeek.ToString()) + " " + fecha.AddDays(4).Day.ToString();
@@ -467,11 +476,6 @@ namespace AurocoPublicidad.forms
             string programas = await GetService($"https://aprendeadistancia.online/api-auroco/medio_programas/{canal}");
             List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas);
 
-            // comboCliente.DisplayMember = "PROGRAMA";
-            //comboCliente.ValueMember = "PROGRAMA";
-
-            //dataGridOrden.Columns.Insert(0, comboBoxColumn);
-
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Programa";
             comboBoxColumn.Width = 210;
@@ -557,6 +561,7 @@ namespace AurocoPublicidad.forms
             e.ColumnIndex == dataGridOrden.Columns["costo"].Index)
                 {
                     // Recorrer todas las filas
+                    MessageBox.Show("cambio");
                     foreach (DataGridViewRow fila in dataGridOrden.Rows)
                     {
                         totalorden += Convert.ToDouble(fila.Cells["total"].Value);
