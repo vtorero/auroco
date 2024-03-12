@@ -22,21 +22,28 @@ namespace AurocoPublicidad.forms
 {
     public partial class FrmOrden : Form
     {
+        private string valorRecibido;
+        private string valorCliente;
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id,string medio)
+        public  FrmOrden(string id,string medio,string cliente)
         {
              
             InitializeComponent();
+            valorRecibido = medio;
+            valorCliente = cliente;
+
 
             if (id != "")
             {
             
+
                 cargaprograma(medio);
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
                 txtNumero.Text = id;
                 pintaDias();
                 cargarLineas(id);
+               
             }
             else
             {
@@ -49,7 +56,7 @@ namespace AurocoPublicidad.forms
         }
 
     
-              private async void FrmOrden_Load(object sender, EventArgs e)
+       private async void FrmOrden_Load(object sender, EventArgs e)
         {
 
           
@@ -58,15 +65,16 @@ namespace AurocoPublicidad.forms
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
-            comboCliente.SelectedIndex = 0;
+            comboCliente.SelectedValue = valorCliente;
 
             string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
             comboMedio.ValueMember = "C_MEDIO";
-           
-            
+            comboMedio.SelectedValue = valorRecibido;
+
+
 
             string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
@@ -85,7 +93,9 @@ namespace AurocoPublicidad.forms
             comboIgv.Items.Add(new ListItem("No", "No"));
 
             // Seleccionar el primer elemento por defecto
-            comboIgv.SelectedIndex = 0;
+            comboIgv.SelectedIndex = 1;
+
+         
         }
 
 
@@ -106,7 +116,7 @@ namespace AurocoPublicidad.forms
             
             foreach (OrdenesLinea ord in lstC)
             {   int rowIndex = dataGridOrden.Rows.Add();
-                dataGridOrden.Rows[rowIndex].Cells["idprograma"].Value = ord.ID;
+                 dataGridOrden.Rows[rowIndex].Cells["idprograma"].Value = ord.ID;
                 dataGridOrden.Rows[rowIndex].Cells["programa"].Value = ord.ID;
                 dataGridOrden.Rows[rowIndex].Cells["horario"].Value = ord.TEMA;
                 if(ord.d1!="0"){dataGridOrden.Rows[rowIndex].Cells["d1"].Value=ord.d1;};
@@ -165,8 +175,7 @@ namespace AurocoPublicidad.forms
         }   
 
  
-      
-    
+       
    
         private string pintaDias()
         {
@@ -511,7 +520,7 @@ namespace AurocoPublicidad.forms
                 dataGridOrden.Columns.Remove("programa");
 
             }
-         
+            
             string programas = await GetService($"https://aprendeadistancia.online/api-auroco/medio_programas/{canal}");
             List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas);
 

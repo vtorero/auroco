@@ -192,7 +192,7 @@ $app->get("/clientes_orden",function() use ($app,$db){
 $app->get("/orden/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
-   $resultado = $db->query("SELECT ORD.ID,ORD.TEMA,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
+   $resultado = $db->query("SELECT ORD.ID,ORD.TEMA,ORD.C_MEDIO,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
          SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
          SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
          SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,

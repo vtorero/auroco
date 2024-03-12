@@ -44,7 +44,7 @@ namespace AurocoPublicidad.forms
 
 
 
-            FrmOrden frmOrden = new FrmOrden(dgOrdenes[1, pos].Value.ToString(), dgOrdenes[2, pos].Value.ToString()/*, otros datos si es necesario */);
+            FrmOrden frmOrden = new FrmOrden(dgOrdenes[1, pos].Value.ToString(), dgOrdenes[2, pos].Value.ToString(), dgOrdenes[3, pos].Value.ToString()/*, otros datos si es necesario */);
             frmOrden.ShowDialog();
 
         }
