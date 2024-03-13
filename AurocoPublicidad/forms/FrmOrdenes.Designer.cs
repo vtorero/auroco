@@ -39,12 +39,31 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.Label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_MEDIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Medio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ffin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
             // dgOrdenes
             // 
             this.dgOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrdenes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.C_ORDEN,
+            this.C_CLIENTE,
+            this.Cliente,
+            this.C_MEDIO,
+            this.Medio,
+            this.finicio,
+            this.ffin,
+            this.C_CONTRATO});
             this.dgOrdenes.Location = new System.Drawing.Point(41, 127);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
@@ -154,6 +173,54 @@
             this.button1.Text = "&Ver Orden";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            // 
+            // C_ORDEN
+            // 
+            this.C_ORDEN.HeaderText = "Orden";
+            this.C_ORDEN.Name = "C_ORDEN";
+            // 
+            // C_CLIENTE
+            // 
+            this.C_CLIENTE.HeaderText = "C_CLIENTE";
+            this.C_CLIENTE.Name = "C_CLIENTE";
+            this.C_CLIENTE.Visible = false;
+            // 
+            // Cliente
+            // 
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.Name = "Cliente";
+            // 
+            // C_MEDIO
+            // 
+            this.C_MEDIO.HeaderText = "C_MEDIO";
+            this.C_MEDIO.Name = "C_MEDIO";
+            this.C_MEDIO.Visible = false;
+            // 
+            // Medio
+            // 
+            this.Medio.HeaderText = "Medio";
+            this.Medio.Name = "Medio";
+            // 
+            // finicio
+            // 
+            this.finicio.HeaderText = "Fecha inicio";
+            this.finicio.Name = "finicio";
+            // 
+            // ffin
+            // 
+            this.ffin.HeaderText = "Fecha Fin";
+            this.ffin.Name = "ffin";
+            // 
+            // C_CONTRATO
+            // 
+            this.C_CONTRATO.HeaderText = "C_CONTRATO";
+            this.C_CONTRATO.Name = "C_CONTRATO";
+            this.C_CONTRATO.Visible = false;
+            // 
             // FrmOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,5 +259,14 @@
         internal System.Windows.Forms.Button btnGenerar;
         internal System.Windows.Forms.Label Label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_ORDEN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_CLIENTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_MEDIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Medio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ffin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_CONTRATO;
     }
 }

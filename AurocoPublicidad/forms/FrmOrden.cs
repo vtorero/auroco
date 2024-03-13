@@ -24,13 +24,15 @@ namespace AurocoPublicidad.forms
     {
         private string valorRecibido;
         private string valorCliente;
+        private string valorContrato;
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente)
+        public  FrmOrden(string id,string medio,string cliente,string contrato)
         {
              
             InitializeComponent();
             valorRecibido = medio;
             valorCliente = cliente;
+            valorContrato=contrato;
 
 
             if (id != "")
@@ -65,6 +67,8 @@ namespace AurocoPublicidad.forms
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
+            comboCliente.SelectedValue = "0";
+            if (valorCliente!="")
             comboCliente.SelectedValue = valorCliente;
 
             string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
@@ -72,6 +76,8 @@ namespace AurocoPublicidad.forms
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
             comboMedio.ValueMember = "C_MEDIO";
+            comboMedio.SelectedValue = "0";
+            if(valorRecibido!="") 
             comboMedio.SelectedValue = valorRecibido;
 
 
@@ -393,9 +399,9 @@ namespace AurocoPublicidad.forms
             comboContratos.Items.Clear();
 
             string url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
-
+            if (comboCliente.SelectedValue!= null) { 
             string cod_cliente = comboCliente.SelectedValue.ToString();
-            string text_cliente = comboCliente.SelectedText.ToString();
+            
             if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
             {
                 Cliente cliente = new Cliente();
@@ -408,6 +414,11 @@ namespace AurocoPublicidad.forms
                 comboContratos.DisplayMember = "C_CONTRATO";
                 comboContratos.ValueMember = "C_CONTRATO";
 
+                if (valorContrato != "")
+                {
+                    comboContratos.SelectedValue= valorContrato;
+                }
+
                 //else
                 //{
                 //  MessageBox.Show("El cliente " + text_cliente + " no tiene contratos registrados");
@@ -415,7 +426,7 @@ namespace AurocoPublicidad.forms
 
             }
 
-
+            }
         }
 
         public string Send<T>(string url, T ObjectRequest, string method = "POST")
@@ -475,34 +486,29 @@ namespace AurocoPublicidad.forms
                 
 
                 HttpClient clienteHttp = new HttpClient();
-                string codigo_contrato = comboContratos.SelectedValue.ToString();
-
-                string urlApi = $"https://aprendeadistancia.online/api-auroco/index.php/contrato_detalle/{codigo_contrato}"; // URL de tu servicio API con parámetros   
-
-                HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
-                if (respuesta.IsSuccessStatusCode)
+                if (comboContratos.SelectedValue != null)
                 {
-                    string contenido = await respuesta.Content.ReadAsStringAsync();
+                    string codigo_contrato = comboContratos.SelectedValue.ToString();
 
+                    string urlApi = $"https://aprendeadistancia.online/api-auroco/index.php/contrato_detalle/{codigo_contrato}"; // URL de tu servicio API con parámetros   
 
+                    HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
 
-                    // Procesar el contenido recibido y mostrarlo en TextBoxes
-                    // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
-                    dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
-                    cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
-                    cFinVigencia.Text = (data[0].FIN_VIGENCIA);
-                    cMoneda.Text = data[0].C_MONEDA;
-                    cTipoCambio.Text = data[0].TIPO_CAMBIO;
-                    cNumeroFisico.Text = data[0].NRO_FISICO;
-                    cSaldo.Text = data[0].SALDO_ACTUAL;
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        string contenido = await respuesta.Content.ReadAsStringAsync();
+                        // Procesar el contenido recibido y mostrarlo en TextBoxes
+                        // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
+                        dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+                        cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
+                        cFinVigencia.Text = (data[0].FIN_VIGENCIA);
+                        cMoneda.Text = data[0].C_MONEDA;
+                        cTipoCambio.Text = data[0].TIPO_CAMBIO;
+                        cNumeroFisico.Text = data[0].NRO_FISICO;
+                        cSaldo.Text = data[0].SALDO_ACTUAL;
+                    }
 
-
-
-
-
-                }
-
-                
+                }            
             }
             catch (Exception ex)
             {

@@ -98,7 +98,7 @@ namespace AurocoPublicidad.forms
 
         private void ingresarOrdenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form childForm = new FrmOrden("","","");
+            Form childForm = new FrmOrden("","","","");
             childForm.MdiParent = this;
             childForm.Text = "Ingresar Ordenes";
             childForm.Show();

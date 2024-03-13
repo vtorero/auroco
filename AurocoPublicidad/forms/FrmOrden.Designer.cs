@@ -70,11 +70,6 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.totalOrden = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idprograma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +106,11 @@
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.avisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.totalOrden = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -452,7 +452,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(572, 34);
+            this.label1.Location = new System.Drawing.Point(580, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 29;
@@ -501,7 +501,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(393, 36);
+            this.label4.Location = new System.Drawing.Point(383, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 16);
             this.label4.TabIndex = 24;
@@ -513,9 +513,9 @@
             this.comboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboContratos.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboContratos.FormattingEnabled = true;
-            this.comboContratos.Location = new System.Drawing.Point(457, 32);
+            this.comboContratos.Location = new System.Drawing.Point(444, 32);
             this.comboContratos.Name = "comboContratos";
-            this.comboContratos.Size = new System.Drawing.Size(89, 25);
+            this.comboContratos.Size = new System.Drawing.Size(112, 25);
             this.comboContratos.TabIndex = 2;
             this.comboContratos.SelectedValueChanged += new System.EventHandler(this.comboContratos_SelectedValueChanged);
             // 
@@ -588,53 +588,6 @@
             this.dataGridOrden.TabIndex = 13;
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.totalOrden);
-            this.groupBox2.Location = new System.Drawing.Point(798, 470);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 41);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(208, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(34, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Total:";
-            // 
-            // totalOrden
-            // 
-            this.totalOrden.Location = new System.Drawing.Point(249, 15);
-            this.totalOrden.Name = "totalOrden";
-            this.totalOrden.Size = new System.Drawing.Size(100, 20);
-            this.totalOrden.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(890, 517);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "&Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // horario
             // 
@@ -863,6 +816,53 @@
             this.total.Name = "total";
             this.total.ReadOnly = true;
             this.total.Width = 67;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
+            this.btnGuardar.TabIndex = 14;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.totalOrden);
+            this.groupBox2.Location = new System.Drawing.Point(798, 470);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(356, 41);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(208, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(34, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Total:";
+            // 
+            // totalOrden
+            // 
+            this.totalOrden.Location = new System.Drawing.Point(249, 15);
+            this.totalOrden.Name = "totalOrden";
+            this.totalOrden.Size = new System.Drawing.Size(100, 20);
+            this.totalOrden.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(890, 517);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "&Imprimir";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // FrmOrden
             // 

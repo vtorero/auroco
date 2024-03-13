@@ -303,7 +303,7 @@ $app->get("/ordenes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO, O.C_CLIENTE,C.RAZON_SOCIAL,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA FROM ORD_ORDENES O,ORD_CLIENTES C WHERE O.C_CLIENTE=C.C_CLIENTE ORDER  by O.ID DESC");
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE, O.C_CLIENTE,C.RAZON_SOCIAL,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO  ORDER  by O.ID DESC");
    $ordenes=array();
 
    while ($fila = $resultado->fetch_object()) {
