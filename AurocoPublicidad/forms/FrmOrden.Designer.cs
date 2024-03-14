@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrden));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkRevisar = new System.Windows.Forms.CheckBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.LblNumero = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -118,6 +119,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkRevisar);
             this.groupBox1.Controls.Add(this.txtNumero);
             this.groupBox1.Controls.Add(this.LblNumero);
             this.groupBox1.Controls.Add(this.label11);
@@ -162,6 +164,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
+            // 
+            // chkRevisar
+            // 
+            this.chkRevisar.AutoSize = true;
+            this.chkRevisar.Location = new System.Drawing.Point(963, 32);
+            this.chkRevisar.Name = "chkRevisar";
+            this.chkRevisar.Size = new System.Drawing.Size(67, 17);
+            this.chkRevisar.TabIndex = 62;
+            this.chkRevisar.Text = "&Revisión";
+            this.chkRevisar.UseVisualStyleBackColor = true;
             // 
             // txtNumero
             // 
@@ -970,5 +982,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn d31;
         private System.Windows.Forms.DataGridViewTextBoxColumn avisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.CheckBox chkRevisar;
     }
 }

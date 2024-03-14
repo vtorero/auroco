@@ -25,14 +25,16 @@ namespace AurocoPublicidad.forms
         private string valorRecibido;
         private string valorCliente;
         private string valorContrato;
+        private string valorEjecutivo;
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente,string contrato)
+        public  FrmOrden(string id,string medio,string cliente,string contrato,string ejecutivo)
         {
              
             InitializeComponent();
             valorRecibido = medio;
             valorCliente = cliente;
             valorContrato=contrato;
+            valorEjecutivo = ejecutivo; 
 
 
             if (id != "")
@@ -87,6 +89,8 @@ namespace AurocoPublicidad.forms
             cmbEjecutivo.DataSource = lstE;
             cmbEjecutivo.DisplayMember = "NOMBRES";
             cmbEjecutivo.ValueMember = "C_EJECUTIVO";
+            if (valorEjecutivo != "")
+                cmbEjecutivo.SelectedValue = valorEjecutivo;
 
             string monedas = await GetService("https://aprendeadistancia.online/api-auroco/monedas");
             List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);

@@ -45,6 +45,8 @@
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_MEDIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Medio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_EJECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EJECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.finicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ffin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,14 +63,16 @@
             this.Cliente,
             this.C_MEDIO,
             this.Medio,
+            this.C_EJECUTIVO,
+            this.EJECUTIVO,
             this.finicio,
             this.ffin,
             this.C_CONTRATO});
-            this.dgOrdenes.Location = new System.Drawing.Point(41, 127);
+            this.dgOrdenes.Location = new System.Drawing.Point(41, 175);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(1256, 300);
+            this.dgOrdenes.Size = new System.Drawing.Size(797, 220);
             this.dgOrdenes.TabIndex = 0;
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
             // 
@@ -89,7 +93,7 @@
             this.TxtDescMedio.Location = new System.Drawing.Point(100, 54);
             this.TxtDescMedio.Name = "TxtDescMedio";
             this.TxtDescMedio.ReadOnly = true;
-            this.TxtDescMedio.Size = new System.Drawing.Size(215, 22);
+            this.TxtDescMedio.Size = new System.Drawing.Size(158, 22);
             this.TxtDescMedio.TabIndex = 89;
             // 
             // txt_cliente
@@ -149,7 +153,7 @@
             this.btnGenerar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGenerar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGenerar.Location = new System.Drawing.Point(369, 74);
+            this.btnGenerar.Location = new System.Drawing.Point(348, 77);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(97, 33);
             this.btnGenerar.TabIndex = 80;
@@ -166,9 +170,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1222, 451);
+            this.button1.Location = new System.Drawing.Point(747, 401);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(91, 34);
             this.button1.TabIndex = 91;
             this.button1.Text = "&Ver Orden";
             this.button1.UseVisualStyleBackColor = true;
@@ -205,6 +209,16 @@
             this.Medio.HeaderText = "Medio";
             this.Medio.Name = "Medio";
             // 
+            // C_EJECUTIVO
+            // 
+            this.C_EJECUTIVO.HeaderText = "C_EJECUTIVO";
+            this.C_EJECUTIVO.Name = "C_EJECUTIVO";
+            // 
+            // EJECUTIVO
+            // 
+            this.EJECUTIVO.HeaderText = "Ejecutivo";
+            this.EJECUTIVO.Name = "EJECUTIVO";
+            // 
             // finicio
             // 
             this.finicio.HeaderText = "Fecha inicio";
@@ -225,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1352, 534);
+            this.ClientSize = new System.Drawing.Size(886, 462);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Label4);
             this.Controls.Add(this.TxtDescMedio);
@@ -265,6 +279,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_MEDIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn Medio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_EJECUTIVO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EJECUTIVO;
         private System.Windows.Forms.DataGridViewTextBoxColumn finicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn ffin;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CONTRATO;

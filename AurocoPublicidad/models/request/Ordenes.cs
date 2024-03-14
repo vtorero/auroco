@@ -17,6 +17,9 @@ namespace AurocoPublicidad.models.request
 
         public string RAZON_SOCIAL { get; set; }
 
+        public string C_EJECUTIVO { get; set; }
+        public string EJECUTIVO { get; set; }
+
         public string PRODUCTO { get; set; }
         public string MOTIVO { get; set; }
 

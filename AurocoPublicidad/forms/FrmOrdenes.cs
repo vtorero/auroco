@@ -1,4 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
+using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,8 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
                 dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
                 dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
+                dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
+                dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
                 dgOrdenes.Rows[rowIndex].Cells["finicio"].Value = ord.INICIO_VIGENCIA;
                 dgOrdenes.Rows[rowIndex].Cells["ffin"].Value = ord.FIN_VIGENCIA;
                 dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
@@ -61,9 +64,15 @@ namespace AurocoPublicidad.forms
             pos = dgOrdenes.CurrentRow.Index;
             //MessageBox.Show(dgOrdenes[1, pos].Value.ToString());
 
+            var idOrden = dgOrdenes[1, pos].Value.ToString();
+            var idMedio = dgOrdenes[4, pos].Value.ToString();
+            var idCliente = dgOrdenes[2, pos].Value.ToString();
+            var idEjecutivo = dgOrdenes[6, pos].Value.ToString();
+            var idContrato = dgOrdenes[10, pos].Value.ToString();
 
 
-            FrmOrden frmOrden = new FrmOrden(dgOrdenes[1, pos].Value.ToString(), dgOrdenes[4, pos].Value.ToString(), dgOrdenes[2, pos].Value.ToString(), dgOrdenes[8, pos].Value.ToString()/*, otros datos si es necesario */);
+
+            FrmOrden frmOrden = new FrmOrden(idOrden,idMedio, idCliente, idContrato,idEjecutivo /*, otros datos si es necesario */);
             frmOrden.ShowDialog();
 
         }
