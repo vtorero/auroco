@@ -79,9 +79,11 @@ namespace AurocoPublicidad.forms
             comboMedio.DisplayMember = "NOMBRE";
             comboMedio.ValueMember = "C_MEDIO";
             comboMedio.SelectedValue = "0";
-            if(valorRecibido!="") 
+            if (valorRecibido != "") {  
             comboMedio.SelectedValue = valorRecibido;
-
+            btnGuardar.Enabled = true;
+            btnGuardar.Text = "&Actualizar";
+            }
 
 
             string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
@@ -244,6 +246,7 @@ namespace AurocoPublicidad.forms
                     //MessageBox.Show(datos + "");
                     Console.Write(datos);
                     // Envía los datos al API REST
+                    var metodo = "";
 
                     Orden orden = new Orden();
                     orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
@@ -261,12 +264,20 @@ namespace AurocoPublicidad.forms
                     orden.orden = datos;
                     orden.C_USUARIO = Global.sessionUsuario.ToString();
 
-                    string resultado = Send<Orden>(apiUrl, orden, "POST");
+                    if (valorRecibido == "")
+                    {
+                        metodo = "POST";
+                    }
+                    else
+                    {
+                        metodo= "PUT";  
+                    }
+                    string resultado = Send<Orden>(apiUrl, orden, metodo);
 
                     JObject jObject = JObject.Parse(resultado);
                     JToken objeto = jObject["status"];
                     string status = (string)objeto;
-                    Console.Write(resultado);
+                    
 
                     if (status == "True")
                     {
