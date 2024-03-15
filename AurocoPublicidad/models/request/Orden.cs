@@ -13,7 +13,7 @@ namespace AurocoPublicidad.models.request
         public string C_CONTRATO { get; set; }
         public string C_MEDIO { get; set; }
         public string IGV{ get; set; }
-        public string CONSUMIR_EN { get; set; }
+        public string C_MONEDA { get; set; }
         public string FECHA_INICIO { get; set; }
         public string FECHA_FIN { get; set; }
 

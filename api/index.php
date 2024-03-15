@@ -339,7 +339,8 @@ $app->post("/orden",function() use ($app,$db){
 
 try{
 
-    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+
 
 
     $stmt = mysqli_prepare($db,$sql);

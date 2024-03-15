@@ -101,8 +101,8 @@ namespace AurocoPublicidad.forms
             comboCambio.ValueMember = "VALOR";
 
             comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
-            comboIgv.Items.Add(new ListItem("Si", "Si"));
-            comboIgv.Items.Add(new ListItem("No", "No"));
+            comboIgv.Items.Add(new ListItem("Si","Si"));
+            comboIgv.Items.Add(new ListItem("No","No"));
 
             // Seleccionar el primer elemento por defecto
             comboIgv.SelectedIndex = 1;
@@ -253,7 +253,7 @@ namespace AurocoPublicidad.forms
                     orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
                     orden.C_MEDIO = comboMedio.SelectedValue.ToString();
                     orden.IGV = comboIgv.SelectedItem.ToString();
-                    orden.CONSUMIR_EN = comboCambio.SelectedItem.ToString();
+                    orden.C_MONEDA = comboCambio.SelectedValue.ToString();
                     orden.FECHA_INICIO = inicioVigencia.Value.ToString();
                     orden.FECHA_FIN = finVigencia.Value.ToString();
                     orden.C_EJECUTIVO = cmbEjecutivo.SelectedValue.ToString();
@@ -630,7 +630,7 @@ namespace AurocoPublicidad.forms
             e.ColumnIndex == dataGridOrden.Columns["costo"].Index)
                 {
                     // Recorrer todas las filas
-                    MessageBox.Show("cambio");
+                    
                     foreach (DataGridViewRow fila in dataGridOrden.Rows)
                     {
                         totalorden += Convert.ToDouble(fila.Cells["total"].Value);
