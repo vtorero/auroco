@@ -341,8 +341,6 @@ try{
 
     $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
 
-
-
     $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
 
@@ -354,16 +352,16 @@ try{
     foreach ($data->orden as $i => $item) {
 
         for ($v=0; $v < (int)$item->d1;$v++) {
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
-
+      
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d2; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 1 days'));
 
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
@@ -371,28 +369,28 @@ try{
 
         for ($v=0; $v < (int)$item->d3; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 2 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d4; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 3 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d5; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 4 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d6; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 5 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
@@ -400,14 +398,14 @@ try{
 
         for ($v=0; $v < (int)$item->d7; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 6 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d8; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 7 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
@@ -415,7 +413,7 @@ try{
 
         for ($v=0; $v < (int)$item->d9; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 8 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
@@ -423,152 +421,152 @@ try{
 
         for ($v=0; $v < (int)$item->d10; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 9 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d11; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 10 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d12; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 11 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
         for ($v=0; $v < (int)$item->d13; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 12 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d14; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 13 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d15; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 14 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d16; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 15 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d17; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 16 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d18; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 17 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d19; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 18 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d20; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 19 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d21; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 20 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d22; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 21 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d23; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 22 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d24; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 23 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d25; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 24 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d26; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 25 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d27; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 26 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d28; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 27 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d29; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 28 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d30; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 29 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
 
         for ($v=0; $v < (int)$item->d31; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 30 days'));
-            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+            $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
            $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
@@ -576,6 +574,7 @@ try{
       }
 
       $resultado = $db->query("SELECT @VALOR_ERROR");
+
       $fila = $resultado->fetch_assoc();
     if($fila['@VALOR_ERROR']=='NO'){
       $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data);
@@ -585,7 +584,7 @@ try{
     }
     }else{
         $result = array("status"=>false,"message"=>$fila['@PV_MENSAJE_ERROR'],"data"=>$data);
-        }
+}
 
 }
 catch(PDOException $e) {
