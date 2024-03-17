@@ -28,7 +28,10 @@ namespace AurocoPublicidad.models.request
         public string INICIO_VIGENCIA { get; set; }
 
         public string FIN_VIGENCIA { get; set; }
-		
-	
+
+        public string C_MONEDA { get; set; }
+        public string TOTAL { get; set; }
+
+
     }
 }

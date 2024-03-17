@@ -50,6 +50,8 @@
             this.finicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ffin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,12 +69,14 @@
             this.EJECUTIVO,
             this.finicio,
             this.ffin,
-            this.C_CONTRATO});
-            this.dgOrdenes.Location = new System.Drawing.Point(41, 175);
+            this.C_CONTRATO,
+            this.moneda,
+            this.total});
+            this.dgOrdenes.Location = new System.Drawing.Point(41, 127);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(797, 220);
+            this.dgOrdenes.Size = new System.Drawing.Size(908, 220);
             this.dgOrdenes.TabIndex = 0;
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
             // 
@@ -170,7 +174,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(747, 401);
+            this.button1.Location = new System.Drawing.Point(858, 362);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 34);
             this.button1.TabIndex = 91;
@@ -213,6 +217,7 @@
             // 
             this.C_EJECUTIVO.HeaderText = "C_EJECUTIVO";
             this.C_EJECUTIVO.Name = "C_EJECUTIVO";
+            this.C_EJECUTIVO.Visible = false;
             // 
             // EJECUTIVO
             // 
@@ -235,11 +240,21 @@
             this.C_CONTRATO.Name = "C_CONTRATO";
             this.C_CONTRATO.Visible = false;
             // 
+            // moneda
+            // 
+            this.moneda.HeaderText = "Moneda";
+            this.moneda.Name = "moneda";
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            // 
             // FrmOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 462);
+            this.ClientSize = new System.Drawing.Size(961, 407);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Label4);
             this.Controls.Add(this.TxtDescMedio);
@@ -284,5 +299,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn finicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn ffin;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CONTRATO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn moneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
     }
 }

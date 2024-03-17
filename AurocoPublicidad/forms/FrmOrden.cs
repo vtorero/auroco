@@ -131,7 +131,8 @@ namespace AurocoPublicidad.forms
                  dataGridOrden.Rows[rowIndex].Cells["idprograma"].Value = ord.ID;
                 dataGridOrden.Rows[rowIndex].Cells["programa"].Value = ord.ID;
                 dataGridOrden.Rows[rowIndex].Cells["horario"].Value = ord.TEMA;
-                if(ord.d1!="0"){dataGridOrden.Rows[rowIndex].Cells["d1"].Value=ord.d1;};
+                dataGridOrden.Rows[rowIndex].Cells["costo"].Value = ord.INVERSION_TOTAL;
+                if (ord.d1!="0"){dataGridOrden.Rows[rowIndex].Cells["d1"].Value=ord.d1;};
                 if(ord.d2!="0"){dataGridOrden.Rows[rowIndex].Cells["d2"].Value=ord.d2;};
                 if (ord.d3 != "0") { dataGridOrden.Rows[rowIndex].Cells["d3"].Value = ord.d3; };
                 if (ord.d4 != "0") { dataGridOrden.Rows[rowIndex].Cells["d4"].Value = ord.d4; };
@@ -162,7 +163,10 @@ namespace AurocoPublicidad.forms
                 if (ord.d29 != "0") { dataGridOrden.Rows[rowIndex].Cells["d29"].Value = ord.d29; };
                 if (ord.d30 != "0") { dataGridOrden.Rows[rowIndex].Cells["d30"].Value = ord.d30; };
                 if (ord.d31 != "0") { dataGridOrden.Rows[rowIndex].Cells["d31"].Value = ord.d31; };
-                
+                dataGridOrden.Rows[rowIndex].Cells["avisos"].Value = Convert.ToDouble(ord.d1)+ Convert.ToDouble(ord.d2)+ Convert.ToDouble(ord.d3)+ Convert.ToDouble(ord.d4)+
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7);
+                dataGridOrden.Rows[rowIndex].Cells["total"].Value=(Convert.ToDouble(ord.d1) + Convert.ToDouble(ord.d2) + Convert.ToDouble(ord.d3) + Convert.ToDouble(ord.d4) +
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7))*Convert.ToDouble(ord.INVERSION_TOTAL);
 
 
 
@@ -606,7 +610,7 @@ namespace AurocoPublicidad.forms
                         foreach (var ansValue in data)
                         {
                             dataGridOrden.Rows[currentRow].Cells[1].Value = Convert.ToString(ansValue["DIAS"]) + " " + Convert.ToString(ansValue["PERIODO"]);
-                            dataGridOrden.Rows[currentRow].Cells[2].Value = Convert.ToString(ansValue["COSTO"]);
+                            dataGridOrden.Rows[currentRow].Cells[3].Value = Convert.ToString(ansValue["COSTO"]);
                         }
 
 

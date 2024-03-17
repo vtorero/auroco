@@ -192,7 +192,7 @@ $app->get("/clientes_orden",function() use ($app,$db){
 $app->get("/orden/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
-   $resultado = $db->query("SELECT ORD.ID,ORD.TEMA,ORD.C_MEDIO,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
+   $resultado = $db->query("SELECT ORD.ID,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
          SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
          SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
          SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,
@@ -303,7 +303,7 @@ $app->get("/ordenes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO  ORDER  by O.ID DESC");
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA,O.C_MONEDA ,(SELECT SUM(INVERSION_TOTAL) FROM ORDEN_LINEAS WHERE C_ORDEN=O.C_ORDEN) TOTAL FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO  ORDER  by O.ID DESC");
    $ordenes=array();
 
    while ($fila = $resultado->fetch_object()) {
@@ -338,33 +338,41 @@ $app->post("/orden",function() use ($app,$db){
     $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
 try{
-
+//'
     $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
 
+
     $stmt = mysqli_prepare($db,$sql);
-    mysqli_stmt_execute($stmt);
+    $eje=mysqli_stmt_execute($stmt);
+   /* cerrar la sentencia */
+   // mysqli_stmt_close($stmt);
+
 
     $resultado = $db->query("SELECT @SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR");
     $fila = $resultado->fetch_assoc();
 
+
+
     if($fila['@VAL_ERROR']=='NO'){
+
 
     foreach ($data->orden as $i => $item) {
 
         for ($v=0; $v < (int)$item->d1;$v++) {
             $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
-
-      
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
+
+
         }
         for ($v=0; $v < (int)$item->d2; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 1 days'));
 
             $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$fec}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
-
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
+
+
         }
 
         for ($v=0; $v < (int)$item->d3; $v++) {
@@ -373,6 +381,7 @@ try{
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
+
         }
         for ($v=0; $v < (int)$item->d4; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 3 days'));
@@ -380,6 +389,7 @@ try{
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
+
         }
         for ($v=0; $v < (int)$item->d5; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 4 days'));
@@ -387,6 +397,7 @@ try{
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
+
         }
         for ($v=0; $v < (int)$item->d6; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 5 days'));
@@ -573,17 +584,22 @@ try{
 
       }
 
+
       $resultado = $db->query("SELECT @VALOR_ERROR");
 
-      $fila = $resultado->fetch_assoc();
-    if($fila['@VALOR_ERROR']=='NO'){
-      $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data);
+      $fila2 = $resultado->fetch_assoc();
+    if($fila2['@VALOR_ERROR']=='NO' || $fila2['@VALOR_ERROR']==NULL){
+
+      //$result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data,"error"=>$error);
+      $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO']);
+
     }
     else{
         $result = array("status"=>false,"message"=>$fila['@VALOR_ERROR']);
     }
     }else{
-        $result = array("status"=>false,"message"=>$fila['@PV_MENSAJE_ERROR'],"data"=>$data);
+        //$result = array("status"=>false,"message"=>$fila['@PV_MENSAJE_ERROR'],"data"=>$data);
+        $result = array("status"=>false);
 }
 
 }

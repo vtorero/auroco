@@ -43,7 +43,8 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["finicio"].Value = ord.INICIO_VIGENCIA;
                 dgOrdenes.Rows[rowIndex].Cells["ffin"].Value = ord.FIN_VIGENCIA;
                 dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
-
+                dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
 
 
             }

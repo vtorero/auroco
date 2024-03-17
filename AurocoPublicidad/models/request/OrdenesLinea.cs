@@ -10,6 +10,7 @@ namespace AurocoPublicidad.models.request
     {
         public string ID { get; set; }
         public string TEMA { get; set; }
+        public string INVERSION_TOTAL { get; set; }
         public string C_MEDIO { get; set; }
         public string   d1{ get; set; }
         public string d2 { get; set; }
