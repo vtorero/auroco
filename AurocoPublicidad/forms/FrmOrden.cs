@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -44,6 +44,7 @@ namespace AurocoPublicidad.forms
                 cargaprograma(medio);
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
+                chkRevisar.Visible = true;
                 txtNumero.Text = id;
                 pintaDias();
                 cargarLineas(id);
@@ -53,7 +54,14 @@ namespace AurocoPublicidad.forms
             {
                 LblNumero.Visible = false;
                 txtNumero.Visible = false;
+                chkRevisar .Visible = false; 
                 txtNumero.Text = "";
+                DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime ultimoDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+                // Establecer el valor del DateTimePicker al primer día del mes actual
+                inicioVigencia.Value = primerDiaDelMes;
+                finVigencia.Value=ultimoDiaDelMes;
+                pintaDias();
             }
 
             dataGridOrden.EditingControlShowing += dataGridOrden_EditingControlShowing;
@@ -197,8 +205,14 @@ namespace AurocoPublicidad.forms
         {
             var fecha = inicioVigencia.Value;
 
-          
+            /* if (fecha.DayOfWeek() = 'S') { 
+             }
+            */
+          // if(fecha.DayOfWeek.ToString().Equals("Friday"))
+            d1.HeaderCell.Style.ForeColor = Color.Red; 
+            dataGridOrden.Columns[4].HeaderCell.Style.ForeColor = Color.Red;
             d1.HeaderText = generico.traduceDia(fecha.DayOfWeek.ToString())+" "+fecha.Day.ToString();
+
             d2.HeaderText = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()) + " " + fecha.AddDays(1).Day.ToString();  
             d3.HeaderText = generico.traduceDia(fecha.AddDays(2).DayOfWeek.ToString()) + " " + fecha.AddDays(2).Day.ToString();
             d4.HeaderText = generico.traduceDia(fecha.AddDays(3).DayOfWeek.ToString()) + " " + fecha.AddDays(3).Day.ToString();
@@ -737,14 +751,19 @@ namespace AurocoPublicidad.forms
         {
 
         }
+
+        private void dataGridOrden_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dataGridOrden.Columns[e.ColumnIndex].HeaderText.Contains("S") || this.dataGridOrden.Columns[e.ColumnIndex].HeaderText.Contains("D"))
+            {
+    
+                e.CellStyle.ForeColor = Color.Red;
+
+            }
+            
+
+        }
+
+      
     }
 }
-
-
-
-
-
-
-
-
-

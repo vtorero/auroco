@@ -70,11 +70,6 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.totalOrden = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idprograma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +106,11 @@
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.avisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.totalOrden = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -159,7 +159,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(27, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1127, 273);
+            this.groupBox1.Size = new System.Drawing.Size(1127, 240);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
@@ -167,12 +167,13 @@
             // chkRevisar
             // 
             this.chkRevisar.AutoSize = true;
-            this.chkRevisar.Location = new System.Drawing.Point(963, 32);
+            this.chkRevisar.Location = new System.Drawing.Point(958, 33);
             this.chkRevisar.Name = "chkRevisar";
             this.chkRevisar.Size = new System.Drawing.Size(67, 17);
             this.chkRevisar.TabIndex = 62;
             this.chkRevisar.Text = "&Revisión";
             this.chkRevisar.UseVisualStyleBackColor = true;
+            this.chkRevisar.Visible = false;
             // 
             // txtNumero
             // 
@@ -211,7 +212,7 @@
             // 
             this.cNumeroFisico.BackColor = System.Drawing.SystemColors.Info;
             this.cNumeroFisico.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cNumeroFisico.Location = new System.Drawing.Point(929, 64);
+            this.cNumeroFisico.Location = new System.Drawing.Point(929, 69);
             this.cNumeroFisico.Name = "cNumeroFisico";
             this.cNumeroFisico.ReadOnly = true;
             this.cNumeroFisico.Size = new System.Drawing.Size(101, 25);
@@ -221,7 +222,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(861, 71);
+            this.label18.Location = new System.Drawing.Point(861, 72);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(62, 15);
             this.label18.TabIndex = 57;
@@ -251,7 +252,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(223, 234);
+            this.label16.Location = new System.Drawing.Point(613, 201);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(62, 16);
             this.label16.TabIndex = 54;
@@ -260,7 +261,7 @@
             // textDuracion
             // 
             this.textDuracion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textDuracion.Location = new System.Drawing.Point(295, 230);
+            this.textDuracion.Location = new System.Drawing.Point(685, 197);
             this.textDuracion.Name = "textDuracion";
             this.textDuracion.Size = new System.Drawing.Size(100, 25);
             this.textDuracion.TabIndex = 11;
@@ -279,7 +280,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(415, 153);
+            this.label14.Location = new System.Drawing.Point(415, 119);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 16);
             this.label14.TabIndex = 49;
@@ -288,16 +289,16 @@
             // textObservaciones
             // 
             this.textObservaciones.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textObservaciones.Location = new System.Drawing.Point(413, 178);
+            this.textObservaciones.Location = new System.Drawing.Point(404, 146);
             this.textObservaciones.Name = "textObservaciones";
-            this.textObservaciones.Size = new System.Drawing.Size(669, 81);
+            this.textObservaciones.Size = new System.Drawing.Size(669, 44);
             this.textObservaciones.TabIndex = 12;
             this.textObservaciones.Text = "";
             // 
             // textMotivo
             // 
             this.textMotivo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textMotivo.Location = new System.Drawing.Point(80, 231);
+            this.textMotivo.Location = new System.Drawing.Point(470, 198);
             this.textMotivo.Name = "textMotivo";
             this.textMotivo.Size = new System.Drawing.Size(114, 25);
             this.textMotivo.TabIndex = 10;
@@ -314,7 +315,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(16, 237);
+            this.label13.Location = new System.Drawing.Point(406, 204);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(48, 16);
             this.label13.TabIndex = 45;
@@ -364,7 +365,7 @@
             this.cmbEjecutivo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbEjecutivo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEjecutivo.FormattingEnabled = true;
-            this.cmbEjecutivo.Location = new System.Drawing.Point(637, 146);
+            this.cmbEjecutivo.Location = new System.Drawing.Point(637, 112);
             this.cmbEjecutivo.Name = "cmbEjecutivo";
             this.cmbEjecutivo.Size = new System.Drawing.Size(365, 25);
             this.cmbEjecutivo.TabIndex = 8;
@@ -373,7 +374,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(556, 152);
+            this.label8.Location = new System.Drawing.Point(556, 118);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 16);
             this.label8.TabIndex = 38;
@@ -423,7 +424,7 @@
             // 
             this.cSaldo.BackColor = System.Drawing.SystemColors.Info;
             this.cSaldo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cSaldo.Location = new System.Drawing.Point(747, 68);
+            this.cSaldo.Location = new System.Drawing.Point(747, 70);
             this.cSaldo.Name = "cSaldo";
             this.cSaldo.ReadOnly = true;
             this.cSaldo.Size = new System.Drawing.Size(93, 25);
@@ -593,59 +594,13 @@
             this.d31,
             this.avisos,
             this.total});
-            this.dataGridOrden.Location = new System.Drawing.Point(38, 292);
+            this.dataGridOrden.Location = new System.Drawing.Point(27, 259);
             this.dataGridOrden.Name = "dataGridOrden";
             this.dataGridOrden.Size = new System.Drawing.Size(1116, 172);
             this.dataGridOrden.TabIndex = 13;
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
+            this.dataGridOrden.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridOrden_CellFormatting);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(1025, 517);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "&Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.totalOrden);
-            this.groupBox2.Location = new System.Drawing.Point(798, 470);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 41);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(208, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(34, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Total:";
-            // 
-            // totalOrden
-            // 
-            this.totalOrden.Location = new System.Drawing.Point(249, 15);
-            this.totalOrden.Name = "totalOrden";
-            this.totalOrden.Size = new System.Drawing.Size(100, 20);
-            this.totalOrden.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(890, 517);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "&Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // horario
             // 
@@ -873,11 +828,58 @@
             this.total.ReadOnly = true;
             this.total.Width = 67;
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Location = new System.Drawing.Point(1010, 484);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
+            this.btnGuardar.TabIndex = 14;
+            this.btnGuardar.Text = "&Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.totalOrden);
+            this.groupBox2.Location = new System.Drawing.Point(783, 437);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(356, 41);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(208, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(34, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Total:";
+            // 
+            // totalOrden
+            // 
+            this.totalOrden.Location = new System.Drawing.Point(249, 15);
+            this.totalOrden.Name = "totalOrden";
+            this.totalOrden.Size = new System.Drawing.Size(100, 20);
+            this.totalOrden.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(875, 484);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "&Imprimir";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 564);
+            this.ClientSize = new System.Drawing.Size(1174, 535);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGuardar);
@@ -885,6 +887,7 @@
             this.Controls.Add(this.dataGridOrden);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmOrden";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ingresar Orden";
             this.Load += new System.EventHandler(this.FrmOrden_Load);
             this.groupBox1.ResumeLayout(false);
