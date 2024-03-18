@@ -52,6 +52,9 @@
             this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,12 +74,15 @@
             this.ffin,
             this.C_CONTRATO,
             this.moneda,
-            this.total});
+            this.total,
+            this.producto,
+            this.motivo,
+            this.observaciones});
             this.dgOrdenes.Location = new System.Drawing.Point(41, 127);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(908, 220);
+            this.dgOrdenes.Size = new System.Drawing.Size(1107, 220);
             this.dgOrdenes.TabIndex = 0;
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
             // 
@@ -174,7 +180,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(858, 362);
+            this.button1.Location = new System.Drawing.Point(1057, 361);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 34);
             this.button1.TabIndex = 91;
@@ -185,6 +191,7 @@
             // 
             this.id.HeaderText = "ID";
             this.id.Name = "id";
+            this.id.Visible = false;
             // 
             // C_ORDEN
             // 
@@ -250,11 +257,26 @@
             this.total.HeaderText = "Total";
             this.total.Name = "total";
             // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            // 
+            // motivo
+            // 
+            this.motivo.HeaderText = "Motivo";
+            this.motivo.Name = "motivo";
+            // 
+            // observaciones
+            // 
+            this.observaciones.HeaderText = "Observaciones";
+            this.observaciones.Name = "observaciones";
+            // 
             // FrmOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 407);
+            this.ClientSize = new System.Drawing.Size(1184, 407);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Label4);
             this.Controls.Add(this.TxtDescMedio);
@@ -301,5 +323,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CONTRATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn moneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn motivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn observaciones;
     }
 }

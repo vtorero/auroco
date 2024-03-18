@@ -26,8 +26,15 @@ namespace AurocoPublicidad.forms
         private string valorCliente;
         private string valorContrato;
         private string valorEjecutivo;
+        private string valorInicio;
+        private string valorFin;
+        private string valorMoneda;
+        private string valorTotal;
+        private string valorProducto;
+        private string valorMotivo;
+        private string valorObservaciones;
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente,string contrato,string ejecutivo)
+        public  FrmOrden(string id,string medio,string cliente,string contrato,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string observaciones)
         {
              
             InitializeComponent();
@@ -35,7 +42,13 @@ namespace AurocoPublicidad.forms
             valorCliente = cliente;
             valorContrato=contrato;
             valorEjecutivo = ejecutivo; 
-
+            valorInicio = fechainicio;
+            valorFin = fechafin;
+            valorMoneda = moneda;
+            valorTotal= total;  
+            valorProducto = producto;
+            valorMotivo = motivo;
+            valorObservaciones = observaciones; 
 
             if (id != "")
             {
@@ -70,8 +83,14 @@ namespace AurocoPublicidad.forms
     
        private async void FrmOrden_Load(object sender, EventArgs e)
         {
+            if(valorTotal!="") totalOrden.Text= valorTotal;
+            if (valorInicio != "") inicioVigencia.Value = Convert.ToDateTime(valorInicio);
+            if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
+            if (valorProducto != "") textProducto.Text= valorProducto;
+            if (valorMotivo != "") textMotivo.Text = valorMotivo;
+            if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
 
-          
+
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
@@ -107,6 +126,8 @@ namespace AurocoPublicidad.forms
             comboCambio.DataSource = lstMo;
             comboCambio.DisplayMember = "NOMBRE";
             comboCambio.ValueMember = "VALOR";
+            if (valorMoneda != "")
+                comboCambio.SelectedValue = valorMoneda;
 
             comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
             comboIgv.Items.Add(new ListItem("Si","Si"));
@@ -172,9 +193,17 @@ namespace AurocoPublicidad.forms
                 if (ord.d30 != "0") { dataGridOrden.Rows[rowIndex].Cells["d30"].Value = ord.d30; };
                 if (ord.d31 != "0") { dataGridOrden.Rows[rowIndex].Cells["d31"].Value = ord.d31; };
                 dataGridOrden.Rows[rowIndex].Cells["avisos"].Value = Convert.ToDouble(ord.d1)+ Convert.ToDouble(ord.d2)+ Convert.ToDouble(ord.d3)+ Convert.ToDouble(ord.d4)+
-                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7);
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7) + Convert.ToDouble(ord.d8) + Convert.ToDouble(ord.d9)
+                    + Convert.ToDouble(ord.d10) + Convert.ToDouble(ord.d11) + Convert.ToDouble(ord.d12) + Convert.ToDouble(ord.d13) + Convert.ToDouble(ord.d14) + Convert.ToDouble(ord.d15)
+                    + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
+                    + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
+                    + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31);
                 dataGridOrden.Rows[rowIndex].Cells["total"].Value=(Convert.ToDouble(ord.d1) + Convert.ToDouble(ord.d2) + Convert.ToDouble(ord.d3) + Convert.ToDouble(ord.d4) +
-                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7))*Convert.ToDouble(ord.INVERSION_TOTAL);
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7) + Convert.ToDouble(ord.d8) + Convert.ToDouble(ord.d9)
+                    + Convert.ToDouble(ord.d10) + Convert.ToDouble(ord.d11) + Convert.ToDouble(ord.d12) + Convert.ToDouble(ord.d13) + Convert.ToDouble(ord.d14) + Convert.ToDouble(ord.d15)
+                    + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
+                    + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
+                    + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31)) *Convert.ToDouble(ord.INVERSION_TOTAL);
 
 
 
@@ -760,7 +789,29 @@ namespace AurocoPublicidad.forms
                 e.CellStyle.ForeColor = Color.Red;
 
             }
-            
+
+            if (e.ColumnIndex == dataGridOrden.Columns["total"].Index && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal valor))
+                {
+                    // Aplicar formato de moneda según la moneda deseada
+                    string monedaFormateada = "";
+
+                    // Seleccionar el símbolo de la moneda según el caso (dólares o soles)
+                    string simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+                    if (valorMoneda.Equals("Dolares")) // Puedes definir tus propias condiciones para determinar si es en dólares
+                    {
+                        simboloMoneda = "$"; // Símbolo del dólar estadounidense
+                    }
+
+                    // Aplicar formato de moneda con el símbolo seleccionado
+                    monedaFormateada = string.Format("{0}{1:N2}", simboloMoneda, valor); // "N2" indica dos dígitos decimales
+
+                    e.Value = monedaFormateada;
+                    e.FormattingApplied = true; // Indicar que se ha aplicado el formato
+                }
+            }
+
 
         }
 

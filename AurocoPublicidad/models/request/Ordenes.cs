@@ -22,6 +22,7 @@ namespace AurocoPublicidad.models.request
 
         public string PRODUCTO { get; set; }
         public string MOTIVO { get; set; }
+        public string OBSERVACIONES { get; set; }
 
         public string C_CONTRATO { get; set; }
 

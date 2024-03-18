@@ -45,6 +45,9 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
                 dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
                 dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
+                dgOrdenes.Rows[rowIndex].Cells["producto"].Value = ord.PRODUCTO;
+                dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
+                dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
 
 
             }
@@ -61,20 +64,35 @@ namespace AurocoPublicidad.forms
 
         private void dgOrdenes_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int pos;
-            pos = dgOrdenes.CurrentRow.Index;
-            //MessageBox.Show(dgOrdenes[1, pos].Value.ToString());
+            try
+            {
+                int pos;
+                pos = dgOrdenes.CurrentRow.Index;
+                //MessageBox.Show(dgOrdenes[1, pos].Value.ToString());
 
-            var idOrden = dgOrdenes[1, pos].Value.ToString();
-            var idMedio = dgOrdenes[4, pos].Value.ToString();
-            var idCliente = dgOrdenes[2, pos].Value.ToString();
-            var idEjecutivo = dgOrdenes[6, pos].Value.ToString();
-            var idContrato = dgOrdenes[10, pos].Value.ToString();
+                var idOrden = dgOrdenes[1, pos].Value.ToString();
+                var idMedio = dgOrdenes[4, pos].Value.ToString();
+                var idCliente = dgOrdenes[2, pos].Value.ToString();
+                var idEjecutivo = dgOrdenes[6, pos].Value.ToString();
+                var finicio = dgOrdenes[8, pos].Value.ToString();
+                var ffin = dgOrdenes[9, pos].Value.ToString();
+                var idContrato = dgOrdenes[10, pos].Value.ToString();
+                var moneda = dgOrdenes[11, pos].Value.ToString();
+                var totalOrden = dgOrdenes[12, pos].Value.ToString();
 
+                var producto = dgOrdenes[13, pos].Value.ToString();
+                var motivo = dgOrdenes[14, pos].Value.ToString();
+                var observaciones = dgOrdenes[15, pos].Value.ToString();
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, observaciones);
+                frmOrden.ShowDialog();
 
+            }
+            catch(NullReferenceException ex)
+            {
+                
 
-            FrmOrden frmOrden = new FrmOrden(idOrden,idMedio, idCliente, idContrato,idEjecutivo /*, otros datos si es necesario */);
-            frmOrden.ShowDialog();
+                MessageBox.Show("Algun dato esta incompleto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
         }
     }
