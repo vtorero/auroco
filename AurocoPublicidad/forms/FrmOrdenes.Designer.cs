@@ -38,7 +38,6 @@
             this.Label1 = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.Label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +53,7 @@
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
@@ -77,13 +77,15 @@
             this.total,
             this.producto,
             this.motivo,
+            this.duracion,
             this.observaciones});
-            this.dgOrdenes.Location = new System.Drawing.Point(41, 127);
+            this.dgOrdenes.Location = new System.Drawing.Point(30, 135);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(1107, 220);
+            this.dgOrdenes.Size = new System.Drawing.Size(1174, 220);
             this.dgOrdenes.TabIndex = 0;
+            this.dgOrdenes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgOrdenes_CellFormatting);
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
             // 
             // Label4
@@ -178,15 +180,6 @@
             this.Label2.TabIndex = 81;
             this.Label2.Text = "Cliente :";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1057, 361);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 34);
-            this.button1.TabIndex = 91;
-            this.button1.Text = "&Ver Orden";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // id
             // 
             this.id.HeaderText = "ID";
@@ -267,6 +260,11 @@
             this.motivo.HeaderText = "Motivo";
             this.motivo.Name = "motivo";
             // 
+            // duracion
+            // 
+            this.duracion.HeaderText = "Duración";
+            this.duracion.Name = "duracion";
+            // 
             // observaciones
             // 
             this.observaciones.HeaderText = "Observaciones";
@@ -276,8 +274,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 407);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1231, 382);
             this.Controls.Add(this.Label4);
             this.Controls.Add(this.TxtDescMedio);
             this.Controls.Add(this.txt_cliente);
@@ -309,7 +306,6 @@
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.Button btnGenerar;
         internal System.Windows.Forms.Label Label2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_ORDEN;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CLIENTE;
@@ -325,6 +321,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewTextBoxColumn producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn motivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn duracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn observaciones;
     }
 }

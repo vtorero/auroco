@@ -32,9 +32,11 @@ namespace AurocoPublicidad.forms
         private string valorTotal;
         private string valorProducto;
         private string valorMotivo;
+        private string valorDuracion;
         private string valorObservaciones;
+        
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente,string contrato,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string observaciones)
+        public  FrmOrden(string id,string medio,string cliente,string contrato,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones)
         {
              
             InitializeComponent();
@@ -48,7 +50,10 @@ namespace AurocoPublicidad.forms
             valorTotal= total;  
             valorProducto = producto;
             valorMotivo = motivo;
+            valorDuracion=duracion;
+
             valorObservaciones = observaciones; 
+            
 
             if (id != "")
             {
@@ -88,6 +93,7 @@ namespace AurocoPublicidad.forms
             if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
             if (valorProducto != "") textProducto.Text= valorProducto;
             if (valorMotivo != "") textMotivo.Text = valorMotivo;
+            if (valorDuracion != "") textDuracion.Text = valorDuracion;
             if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
 
 
@@ -787,10 +793,10 @@ namespace AurocoPublicidad.forms
             {
     
                 e.CellStyle.ForeColor = Color.Red;
-
+                
             }
 
-            if (e.ColumnIndex == dataGridOrden.Columns["total"].Index && e.Value != null)
+            if (e.ColumnIndex == dataGridOrden.Columns["total"].Index && e.Value != null || e.ColumnIndex == dataGridOrden.Columns["costo"].Index && e.Value != null)
             {
                 if (decimal.TryParse(e.Value.ToString(), out decimal valor))
                 {

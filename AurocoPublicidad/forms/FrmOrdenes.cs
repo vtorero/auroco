@@ -47,6 +47,7 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
                 dgOrdenes.Rows[rowIndex].Cells["producto"].Value = ord.PRODUCTO;
                 dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
+                dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
                 dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
 
 
@@ -82,18 +83,74 @@ namespace AurocoPublicidad.forms
 
                 var producto = dgOrdenes[13, pos].Value.ToString();
                 var motivo = dgOrdenes[14, pos].Value.ToString();
-                var observaciones = dgOrdenes[15, pos].Value.ToString();
-                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, observaciones);
+                var duracion = dgOrdenes[15, pos].Value.ToString();
+                var observaciones = dgOrdenes[16, pos].Value.ToString();
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo,duracion, observaciones);
                 frmOrden.ShowDialog();
 
             }
-            catch(NullReferenceException ex)
+            catch (NullReferenceException ex)
             {
-                
+
 
                 MessageBox.Show("Algun dato esta incompleto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
+        }
+
+        private void dgOrdenes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dgOrdenes.Columns["total"].Index && e.Value != null)
+            {
+
+
+                if (decimal.TryParse(e.Value.ToString(), out decimal valor))
+                {
+
+                    string monedaFormateada = "";
+                    string simboloMoneda = "";
+
+
+                    {
+                        
+                        switch ((string)this.dgOrdenes.Rows[e.RowIndex].Cells["moneda"].Value)
+                        {
+
+                            case "Soles":
+
+                             simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+
+                                break;
+
+
+                            case "Dolares":
+                                simboloMoneda = "$"; // Símbolo del dólar estadounidense
+
+                                break;
+
+                        }
+                        
+                        
+
+                        // Aplicar formato de moneda según la moneda deseada
+
+
+                        // Seleccionar el símbolo de la moneda según el caso (dólares o soles)
+
+
+
+
+
+
+                        // Aplicar formato de moneda con el símbolo seleccionado
+                        monedaFormateada = string.Format("{0}{1:N2}", simboloMoneda, valor); // "N2" indica dos dígitos decimales
+
+                        e.Value = monedaFormateada;
+                        e.FormattingApplied = true; // Indicar que se ha aplicado el formato
+
+                    }
+                }
+            }
         }
     }
 }
