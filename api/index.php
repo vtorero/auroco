@@ -340,10 +340,8 @@ $app->post("/orden",function() use ($app,$db){
 try{
 //'
     $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
-
-
     $stmt = mysqli_prepare($db,$sql);
-    $eje=mysqli_stmt_execute($stmt);
+   mysqli_stmt_execute($stmt);
    /* cerrar la sentencia */
    // mysqli_stmt_close($stmt);
 
@@ -360,6 +358,8 @@ try{
 
         for ($v=0; $v < (int)$item->d1;$v++) {
             $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
+
+
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
 

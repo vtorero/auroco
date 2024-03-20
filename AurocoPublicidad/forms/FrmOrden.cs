@@ -1,5 +1,6 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
+using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -88,7 +89,20 @@ namespace AurocoPublicidad.forms
     
        private async void FrmOrden_Load(object sender, EventArgs e)
         {
-            if(valorTotal!="") totalOrden.Text= valorTotal;
+            string simboloMoneda = "";
+            if (valorMoneda == "Soles") { 
+            simboloMoneda = "S/.";
+            }
+            else
+            {
+            simboloMoneda = "$";
+            }
+
+
+            if (valorTotal!="") totalOrden.Text= string.Format("{0}{1:N2}", simboloMoneda, valorTotal);
+
+
+
             if (valorInicio != "") inicioVigencia.Value = Convert.ToDateTime(valorInicio);
             if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
             if (valorProducto != "") textProducto.Text= valorProducto;
@@ -240,6 +254,13 @@ namespace AurocoPublicidad.forms
         {
             var fecha = inicioVigencia.Value;
 
+            if (valorInicio != "")
+            {
+                fecha = Convert.ToDateTime(valorInicio);
+            }
+            
+            
+
             /* if (fecha.DayOfWeek() = 'S') { 
              }
             */
@@ -287,8 +308,8 @@ namespace AurocoPublicidad.forms
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if ((!string.IsNullOrWhiteSpace(textProducto.Text)) && (!string.IsNullOrWhiteSpace(textMotivo.Text))
-       && (!string.IsNullOrWhiteSpace(comboIgv.Text))
-                   )
+       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (!string.IsNullOrWhiteSpace(cmbEjecutivo.Text)))
+                   
             {
 
 
@@ -571,9 +592,23 @@ namespace AurocoPublicidad.forms
                         cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
                         cFinVigencia.Text = (data[0].FIN_VIGENCIA);
                         cMoneda.Text = data[0].C_MONEDA;
-                        cTipoCambio.Text = data[0].TIPO_CAMBIO;
+                        
                         cNumeroFisico.Text = data[0].NRO_FISICO;
-                        cSaldo.Text = data[0].SALDO_ACTUAL;
+
+                        string simboloMoneda = "";
+                        if (data[0].C_MONEDA == "Soles")
+                        {
+                            simboloMoneda = "S/.";
+                        }
+                        else
+                        {
+                            simboloMoneda = "$";
+                        }
+
+
+                        cTipoCambio.Text = string.Format("{0}{1:N2}", "$", data[0].TIPO_CAMBIO);
+
+                        cSaldo.Text = string.Format("{0}{1:N2}", simboloMoneda, data[0].SALDO_ACTUAL);
                     }
 
                 }            
@@ -738,7 +773,21 @@ namespace AurocoPublicidad.forms
                         totalorden += Convert.ToDouble(fila.Cells["total"].Value);
                         
                     }
-                    totalOrden.Text = totalorden.ToString();
+                    string simboloMoneda = "";
+                    if (comboCambio.SelectedValue.ToString() == "Soles")
+                    {
+                        simboloMoneda = "S/.";
+                    }
+                    else
+                    {
+                        simboloMoneda = "$";
+                    }
+
+
+                    totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, totalorden.ToString());
+
+
+
                 }
 
                 if (dataGridOrden.Rows.Count == 0)
@@ -796,7 +845,7 @@ namespace AurocoPublicidad.forms
                 
             }
 
-            if (e.ColumnIndex == dataGridOrden.Columns["total"].Index && e.Value != null || e.ColumnIndex == dataGridOrden.Columns["costo"].Index && e.Value != null)
+            if (e.ColumnIndex == dataGridOrden.Columns["total"].Index && e.Value != null)
             {
                 if (decimal.TryParse(e.Value.ToString(), out decimal valor))
                 {
@@ -809,6 +858,8 @@ namespace AurocoPublicidad.forms
                     {
                         simboloMoneda = "$"; // Símbolo del dólar estadounidense
                     }
+
+                    
 
                     // Aplicar formato de moneda con el símbolo seleccionado
                     monedaFormateada = string.Format("{0}{1:N2}", simboloMoneda, valor); // "N2" indica dos dígitos decimales
