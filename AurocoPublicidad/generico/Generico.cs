@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace AurocoPublicidad
+﻿namespace AurocoPublicidad
 {
 
-    
-public static class generico
+
+    public static class generico
 {
 
         public static string traduceDia(string original)

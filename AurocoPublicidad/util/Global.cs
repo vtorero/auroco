@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using static System.Net.Mime.MediaTypeNames;
 
 namespace AurocoPublicidad.util
 {
     public class Global
     {
         public static string sessionUsuario;
+        public static string rutaReportes = "bin\\Debug";
     }
 }

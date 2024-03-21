@@ -1,16 +1,11 @@
 ﻿using AurocoPublicidad.models.request;
-using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 namespace AurocoPublicidad.forms
@@ -24,6 +19,21 @@ namespace AurocoPublicidad.forms
 
         private async void FrmOrdenes_Load(object sender, EventArgs e)
         {
+            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            comboCliente.SelectedValue = "0";
+
+            string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
+            comboMedio.DataSource = lstM;
+            comboMedio.DisplayMember = "NOMBRE";
+            comboMedio.ValueMember = "C_MEDIO";
+            comboMedio.SelectedValue = "0";
+           
+
             string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/ordenes");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
             //dgOrdenes.DataSource = lst;
@@ -53,8 +63,6 @@ namespace AurocoPublicidad.forms
 
             }
         }
-
-
         private async Task<string> GetService(string cadena)
         {
             WebRequest oRequest = WebRequest.Create(cadena);
@@ -63,6 +71,7 @@ namespace AurocoPublicidad.forms
             return await sr.ReadToEndAsync();
         }
 
+ 
         private void dgOrdenes_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
@@ -151,6 +160,88 @@ namespace AurocoPublicidad.forms
                     }
                 }
             }
+        }
+
+        private void btnGenerar_Click(object sender, EventArgs e)
+        {
+            dgOrdenes.Rows.Clear(); 
+            string url = "https://aprendeadistancia.online/api-auroco/buscaorden";
+            Ordenes orden = new Ordenes();
+            orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
+            orden.C_MEDIO = comboMedio.SelectedValue.ToString();  
+            orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
+            orden.FIN_VIGENCIA= dtHasta.Value.ToString();
+            string resultado = Send<Ordenes>(url, orden, "POST");
+            List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
+
+            foreach (Ordenes ord in lst)
+            {
+                int rowIndex = dgOrdenes.Rows.Add();
+                dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
+                dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
+                dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
+                dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
+                dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
+                dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
+                dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
+                dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
+                dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
+                dgOrdenes.Rows[rowIndex].Cells["finicio"].Value = ord.INICIO_VIGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["ffin"].Value = ord.FIN_VIGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
+                dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
+                dgOrdenes.Rows[rowIndex].Cells["producto"].Value = ord.PRODUCTO;
+                dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
+                dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
+                dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+
+
+            }
+
+
+
+
+        }
+
+        public string Send<T>(string url, T ObjectRequest, string method = "POST")
+        {
+            string result = "";
+
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                //serializar el objeto
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(ObjectRequest);
+
+                //peticion
+                WebRequest request = WebRequest.Create(url);
+                //header
+                request.Method = method;
+                request.PreAuthenticate = true;
+                request.ContentType = "application/json;charset=utf-8";
+                request.Timeout = 30000;
+
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    result = streamReader.ReadToEnd();
+                }
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+
+            return result;
         }
     }
 }

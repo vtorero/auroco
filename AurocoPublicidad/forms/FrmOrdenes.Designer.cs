@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.dgOrdenes = new System.Windows.Forms.DataGridView();
-            this.Label4 = new System.Windows.Forms.Label();
-            this.TxtDescMedio = new System.Windows.Forms.TextBox();
-            this.txt_cliente = new System.Windows.Forms.TextBox();
-            this.dtHasta = new System.Windows.Forms.DateTimePicker();
-            this.Label3 = new System.Windows.Forms.Label();
-            this.dtDesde = new System.Windows.Forms.DateTimePicker();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.btnGenerar = new System.Windows.Forms.Button();
-            this.Label2 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +46,15 @@
             this.motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.dtHasta = new System.Windows.Forms.DateTimePicker();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.dtDesde = new System.Windows.Forms.DateTimePicker();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.btnGenerar = new System.Windows.Forms.Button();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.comboCliente = new System.Windows.Forms.ComboBox();
+            this.comboMedio = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,98 +87,6 @@
             this.dgOrdenes.TabIndex = 0;
             this.dgOrdenes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgOrdenes_CellFormatting);
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
-            // 
-            // Label4
-            // 
-            this.Label4.AutoSize = true;
-            this.Label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label4.Location = new System.Drawing.Point(41, 55);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(46, 16);
-            this.Label4.TabIndex = 90;
-            this.Label4.Text = "Medio:";
-            // 
-            // TxtDescMedio
-            // 
-            this.TxtDescMedio.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.TxtDescMedio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDescMedio.Location = new System.Drawing.Point(100, 54);
-            this.TxtDescMedio.Name = "TxtDescMedio";
-            this.TxtDescMedio.ReadOnly = true;
-            this.TxtDescMedio.Size = new System.Drawing.Size(158, 22);
-            this.TxtDescMedio.TabIndex = 89;
-            // 
-            // txt_cliente
-            // 
-            this.txt_cliente.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.txt_cliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_cliente.Location = new System.Drawing.Point(100, 28);
-            this.txt_cliente.Name = "txt_cliente";
-            this.txt_cliente.ReadOnly = true;
-            this.txt_cliente.Size = new System.Drawing.Size(335, 22);
-            this.txt_cliente.TabIndex = 87;
-            // 
-            // dtHasta
-            // 
-            this.dtHasta.Checked = false;
-            this.dtHasta.CustomFormat = "dd/MM/yyyy";
-            this.dtHasta.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtHasta.Location = new System.Drawing.Point(230, 85);
-            this.dtHasta.Name = "dtHasta";
-            this.dtHasta.Size = new System.Drawing.Size(112, 22);
-            this.dtHasta.TabIndex = 85;
-            this.dtHasta.Value = new System.DateTime(2006, 9, 12, 17, 4, 13, 265);
-            // 
-            // Label3
-            // 
-            this.Label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(206, 85);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(24, 16);
-            this.Label3.TabIndex = 84;
-            this.Label3.Text = "Al :";
-            // 
-            // dtDesde
-            // 
-            this.dtDesde.Checked = false;
-            this.dtDesde.CustomFormat = "dd/MM/yyyy";
-            this.dtDesde.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDesde.Location = new System.Drawing.Point(86, 85);
-            this.dtDesde.Name = "dtDesde";
-            this.dtDesde.Size = new System.Drawing.Size(112, 22);
-            this.dtDesde.TabIndex = 83;
-            this.dtDesde.Value = new System.DateTime(2006, 9, 12, 17, 4, 13, 265);
-            // 
-            // Label1
-            // 
-            this.Label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(38, 85);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(56, 16);
-            this.Label1.TabIndex = 82;
-            this.Label1.Text = "Del :";
-            // 
-            // btnGenerar
-            // 
-            this.btnGenerar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGenerar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGenerar.Location = new System.Drawing.Point(348, 77);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(97, 33);
-            this.btnGenerar.TabIndex = 80;
-            this.btnGenerar.Text = "Consultar";
-            // 
-            // Label2
-            // 
-            this.Label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(38, 31);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(56, 16);
-            this.Label2.TabIndex = 81;
-            this.Label2.Text = "Cliente :";
             // 
             // id
             // 
@@ -270,14 +178,109 @@
             this.observaciones.HeaderText = "Observaciones";
             this.observaciones.Name = "observaciones";
             // 
+            // Label4
+            // 
+            this.Label4.AutoSize = true;
+            this.Label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label4.Location = new System.Drawing.Point(27, 61);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(46, 16);
+            this.Label4.TabIndex = 90;
+            this.Label4.Text = "Medio:";
+            // 
+            // dtHasta
+            // 
+            this.dtHasta.Checked = false;
+            this.dtHasta.CustomFormat = "dd/MM/yyyy";
+            this.dtHasta.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtHasta.Location = new System.Drawing.Point(230, 93);
+            this.dtHasta.Name = "dtHasta";
+            this.dtHasta.Size = new System.Drawing.Size(112, 22);
+            this.dtHasta.TabIndex = 85;
+            this.dtHasta.Value = new System.DateTime(2006, 9, 12, 17, 4, 13, 265);
+            // 
+            // Label3
+            // 
+            this.Label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label3.Location = new System.Drawing.Point(206, 93);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(24, 16);
+            this.Label3.TabIndex = 84;
+            this.Label3.Text = "Al :";
+            // 
+            // dtDesde
+            // 
+            this.dtDesde.Checked = false;
+            this.dtDesde.CustomFormat = "dd/MM/yyyy";
+            this.dtDesde.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDesde.Location = new System.Drawing.Point(89, 93);
+            this.dtDesde.Name = "dtDesde";
+            this.dtDesde.Size = new System.Drawing.Size(98, 22);
+            this.dtDesde.TabIndex = 83;
+            this.dtDesde.Value = new System.DateTime(2006, 9, 12, 17, 4, 13, 265);
+            // 
+            // Label1
+            // 
+            this.Label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label1.Location = new System.Drawing.Point(31, 93);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(56, 16);
+            this.Label1.TabIndex = 82;
+            this.Label1.Text = "Del :";
+            // 
+            // btnGenerar
+            // 
+            this.btnGenerar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnGenerar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGenerar.Location = new System.Drawing.Point(361, 93);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(97, 25);
+            this.btnGenerar.TabIndex = 80;
+            this.btnGenerar.Text = "Consultar";
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+            // 
+            // Label2
+            // 
+            this.Label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label2.Location = new System.Drawing.Point(27, 23);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(56, 16);
+            this.Label2.TabIndex = 81;
+            this.Label2.Text = "Cliente :";
+            // 
+            // comboCliente
+            // 
+            this.comboCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboCliente.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboCliente.FormattingEnabled = true;
+            this.comboCliente.Location = new System.Drawing.Point(89, 19);
+            this.comboCliente.Name = "comboCliente";
+            this.comboCliente.Size = new System.Drawing.Size(299, 25);
+            this.comboCliente.TabIndex = 91;
+            // 
+            // comboMedio
+            // 
+            this.comboMedio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboMedio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboMedio.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboMedio.FormattingEnabled = true;
+            this.comboMedio.Location = new System.Drawing.Point(89, 54);
+            this.comboMedio.Name = "comboMedio";
+            this.comboMedio.Size = new System.Drawing.Size(299, 25);
+            this.comboMedio.TabIndex = 92;
+            // 
             // FrmOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 382);
+            this.Controls.Add(this.comboMedio);
+            this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.Label4);
-            this.Controls.Add(this.TxtDescMedio);
-            this.Controls.Add(this.txt_cliente);
             this.Controls.Add(this.dtHasta);
             this.Controls.Add(this.Label3);
             this.Controls.Add(this.dtDesde);
@@ -298,8 +301,6 @@
 
         private System.Windows.Forms.DataGridView dgOrdenes;
         internal System.Windows.Forms.Label Label4;
-        internal System.Windows.Forms.TextBox TxtDescMedio;
-        internal System.Windows.Forms.TextBox txt_cliente;
         internal System.Windows.Forms.DateTimePicker dtHasta;
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.DateTimePicker dtDesde;
@@ -323,5 +324,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn motivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn duracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn observaciones;
+        private System.Windows.Forms.ComboBox comboCliente;
+        private System.Windows.Forms.ComboBox comboMedio;
     }
 }

@@ -115,6 +115,34 @@ $app->post("/contrato",function() use($db,$app){
 
 });
 
+$app->post("/buscaorden",function() use($db,$app){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+   $fecha1 = explode("/", $data->INICIO_VIGENCIA);
+   $fecha2= explode("/", $data->FIN_VIGENCIA);
+   $ano1=explode(" ",$fecha1[2]);
+   $ano2=explode(" ",$fecha2[2]);
+   $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
+   $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
+
+
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA,O.C_MONEDA ,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,(SELECT SUM(INVERSION_TOTAL) FROM ORDEN_LINEAS WHERE C_ORDEN=O.C_ORDEN) TOTAL FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO
+   AND O.C_CLIENTE='{$data->C_CLIENTE}' ORDER  by O.ID DESC");
+   $ordenes=array();
+
+   while ($fila = $resultado->fetch_object()) {
+   $ordenes[]=$fila;
+   }
+   if(count($ordenes)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$ordenes);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($ordenes);
+
+});
+
+
 $app->post("/login",function() use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
@@ -187,7 +215,18 @@ $app->get("/clientes_orden",function() use ($app,$db){
    echo  json_encode($contrato);
 
 });
+$app->get("/ordenprint/:id",function($id) use ($app,$db){
+    $json = $app->request->getBody();
+    $data = json_decode($json, true);
+    $resultado = $db->query("SELECT C_ORDEN,C_CONTRATO,C_CLIENTE,C_MONEDA,C_MEDIO FROM aprendea_auroco.ORD_ORDENES WHERE C_ORDEN='{$id}'");
+    $datos=array();
+    while ($fila = $resultado->fetch_object()) {
+    $datos[]=$fila;
+    }
+    echo  json_encode($datos);
 
+
+});
 
 $app->get("/orden/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
@@ -358,7 +397,6 @@ try{
 
         for ($v=0; $v < (int)$item->d1;$v++) {
             $sql2="call SP_GRABA_LINEA_ORDENES('{$fila['@SCODIGO']}','{$data->C_CONTRATO}','{$inicio}','{$item->programa}','{$item->costo}',1,'{$data->C_MONEDA}',{$v},'{$item->horario}',{$item->costo},'{$data->C_USUARIO}',@VALOR_ERROR)";
-
 
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);

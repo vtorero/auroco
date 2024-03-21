@@ -1,25 +1,17 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
-using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
-namespace AurocoPublicidad.forms {
+namespace AurocoPublicidad.forms
+{
 
     public partial class FrmContratos : Form
     {

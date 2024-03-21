@@ -1,6 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
-using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,7 +8,6 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
@@ -721,7 +719,7 @@ namespace AurocoPublicidad.forms
                     
                     foreach (DataGridViewRow fila in dataGridOrden.Rows)
                     {
-                        totalorden += Convert.ToDouble(fila.Cells["total"].Value);
+                        totalorden += Convert.ToDouble(fila.Cells["totalcalculo"].Value);
 
 
                         // Obtener valores de cantidad y costo de la fila actual
@@ -762,16 +760,30 @@ namespace AurocoPublicidad.forms
                         double total = (d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15 + d16 + d17 + d18 + d19 + d20 + d21 + d22 + d23 + d24 + d25 + d26 + d27 + d28 + d29 + d30 + d31) * costo;
                         double avisos = (d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15 + d16 + d17 + d18 + d19 + d20 + d21 + d22 + d23 + d24 + d25 + d26 + d27 + d28 + d29 + d30 + d31);
                         // Asignar el total a la columna "Total" de la fila actual
-                        fila.Cells["total"].Value = total;
-                        fila.Cells["avisos"].Value = avisos;
+                        string simboloM = "";
+                        if (comboCambio.SelectedValue.ToString() == "Soles")
+                        {
+                            simboloM = "S/.";
+                        }
+                        else
+                        {
+                            simboloM = "$";
+                        }
+
+
+                        fila.Cells["total"].Value = string.Format("{0}{1:N2}", simboloM, total);
+                        fila.Cells["totalcalculo"].Value =  total;
+
+                        fila.Cells["avisos"].Value =  avisos;
 
 
                     }
                     totalorden = 0;
                     foreach (DataGridViewRow fila in dataGridOrden.Rows)
                     {
-                        totalorden += Convert.ToDouble(fila.Cells["total"].Value);
-                        
+                        totalorden += Convert.ToDouble(fila.Cells["totalcalculo"].Value);
+
+
                     }
                     string simboloMoneda = "";
                     if (comboCambio.SelectedValue.ToString() == "Soles")
@@ -872,6 +884,13 @@ namespace AurocoPublicidad.forms
 
         }
 
-      
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form childForm = new formReportes();
+            //childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento Reporte";
+            childForm.Show();
+
+        }
     }
 }
