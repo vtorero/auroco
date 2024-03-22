@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
@@ -32,7 +33,7 @@ namespace AurocoPublicidad.forms
             comboMedio.DisplayMember = "NOMBRE";
             comboMedio.ValueMember = "C_MEDIO";
             comboMedio.SelectedValue = "0";
-           
+
 
             string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/ordenes");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
@@ -59,6 +60,7 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
                 dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
                 dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
 
 
             }
@@ -71,7 +73,7 @@ namespace AurocoPublicidad.forms
             return await sr.ReadToEndAsync();
         }
 
- 
+
         private void dgOrdenes_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
@@ -94,7 +96,7 @@ namespace AurocoPublicidad.forms
                 var motivo = dgOrdenes[14, pos].Value.ToString();
                 var duracion = dgOrdenes[15, pos].Value.ToString();
                 var observaciones = dgOrdenes[16, pos].Value.ToString();
-                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo,duracion, observaciones);
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones);
                 frmOrden.ShowDialog();
 
             }
@@ -121,13 +123,13 @@ namespace AurocoPublicidad.forms
 
 
                     {
-                        
+
                         switch ((string)this.dgOrdenes.Rows[e.RowIndex].Cells["moneda"].Value)
                         {
 
                             case "Soles":
 
-                             simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+                                simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
 
                                 break;
 
@@ -138,8 +140,8 @@ namespace AurocoPublicidad.forms
                                 break;
 
                         }
-                        
-                        
+
+
 
                         // Aplicar formato de moneda según la moneda deseada
 
@@ -164,13 +166,13 @@ namespace AurocoPublicidad.forms
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            dgOrdenes.Rows.Clear(); 
+            dgOrdenes.Rows.Clear();
             string url = "https://aprendeadistancia.online/api-auroco/buscaorden";
             Ordenes orden = new Ordenes();
             orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
-            orden.C_MEDIO = comboMedio.SelectedValue.ToString();  
+            orden.C_MEDIO = comboMedio.SelectedValue.ToString();
             orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
-            orden.FIN_VIGENCIA= dtHasta.Value.ToString();
+            orden.FIN_VIGENCIA = dtHasta.Value.ToString();
             string resultado = Send<Ordenes>(url, orden, "POST");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
 
@@ -242,6 +244,47 @@ namespace AurocoPublicidad.forms
             }
 
             return result;
+        }
+
+        private async void Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int pos;
+                string estado="";
+                pos = dgOrdenes.CurrentRow.Index;
+               var idOrden = dgOrdenes[1, pos].Value.ToString();
+                if (dgOrdenes[17, pos].Value.ToString() != "NO" && dgOrdenes[17, pos].Value.ToString() != "")
+                {
+                    estado = dgOrdenes[17, pos].Value.ToString();
+
+                    HttpClient clienteHttp = new HttpClient();
+                    string urlApi = $"https://aprendeadistancia.online/api-auroco/anulaorden/{idOrden}"; // URL de tu servicio API con parámetros   
+
+                    HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        string contenido = await respuesta.Content.ReadAsStringAsync();
+                        dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(respuesta.ReasonPhrase, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La orden ya esta anulada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                 
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,"Aviso",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
     }
 }
