@@ -1,5 +1,6 @@
 ﻿using AurocoPublicidad.models.request;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -254,7 +255,7 @@ namespace AurocoPublicidad.forms
                 string estado="";
                 pos = dgOrdenes.CurrentRow.Index;
                var idOrden = dgOrdenes[1, pos].Value.ToString();
-                if (dgOrdenes[17, pos].Value.ToString() != "NO" && dgOrdenes[17, pos].Value.ToString() != "")
+                if (dgOrdenes[17, pos].Value.ToString() != "NO")
                 {
                     estado = dgOrdenes[17, pos].Value.ToString();
 
@@ -266,6 +267,10 @@ namespace AurocoPublicidad.forms
                     {
                         string contenido = await respuesta.Content.ReadAsStringAsync();
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+                        JObject jObject = JObject.Parse(contenido);
+                        JToken objeto = jObject["message"];
+                        string status = (string)objeto;
+                        MessageBox.Show(status, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                     else

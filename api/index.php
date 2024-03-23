@@ -364,7 +364,27 @@ $app->put("/orden",function() use ($app,$db){
 
 });
 
+$app->get("/anulaorden/:id",function($id) use ($app,$db){
+    $json = $app->request->getBody();
+    $data = json_decode($json, true);
+    try{
+    $sql="call SP_ANULAR_ORDENES('{$id}',@PV_MENSAJE_ERROR,@VAL_ERROR);";
+    $stmt = mysqli_prepare($db,$sql);
+   mysqli_stmt_execute($stmt);
 
+   $result = array("status"=>true,"message"=>"Orden anulada correctamente :".$id);
+
+
+    }
+    catch(PDOException $e) {
+
+        $result = array("status"=>false,"message"=>"Ocurrio un error");
+
+    }
+
+    echo  json_encode($result);
+
+});
 
 $app->post("/orden",function() use ($app,$db){
     $json = $app->request->getBody();
