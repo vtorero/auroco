@@ -321,6 +321,7 @@ namespace AurocoPublicidad.forms
                     var metodo = "";
 
                     Orden orden = new Orden();
+                   orden.C_ORDEN = txtNumero.Text;
                     orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
                     orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
                     orden.C_MEDIO = comboMedio.SelectedValue.ToString();

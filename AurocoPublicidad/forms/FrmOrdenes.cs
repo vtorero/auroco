@@ -35,11 +35,17 @@ namespace AurocoPublicidad.forms
             comboMedio.ValueMember = "C_MEDIO";
             comboMedio.SelectedValue = "0";
 
+            cargaOrdenes();
+       
+        }
 
+        private async void cargaOrdenes()
+        {
             string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/ordenes");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
             //dgOrdenes.DataSource = lst;
 
+            dgOrdenes.Rows.Clear();
             foreach (Ordenes ord in lst)
             {
                 int rowIndex = dgOrdenes.Rows.Add();
@@ -66,6 +72,7 @@ namespace AurocoPublicidad.forms
 
             }
         }
+
         private async Task<string> GetService(string cadena)
         {
             WebRequest oRequest = WebRequest.Create(cadena);
@@ -270,8 +277,9 @@ namespace AurocoPublicidad.forms
                         JObject jObject = JObject.Parse(contenido);
                         JToken objeto = jObject["message"];
                         string status = (string)objeto;
-                        MessageBox.Show(status, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        MessageBox.Show(status, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                      
                     }
                     else
                     {
@@ -282,7 +290,7 @@ namespace AurocoPublicidad.forms
                 {
                     MessageBox.Show("La orden ya esta anulada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                 
+                cargaOrdenes();
 
             }
             catch (Exception ex)

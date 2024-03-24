@@ -5,6 +5,7 @@ namespace AurocoPublicidad.models.request
     internal class Orden
     {
         public string ID { get; set; }
+        public string C_ORDEN { get; set; }
         public string C_CLIENTE { get; set; }
         public string C_CONTRATO { get; set; }
         public string C_MEDIO { get; set; }

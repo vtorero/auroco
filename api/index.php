@@ -360,7 +360,41 @@ $app->get("/ordenes",function() use ($app,$db){
 $app->put("/orden",function() use ($app,$db){
     $json = $app->request->getBody();
     $data = json_decode($json,false);
-    print_r($data);
+    $fecha1 = explode("/", $data->FECHA_INICIO);
+    $fecha2= explode("/", $data->FECHA_FIN);
+    $ano1=explode(" ",$fecha1[2]);
+    $ano2=explode(" ",$fecha2[2]);
+    $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
+    $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
+
+    try{
+    $sql="call SP_UPDATE_ORDENES('{$data->C_ORDEN}','{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+
+
+
+    $stmt = mysqli_prepare($db,$sql);
+   mysqli_stmt_execute($stmt);
+
+    $resultado = $db->query("SELECT @SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR");
+    $fila = $resultado->fetch_assoc();
+
+    $result = array("status"=>true,"message"=>"Orden actualizada correctamente :".$data->C_ORDEN);
+
+}
+catch(PDOException $e) {
+
+    $result = array("status"=>false,"message"=>"Ocurrio un error");
+}
+
+
+echo  json_encode($result);
+
+
+
+
+
+
+
 
 });
 

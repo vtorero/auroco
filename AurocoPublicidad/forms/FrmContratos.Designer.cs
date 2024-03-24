@@ -84,10 +84,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(903, 301);
+            this.groupBox1.Size = new System.Drawing.Size(903, 276);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-         
             // 
             // txtCodigo
             // 
@@ -135,7 +134,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(641, 240);
+            this.button2.Location = new System.Drawing.Point(632, 220);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 40);
             this.button2.TabIndex = 19;
@@ -145,7 +144,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(748, 240);
+            this.btnGuardar.Location = new System.Drawing.Point(739, 220);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(116, 40);
             this.btnGuardar.TabIndex = 18;
@@ -156,20 +155,20 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtObservaciones);
-            this.groupBox2.Location = new System.Drawing.Point(281, 145);
+            this.groupBox2.Location = new System.Drawing.Point(220, 145);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(594, 69);
+            this.groupBox2.Size = new System.Drawing.Size(655, 69);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Observaciones";
             // 
             // txtObservaciones
             // 
-            this.txtObservaciones.Location = new System.Drawing.Point(6, 19);
+            this.txtObservaciones.Location = new System.Drawing.Point(16, 19);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
             this.txtObservaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObservaciones.Size = new System.Drawing.Size(577, 44);
+            this.txtObservaciones.Size = new System.Drawing.Size(604, 43);
             this.txtObservaciones.TabIndex = 16;
             // 
             // label7
@@ -206,7 +205,7 @@
             // 
             // txtTipoCambio
             // 
-            this.txtTipoCambio.Location = new System.Drawing.Point(622, 112);
+            this.txtTipoCambio.Location = new System.Drawing.Point(634, 110);
             this.txtTipoCambio.Name = "txtTipoCambio";
             this.txtTipoCambio.Size = new System.Drawing.Size(100, 20);
             this.txtTipoCambio.TabIndex = 12;
@@ -214,7 +213,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(532, 114);
+            this.label5.Location = new System.Drawing.Point(544, 112);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 11;
@@ -223,7 +222,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(349, 116);
+            this.label4.Location = new System.Drawing.Point(361, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 10;
@@ -234,7 +233,7 @@
             this.comboMoneda.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboMoneda.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboMoneda.FormattingEnabled = true;
-            this.comboMoneda.Location = new System.Drawing.Point(405, 111);
+            this.comboMoneda.Location = new System.Drawing.Point(417, 109);
             this.comboMoneda.Name = "comboMoneda";
             this.comboMoneda.Size = new System.Drawing.Size(121, 21);
             this.comboMoneda.TabIndex = 9;
@@ -242,7 +241,7 @@
             // dataFechaFin
             // 
             this.dataFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataFechaFin.Location = new System.Drawing.Point(201, 110);
+            this.dataFechaFin.Location = new System.Drawing.Point(213, 108);
             this.dataFechaFin.Name = "dataFechaFin";
             this.dataFechaFin.Size = new System.Drawing.Size(132, 20);
             this.dataFechaFin.TabIndex = 8;
@@ -250,7 +249,7 @@
             // dataFechaInicio
             // 
             this.dataFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataFechaInicio.Location = new System.Drawing.Point(67, 110);
+            this.dataFechaInicio.Location = new System.Drawing.Point(79, 108);
             this.dataFechaInicio.Name = "dataFechaInicio";
             this.dataFechaInicio.Size = new System.Drawing.Size(127, 20);
             this.dataFechaInicio.TabIndex = 7;
@@ -258,7 +257,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 116);
+            this.label3.Location = new System.Drawing.Point(21, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 6;
@@ -276,19 +275,19 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.DgContratos);
-            this.groupBox3.Location = new System.Drawing.Point(12, 331);
+            this.groupBox3.Location = new System.Drawing.Point(12, 294);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(903, 319);
+            this.groupBox3.Size = new System.Drawing.Size(903, 254);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
             // DgContratos
             // 
             this.DgContratos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgContratos.Location = new System.Drawing.Point(0, 19);
+            this.DgContratos.Location = new System.Drawing.Point(12, 19);
             this.DgContratos.Name = "DgContratos";
             this.DgContratos.ReadOnly = true;
-            this.DgContratos.Size = new System.Drawing.Size(889, 285);
+            this.DgContratos.Size = new System.Drawing.Size(877, 220);
             this.DgContratos.TabIndex = 0;
             this.DgContratos.DoubleClick += new System.EventHandler(this.DgContratos_DoubleClick);
             // 
@@ -301,7 +300,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(927, 680);
+            this.ClientSize = new System.Drawing.Size(927, 566);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
