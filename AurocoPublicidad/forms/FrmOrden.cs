@@ -307,8 +307,9 @@ namespace AurocoPublicidad.forms
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+
             if ((!string.IsNullOrWhiteSpace(textProducto.Text)) && (!string.IsNullOrWhiteSpace(textMotivo.Text))
-       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (!string.IsNullOrWhiteSpace(cmbEjecutivo.Text)))
+       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString()!="0"))
                    
             {
 

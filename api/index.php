@@ -67,7 +67,7 @@ $app->get("/monedas",function() use($db,$app){
 
             $sql="call P_CONTRATO_UPD('{$data->ID}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
 
-
+     
           $stmt = mysqli_prepare($db,$sql);
             mysqli_stmt_execute($stmt);
 
@@ -990,6 +990,10 @@ $app->get("/tabla/:tabla/:orden",function($tabla,$orden) use ($app,$db){
    $datos=array();
    if($tabla='ORD_MEDIOS'){
     $campo='C_MEDIO';
+   }
+
+   if($tabla='ORD_EJECUTIVOS'){
+    $campo='C_EJECUTIVO';
    }
 
    $datos[]=["ID"=>"0",$campo=>"0",$orden=>"Seleccionar"];

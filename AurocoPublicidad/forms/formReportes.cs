@@ -1,5 +1,6 @@
 ﻿using AurocoPublicidad.models.request;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,15 +34,20 @@ namespace AurocoPublicidad.forms
             ReportDocument reportDocument = new ReportDocument();
            Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
-            reportDocument.Load("orden.rpt");
-            //reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\orden.rpt");
+          //  reportDocument.Load("orden.rpt");
+            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\orden.rpt");
 
             // Asigna los datos al reporte
-            ;
+            
             reportDocument.SetDataSource(JsonConvert.DeserializeObject<List<Orden>>(data));
-
+            reportDocument.SetParameterValue("d1","dia1");
+            reportDocument.SetParameterValue("d2", "dia2");
+            reportDocument.SetParameterValue("d3", "dia3");
             // Muestra el reporte en el CrystalReportViewer
             crystalReportViewer1.ReportSource = reportDocument;
+
+           
+
             crystalReportViewer1.Refresh();
         }
         private async Task<string> GetService(string cadena)

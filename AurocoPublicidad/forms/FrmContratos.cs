@@ -107,7 +107,6 @@ namespace AurocoPublicidad.forms
                 contratoR.C_MONEDA = comboMoneda.Text;
                 contratoR.TIPO_CAMBIO = Convert.ToDecimal(txtTipoCambio.Text);
                 contratoR.INVERSION= Convert.ToDecimal(txtMonto.Text);
-                contratoR.MONTO_ORDENAR= Convert.ToDecimal(txtOrdenar.Text);
                 contratoR.OBSERVACIONES = txtObservaciones.Text;
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
                       
@@ -128,7 +127,7 @@ namespace AurocoPublicidad.forms
                     txtCodigo.Text = "";
                     txtTipoCambio.Text = "";
                     txtMonto.Text = "";
-                    txtOrdenar.Text = "";
+                
                     txtObservaciones.Text = "";
                     txtNroFisico.Text = ""; 
                     btnGuardar.Text = "Guardar";
@@ -209,19 +208,35 @@ namespace AurocoPublicidad.forms
             comboMoneda.SelectedText=null;
             txtCodigo.Text = Convert.ToString(DgContratos[1, pos].Value);
             comboCliente.SelectedValue = Convert.ToString(DgContratos[2, pos].Value);
-            txtSaldo.Text = Convert.ToString(DgContratos[6, pos].Value);
+
+            string simboloMoneda = "";
+            if (Convert.ToString(DgContratos[8, pos].Value) == "Soles")
+            {
+                simboloMoneda = "S/.";
+            }
+            else
+            {
+                simboloMoneda = "$";
+            }
+
+            txtSaldo.Text = string.Format("{0}{1:N2}", simboloMoneda, Convert.ToString(DgContratos[6, pos].Value));
+            txtMonto.Text = string.Format("{0}{1:N2}", simboloMoneda, Convert.ToString(DgContratos[9, pos].Value)); 
+
             txtNroFisico.Text= Convert.ToString(DgContratos[7, pos].Value);
             comboMoneda.SelectedValue = Convert.ToString(DgContratos[8, pos].Value);
-            txtMonto.Text = Convert.ToString(DgContratos[9, pos].Value);
-            txtOrdenar.Text = Convert.ToString(DgContratos[10, pos].Value);
+            
+           
             dataFechaInicio.Value= Convert.ToDateTime(DgContratos[4, pos].Value);
             dataFechaFin.Value = Convert.ToDateTime(DgContratos[5, pos].Value);
             txtTipoCambio.Text = Convert.ToString(DgContratos[11, pos].Value);
             txtObservaciones.Text=Convert.ToString(DgContratos[12, pos].Value);
-            //MessageBox.Show(pos+"","ss");
+            
         }
 
-      
+        private void txtMonto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

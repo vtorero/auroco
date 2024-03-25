@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmContratos));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSaldo = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNroFisico = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,8 +41,6 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtOrdenar = new System.Windows.Forms.TextBox();
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTipoCambio = new System.Windows.Forms.TextBox();
@@ -54,8 +54,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.DgContratos = new System.Windows.Forms.DataGridView();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtSaldo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -74,8 +72,6 @@
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnGuardar);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtOrdenar);
             this.groupBox1.Controls.Add(this.txtMonto);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtTipoCambio);
@@ -88,9 +84,27 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(903, 276);
+            this.groupBox1.Size = new System.Drawing.Size(879, 276);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtSaldo
+            // 
+            this.txtSaldo.BackColor = System.Drawing.SystemColors.Info;
+            this.txtSaldo.Location = new System.Drawing.Point(114, 194);
+            this.txtSaldo.Name = "txtSaldo";
+            this.txtSaldo.ReadOnly = true;
+            this.txtSaldo.Size = new System.Drawing.Size(100, 20);
+            this.txtSaldo.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(70, 198);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Saldo:";
             // 
             // txtCodigo
             // 
@@ -131,14 +145,14 @@
             this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboCliente.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(77, 46);
+            this.comboCliente.Location = new System.Drawing.Point(77, 43);
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(460, 24);
+            this.comboCliente.Size = new System.Drawing.Size(430, 24);
             this.comboCliente.TabIndex = 20;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(628, 220);
+            this.button2.Location = new System.Drawing.Point(634, 230);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 40);
             this.button2.TabIndex = 19;
@@ -148,7 +162,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(735, 220);
+            this.btnGuardar.Location = new System.Drawing.Point(741, 230);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(116, 40);
             this.btnGuardar.TabIndex = 18;
@@ -159,7 +173,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtObservaciones);
-            this.groupBox2.Location = new System.Drawing.Point(220, 145);
+            this.groupBox2.Location = new System.Drawing.Point(222, 150);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(635, 69);
             this.groupBox2.TabIndex = 17;
@@ -175,28 +189,13 @@
             this.txtObservaciones.Size = new System.Drawing.Size(604, 43);
             this.txtObservaciones.TabIndex = 16;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 194);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Monto a ordenar:";
-            // 
-            // txtOrdenar
-            // 
-            this.txtOrdenar.Location = new System.Drawing.Point(114, 190);
-            this.txtOrdenar.Name = "txtOrdenar";
-            this.txtOrdenar.Size = new System.Drawing.Size(100, 20);
-            this.txtOrdenar.TabIndex = 15;
-            // 
             // txtMonto
             // 
             this.txtMonto.Location = new System.Drawing.Point(114, 164);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(100, 20);
             this.txtMonto.TabIndex = 14;
+            this.txtMonto.TextChanged += new System.EventHandler(this.txtMonto_TextChanged);
             // 
             // label6
             // 
@@ -209,7 +208,7 @@
             // 
             // txtTipoCambio
             // 
-            this.txtTipoCambio.Location = new System.Drawing.Point(755, 109);
+            this.txtTipoCambio.Location = new System.Drawing.Point(616, 111);
             this.txtTipoCambio.Name = "txtTipoCambio";
             this.txtTipoCambio.Size = new System.Drawing.Size(70, 20);
             this.txtTipoCambio.TabIndex = 12;
@@ -217,7 +216,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(663, 111);
+            this.label5.Location = new System.Drawing.Point(524, 113);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 11;
@@ -281,7 +280,7 @@
             this.groupBox3.Controls.Add(this.DgContratos);
             this.groupBox3.Location = new System.Drawing.Point(12, 294);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(903, 254);
+            this.groupBox3.Size = new System.Drawing.Size(879, 254);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
@@ -291,7 +290,7 @@
             this.DgContratos.Location = new System.Drawing.Point(12, 19);
             this.DgContratos.Name = "DgContratos";
             this.DgContratos.ReadOnly = true;
-            this.DgContratos.Size = new System.Drawing.Size(877, 220);
+            this.DgContratos.Size = new System.Drawing.Size(845, 220);
             this.DgContratos.TabIndex = 0;
             this.DgContratos.DoubleClick += new System.EventHandler(this.DgContratos_DoubleClick);
             // 
@@ -300,29 +299,11 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(521, 112);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Saldo:";
-            // 
-            // txtSaldo
-            // 
-            this.txtSaldo.BackColor = System.Drawing.SystemColors.Info;
-            this.txtSaldo.Location = new System.Drawing.Point(565, 108);
-            this.txtSaldo.Name = "txtSaldo";
-            this.txtSaldo.ReadOnly = true;
-            this.txtSaldo.Size = new System.Drawing.Size(84, 20);
-            this.txtSaldo.TabIndex = 26;
-            // 
             // FrmContratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(927, 566);
+            this.ClientSize = new System.Drawing.Size(910, 566);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -351,8 +332,6 @@
         private System.Windows.Forms.TextBox txtTipoCambio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtObservaciones;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtOrdenar;
         private System.Windows.Forms.TextBox txtMonto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
