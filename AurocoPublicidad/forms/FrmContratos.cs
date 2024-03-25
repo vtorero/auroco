@@ -34,16 +34,17 @@ namespace AurocoPublicidad.forms
             DgContratos.Columns[1].HeaderText = "Contrato";
             DgContratos.Columns[2].HeaderText = "Cliente";
             DgContratos.Columns[3].HeaderText = "Razon Social";
-            DgContratos.Columns[4].HeaderText = "Inicio vigencia";
+           DgContratos.Columns[4].HeaderText = "Inicio vigencia";
             DgContratos.Columns[5].HeaderText = "Fin vigencia";
-            DgContratos.Columns[6].HeaderText = "Nro Fisico";
-            DgContratos.Columns[7].HeaderText = "Moneda";
-            DgContratos.Columns[8].HeaderText = "Monto a pagar";
-            DgContratos.Columns[9].HeaderText = "Monto a Ordenar";
-            DgContratos.Columns[10].HeaderText = "Tipo de cambio";
-            DgContratos.Columns[11].HeaderText = "Observaciones";
-            DgContratos.Columns[12].HeaderText = "Usuario";
-            DgContratos.Columns[13].HeaderText = "F. Creación";
+            DgContratos.Columns[6].HeaderText = "Saldo";
+            DgContratos.Columns[7].HeaderText = "Nro Fisico";
+            DgContratos.Columns[8].HeaderText = "Moneda";
+            DgContratos.Columns[9].HeaderText = "Monto a pagar";
+            DgContratos.Columns[10].HeaderText = "Monto a Ordenar";
+            DgContratos.Columns[11].HeaderText = "Tipo de cambio";
+            DgContratos.Columns[12].HeaderText = "Observaciones";
+            DgContratos.Columns[13].HeaderText = "Usuario";
+            DgContratos.Columns[14].HeaderText = "F. Creación";
 
 
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
@@ -208,14 +209,15 @@ namespace AurocoPublicidad.forms
             comboMoneda.SelectedText=null;
             txtCodigo.Text = Convert.ToString(DgContratos[1, pos].Value);
             comboCliente.SelectedValue = Convert.ToString(DgContratos[2, pos].Value);
-            txtNroFisico.Text= Convert.ToString(DgContratos[6, pos].Value);
-            comboMoneda.SelectedValue = Convert.ToString(DgContratos[7, pos].Value);
-            txtMonto.Text = Convert.ToString(DgContratos[8, pos].Value);
-            txtOrdenar.Text = Convert.ToString(DgContratos[9, pos].Value);
+            txtSaldo.Text = Convert.ToString(DgContratos[6, pos].Value);
+            txtNroFisico.Text= Convert.ToString(DgContratos[7, pos].Value);
+            comboMoneda.SelectedValue = Convert.ToString(DgContratos[8, pos].Value);
+            txtMonto.Text = Convert.ToString(DgContratos[9, pos].Value);
+            txtOrdenar.Text = Convert.ToString(DgContratos[10, pos].Value);
             dataFechaInicio.Value= Convert.ToDateTime(DgContratos[4, pos].Value);
             dataFechaFin.Value = Convert.ToDateTime(DgContratos[5, pos].Value);
-            txtTipoCambio.Text = Convert.ToString(DgContratos[10, pos].Value);
-            txtObservaciones.Text=Convert.ToString(DgContratos[11, pos].Value);
+            txtTipoCambio.Text = Convert.ToString(DgContratos[11, pos].Value);
+            txtObservaciones.Text=Convert.ToString(DgContratos[12, pos].Value);
             //MessageBox.Show(pos+"","ss");
         }
 

@@ -22,6 +22,7 @@ namespace AurocoPublicidad.forms
     public partial class FrmOrden : Form
     {
         private string valorRecibido;
+        private string valorIdOrden;
         private string valorCliente;
         private string valorContrato;
         private string valorEjecutivo;
@@ -39,6 +40,7 @@ namespace AurocoPublicidad.forms
         {
              
             InitializeComponent();
+            valorIdOrden = id;
             valorRecibido = medio;
             valorCliente = cliente;
             valorContrato=contrato;
@@ -355,8 +357,9 @@ namespace AurocoPublicidad.forms
                     if (status == "True")
                     {
                         MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        cargarContratos();
                         // comboCliente.SelectedIndex = 0;
+                        if (valorIdOrden == "") { 
                         comboMedio.SelectedIndex = 0;
                         comboContratos.SelectedIndex = 0;   
                         comboCliente.SelectedIndex = 0;
@@ -369,12 +372,13 @@ namespace AurocoPublicidad.forms
                         textObservaciones.Text = "";
                         dataGridOrden.Rows.Clear();
                         totalOrden.Text = "";
-
                         cInicioVigencia.Text = "";
                         cFinVigencia.Text = "";
                         cNumeroFisico.Text = "";
                         cTipoCambio.Text = "";
                         cSaldo.Text = "";
+
+                        }
 
                     }
 
@@ -483,38 +487,40 @@ namespace AurocoPublicidad.forms
 
         private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
         {
+            cargarContratos();
+        }
+
+        private void cargarContratos()
+        {
             comboContratos.DataSource = null;
             comboContratos.Items.Clear();
 
             string url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
-            if (comboCliente.SelectedValue!= null) { 
-            string cod_cliente = comboCliente.SelectedValue.ToString();
-            
-            if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
+            if (comboCliente.SelectedValue != null)
             {
-                Cliente cliente = new Cliente();
-                cliente.C_CLIENTE = cod_cliente;
-                string resultado = Send<Cliente>(url, cliente, "POST");
-                Console.Write(resultado);
-                //if (resultado.te) {                                              
-                List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
-                comboContratos.DataSource = lstC;
-                comboContratos.DisplayMember = "C_CONTRATO";
-                comboContratos.ValueMember = "C_CONTRATO";
+                string cod_cliente = comboCliente.SelectedValue.ToString();
 
-                if (valorContrato != "")
+                if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
                 {
-                    comboContratos.SelectedValue= valorContrato;
+                    Cliente cliente = new Cliente();
+                    cliente.C_CLIENTE = cod_cliente;
+                    string resultado = Send<Cliente>(url, cliente, "POST");
+                    List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
+                    comboContratos.DataSource = lstC;
+                    comboContratos.DisplayMember = "C_CONTRATO";
+                    comboContratos.ValueMember = "C_CONTRATO";
+
+                    if (valorContrato != "")
+                    {
+                        comboContratos.SelectedValue = valorContrato;
+                    }
+
+
                 }
 
-                //else
-                //{
-                //  MessageBox.Show("El cliente " + text_cliente + " no tiene contratos registrados");
-                //}
-
             }
 
-            }
+
         }
 
         public string Send<T>(string url, T ObjectRequest, string method = "POST")

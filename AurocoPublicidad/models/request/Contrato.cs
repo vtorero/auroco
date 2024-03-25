@@ -10,6 +10,7 @@ namespace AurocoPublicidad.models.request
         public string RAZON_SOCIAL { get; set; }
         public string INICIO_VIGENCIA { get; set; }
         public string FIN_VIGENCIA { get; set; }
+        public string SALDO { get; set; }
         public string NRO_FISICO { get; set; }
         public string C_MONEDA { get; set; }
       public Decimal INVERSION { get; set; }
@@ -20,7 +21,7 @@ namespace AurocoPublicidad.models.request
         public string C_USUARIO { get; set; }
         public string F_CREACION { get; set; }
 
-
+       
 
 
     }

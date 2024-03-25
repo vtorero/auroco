@@ -54,6 +54,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.DgContratos = new System.Windows.Forms.DataGridView();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtSaldo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,6 +64,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSaldo);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.txtNroFisico);
             this.groupBox1.Controls.Add(this.label1);
@@ -134,7 +138,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(632, 220);
+            this.button2.Location = new System.Drawing.Point(628, 220);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 40);
             this.button2.TabIndex = 19;
@@ -144,7 +148,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(739, 220);
+            this.btnGuardar.Location = new System.Drawing.Point(735, 220);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(116, 40);
             this.btnGuardar.TabIndex = 18;
@@ -157,7 +161,7 @@
             this.groupBox2.Controls.Add(this.txtObservaciones);
             this.groupBox2.Location = new System.Drawing.Point(220, 145);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(655, 69);
+            this.groupBox2.Size = new System.Drawing.Size(635, 69);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Observaciones";
@@ -205,15 +209,15 @@
             // 
             // txtTipoCambio
             // 
-            this.txtTipoCambio.Location = new System.Drawing.Point(634, 110);
+            this.txtTipoCambio.Location = new System.Drawing.Point(755, 109);
             this.txtTipoCambio.Name = "txtTipoCambio";
-            this.txtTipoCambio.Size = new System.Drawing.Size(100, 20);
+            this.txtTipoCambio.Size = new System.Drawing.Size(70, 20);
             this.txtTipoCambio.TabIndex = 12;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(544, 112);
+            this.label5.Location = new System.Drawing.Point(663, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 11;
@@ -222,7 +226,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(361, 114);
+            this.label4.Location = new System.Drawing.Point(356, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 10;
@@ -235,7 +239,7 @@
             this.comboMoneda.FormattingEnabled = true;
             this.comboMoneda.Location = new System.Drawing.Point(417, 109);
             this.comboMoneda.Name = "comboMoneda";
-            this.comboMoneda.Size = new System.Drawing.Size(121, 21);
+            this.comboMoneda.Size = new System.Drawing.Size(90, 21);
             this.comboMoneda.TabIndex = 9;
             // 
             // dataFechaFin
@@ -296,6 +300,24 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(521, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Saldo:";
+            // 
+            // txtSaldo
+            // 
+            this.txtSaldo.BackColor = System.Drawing.SystemColors.Info;
+            this.txtSaldo.Location = new System.Drawing.Point(565, 108);
+            this.txtSaldo.Name = "txtSaldo";
+            this.txtSaldo.ReadOnly = true;
+            this.txtSaldo.Size = new System.Drawing.Size(84, 20);
+            this.txtSaldo.TabIndex = 26;
+            // 
             // FrmContratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,5 +366,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.TextBox txtSaldo;
+        private System.Windows.Forms.Label label9;
     }
 }
