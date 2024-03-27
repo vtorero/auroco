@@ -258,45 +258,54 @@ namespace AurocoPublicidad.forms
         {
             try
             {
+
+
                 int pos;
-                string estado="";
+                string estado = "";
                 pos = dgOrdenes.CurrentRow.Index;
-               var idOrden = dgOrdenes[1, pos].Value.ToString();
-                if (dgOrdenes[17, pos].Value.ToString() != "NO")
+                var idOrden = dgOrdenes[1, pos].Value.ToString();
+
+                DialogResult dialogResult = MessageBox.Show("¿Estás seguro que deseas anular la orden " + idOrden + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
                 {
-                    estado = dgOrdenes[17, pos].Value.ToString();
 
-                    HttpClient clienteHttp = new HttpClient();
-                    string urlApi = $"https://aprendeadistancia.online/api-auroco/anulaorden/{idOrden}"; // URL de tu servicio API con parámetros   
-
-                    HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
-                    if (respuesta.IsSuccessStatusCode)
+                    if (dgOrdenes[17, pos].Value.ToString() != "NO")
                     {
-                        string contenido = await respuesta.Content.ReadAsStringAsync();
-                        dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
-                        JObject jObject = JObject.Parse(contenido);
-                        JToken objeto = jObject["message"];
-                        string status = (string)objeto;
+                        estado = dgOrdenes[17, pos].Value.ToString();
 
-                        MessageBox.Show(status, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                      
+                        HttpClient clienteHttp = new HttpClient();
+                        string urlApi = $"https://aprendeadistancia.online/api-auroco/anulaorden/{idOrden}"; // URL de tu servicio API con parámetros   
+
+                        HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
+                        if (respuesta.IsSuccessStatusCode)
+                        {
+                            string contenido = await respuesta.Content.ReadAsStringAsync();
+                            dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+                            JObject jObject = JObject.Parse(contenido);
+                            JToken objeto = jObject["message"];
+                            string status = (string)objeto;
+
+                            MessageBox.Show(status, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(respuesta.ReasonPhrase, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show(respuesta.ReasonPhrase, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("La orden ya esta anulada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("La orden ya esta anulada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                cargaOrdenes();
+                    cargaOrdenes();
 
+                }
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message,"Aviso",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

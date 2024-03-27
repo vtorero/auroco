@@ -27,7 +27,7 @@ namespace AurocoPublicidad.forms
 
         private async void LoadReportAsync()
         {
-            string apiUrl = "https://aprendeadistancia.online/api-auroco/ordenprint/AUROCO00105";
+            string apiUrl = "https://aprendeadistancia.online/api-auroco/ordenprint/AUROCO00106";
             var data = await GetService(apiUrl);
 
             // Asegúrate de que tu reporte y el modelo de datos (MyDataModel) coincidan
@@ -40,9 +40,9 @@ namespace AurocoPublicidad.forms
             // Asigna los datos al reporte
             
             reportDocument.SetDataSource(JsonConvert.DeserializeObject<List<Orden>>(data));
-            reportDocument.SetParameterValue("d1","dia1");
+         /*   reportDocument.SetParameterValue("d1","dia1");
             reportDocument.SetParameterValue("d2", "dia2");
-            reportDocument.SetParameterValue("d3", "dia3");
+            reportDocument.SetParameterValue("d3", "dia3");*/
             // Muestra el reporte en el CrystalReportViewer
             crystalReportViewer1.ReportSource = reportDocument;
 

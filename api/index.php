@@ -67,7 +67,7 @@ $app->get("/monedas",function() use($db,$app){
 
             $sql="call P_CONTRATO_UPD('{$data->ID}','{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
 
-     
+
           $stmt = mysqli_prepare($db,$sql);
             mysqli_stmt_execute($stmt);
 
@@ -218,7 +218,119 @@ $app->get("/clientes_orden",function() use ($app,$db){
 $app->get("/ordenprint/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
     $data = json_decode($json, true);
-    $resultado = $db->query("SELECT C_ORDEN,C_CONTRATO,C_CLIENTE,C_MONEDA,C_MEDIO FROM aprendea_auroco.ORD_ORDENES WHERE C_ORDEN='{$id}'");
+    $resultado = $db->query("SELECT ORD.ID,ORD.C_ORDEN,ORD.REVISION,ORD.NOMBRE,ORD.RUC,ORD.RAZON_SOCIAL,ORD.PRODUCTO,ORD.MOTIVO,ORD.DURACION,ORD.PROGRAMA,ORD.DIAS,ORD.PERIODO,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,ORD.OBSERVACIONES,
+    SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
+     SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
+     SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
+     SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,
+     SUM(IF(DAY(ORD.FECHA)=05,XCONT,'')) d5,
+     SUM(IF(DAY(ORD.FECHA)=06,XCONT,'')) d6,
+     SUM(IF(DAY(ORD.FECHA)=07,XCONT,'')) d7,
+     SUM(IF(DAY(ORD.FECHA)=08,XCONT,'')) d8,
+     SUM(IF(DAY(ORD.FECHA)=09,XCONT,'')) d9,
+     SUM(IF(DAY(ORD.FECHA)=10,XCONT,'')) d10,
+     SUM(IF(DAY(ORD.FECHA)=11,XCONT,'')) d11,
+     SUM(IF(DAY(ORD.FECHA)=12,XCONT,'')) d12,
+     SUM(IF(DAY(ORD.FECHA)=13,XCONT,'')) d13,
+     SUM(IF(DAY(ORD.FECHA)=14,XCONT,'')) d14,
+     SUM(IF(DAY(ORD.FECHA)=15,XCONT,'')) d15,
+     SUM(IF(DAY(ORD.FECHA)=16,XCONT,'')) d16,
+     SUM(IF(DAY(ORD.FECHA)=17,XCONT,'')) d17,
+     SUM(IF(DAY(ORD.FECHA)=18,XCONT,'')) d18,
+     SUM(IF(DAY(ORD.FECHA)=19,XCONT,'')) d19,
+     SUM(IF(DAY(ORD.FECHA)=20,XCONT,'')) d20,
+     SUM(IF(DAY(ORD.FECHA)=21,XCONT,'')) d21,
+     SUM(IF(DAY(ORD.FECHA)=22,XCONT,'')) d22,
+     SUM(IF(DAY(ORD.FECHA)=23,XCONT,'')) d23,
+     SUM(IF(DAY(ORD.FECHA)=24,XCONT,'')) d24,
+     SUM(IF(DAY(ORD.FECHA)=25,XCONT,'')) d25,
+     SUM(IF(DAY(ORD.FECHA)=26,XCONT,'')) d26,
+     SUM(IF(DAY(ORD.FECHA)=27,XCONT,'')) d27,
+     SUM(IF(DAY(ORD.FECHA)=28,XCONT,'')) d28,
+     SUM(IF(DAY(ORD.FECHA)=29,XCONT,'')) d29,
+     SUM(IF(DAY(ORD.FECHA)=30,XCONT,'')) d30,
+     SUM(IF(DAY(ORD.FECHA)=31,XCONT,'')) d31,
+    SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')+IF(DAY(ORD.FECHA)=02,XCONT,'')
+       +IF(DAY(ORD.FECHA)=03,XCONT,'')+IF(DAY(ORD.FECHA)=04,XCONT,'')+IF(DAY(ORD.FECHA)=05,XCONT,'')+IF(DAY(ORD.FECHA)=06,XCONT,'')+IF(DAY(ORD.FECHA)=07,XCONT,'')
+    +IF(DAY(ORD.FECHA)=08,XCONT,'')+IF(DAY(ORD.FECHA)=09,XCONT,'')+IF(DAY(ORD.FECHA)=10,XCONT,'')+IF(DAY(ORD.FECHA)=11,XCONT,'')+IF(DAY(ORD.FECHA)=12,XCONT,'')
+    +IF(DAY(ORD.FECHA)=13,XCONT,'')+IF(DAY(ORD.FECHA)=14,XCONT,'')+IF(DAY(ORD.FECHA)=15,XCONT,'')+IF(DAY(ORD.FECHA)=16,XCONT,'')+IF(DAY(ORD.FECHA)=17,XCONT,'')
+    +IF(DAY(ORD.FECHA)=18,XCONT,'')+IF(DAY(ORD.FECHA)=19,XCONT,'')+IF(DAY(ORD.FECHA)=20,XCONT,'')+IF(DAY(ORD.FECHA)=21,XCONT,'')+IF(DAY(ORD.FECHA)=22,XCONT,'')
+    +IF(DAY(ORD.FECHA)=23,XCONT,'')+IF(DAY(ORD.FECHA)=24,XCONT,'')+IF(DAY(ORD.FECHA)=25,XCONT,'')+IF(DAY(ORD.FECHA)=26,XCONT,'')+IF(DAY(ORD.FECHA)=27,XCONT,'')
+    +IF(DAY(ORD.FECHA)=28,XCONT,'')+IF(DAY(ORD.FECHA)=29,XCONT,'')+IF(DAY(ORD.FECHA)=30,XCONT,'')+IF(DAY(ORD.FECHA)=31,XCONT,'')) TOTAL_AVISOS
+     ,ORD.INVERSION_TOTAL * 	SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')+IF(DAY(ORD.FECHA)=02,XCONT,'')
+       +IF(DAY(ORD.FECHA)=03,XCONT,'')+IF(DAY(ORD.FECHA)=04,XCONT,'')+IF(DAY(ORD.FECHA)=05,XCONT,'')+IF(DAY(ORD.FECHA)=06,XCONT,'')+IF(DAY(ORD.FECHA)=07,XCONT,'')
+    +IF(DAY(ORD.FECHA)=08,XCONT,'')+IF(DAY(ORD.FECHA)=09,XCONT,'')+IF(DAY(ORD.FECHA)=10,XCONT,'')+IF(DAY(ORD.FECHA)=11,XCONT,'')+IF(DAY(ORD.FECHA)=12,XCONT,'')
+    +IF(DAY(ORD.FECHA)=13,XCONT,'')+IF(DAY(ORD.FECHA)=14,XCONT,'')+IF(DAY(ORD.FECHA)=15,XCONT,'')+IF(DAY(ORD.FECHA)=16,XCONT,'')+IF(DAY(ORD.FECHA)=17,XCONT,'')
+    +IF(DAY(ORD.FECHA)=18,XCONT,'')+IF(DAY(ORD.FECHA)=19,XCONT,'')+IF(DAY(ORD.FECHA)=20,XCONT,'')+IF(DAY(ORD.FECHA)=21,XCONT,'')+IF(DAY(ORD.FECHA)=22,XCONT,'')
+    +IF(DAY(ORD.FECHA)=23,XCONT,'')+IF(DAY(ORD.FECHA)=24,XCONT,'')+IF(DAY(ORD.FECHA)=25,XCONT,'')+IF(DAY(ORD.FECHA)=26,XCONT,'')+IF(DAY(ORD.FECHA)=27,XCONT,'')
+    +IF(DAY(ORD.FECHA)=28,XCONT,'')+IF(DAY(ORD.FECHA)=29,XCONT,'')+IF(DAY(ORD.FECHA)=30,XCONT,'')+IF(DAY(ORD.FECHA)=31,XCONT,'')) AS TOTAL_COSTO
+
+   FROM
+(select O.C_ORDEN,CL.RUC,CL.RAZON_SOCIAL,O.C_MEDIO,M.NOMBRE,O.OBSERVACIONES,
+              month(O.INICIO_VIGENCIA)  AS  INICIO_VIGENCIA,
+              P.ID,
+              P.PROGRAMA,
+              P.TEMA,
+              P.DIAS,
+              P.PERIODO,
+              sum(l.inversion_total) COSTO,
+              O.PRODUCTO,
+      O.REVISION,
+              O.MOTIVO,
+              l.RATING,
+              l.MILES,
+              O.DURACION,
+              l.INVERSION_TOTAL,
+              FECHA,
+              count(*)  XCONT
+         from ORDEN_LINEAS l,
+              ORD_ORDENES        O,
+              ORD_MEDIOS         M,
+              ORD_PROGRAMAS_AUT  P,
+              ORD_CONTRATOS      CO,
+              ORD_CLIENTES       CL
+        where
+          CL.C_CLIENTE = CO.C_CLIENTE
+          and O.C_MEDIO=M.C_MEDIO
+          AND O.C_ORDEN = l.C_ORDEN
+         AND l.PROGRAMA = P.ID
+          AND O.C_CONTRATO=CO.C_CONTRATO AND l.C_ORDEN='{$id}'
+          group by O.C_ORDEN,
+           P.ID,
+           CL.RUC,
+                 CL.RAZON_SOCIAL,
+                 O.C_MEDIO,
+                 M.NOMBRE,
+                 O.OBSERVACIONES,
+                 O.INICIO_VIGENCIA,
+                 P.PROGRAMA,
+                 P.TEMA,
+                 O.REVISION,
+                 O.PRODUCTO,
+                 O.MOTIVO,
+                 l.RATING,
+                 l.MILES,
+                 O.DURACION,
+                 l.INVERSION_TOTAL,
+                 FECHA) ORD
+                 GROUP BY ORD.C_ORDEN,
+                 ORD.ID,
+                   ORD.RAZON_SOCIAL,
+       ORD.RUC
+       ,
+          ORD.C_MEDIO,
+      ORD.NOMBRE,
+      ORD.OBSERVACIONES,
+      ORD.INICIO_VIGENCIA,
+      ORD.PROGRAMA,
+      ORD.TEMA,
+    ORD.PRODUCTO,
+         ORD.MOTIVO,
+           ORD.REVISION,
+         ORD.RATING,
+         ORD.MILES,
+         ORD.DURACION,
+         ORD.INVERSION_TOTAL;");
     $datos=array();
     while ($fila = $resultado->fetch_object()) {
     $datos[]=$fila;
