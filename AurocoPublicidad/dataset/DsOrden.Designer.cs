@@ -311,12 +311,6 @@ namespace AurocoPublicidad.dataset {
             
             private global::System.Data.DataColumn columnOBSERVACIONES;
             
-            private global::System.Data.DataColumn columnd1;
-            
-            private global::System.Data.DataColumn columnd2;
-            
-            private global::System.Data.DataColumn columnd3;
-            
             private global::System.Data.DataColumn columnd4;
             
             private global::System.Data.DataColumn columnd5;
@@ -376,6 +370,12 @@ namespace AurocoPublicidad.dataset {
             private global::System.Data.DataColumn columnTOTAL_AVISOS;
             
             private global::System.Data.DataColumn columnTOTAL_COSTO;
+            
+            private global::System.Data.DataColumn columnd1;
+            
+            private global::System.Data.DataColumn columnd2;
+            
+            private global::System.Data.DataColumn columnd3;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -535,30 +535,6 @@ namespace AurocoPublicidad.dataset {
             public global::System.Data.DataColumn OBSERVACIONESColumn {
                 get {
                     return this.columnOBSERVACIONES;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn d1Column {
-                get {
-                    return this.columnd1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn d2Column {
-                get {
-                    return this.columnd2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn d3Column {
-                get {
-                    return this.columnd3;
                 }
             }
             
@@ -804,6 +780,30 @@ namespace AurocoPublicidad.dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn d1Column {
+                get {
+                    return this.columnd1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn d2Column {
+                get {
+                    return this.columnd2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn d3Column {
+                get {
+                    return this.columnd3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -856,9 +856,6 @@ namespace AurocoPublicidad.dataset {
                         string TEMA, 
                         string INVERSION_TOTAL, 
                         string OBSERVACIONES, 
-                        double d1, 
-                        double d2, 
-                        string d3, 
                         string d4, 
                         string d5, 
                         string d6, 
@@ -888,7 +885,10 @@ namespace AurocoPublicidad.dataset {
                         string d30, 
                         string d31, 
                         string TOTAL_AVISOS, 
-                        string TOTAL_COSTO) {
+                        string TOTAL_COSTO, 
+                        string d1, 
+                        string d2, 
+                        string d3) {
                 tblOrdenRow rowtblOrdenRow = ((tblOrdenRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         C_ORDEN,
@@ -907,9 +907,6 @@ namespace AurocoPublicidad.dataset {
                         TEMA,
                         INVERSION_TOTAL,
                         OBSERVACIONES,
-                        d1,
-                        d2,
-                        d3,
                         d4,
                         d5,
                         d6,
@@ -939,7 +936,10 @@ namespace AurocoPublicidad.dataset {
                         d30,
                         d31,
                         TOTAL_AVISOS,
-                        TOTAL_COSTO};
+                        TOTAL_COSTO,
+                        d1,
+                        d2,
+                        d3};
                 rowtblOrdenRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblOrdenRow);
                 return rowtblOrdenRow;
@@ -978,9 +978,6 @@ namespace AurocoPublicidad.dataset {
                 this.columnTEMA = base.Columns["TEMA"];
                 this.columnINVERSION_TOTAL = base.Columns["INVERSION_TOTAL"];
                 this.columnOBSERVACIONES = base.Columns["OBSERVACIONES"];
-                this.columnd1 = base.Columns["d1"];
-                this.columnd2 = base.Columns["d2"];
-                this.columnd3 = base.Columns["d3"];
                 this.columnd4 = base.Columns["d4"];
                 this.columnd5 = base.Columns["d5"];
                 this.columnd6 = base.Columns["d6"];
@@ -1011,6 +1008,9 @@ namespace AurocoPublicidad.dataset {
                 this.columnd31 = base.Columns["d31"];
                 this.columnTOTAL_AVISOS = base.Columns["TOTAL_AVISOS"];
                 this.columnTOTAL_COSTO = base.Columns["TOTAL_COSTO"];
+                this.columnd1 = base.Columns["d1"];
+                this.columnd2 = base.Columns["d2"];
+                this.columnd3 = base.Columns["d3"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1048,12 +1048,6 @@ namespace AurocoPublicidad.dataset {
                 base.Columns.Add(this.columnINVERSION_TOTAL);
                 this.columnOBSERVACIONES = new global::System.Data.DataColumn("OBSERVACIONES", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOBSERVACIONES);
-                this.columnd1 = new global::System.Data.DataColumn("d1", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnd1);
-                this.columnd2 = new global::System.Data.DataColumn("d2", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnd2);
-                this.columnd3 = new global::System.Data.DataColumn("d3", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnd3);
                 this.columnd4 = new global::System.Data.DataColumn("d4", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnd4);
                 this.columnd5 = new global::System.Data.DataColumn("d5", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1114,6 +1108,12 @@ namespace AurocoPublicidad.dataset {
                 base.Columns.Add(this.columnTOTAL_AVISOS);
                 this.columnTOTAL_COSTO = new global::System.Data.DataColumn("TOTAL_COSTO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTOTAL_COSTO);
+                this.columnd1 = new global::System.Data.DataColumn("d1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnd1);
+                this.columnd2 = new global::System.Data.DataColumn("d2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnd2);
+                this.columnd3 = new global::System.Data.DataColumn("d3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnd3);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1507,54 +1507,6 @@ namespace AurocoPublicidad.dataset {
                 }
                 set {
                     this[this.tabletblOrden.OBSERVACIONESColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public double d1 {
-                get {
-                    try {
-                        return ((double)(this[this.tabletblOrden.d1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'d1\' de la tabla \'tblOrden\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblOrden.d1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public double d2 {
-                get {
-                    try {
-                        return ((double)(this[this.tabletblOrden.d2Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'d2\' de la tabla \'tblOrden\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblOrden.d2Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string d3 {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblOrden.d3Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'d3\' de la tabla \'tblOrden\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblOrden.d3Column] = value;
                 }
             }
             
@@ -2040,6 +1992,54 @@ namespace AurocoPublicidad.dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string d1 {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblOrden.d1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'d1\' de la tabla \'tblOrden\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblOrden.d1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string d2 {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblOrden.d2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'d2\' de la tabla \'tblOrden\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblOrden.d2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string d3 {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblOrden.d3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'d3\' de la tabla \'tblOrden\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblOrden.d3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsC_ORDENNull() {
                 return this.IsNull(this.tabletblOrden.C_ORDENColumn);
             }
@@ -2228,42 +2228,6 @@ namespace AurocoPublicidad.dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetOBSERVACIONESNull() {
                 this[this.tabletblOrden.OBSERVACIONESColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isd1Null() {
-                return this.IsNull(this.tabletblOrden.d1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setd1Null() {
-                this[this.tabletblOrden.d1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isd2Null() {
-                return this.IsNull(this.tabletblOrden.d2Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setd2Null() {
-                this[this.tabletblOrden.d2Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isd3Null() {
-                return this.IsNull(this.tabletblOrden.d3Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setd3Null() {
-                this[this.tabletblOrden.d3Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2624,6 +2588,42 @@ namespace AurocoPublicidad.dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTOTAL_COSTONull() {
                 this[this.tabletblOrden.TOTAL_COSTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isd1Null() {
+                return this.IsNull(this.tabletblOrden.d1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setd1Null() {
+                this[this.tabletblOrden.d1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isd2Null() {
+                return this.IsNull(this.tabletblOrden.d2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setd2Null() {
+                this[this.tabletblOrden.d2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isd3Null() {
+                return this.IsNull(this.tabletblOrden.d3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setd3Null() {
+                this[this.tabletblOrden.d3Column] = global::System.Convert.DBNull;
             }
         }
         

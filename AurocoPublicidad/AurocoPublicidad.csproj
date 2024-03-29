@@ -248,6 +248,7 @@
     <Compile Include="models\request\Monedas.cs" />
     <Compile Include="models\request\Cliente.cs" />
     <Compile Include="models\request\Contrato.cs" />
+    <Compile Include="models\request\Ordenprint.cs" />
     <Compile Include="models\request\Orden.cs" />
     <Compile Include="models\request\OrdenesLinea.cs" />
     <Compile Include="models\request\Ordenes.cs" />
@@ -256,6 +257,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="generico\Generico.cs" />
+    <Compile Include="reportes\NcrOrdenes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NcrOrdenes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="reportes\orden.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -310,6 +317,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="reportes\NcrOrdenes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NcrOrdenes.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportes\orden.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>orden.cs</LastGenOutput>

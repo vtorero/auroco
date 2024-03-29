@@ -218,7 +218,9 @@ $app->get("/clientes_orden",function() use ($app,$db){
 $app->get("/ordenprint/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
     $data = json_decode($json, true);
-    $resultado = $db->query("SELECT ORD.ID,ORD.C_ORDEN,ORD.REVISION,ORD.NOMBRE,ORD.RUC,ORD.RAZON_SOCIAL,ORD.PRODUCTO,ORD.MOTIVO,ORD.DURACION,ORD.PROGRAMA,ORD.DIAS,ORD.PERIODO,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,ORD.OBSERVACIONES,
+
+    $db->query("SET lc_time_names = 'es_ES'");
+    $resultado = $db->query("SELECT ORD.ID,ORD.C_ORDEN,ORD.REVISION,ORD.NOMBRE,ORD.MES_VIGENCIA,ORD.INICIO_VIGENCIA,ORD.FIN_VIGENCIA,ORD.RUC,ORD.RAZON_SOCIAL,ORD.PRODUCTO,ORD.MOTIVO,ORD.DURACION,ORD.PROGRAMA,ORD.DIAS,ORD.PERIODO,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,ORD.OBSERVACIONES,
     SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
      SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
      SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
@@ -267,7 +269,9 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
 
    FROM
 (select O.C_ORDEN,CL.RUC,CL.RAZON_SOCIAL,O.C_MEDIO,M.NOMBRE,O.OBSERVACIONES,
-              month(O.INICIO_VIGENCIA)  AS  INICIO_VIGENCIA,
+               monthname(O.INICIO_VIGENCIA)  AS  MES_VIGENCIA,
+ 			O.INICIO_VIGENCIA,
+ O.FIN_VIGENCIA,
               P.ID,
               P.PROGRAMA,
               P.TEMA,
@@ -302,7 +306,9 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
                  O.C_MEDIO,
                  M.NOMBRE,
                  O.OBSERVACIONES,
-                 O.INICIO_VIGENCIA,
+              month(O.INICIO_VIGENCIA),
+ 				O.INICIO_VIGENCIA,
+                  O.FIN_VIGENCIA,
                  P.PROGRAMA,
                  P.TEMA,
                  O.REVISION,
@@ -321,10 +327,13 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
           ORD.C_MEDIO,
       ORD.NOMBRE,
       ORD.OBSERVACIONES,
-      ORD.INICIO_VIGENCIA,
+
       ORD.PROGRAMA,
       ORD.TEMA,
     ORD.PRODUCTO,
+    ORD.MES_VIGENCIA,
+    ORD.INICIO_VIGENCIA,
+    ORD.FIN_VIGENCIA,
          ORD.MOTIVO,
            ORD.REVISION,
          ORD.RATING,

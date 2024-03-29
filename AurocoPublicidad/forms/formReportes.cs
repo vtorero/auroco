@@ -27,7 +27,7 @@ namespace AurocoPublicidad.forms
 
         private async void LoadReportAsync()
         {
-            string apiUrl = "https://aprendeadistancia.online/api-auroco/ordenprint/AUROCO00106";
+            string apiUrl = "https://aprendeadistancia.online/api-auroco/ordenprint/AUROCO00107";
             var data = await GetService(apiUrl);
 
             // Asegúrate de que tu reporte y el modelo de datos (MyDataModel) coincidan
@@ -35,11 +35,11 @@ namespace AurocoPublicidad.forms
            Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
           //  reportDocument.Load("orden.rpt");
-            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\orden.rpt");
+            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
 
             // Asigna los datos al reporte
             
-            reportDocument.SetDataSource(JsonConvert.DeserializeObject<List<Orden>>(data));
+            reportDocument.SetDataSource(JsonConvert.DeserializeObject<List<Ordenprint>>(data));
          /*   reportDocument.SetParameterValue("d1","dia1");
             reportDocument.SetParameterValue("d2", "dia2");
             reportDocument.SetParameterValue("d3", "dia3");*/
