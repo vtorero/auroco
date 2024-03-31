@@ -894,7 +894,7 @@ namespace AurocoPublicidad.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form childForm = new formReportes();
+            Form childForm = new formReportes(valorIdOrden, inicioVigencia.Value.ToString());
             //childForm.MdiParent = this;
             childForm.Text = "Mantenimiento Reporte";
             childForm.Show();

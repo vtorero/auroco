@@ -2,6 +2,7 @@
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,30 +20,49 @@ namespace AurocoPublicidad.forms
 {
     public partial class formReportes : Form
     {
-        public formReportes()
+        private string numeroOrden;
+        private string fechaInicial;
+        public formReportes(string idOrden,string fechainicio)
         {
             InitializeComponent();
+            numeroOrden= idOrden;
+            fechaInicial= fechainicio;  
             LoadReportAsync();
         }
 
         private async void LoadReportAsync()
         {
-            string apiUrl = "https://aprendeadistancia.online/api-auroco/ordenprint/AUROCO00107";
+            string apiUrl = $"https://aprendeadistancia.online/api-auroco/ordenprint/{numeroOrden}";
             var data = await GetService(apiUrl);
 
             // Asegúrate de que tu reporte y el modelo de datos (MyDataModel) coincidan
             ReportDocument reportDocument = new ReportDocument();
-           Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+           //Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
           //  reportDocument.Load("orden.rpt");
             reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
 
             // Asigna los datos al reporte
+          
+            var datos = JsonConvert.DeserializeObject<List<Ordenprint>>(data);
+            reportDocument.SetDataSource(datos);
             
-            reportDocument.SetDataSource(JsonConvert.DeserializeObject<List<Ordenprint>>(data));
-         /*   reportDocument.SetParameterValue("d1","dia1");
-            reportDocument.SetParameterValue("d2", "dia2");
-            reportDocument.SetParameterValue("d3", "dia3");*/
+            var fecha = Convert.ToDateTime(fechaInicial);
+
+
+            reportDocument.SetParameterValue("d1", generico.traduceDia(fecha.DayOfWeek.ToString()));
+            reportDocument.SetParameterValue("d2",generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()));
+            reportDocument.SetParameterValue("d3", generico.traduceDia(fecha.AddDays(2).DayOfWeek.ToString()));
+            reportDocument.SetParameterValue("d4", generico.traduceDia(fecha.AddDays(3).DayOfWeek.ToString()));
+            reportDocument.SetParameterValue("d5", generico.traduceDia(fecha.AddDays(4).DayOfWeek.ToString()));
+            Console.Write(fecha.Day.ToString());
+            reportDocument.SetParameterValue("n1", fecha.Day.ToString());
+            reportDocument.SetParameterValue("n2", fecha.AddDays(1).Day.ToString());
+            reportDocument.SetParameterValue("n3", fecha.AddDays(2).Day.ToString());
+            reportDocument.SetParameterValue("n4", fecha.AddDays(3).Day.ToString());
+            reportDocument.SetParameterValue("n5", fecha.AddDays(4).Day.ToString());
+
+
             // Muestra el reporte en el CrystalReportViewer
             crystalReportViewer1.ReportSource = reportDocument;
 

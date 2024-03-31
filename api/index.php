@@ -220,7 +220,7 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
     $data = json_decode($json, true);
 
     $db->query("SET lc_time_names = 'es_ES'");
-    $resultado = $db->query("SELECT ORD.ID,ORD.C_ORDEN,ORD.REVISION,ORD.NOMBRE,ORD.MES_VIGENCIA,ORD.INICIO_VIGENCIA,ORD.FIN_VIGENCIA,ORD.RUC,ORD.RAZON_SOCIAL,ORD.PRODUCTO,ORD.MOTIVO,ORD.DURACION,ORD.PROGRAMA,ORD.DIAS,ORD.PERIODO,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,ORD.OBSERVACIONES,
+    $resultado = $db->query("SELECT ORD.ID,ORD.C_ORDEN,ORD.REVISION,ORD.NOMBRE,ORD.MES_VIGENCIA,ORD.INICIO_VIGENCIA,ORD.FIN_VIGENCIA,ORD.C_MONEDA,ORD.RUC,ORD.RAZON_SOCIAL,ORD.PRODUCTO,ORD.MOTIVO,ORD.DURACION,ORD.PROGRAMA,ORD.DIAS,ORD.PERIODO,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,ORD.OBSERVACIONES,
     SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
      SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
      SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
@@ -279,6 +279,7 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
               P.PERIODO,
               sum(l.inversion_total) COSTO,
               O.PRODUCTO,
+              O.C_MONEDA,
       O.REVISION,
               O.MOTIVO,
               l.RATING,
@@ -313,6 +314,7 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
                  P.TEMA,
                  O.REVISION,
                  O.PRODUCTO,
+                 O.C_MONEDA,
                  O.MOTIVO,
                  l.RATING,
                  l.MILES,
@@ -330,6 +332,7 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
 
       ORD.PROGRAMA,
       ORD.TEMA,
+      ORD.C_MONEDA,
     ORD.PRODUCTO,
     ORD.MES_VIGENCIA,
     ORD.INICIO_VIGENCIA,

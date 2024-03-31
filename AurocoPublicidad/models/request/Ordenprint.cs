@@ -10,6 +10,9 @@ namespace AurocoPublicidad.models.request
         public string C_ORDEN { get; set; }
         public string REVISION { get; set; }
         public string NOMBRE { get; set; }
+        public string MES_VIGENCIA { get; set; }
+        public string INICIO_VIGENCIA { get; set; }
+        public string FIN_VIGENCIA { get; set; }
 
         public string RUC { get; set; }
         public string PROGRAMA { get; set; }
@@ -63,8 +66,8 @@ namespace AurocoPublicidad.models.request
         public string d29 { get; set; }
         public string d30 { get; set; }
         public string d31 { get; set; }
-        public string TOTAL_AVISOS { get; set; }
-        public string TOTAL_COSTO { get; set; }
+        public int TOTAL_AVISOS { get; set; }
+        public float TOTAL_COSTO { get; set; }
 
       
 
