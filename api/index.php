@@ -1082,14 +1082,37 @@ catch(PDOException $e) {
 
 });
 
+$app->post("/contrato_cliente",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, TRUE);
 
 
-$app->post("/contratos_cliente",function() use ($app,$db){
+   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}'  order by C_CONTRATO ASC";
+
+
+   $resultado = $db->query($sql);
+   $contratos=array();
+   $contratos[]=["ID"=>"0","C_CONTRATO"=>"Seleccionar","C_CLIENTE"=>""];
+   while ($fila = $resultado->fetch_object()) {
+   $contratos[]=$fila;
+   }
+   if(count($contratos)>0){
+       $data = array("status"=>true,"rows"=>count($contratos),"data"=>$contratos);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contratos,TRUE);
+
+});
+
+
+$app->post("/contratos_clientes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
 
 
    $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}' AND INICIO_VIGENCIA<= CURDATE() AND FIN_VIGENCIA>=	CURDATE() order by C_CONTRATO ASC";
+
 
 
    $resultado = $db->query($sql);

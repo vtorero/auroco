@@ -495,8 +495,14 @@ namespace AurocoPublicidad.forms
         {
             comboContratos.DataSource = null;
             comboContratos.Items.Clear();
-
-            string url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
+            string url = "";
+            if (valorContrato != "") { 
+                url = "https://aprendeadistancia.online/api-auroco/contrato_cliente";
+            }
+            else
+            {
+                url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
+            }
             if (comboCliente.SelectedValue != null)
             {
                 string cod_cliente = comboCliente.SelectedValue.ToString();
@@ -510,7 +516,6 @@ namespace AurocoPublicidad.forms
                     comboContratos.DataSource = lstC;
                     comboContratos.DisplayMember = "C_CONTRATO";
                     comboContratos.ValueMember = "C_CONTRATO";
-
                     if (valorContrato != "")
                     {
                         comboContratos.SelectedValue = valorContrato;
@@ -518,6 +523,8 @@ namespace AurocoPublicidad.forms
 
 
                 }
+
+              
 
             }
 
