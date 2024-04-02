@@ -6,10 +6,8 @@ namespace AurocoPublicidad.models.request
     {
         public string ID { get; set; }
         public string C_ORDEN { get; set; }
-
-        public string REVISION { get; set; }
-
-        public string d1 { get; set; }
+        public int REVISION { get; set; }
+public string d1 { get; set; }
         public string d2 { get; set; }
         public string d3 { get; set; }
         public string d4 { get; set; }

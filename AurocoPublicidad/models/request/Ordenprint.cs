@@ -8,7 +8,7 @@ namespace AurocoPublicidad.models.request
 	
         public string ID { get; set; }
         public string C_ORDEN { get; set; }
-        public string REVISION { get; set; }
+        public int REVISION { get; set; }
         public string NOMBRE { get; set; }
         public string MES_VIGENCIA { get; set; }
         public string INICIO_VIGENCIA { get; set; }

@@ -67,6 +67,7 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
                 dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
                 dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
                 dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
 
 
@@ -97,6 +98,7 @@ namespace AurocoPublicidad.forms
                 var finicio = dgOrdenes[8, pos].Value.ToString();
                 var ffin = dgOrdenes[9, pos].Value.ToString();
                 var idContrato = dgOrdenes[10, pos].Value.ToString();
+                var revision = Convert.ToInt32(dgOrdenes[17, pos].Value);
                 var moneda = dgOrdenes[11, pos].Value.ToString();
                 var totalOrden = dgOrdenes[12, pos].Value.ToString();
 
@@ -104,7 +106,7 @@ namespace AurocoPublicidad.forms
                 var motivo = dgOrdenes[14, pos].Value.ToString();
                 var duracion = dgOrdenes[15, pos].Value.ToString();
                 var observaciones = dgOrdenes[16, pos].Value.ToString();
-                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones);
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision,idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones);
                 frmOrden.ShowDialog();
 
             }
@@ -112,7 +114,7 @@ namespace AurocoPublicidad.forms
             {
 
 
-                MessageBox.Show("Algun dato esta incompleto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Algun dato esta incompleto "+ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }

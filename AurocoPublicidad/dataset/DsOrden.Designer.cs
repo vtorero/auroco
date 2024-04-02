@@ -883,7 +883,7 @@ namespace AurocoPublicidad.dataset {
                         string C_ORDEN, 
                         string C_CONTRATO, 
                         string C_MEDIO, 
-                        string REVISION, 
+                        double REVISION, 
                         string NOMBRE, 
                         string RUC, 
                         string RAZON_SOCIAL, 
@@ -1074,7 +1074,7 @@ namespace AurocoPublicidad.dataset {
                 base.Columns.Add(this.columnC_CONTRATO);
                 this.columnC_MEDIO = new global::System.Data.DataColumn("C_MEDIO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnC_MEDIO);
-                this.columnREVISION = new global::System.Data.DataColumn("REVISION", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnREVISION = new global::System.Data.DataColumn("REVISION", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnREVISION);
                 this.columnNOMBRE = new global::System.Data.DataColumn("NOMBRE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNOMBRE);
@@ -1364,10 +1364,10 @@ namespace AurocoPublicidad.dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string REVISION {
+            public double REVISION {
                 get {
                     try {
-                        return ((string)(this[this.tabletblOrden.REVISIONColumn]));
+                        return ((double)(this[this.tabletblOrden.REVISIONColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("El valor de la columna \'REVISION\' de la tabla \'tblOrden\' es DBNull.", e);

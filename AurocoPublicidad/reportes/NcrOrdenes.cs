@@ -583,6 +583,14 @@ namespace AurocoPublicidad.reportes {
                 return this.DataDefinition.ParameterFields[61];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_revision {
+            get {
+                return this.DataDefinition.ParameterFields[62];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]

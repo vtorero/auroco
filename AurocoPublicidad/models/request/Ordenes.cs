@@ -21,6 +21,7 @@
         public string OBSERVACIONES { get; set; }
 
         public string C_CONTRATO { get; set; }
+        public string REVISION { get; set; }
 
         public string INICIO_VIGENCIA { get; set; }
 

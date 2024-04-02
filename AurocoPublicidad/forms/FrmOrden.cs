@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 
 
@@ -25,6 +26,7 @@ namespace AurocoPublicidad.forms
         private string valorIdOrden;
         private string valorCliente;
         private string valorContrato;
+        private int valorRevision;
         private string valorEjecutivo;
         private string valorInicio;
         private string valorFin;
@@ -36,12 +38,13 @@ namespace AurocoPublicidad.forms
         private string valorObservaciones;
         
         private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente,string contrato,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones)
+        public  FrmOrden(string id,string medio,string cliente,string contrato,int revision,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones)
         {
              
             InitializeComponent();
             valorIdOrden = id;
             valorRecibido = medio;
+            valorRevision = revision;
             valorCliente = cliente;
             valorContrato=contrato;
             valorEjecutivo = ejecutivo; 
@@ -64,7 +67,10 @@ namespace AurocoPublicidad.forms
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
                 chkRevisar.Visible = true;
+                numRevision.Visible = true;
+                labelRevision.Visible=true;
                 txtNumero.Text = id;
+                numRevision.Value = valorRevision;
                 pintaDias();
                 cargarLineas(id);
                
@@ -73,6 +79,8 @@ namespace AurocoPublicidad.forms
             {
                 LblNumero.Visible = false;
                 txtNumero.Visible = false;
+                numRevision.Visible = false;
+                labelRevision.Visible = false;
                 chkRevisar .Visible = false; 
                 txtNumero.Text = "";
                 DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -340,6 +348,12 @@ namespace AurocoPublicidad.forms
                     orden.orden = datos;
                     orden.C_USUARIO = Global.sessionUsuario.ToString();
 
+                    bool isChecked = chkRevisar.Checked;
+                    if (isChecked)
+                    {
+                        orden.REVISION = 1;   
+                    }
+                    
                     if (valorRecibido == "")
                     {
                         metodo = "POST";
@@ -347,7 +361,13 @@ namespace AurocoPublicidad.forms
                     else
                     {
                         metodo= "PUT";  
+
+
+
                     }
+
+
+
                     string resultado = Send<Orden>(apiUrl, orden, metodo);
 
                     JObject jObject = JObject.Parse(resultado);
@@ -501,7 +521,7 @@ namespace AurocoPublicidad.forms
             }
             else
             {
-                url = "https://aprendeadistancia.online/api-auroco/contratos_cliente";
+                url = "https://aprendeadistancia.online/api-auroco/contrato_cliente";
             }
             if (comboCliente.SelectedValue != null)
             {
