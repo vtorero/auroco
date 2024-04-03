@@ -923,7 +923,7 @@ namespace AurocoPublicidad.forms
         {
             Form childForm = new formReportes(valorIdOrden, inicioVigencia.Value.ToString());
             //childForm.MdiParent = this;
-            childForm.Text = "Mantenimiento Reporte";
+            childForm.Text = "Orden nro: "+valorIdOrden;
             childForm.Show();
 
         }

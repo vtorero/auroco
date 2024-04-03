@@ -162,7 +162,7 @@ $app->post("/login",function() use($db,$app){
 
 $app->get("/parse",function() use($db,$app){
 
-    $url = 'https://aprendeadistancia.online/api-auroco/ord_clientes.xml';
+    $url = 'https://aprendeadistancia.online/api-auroco/ord_contratos.xml';
     //$xmlc = file_get_contents($url);
     $xml = simplexml_load_file($url);
 
@@ -170,7 +170,13 @@ $app->get("/parse",function() use($db,$app){
 //ejecutivos
 //$cadena="INSERT INTO `aprendea_auroco`.`ORD_EJECUTIVOS`    (`C_EJECUTIVO`,    `DNI_EJECUTIVO`,    `NOMBRES`,    `F_CREACION`,    `USUARIO`   ) VALUES ";
 //clientes
-$cadena="INSERT INTO `aprendea_auroco`.`ORD_CLIENTES` ( `C_CLIENTE`, `RAZON_SOCIAL`, `CONTACTO`, `RPT_LEGAL`, `RPT_DNI`, `RPT_DIRECCION`, `RUC`, `DIRECCION`, `TELEFONO`, `F_CREACION`, `USUARIO`) VALUES ";
+//$cadena="INSERT INTO `aprendea_auroco`.`ORD_CLIENTES` ( `C_CLIENTE`, `RAZON_SOCIAL`, `CONTACTO`, `RPT_LEGAL`, `RPT_DNI`, `RPT_DIRECCION`, `RUC`, `DIRECCION`, `TELEFONO`, `F_CREACION`, `USUARIO`) VALUES ";
+//medios
+//$cadena="INSERT INTO `aprendea_auroco`.`ORD_MEDIOS` (`ID`, `C_MEDIO`, `TIPO`, `NOMBRE`,`DESCRIPCION`,`F_CREACION`,`C_USUARIO_CREACION`) VALUES";
+//programas
+//$cadena="INSERT INTO `aprendea_auroco`.`ORD_PROGRAMAS_AUT` (`ID`, `PROGRAMA`, `REGION`,`CANAL`,`GENERO`,`TEMA`,`PERIODO`,`DIAS`,`RATING`,`MILES`,`COSTO`,`F_CREACION`,`C_USUARIO`) VALUES";
+//contratos
+$cadena="INSERT INTO `aprendea_auroco`.`ORD_CONTRATOS` (`C_CONTRATO`,`C_CLIENTE`,`INICIO_VIGENCIA`,`FIN_VIGENCIA`,`NRO_FISICO`,`C_MONEDA`,`INVERSION`,`INVER_IGV`,`MONTO_ORDENAR`,`MONTO_ORD_IGV`,`TIPO_CAMBIO`,`TASA_IGV`,`OBSERVACIONES`,`C_USUARIO`,`F_CREACION`) VALUES";
 
 
     foreach ($xml->ROW as $dato) {
@@ -180,7 +186,15 @@ $cadena="INSERT INTO `aprendea_auroco`.`ORD_CLIENTES` ( `C_CLIENTE`, `RAZON_SOCI
 
         //$dire = iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $dato->DIRECCION);
         //clientes
-        $cadena.="('{$dato->C_CLIENTE }','{$dato->RAZON_SOCIAL }','{$dato->CONTACTO}','{$dato->RPT_LEGAL}','{$dato->RPT_DNI}','{$dato->RPT_DIRECCION}','{$dato->RUC}','{$dato->DIRECCION}','{$dato->TELEFONO}','{$dato->F_CREACION }','{$dato->USUARIO }') , ";
+      //  $cadena.="('{$dato->C_CLIENTE }','{$dato->RAZON_SOCIAL }','{$dato->CONTACTO}','{$dato->RPT_LEGAL}','{$dato->RPT_DNI}','{$dato->RPT_DIRECCION}','{$dato->RUC}','{$dato->DIRECCION}','{$dato->TELEFONO}','{$dato->F_CREACION }','{$dato->USUARIO }') , ";
+//medios
+//$cadena.="('{$dato->C_MEDIO }','{$dato->TIPO }','{$dato->NOMBRE}','{$dato->DESCRIPCION}','{$dato->F_CREACION}','{$dato->C_USUARIO_CREACION}'),";
+//programas
+//$cadena.="('{$dato->ID_PROGRAMA }','{$dato->PROGRAMA }','{$dato->REGION }','{$dato->CANAL}','{$dato->GENERO}','{$dato->TEMA}','{$dato->PERIODO}','{$dato->DIAS}','{$dato->RATING}','{$dato->MILES}','{$dato->COSTO}','{$dato->F_CREACION}','{$dato->C_USUARIO}') ,";
+
+$cadena.="('{$dato->C_CONTRATO }','{$dato->C_CLIENTE }','{$dato->INICIO_VIGENCIA }','{$dato->FIN_VIGENCIA}','{$dato->NRO_FISICO}','{$dato->C_MONEDA}',{$dato->INVERSION},{$dato->INVER_IGV},{$dato->MONTO_ORDENAR},{$dato->MONTO_OR_IGV},{$dato->TIPO_CAMBIO},{$dato->TASA_IGV},'{$dato->OBSERVACIONES}','{$dato->C_USUARIO}','{$dato->F_CREACION}'),";
+
+
 
     }
 
