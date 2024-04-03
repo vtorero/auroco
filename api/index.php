@@ -160,6 +160,38 @@ $app->post("/login",function() use($db,$app){
    echo  json_encode($data);
 });
 
+$app->get("/parse",function() use($db,$app){
+
+    $url = 'https://aprendeadistancia.online/api-auroco/ord_clientes.xml';
+    //$xmlc = file_get_contents($url);
+    $xml = simplexml_load_file($url);
+
+
+//ejecutivos
+//$cadena="INSERT INTO `aprendea_auroco`.`ORD_EJECUTIVOS`    (`C_EJECUTIVO`,    `DNI_EJECUTIVO`,    `NOMBRES`,    `F_CREACION`,    `USUARIO`   ) VALUES ";
+//clientes
+$cadena="INSERT INTO `aprendea_auroco`.`ORD_CLIENTES` ( `C_CLIENTE`, `RAZON_SOCIAL`, `CONTACTO`, `RPT_LEGAL`, `RPT_DNI`, `RPT_DIRECCION`, `RUC`, `DIRECCION`, `TELEFONO`, `F_CREACION`, `USUARIO`) VALUES ";
+
+
+    foreach ($xml->ROW as $dato) {
+
+        //ejecutivos
+        //$cadena.=" ('{$ejecutivo->C_EJECUTIVO}','{$ejecutivo->DNI_EJECUTIVO}','{$ejecutivo->NOMBRES}','{$ejecutivo->F_CREACION}','{$ejecutivo->USUARIO}') , ";
+
+        //$dire = iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $dato->DIRECCION);
+        //clientes
+        $cadena.="('{$dato->C_CLIENTE }','{$dato->RAZON_SOCIAL }','{$dato->CONTACTO}','{$dato->RPT_LEGAL}','{$dato->RPT_DNI}','{$dato->RPT_DIRECCION}','{$dato->RUC}','{$dato->DIRECCION}','{$dato->TELEFONO}','{$dato->F_CREACION }','{$dato->USUARIO }') , ";
+
+    }
+
+echo $cadena;
+
+/*    foreach ($xml  as $tag) {
+        print_r($tag);
+    }*/
+});
+
+
 $app->post("/contrato",function() use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
