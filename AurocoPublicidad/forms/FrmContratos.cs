@@ -268,27 +268,24 @@ namespace AurocoPublicidad.forms
             string resultado = Send<Contrato>(url, contrato, "POST");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
 
-            DgContratos.Columns[0].HeaderText = "Código";
-            DgContratos.Columns[1].HeaderText = "Contrato";
-            /*DgContratos.Columns[2].HeaderText = "Cliente";
-            DgContratos.Columns[3].HeaderText = "Razon Social";
-            DgContratos.Columns[4].HeaderText = "Inicio vigencia";
-            DgContratos.Columns[5].HeaderText = "Fin vigencia";
-            DgContratos.Columns[6].HeaderText = "Saldo";
-            DgContratos.Columns[7].HeaderText = "Nro Fisico";
-            DgContratos.Columns[8].HeaderText = "Moneda";
-            DgContratos.Columns[9].HeaderText = "Monto a pagar";
-            DgContratos.Columns[10].HeaderText = "Monto a Ordenar";
-            DgContratos.Columns[11].HeaderText = "Tipo de cambio";
-            DgContratos.Columns[12].HeaderText = "Observaciones";
-            DgContratos.Columns[13].HeaderText = "Usuario";
-            DgContratos.Columns[14].HeaderText = "F. Creación";
-            */
+    
             foreach (Contrato ord in lst)
             {
                 int rowIndex = DgContratos.Rows.Add();
                 DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
                 DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
+                DgContratos.Rows[rowIndex].Cells["cliente"].Value = ord.C_CLIENTE;
+                DgContratos.Rows[rowIndex].Cells["razon_social"].Value = ord.RAZON_SOCIAL;
+                DgContratos.Rows[rowIndex].Cells["inicioVigencia"].Value = ord.INICIO_VIGENCIA;
+                DgContratos.Rows[rowIndex].Cells["finVigencia"].Value = ord.FIN_VIGENCIA;
+                DgContratos.Rows[rowIndex].Cells["saldo"].Value = ord.SALDO;
+                DgContratos.Rows[rowIndex].Cells["nrofisico"].Value = ord.NRO_FISICO;
+                DgContratos.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
+                DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
+                DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
+                DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
 
             }
 
