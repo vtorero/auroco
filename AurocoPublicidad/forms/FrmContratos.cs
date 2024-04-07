@@ -29,22 +29,43 @@ namespace AurocoPublicidad.forms
             string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
             
-            DgContratos.DataSource = lst;
+         /*   DgContratos.DataSource = lst;
             DgContratos.Columns[0].HeaderText = "Código";
             DgContratos.Columns[1].HeaderText = "Contrato";
             DgContratos.Columns[2].HeaderText = "Cliente";
             DgContratos.Columns[3].HeaderText = "Razon Social";
-           DgContratos.Columns[4].HeaderText = "Inicio vigencia";
+            DgContratos.Columns[4].HeaderText = "Inicio vigencia";
             DgContratos.Columns[5].HeaderText = "Fin vigencia";
             DgContratos.Columns[6].HeaderText = "Saldo";
             DgContratos.Columns[7].HeaderText = "Nro Fisico";
             DgContratos.Columns[8].HeaderText = "Moneda";
             DgContratos.Columns[9].HeaderText = "Monto a pagar";
-            DgContratos.Columns[10].HeaderText = "Monto a Ordenar";
-            DgContratos.Columns[11].HeaderText = "Tipo de cambio";
-            DgContratos.Columns[12].HeaderText = "Observaciones";
-            DgContratos.Columns[13].HeaderText = "Usuario";
-            DgContratos.Columns[14].HeaderText = "F. Creación";
+            DgContratos.Columns[10].HeaderText = "Tipo de cambio";
+            DgContratos.Columns[11].HeaderText = "Observaciones";
+            DgContratos.Columns[12].HeaderText = "Usuario";
+            DgContratos.Columns[13].HeaderText = "F. Creación";
+           */ 
+            foreach (Contrato ord in lst)
+            {
+                int rowIndex = DgContratos.Rows.Add();
+                DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
+                DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
+                DgContratos.Rows[rowIndex].Cells["cliente"].Value = ord.C_CLIENTE;
+                DgContratos.Rows[rowIndex].Cells["razon_social"].Value = ord.RAZON_SOCIAL;
+                DgContratos.Rows[rowIndex].Cells["inicioVigencia"].Value = ord.INICIO_VIGENCIA;
+                DgContratos.Rows[rowIndex].Cells["finVigencia"].Value = ord.FIN_VIGENCIA;
+                DgContratos.Rows[rowIndex].Cells["saldo"].Value = ord.SALDO;
+                DgContratos.Rows[rowIndex].Cells["nrofisico"].Value = ord.NRO_FISICO;
+                DgContratos.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
+                DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
+                DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
+                DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
+
+
+            }
+
 
 
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
@@ -228,13 +249,162 @@ namespace AurocoPublicidad.forms
            
             dataFechaInicio.Value= Convert.ToDateTime(DgContratos[4, pos].Value);
             dataFechaFin.Value = Convert.ToDateTime(DgContratos[5, pos].Value);
-            txtTipoCambio.Text = Convert.ToString(DgContratos[11, pos].Value);
-            txtObservaciones.Text=Convert.ToString(DgContratos[12, pos].Value);
+            txtTipoCambio.Text = Convert.ToString(DgContratos[8, pos].Value);
+            txtObservaciones.Text=Convert.ToString(DgContratos[11, pos].Value);
             
         }
 
         private void txtMonto_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DgContratos.Rows.Clear();   
+            string url = "https://aprendeadistancia.online/api-auroco/buscacontratos";
+            Contrato contrato = new Contrato();
+            contrato.RAZON_SOCIAL = textoRazon.Text;
+            string resultado = Send<Contrato>(url, contrato, "POST");
+            List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
+
+            DgContratos.Columns[0].HeaderText = "Código";
+            DgContratos.Columns[1].HeaderText = "Contrato";
+            /*DgContratos.Columns[2].HeaderText = "Cliente";
+            DgContratos.Columns[3].HeaderText = "Razon Social";
+            DgContratos.Columns[4].HeaderText = "Inicio vigencia";
+            DgContratos.Columns[5].HeaderText = "Fin vigencia";
+            DgContratos.Columns[6].HeaderText = "Saldo";
+            DgContratos.Columns[7].HeaderText = "Nro Fisico";
+            DgContratos.Columns[8].HeaderText = "Moneda";
+            DgContratos.Columns[9].HeaderText = "Monto a pagar";
+            DgContratos.Columns[10].HeaderText = "Monto a Ordenar";
+            DgContratos.Columns[11].HeaderText = "Tipo de cambio";
+            DgContratos.Columns[12].HeaderText = "Observaciones";
+            DgContratos.Columns[13].HeaderText = "Usuario";
+            DgContratos.Columns[14].HeaderText = "F. Creación";
+            */
+            foreach (Contrato ord in lst)
+            {
+                int rowIndex = DgContratos.Rows.Add();
+                DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
+                DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
+
+            }
+
+            }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgContratos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == DgContratos.Columns["monto"].Index && e.Value != null)
+            {
+
+
+                if (decimal.TryParse(e.Value.ToString(), out decimal valor))
+                {
+
+                    string monedaFormateada = "";
+                    string simboloMoneda = "";
+
+
+                    {
+
+                        switch ((string)this.DgContratos.Rows[e.RowIndex].Cells["moneda"].Value)
+                        {
+
+                            case "Soles":
+
+                                simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+
+                                break;
+
+
+                            case "Dolares":
+                                simboloMoneda = "$"; // Símbolo del dólar estadounidense
+
+                                break;
+
+                        }
+
+
+
+                        // Aplicar formato de moneda según la moneda deseada
+
+
+                        // Seleccionar el símbolo de la moneda según el caso (dólares o soles)
+
+
+
+
+
+
+                        // Aplicar formato de moneda con el símbolo seleccionado
+                        monedaFormateada = string.Format("{0}{1:N2}", simboloMoneda, valor); // "N2" indica dos dígitos decimales
+
+                        e.Value = monedaFormateada;
+                        e.FormattingApplied = true; // Indicar que se ha aplicado el formato
+
+                    }
+                }
+            }
+
+
+            if (e.ColumnIndex == DgContratos.Columns["saldo"].Index && e.Value != null)
+            {
+
+
+                if (decimal.TryParse(e.Value.ToString(), out decimal valor))
+                {
+
+                    string monedaFormateada = "";
+                    string simboloMoneda = "";
+
+
+                    {
+
+                        switch ((string)this.DgContratos.Rows[e.RowIndex].Cells["moneda"].Value)
+                        {
+
+                            case "Soles":
+
+                                simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+
+                                break;
+
+
+                            case "Dolares":
+                                simboloMoneda = "$"; // Símbolo del dólar estadounidense
+
+                                break;
+
+                        }
+
+
+
+                        // Aplicar formato de moneda según la moneda deseada
+
+
+                        // Seleccionar el símbolo de la moneda según el caso (dólares o soles)
+
+
+
+
+
+
+                        // Aplicar formato de moneda con el símbolo seleccionado
+                        monedaFormateada = string.Format("{0}{1:N2}", simboloMoneda, valor); // "N2" indica dos dígitos decimales
+
+                        e.Value = monedaFormateada;
+                        e.FormattingApplied = true; // Indicar que se ha aplicado el formato
+
+                    }
+                }
+            }
 
         }
     }

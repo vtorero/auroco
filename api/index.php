@@ -34,7 +34,27 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by C_CONTRATO DESC");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by INICIO_VIGENCIA DESC limit 50");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contrato[]=$fila;
+   }
+   if(count($contrato)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contrato);
+
+});
+
+$app->post("/buscacontratos",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE
+   AND RAZON_SOCIAL LIKE '%{$data->RAZON_SOCIAL}%'
+   order by INICIO_VIGENCIA DESC");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;

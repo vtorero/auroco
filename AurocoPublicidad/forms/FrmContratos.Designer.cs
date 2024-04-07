@@ -52,11 +52,33 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.textoRazon = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.DgContratos = new System.Windows.Forms.DataGridView();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inicioVigencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finVigencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nrofisico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipocambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgContratos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +109,7 @@
             this.groupBox1.Size = new System.Drawing.Size(879, 276);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtSaldo
             // 
@@ -277,6 +300,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Controls.Add(this.DgContratos);
             this.groupBox3.Location = new System.Drawing.Point(12, 294);
             this.groupBox3.Name = "groupBox3";
@@ -284,20 +308,188 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.dateTimePicker1);
+            this.groupBox4.Controls.Add(this.dateTimePicker2);
+            this.groupBox4.Controls.Add(this.textoRazon);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Location = new System.Drawing.Point(34, 19);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(823, 59);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Busqueda Avanzada";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(370, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(40, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Fecha:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(732, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(559, 23);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
+            this.dateTimePicker1.TabIndex = 10;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(425, 23);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(127, 20);
+            this.dateTimePicker2.TabIndex = 9;
+            // 
+            // textoRazon
+            // 
+            this.textoRazon.Location = new System.Drawing.Point(85, 23);
+            this.textoRazon.Name = "textoRazon";
+            this.textoRazon.Size = new System.Drawing.Size(268, 20);
+            this.textoRazon.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Razón Social:";
+            // 
             // DgContratos
             // 
             this.DgContratos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgContratos.Location = new System.Drawing.Point(12, 19);
+            this.DgContratos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigo,
+            this.contrato,
+            this.cliente,
+            this.razon_social,
+            this.inicioVigencia,
+            this.finVigencia,
+            this.saldo,
+            this.nrofisico,
+            this.moneda,
+            this.monto,
+            this.tipocambio,
+            this.observaciones,
+            this.usuario,
+            this.fecha});
+            this.DgContratos.Location = new System.Drawing.Point(34, 84);
             this.DgContratos.Name = "DgContratos";
             this.DgContratos.ReadOnly = true;
-            this.DgContratos.Size = new System.Drawing.Size(845, 220);
+            this.DgContratos.Size = new System.Drawing.Size(845, 153);
             this.DgContratos.TabIndex = 0;
+            this.DgContratos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgContratos_CellFormatting);
             this.DgContratos.DoubleClick += new System.EventHandler(this.DgContratos_DoubleClick);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "ID";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            this.codigo.Visible = false;
+            // 
+            // contrato
+            // 
+            this.contrato.HeaderText = "Contrato";
+            this.contrato.Name = "contrato";
+            this.contrato.ReadOnly = true;
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
+            this.cliente.Visible = false;
+            // 
+            // razon_social
+            // 
+            this.razon_social.HeaderText = "Razón Social";
+            this.razon_social.Name = "razon_social";
+            this.razon_social.ReadOnly = true;
+            // 
+            // inicioVigencia
+            // 
+            this.inicioVigencia.HeaderText = "Inicio";
+            this.inicioVigencia.Name = "inicioVigencia";
+            this.inicioVigencia.ReadOnly = true;
+            // 
+            // finVigencia
+            // 
+            this.finVigencia.HeaderText = "Fin";
+            this.finVigencia.Name = "finVigencia";
+            this.finVigencia.ReadOnly = true;
+            // 
+            // saldo
+            // 
+            this.saldo.HeaderText = "Saldo";
+            this.saldo.Name = "saldo";
+            this.saldo.ReadOnly = true;
+            // 
+            // nrofisico
+            // 
+            this.nrofisico.HeaderText = "Nro Físico";
+            this.nrofisico.Name = "nrofisico";
+            this.nrofisico.ReadOnly = true;
+            // 
+            // moneda
+            // 
+            this.moneda.HeaderText = "Moneda";
+            this.moneda.Name = "moneda";
+            this.moneda.ReadOnly = true;
+            // 
+            // monto
+            // 
+            this.monto.HeaderText = "Monto";
+            this.monto.Name = "monto";
+            this.monto.ReadOnly = true;
+            // 
+            // tipocambio
+            // 
+            this.tipocambio.HeaderText = "Tipo de Cambio";
+            this.tipocambio.Name = "tipocambio";
+            this.tipocambio.ReadOnly = true;
+            // 
+            // observaciones
+            // 
+            this.observaciones.HeaderText = "Observaciones";
+            this.observaciones.Name = "observaciones";
+            this.observaciones.ReadOnly = true;
+            // 
+            // usuario
+            // 
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Creación";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
             // 
             // FrmContratos
             // 
@@ -315,6 +507,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgContratos)).EndInit();
             this.ResumeLayout(false);
 
@@ -347,5 +541,26 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtSaldo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox textoRazon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contrato;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn razon_social;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inicioVigencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finVigencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn saldo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nrofisico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn moneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipocambio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn observaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
     }
 }
