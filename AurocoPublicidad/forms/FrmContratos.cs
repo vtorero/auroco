@@ -26,47 +26,7 @@ namespace AurocoPublicidad.forms
 
         private async void FrmContratos_Load(object sender, EventArgs e)
         {
-            string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
-            List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
-            
-         /*   DgContratos.DataSource = lst;
-            DgContratos.Columns[0].HeaderText = "Código";
-            DgContratos.Columns[1].HeaderText = "Contrato";
-            DgContratos.Columns[2].HeaderText = "Cliente";
-            DgContratos.Columns[3].HeaderText = "Razon Social";
-            DgContratos.Columns[4].HeaderText = "Inicio vigencia";
-            DgContratos.Columns[5].HeaderText = "Fin vigencia";
-            DgContratos.Columns[6].HeaderText = "Saldo";
-            DgContratos.Columns[7].HeaderText = "Nro Fisico";
-            DgContratos.Columns[8].HeaderText = "Moneda";
-            DgContratos.Columns[9].HeaderText = "Monto a pagar";
-            DgContratos.Columns[10].HeaderText = "Tipo de cambio";
-            DgContratos.Columns[11].HeaderText = "Observaciones";
-            DgContratos.Columns[12].HeaderText = "Usuario";
-            DgContratos.Columns[13].HeaderText = "F. Creación";
-           */ 
-            foreach (Contrato ord in lst)
-            {
-                int rowIndex = DgContratos.Rows.Add();
-                DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
-                DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
-                DgContratos.Rows[rowIndex].Cells["cliente"].Value = ord.C_CLIENTE;
-                DgContratos.Rows[rowIndex].Cells["razon_social"].Value = ord.RAZON_SOCIAL;
-                DgContratos.Rows[rowIndex].Cells["inicioVigencia"].Value = ord.INICIO_VIGENCIA;
-                DgContratos.Rows[rowIndex].Cells["finVigencia"].Value = ord.FIN_VIGENCIA;
-                DgContratos.Rows[rowIndex].Cells["saldo"].Value = ord.SALDO;
-                DgContratos.Rows[rowIndex].Cells["nrofisico"].Value = ord.NRO_FISICO;
-                DgContratos.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
-                DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
-                DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
-                DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
-                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
-                DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
-
-
-            }
-
-
+            cargarContratos();
 
             string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
@@ -87,11 +47,54 @@ namespace AurocoPublicidad.forms
         }
 
 
+        private async void cargarContratos()
+        {
+            string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
+            List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
 
+            /*   DgContratos.DataSource = lst;
+               DgContratos.Columns[0].HeaderText = "Código";
+               DgContratos.Columns[1].HeaderText = "Contrato";
+               DgContratos.Columns[2].HeaderText = "Cliente";
+               DgContratos.Columns[3].HeaderText = "Razon Social";
+               DgContratos.Columns[4].HeaderText = "Inicio vigencia";
+               DgContratos.Columns[5].HeaderText = "Fin vigencia";
+               DgContratos.Columns[6].HeaderText = "Saldo";
+               DgContratos.Columns[7].HeaderText = "Nro Fisico";
+               DgContratos.Columns[8].HeaderText = "Moneda";
+               DgContratos.Columns[9].HeaderText = "Monto a pagar";
+               DgContratos.Columns[10].HeaderText = "Tipo de cambio";
+               DgContratos.Columns[11].HeaderText = "Observaciones";
+               DgContratos.Columns[12].HeaderText = "Usuario";
+               DgContratos.Columns[13].HeaderText = "F. Creación";
+              */
 
+            DgContratos.Rows.Clear();   
 
+            foreach (Contrato ord in lst)
+            {
+                int rowIndex = DgContratos.Rows.Add();
+                DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
+                DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
+                DgContratos.Rows[rowIndex].Cells["cliente"].Value = ord.C_CLIENTE;
+                DgContratos.Rows[rowIndex].Cells["razon_social"].Value = ord.RAZON_SOCIAL;
+                DgContratos.Rows[rowIndex].Cells["inicioVigencia"].Value = ord.INICIO_VIGENCIA;
+                DgContratos.Rows[rowIndex].Cells["finVigencia"].Value = ord.FIN_VIGENCIA;
+                DgContratos.Rows[rowIndex].Cells["saldo"].Value = ord.SALDO;
+                DgContratos.Rows[rowIndex].Cells["nrofisico"].Value = ord.NRO_FISICO;
+                DgContratos.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
+                DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
+                DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
+                DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
+                DgContratos.Rows[rowIndex].Cells["tcambio"].Value = ord.TIPO_CAMBIO;
 
-        private async Task<string> GetService(string cadena)
+            }
+
+        }
+
+            private async Task<string> GetService(string cadena)
         {
             WebRequest oRequest = WebRequest.Create(cadena);
             WebResponse oResponse = await oRequest.GetResponseAsync();
@@ -127,7 +130,18 @@ namespace AurocoPublicidad.forms
                 contratoR.FIN_VIGENCIA = this.dataFechaFin.Value.ToString("yyyy-MM-dd");
                 contratoR.C_MONEDA = comboMoneda.Text;
                 contratoR.TIPO_CAMBIO = Convert.ToDecimal(txtTipoCambio.Text);
-                contratoR.INVERSION= Convert.ToDecimal(txtMonto.Text);
+                string inver = "";
+                if (comboMoneda.Text == "Soles")
+                {
+                    inver = txtMonto.Text.Substring(2, 5);
+                }
+                else
+                {
+                    inver = txtMonto.Text.Substring(1, 5);
+                }
+                
+                
+                contratoR.INVERSION= Convert.ToDecimal(inver);
                 contratoR.OBSERVACIONES = txtObservaciones.Text;
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
                       
@@ -158,10 +172,7 @@ namespace AurocoPublicidad.forms
 
 
 
-
-                    string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
-                List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
-                DgContratos.DataSource = lst;
+                    cargarContratos();
 
 
             }
@@ -233,7 +244,7 @@ namespace AurocoPublicidad.forms
             string simboloMoneda = "";
             if (Convert.ToString(DgContratos[8, pos].Value) == "Soles")
             {
-                simboloMoneda = "S/.";
+                simboloMoneda = "S/";
             }
             else
             {
@@ -249,7 +260,7 @@ namespace AurocoPublicidad.forms
            
             dataFechaInicio.Value= Convert.ToDateTime(DgContratos[4, pos].Value);
             dataFechaFin.Value = Convert.ToDateTime(DgContratos[5, pos].Value);
-            txtTipoCambio.Text = Convert.ToString(DgContratos[8, pos].Value);
+            txtTipoCambio.Text = Convert.ToString(DgContratos[10, pos].Value);
             txtObservaciones.Text=Convert.ToString(DgContratos[11, pos].Value);
             
         }
@@ -369,7 +380,7 @@ namespace AurocoPublicidad.forms
 
                             case "Soles":
 
-                                simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+                                simboloMoneda = "S/"; // Símbolo del Nuevo Sol peruano
 
                                 break;
 

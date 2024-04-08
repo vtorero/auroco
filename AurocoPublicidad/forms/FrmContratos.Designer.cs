@@ -75,6 +75,7 @@
             this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tcambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -391,7 +392,8 @@
             this.tipocambio,
             this.observaciones,
             this.usuario,
-            this.fecha});
+            this.fecha,
+            this.tcambio});
             this.DgContratos.Location = new System.Drawing.Point(34, 84);
             this.DgContratos.Name = "DgContratos";
             this.DgContratos.ReadOnly = true;
@@ -491,6 +493,13 @@
             this.fecha.Name = "fecha";
             this.fecha.ReadOnly = true;
             // 
+            // tcambio
+            // 
+            this.tcambio.HeaderText = "tcambio";
+            this.tcambio.Name = "tcambio";
+            this.tcambio.ReadOnly = true;
+            this.tcambio.Visible = false;
+            // 
             // FrmContratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,5 +571,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn observaciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tcambio;
     }
 }
