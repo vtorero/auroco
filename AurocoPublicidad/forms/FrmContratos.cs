@@ -130,18 +130,7 @@ namespace AurocoPublicidad.forms
                 contratoR.FIN_VIGENCIA = this.dataFechaFin.Value.ToString("yyyy-MM-dd");
                 contratoR.C_MONEDA = comboMoneda.Text;
                 contratoR.TIPO_CAMBIO = Convert.ToDecimal(txtTipoCambio.Text);
-                string inver = "";
-                if (comboMoneda.Text == "Soles")
-                {
-                    inver = txtMonto.Text.Substring(2, 5);
-                }
-                else
-                {
-                    inver = txtMonto.Text.Substring(1, 5);
-                }
-                
-                
-                contratoR.INVERSION= Convert.ToDecimal(inver);
+                contratoR.INVERSION = Convert.ToDecimal(txtMonto.Text);
                 contratoR.OBSERVACIONES = txtObservaciones.Text;
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
                       
@@ -162,7 +151,7 @@ namespace AurocoPublicidad.forms
                     txtCodigo.Text = "";
                     txtTipoCambio.Text = "";
                     txtMonto.Text = "";
-                
+                    txtSaldo.Text = "";
                     txtObservaciones.Text = "";
                     txtNroFisico.Text = ""; 
                     btnGuardar.Text = "Guardar";
@@ -252,7 +241,9 @@ namespace AurocoPublicidad.forms
             }
 
             txtSaldo.Text = string.Format("{0}{1:N2}", simboloMoneda, Convert.ToString(DgContratos[6, pos].Value));
-            txtMonto.Text = string.Format("{0}{1:N2}", simboloMoneda, Convert.ToString(DgContratos[9, pos].Value)); 
+            //txtMonto.Text = string.Format("{0}{1:N2}", simboloMoneda, Convert.ToString(DgContratos[9, pos].Value)); 
+            txtMonto.Text = Convert.ToString(DgContratos[9, pos].Value);
+
 
             txtNroFisico.Text= Convert.ToString(DgContratos[7, pos].Value);
             comboMoneda.SelectedValue = Convert.ToString(DgContratos[8, pos].Value);
@@ -267,6 +258,7 @@ namespace AurocoPublicidad.forms
 
         private void txtMonto_TextChanged(object sender, EventArgs e)
         {
+
 
         }
 
@@ -415,6 +407,8 @@ namespace AurocoPublicidad.forms
             }
 
         }
+
+ 
     }
 
 

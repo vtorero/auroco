@@ -54,13 +54,11 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.textoRazon = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.DgContratos = new System.Windows.Forms.DataGridView();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +74,8 @@
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -219,7 +219,6 @@
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(100, 20);
             this.txtMonto.TabIndex = 14;
-            this.txtMonto.TextChanged += new System.EventHandler(this.txtMonto_TextChanged);
             // 
             // label6
             // 
@@ -311,6 +310,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.dateTimePicker1);
@@ -332,16 +332,6 @@
             this.label10.Size = new System.Drawing.Size(40, 13);
             this.label10.TabIndex = 12;
             this.label10.Text = "Fecha:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(732, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // dateTimePicker1
             // 
@@ -401,11 +391,6 @@
             this.DgContratos.TabIndex = 0;
             this.DgContratos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgContratos_CellFormatting);
             this.DgContratos.DoubleClick += new System.EventHandler(this.DgContratos_DoubleClick);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             // 
             // codigo
             // 
@@ -499,6 +484,25 @@
             this.tcambio.Name = "tcambio";
             this.tcambio.ReadOnly = true;
             this.tcambio.Visible = false;
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.Location = new System.Drawing.Point(730, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(63, 26);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FrmContratos
             // 

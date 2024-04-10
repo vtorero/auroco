@@ -82,7 +82,6 @@ namespace AurocoPublicidad.forms
             reportDocument.SetParameterValue("d29", generico.traduceDia(fecha.AddDays(28).DayOfWeek.ToString()));
             reportDocument.SetParameterValue("d30", generico.traduceDia(fecha.AddDays(29).DayOfWeek.ToString()));
             reportDocument.SetParameterValue("d31", generico.traduceDia(fecha.AddDays(30).DayOfWeek.ToString()));
-            Console.Write(fecha.Day.ToString());
             reportDocument.SetParameterValue("n1", fecha.Day.ToString());
             reportDocument.SetParameterValue("n2", fecha.AddDays(1).Day.ToString());
             reportDocument.SetParameterValue("n3", fecha.AddDays(2).Day.ToString());

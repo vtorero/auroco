@@ -363,7 +363,7 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
           CL.C_CLIENTE = CO.C_CLIENTE
           and O.C_MEDIO=M.C_MEDIO
           AND O.C_ORDEN = l.C_ORDEN
-         AND l.PROGRAMA = P.ID
+         AND l.idPrograma = P.ID
           AND O.C_CONTRATO=CO.C_CONTRATO AND l.C_ORDEN='{$id}'
           group by O.C_ORDEN,
            P.ID,
@@ -476,7 +476,7 @@ $app->get("/orden/:id",function($id) use ($app,$db){
               CL.C_CLIENTE = CO.C_CLIENTE
               and O.C_MEDIO=M.C_MEDIO
               AND O.C_ORDEN = l.C_ORDEN
-             AND l.PROGRAMA = P.ID
+             AND l.idPrograma = P.ID
               AND O.C_CONTRATO=CO.C_CONTRATO AND l.C_ORDEN='{$id}'
               group by O.C_ORDEN,
                P.ID,
@@ -531,7 +531,7 @@ $app->get("/ordenes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,O.REVISION,O.ACTIVA,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA,O.C_MONEDA ,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,(SELECT SUM(INVERSION_TOTAL) FROM ORDEN_LINEAS WHERE C_ORDEN=O.C_ORDEN) TOTAL FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO  ORDER  by O.ID DESC");
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,O.REVISION,O.ACTIVA,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA,O.C_MONEDA ,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO  ORDER  by O.ID DESC limit 50");
    $ordenes=array();
 
    while ($fila = $resultado->fetch_object()) {
