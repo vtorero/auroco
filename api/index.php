@@ -531,7 +531,7 @@ $app->get("/ordenes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,O.REVISION,O.ACTIVA,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA,O.C_MONEDA ,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO  ORDER  by O.ID DESC limit 50");
+   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,O.REVISION,O.ACTIVA,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,FIN_VIGENCIA,O.C_MONEDA ,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,O.INVERSION AS TOTAL FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO  ORDER  by O.ID DESC limit 50");
    $ordenes=array();
 
    while ($fila = $resultado->fetch_object()) {
@@ -872,7 +872,9 @@ $app->post("/orden",function() use ($app,$db){
 
 try{
 //'
-    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}',{$data->INVERSION},'{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+
+
     $stmt = mysqli_prepare($db,$sql);
    mysqli_stmt_execute($stmt);
    /* cerrar la sentencia */

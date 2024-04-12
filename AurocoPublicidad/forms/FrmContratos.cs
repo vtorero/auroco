@@ -28,14 +28,14 @@ namespace AurocoPublicidad.forms
         {
             cargarContratos();
 
-            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes");
+            string clientes = await GetService(Global.servicio+"/api-auroco/clientes");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
 
 
-            string monedas = await GetService("https://aprendeadistancia.online/api-auroco/monedas");
+            string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
             List<models.request.Monedas> lstM = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
             comboMoneda.DataSource = lstM;
             comboMoneda.DisplayMember = "NOMBRE";
@@ -49,7 +49,7 @@ namespace AurocoPublicidad.forms
 
         private async void cargarContratos()
         {
-            string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/contratos");
+            string respuesta = await GetService(Global.servicio + "/api-auroco/contratos");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
 
             /*   DgContratos.DataSource = lst;
@@ -121,7 +121,7 @@ namespace AurocoPublicidad.forms
                             )
             {
 
-                string url = "https://aprendeadistancia.online/api-auroco/contrato";
+                string url = Global.servicio + "/api-auroco/contrato";
                 Contrato contratoR = new Contrato();
                 contratoR.ID= txtCodigo.Text;
                 contratoR.NRO_FISICO = txtNroFisico.Text;
@@ -265,7 +265,7 @@ namespace AurocoPublicidad.forms
         private void button1_Click_1(object sender, EventArgs e)
         {
             DgContratos.Rows.Clear();   
-            string url = "https://aprendeadistancia.online/api-auroco/buscacontratos";
+            string url = Global.servicio + "/api-auroco/buscacontratos";
             Contrato contrato = new Contrato();
             contrato.RAZON_SOCIAL = textoRazon.Text;
             string resultado = Send<Contrato>(url, contrato, "POST");

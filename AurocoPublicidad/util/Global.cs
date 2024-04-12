@@ -6,5 +6,6 @@ namespace AurocoPublicidad.util
     {
         public static string sessionUsuario;
         public static string rutaReportes = "bin\\Debug";
+        public static string servicio= "https://lh-cjm.com";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
+using AurocoPublicidad.util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -21,14 +22,14 @@ namespace AurocoPublicidad.forms
 
         private async void FrmOrdenes_Load(object sender, EventArgs e)
         {
-            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
             comboCliente.SelectedValue = "0";
 
-            string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
@@ -41,7 +42,7 @@ namespace AurocoPublicidad.forms
 
         private async void cargaOrdenes()
         {
-            string respuesta = await GetService("https://aprendeadistancia.online/api-auroco/ordenes");
+            string respuesta = await GetService(Global.servicio + "/api-auroco/ordenes");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
             //dgOrdenes.DataSource = lst;
 
@@ -177,7 +178,7 @@ namespace AurocoPublicidad.forms
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             dgOrdenes.Rows.Clear();
-            string url = "https://aprendeadistancia.online/api-auroco/buscaorden";
+            string url = Global.servicio + "/api-auroco/buscaorden";
             Ordenes orden = new Ordenes();
             orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
             orden.C_MEDIO = comboMedio.SelectedValue.ToString();
@@ -277,7 +278,7 @@ namespace AurocoPublicidad.forms
                         estado = dgOrdenes[17, pos].Value.ToString();
 
                         HttpClient clienteHttp = new HttpClient();
-                        string urlApi = $"https://aprendeadistancia.online/api-auroco/anulaorden/{idOrden}"; // URL de tu servicio API con parámetros   
+                        string urlApi = Global.servicio + "/api-auroco/anulaorden/"+idOrden; // URL de tu servicio API con parámetros   
 
                         HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
                         if (respuesta.IsSuccessStatusCode)
@@ -309,6 +310,14 @@ namespace AurocoPublicidad.forms
 
                 MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmOrden("", "", "", "", 0, "", "", "", "", "", "", "", "", "");
+            //childForm.MdiParent = this;
+            childForm.Text = "Ingresar Ordenes";
+            childForm.Show();
         }
     }
 }

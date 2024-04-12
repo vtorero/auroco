@@ -19,7 +19,7 @@ namespace AurocoPublicidad
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string url = "https://aprendeadistancia.online/api-auroco/login";
+            string url = Global.servicio+"/api-auroco/login";
             UsuarioRequest usuarioR = new UsuarioRequest();
             usuarioR.usuario = txtNombre.Text;
             usuarioR.password = txtPassword.Text;

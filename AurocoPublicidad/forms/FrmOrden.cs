@@ -37,7 +37,7 @@ namespace AurocoPublicidad.forms
         private string valorDuracion;
         private string valorObservaciones;
         
-        private const string apiUrl = "https://aprendeadistancia.online/api-auroco/orden";
+        private  string apiUrl = Global.servicio + "/api-auroco/orden";
         public  FrmOrden(string id,string medio,string cliente,string contrato,int revision,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones)
         {
              
@@ -119,7 +119,7 @@ namespace AurocoPublicidad.forms
             if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
 
 
-            string clientes = await GetService("https://aprendeadistancia.online/api-auroco/clientes_orden");
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
@@ -128,7 +128,7 @@ namespace AurocoPublicidad.forms
             if (valorCliente!="")
             comboCliente.SelectedValue = valorCliente;
 
-            string medios = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
             comboMedio.DataSource = lstM;
             comboMedio.DisplayMember = "NOMBRE";
@@ -141,7 +141,7 @@ namespace AurocoPublicidad.forms
             }
 
 
-            string ejecutivos = await GetService("https://aprendeadistancia.online/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
+            string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
             cmbEjecutivo.DataSource = lstE;
             cmbEjecutivo.DisplayMember = "NOMBRES";
@@ -149,7 +149,7 @@ namespace AurocoPublicidad.forms
             if (valorEjecutivo != "")
                 cmbEjecutivo.SelectedValue = valorEjecutivo;
 
-            string monedas = await GetService("https://aprendeadistancia.online/api-auroco/monedas");
+            string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
             List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
             comboCambio.DataSource = lstMo;
             comboCambio.DisplayMember = "NOMBRE";
@@ -180,7 +180,7 @@ namespace AurocoPublicidad.forms
         private async Task<List<OrdenesLinea>> cargarLineas(string id)
         {
 
-            string ordenes = await GetService($"https://aprendeadistancia.online/api-auroco/orden/{id}");
+            string ordenes = await GetService(Global.servicio +"/api-auroco/orden/"+id);
             List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes);
             
             foreach (OrdenesLinea ord in lstC)
@@ -347,6 +347,22 @@ namespace AurocoPublicidad.forms
                     orden.OBSERVACIONES = textObservaciones.Text;
                     orden.orden = datos;
                     orden.C_USUARIO = Global.sessionUsuario.ToString();
+                    //SUMAR TOTAL DATAGID
+                    Decimal suma = 0;
+                     foreach (DataGridViewRow row in dataGridOrden.Rows)
+                    {
+                        // Asegúrate de que la celda tiene datos
+                        if (row.Cells["totalcalculo"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["totalcalculo"].Value.ToString()))
+                        {
+                            // Suma los valores, convirtiéndolos a double
+                            suma += Convert.ToDecimal(row.Cells["totalcalculo"].Value);
+                        }
+                    }
+
+                    // Mostrar la suma en el Label
+                        orden.INVERSION = suma;
+
+
 
                     bool isChecked = chkRevisar.Checked;
                     if (isChecked)
@@ -517,11 +533,11 @@ namespace AurocoPublicidad.forms
             comboContratos.Items.Clear();
             string url = "";
             if (valorContrato != "") { 
-                url = "https://aprendeadistancia.online/api-auroco/contrato_cliente";
+                url = Global.servicio+"/api-auroco/contrato_cliente";
             }
             else
             {
-                url = "https://aprendeadistancia.online/api-auroco/contrato_cliente";
+                url = Global.servicio + "/api-auroco/contrato_cliente";
             }
             if (comboCliente.SelectedValue != null)
             {
@@ -612,7 +628,7 @@ namespace AurocoPublicidad.forms
                 {
                     string codigo_contrato = comboContratos.SelectedValue.ToString();
 
-                    string urlApi = $"https://aprendeadistancia.online/api-auroco/index.php/contrato_detalle/{codigo_contrato}"; // URL de tu servicio API con parámetros   
+                    string urlApi = Global.servicio + "/api-auroco/index.php/contrato_detalle/"+codigo_contrato; // URL de tu servicio API con parámetros   
 
                     HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
 
@@ -663,7 +679,7 @@ namespace AurocoPublicidad.forms
 
             }
             
-            string programas = await GetService($"https://aprendeadistancia.online/api-auroco/medio_programas/{canal}");
+            string programas = await GetService(Global.servicio + "/api-auroco/medio_programas/"+canal);
             List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas);
 
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
@@ -715,7 +731,7 @@ namespace AurocoPublicidad.forms
                     HttpClient clienteHttp = new HttpClient();
 
 
-                    string urlApi = $"https://aprendeadistancia.online/api-auroco/programa/{selectedValue}"; // URL de tu servicio API con parámetros   
+                    string urlApi = Global.servicio + "/api-auroco/programa/"+selectedValue; // URL de tu servicio API con parámetros   
 
                     HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
                     if (respuesta.IsSuccessStatusCode)

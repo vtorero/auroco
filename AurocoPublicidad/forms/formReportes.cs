@@ -1,4 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
+using AurocoPublicidad.util;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using Newtonsoft.Json;
@@ -15,6 +16,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace AurocoPublicidad.forms
 {
@@ -32,7 +34,7 @@ namespace AurocoPublicidad.forms
 
         private async void LoadReportAsync()
         {
-            string apiUrl = $"https://aprendeadistancia.online/api-auroco/ordenprint/{numeroOrden}";
+            string apiUrl = Global.servicio + "/api-auroco/ordenprint/" + numeroOrden;
             var data = await GetService(apiUrl);
 
             // Asegúrate de que tu reporte y el modelo de datos (MyDataModel) coincidan
