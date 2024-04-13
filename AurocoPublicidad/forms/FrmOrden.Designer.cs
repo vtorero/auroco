@@ -114,6 +114,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.totalOrden = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRevision)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
@@ -906,11 +907,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.Color.Chartreuse;
+            this.progressBar1.Location = new System.Drawing.Point(338, 518);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(389, 21);
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Visible = false;
+            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 572);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGuardar);
@@ -1018,5 +1029,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalcalculo;
         private System.Windows.Forms.NumericUpDown numRevision;
         private System.Windows.Forms.Label labelRevision;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

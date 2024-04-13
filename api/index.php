@@ -557,7 +557,7 @@ $app->put("/orden",function() use ($app,$db){
     $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
     try{
-    $sql="call SP_UPDATE_ORDENES('{$data->C_ORDEN}','{$data->C_CONTRATO}','{$data->REVISION}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}','{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+    $sql="call SP_UPDATE_ORDENES('{$data->C_ORDEN}','{$data->C_CONTRATO}','{$data->REVISION}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}',{$data->INVERSION},'{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
     $stmt = mysqli_prepare($db,$sql);
    mysqli_stmt_execute($stmt);
 

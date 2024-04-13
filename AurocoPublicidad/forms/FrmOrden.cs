@@ -320,7 +320,8 @@ namespace AurocoPublicidad.forms
        && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString()!="0"))
                    
             {
-
+                progressBar1.Visible = true;
+                progressBar1.Value = 0;
 
                 try
                 {
@@ -389,12 +390,18 @@ namespace AurocoPublicidad.forms
                     JObject jObject = JObject.Parse(resultado);
                     JToken objeto = jObject["status"];
                     string status = (string)objeto;
-                    
 
+                    for (global::System.Int32 i = 0; i < 100; i++)
+                    {
+                        progressBar1.Value = i;
+                    }
+                   
                     if (status == "True")
                     {
+                        
                         MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cargarContratos();
+                        progressBar1.Visible = false;
                         // comboCliente.SelectedIndex = 0;
                         if (valorIdOrden == "") { 
                         comboMedio.SelectedIndex = 0;
@@ -414,7 +421,7 @@ namespace AurocoPublicidad.forms
                         cNumeroFisico.Text = "";
                         cTipoCambio.Text = "";
                         cSaldo.Text = "";
-
+                            
                         }
 
                     }
@@ -422,6 +429,7 @@ namespace AurocoPublicidad.forms
 
                     else
                     {
+                        
                         MessageBox.Show((string)jObject["message"], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
@@ -436,7 +444,8 @@ namespace AurocoPublicidad.forms
             {
                 MessageBox.Show("Algunos campos requeridos estan vacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            
+            //progressBar1.Visible = false;
         }
 
         private List<Dictionary<string, object>> ObtenerDatosDataGridView(DataGridView dgv)
@@ -472,6 +481,7 @@ namespace AurocoPublicidad.forms
             WebResponse oResponse = await oRequest.GetResponseAsync();
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
+
         }
 
 
