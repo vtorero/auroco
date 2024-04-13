@@ -36,9 +36,10 @@ namespace AurocoPublicidad.forms
         private string valorMotivo;
         private string valorDuracion;
         private string valorObservaciones;
+        private string valorAgencia;
         
         private  string apiUrl = Global.servicio + "/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente,string contrato,int revision,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones)
+        public  FrmOrden(string id,string medio,string cliente,string contrato,int revision,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones,string agencia)
         {
              
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace AurocoPublicidad.forms
             valorProducto = producto;
             valorMotivo = motivo;
             valorDuracion=duracion;
+            valorAgencia=agencia;   
 
             valorObservaciones = observaciones; 
             
@@ -70,6 +72,7 @@ namespace AurocoPublicidad.forms
                 numRevision.Visible = true;
                 labelRevision.Visible=true;
                 txtNumero.Text = id;
+                btnPrint.Visible = true;
                 numRevision.Value = valorRevision;
                 pintaDias();
                 cargarLineas(id);
@@ -82,6 +85,7 @@ namespace AurocoPublicidad.forms
                 numRevision.Visible = false;
                 labelRevision.Visible = false;
                 chkRevisar .Visible = false; 
+                btnPrint .Visible = false;  
                 txtNumero.Text = "";
                 DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DateTime ultimoDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
@@ -160,11 +164,20 @@ namespace AurocoPublicidad.forms
             comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
             comboIgv.Items.Add(new ListItem("Si","Si"));
             comboIgv.Items.Add(new ListItem("No","No"));
-
             // Seleccionar el primer elemento por defecto
             comboIgv.SelectedIndex = 1;
 
-         
+            txtAgencia.Items.Add(new ListItem("0", "Seleccionar"));
+            txtAgencia.Items.Add(new ListItem("AUROCO", "AUROCO"));
+            txtAgencia.Items.Add(new ListItem("OPTIMIZA", "OPTIMIZA"));
+            // Seleccionar el primer elemento por defecto
+
+            if (valorAgencia != "" && valorAgencia=="AUROCO")
+                txtAgencia.SelectedIndex = 1;
+            else if (valorAgencia != "" && valorAgencia == "OPTIMIZA")
+                txtAgencia.SelectedIndex = 2;
+            else
+                txtAgencia.SelectedIndex = 1;
         }
 
 
@@ -320,9 +333,14 @@ namespace AurocoPublicidad.forms
        && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString()!="0"))
                    
             {
+                Cursor.Current = Cursors.WaitCursor;
                 progressBar1.Visible = true;
                 progressBar1.Value = 0;
 
+                System.Threading.Thread.Sleep(200);
+                progressBar1.Value = 20;
+                System.Threading.Thread.Sleep(200);
+                progressBar1.Value = 50;
                 try
                 {
                     // Obtén los datos del DataGridView
@@ -346,6 +364,7 @@ namespace AurocoPublicidad.forms
                     orden.MOTIVO = textMotivo.Text;
                     orden.DURACION = textDuracion.Text;
                     orden.OBSERVACIONES = textObservaciones.Text;
+                    orden.AGENCIA = txtAgencia.Text;    
                     orden.orden = datos;
                     orden.C_USUARIO = Global.sessionUsuario.ToString();
                     //SUMAR TOTAL DATAGID
@@ -383,7 +402,8 @@ namespace AurocoPublicidad.forms
 
                     }
 
-
+                    System.Threading.Thread.Sleep(100);
+                    progressBar1.Value = 100;
 
                     string resultado = Send<Orden>(apiUrl, orden, metodo);
 
@@ -391,16 +411,13 @@ namespace AurocoPublicidad.forms
                     JToken objeto = jObject["status"];
                     string status = (string)objeto;
 
-                    for (global::System.Int32 i = 0; i < 100; i++)
-                    {
-                        progressBar1.Value = i;
-                    }
-                   
+                                 
                     if (status == "True")
                     {
                         
                         MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cargarContratos();
+                       Cursor.Current = Cursors.Default;
                         progressBar1.Visible = false;
                         // comboCliente.SelectedIndex = 0;
                         if (valorIdOrden == "") { 
@@ -431,18 +448,24 @@ namespace AurocoPublicidad.forms
                     {
                         
                         MessageBox.Show((string)jObject["message"], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                        Cursor.Current = Cursors.Default;
+                        
+                        progressBar1.Visible = false;   
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cursor.Current = Cursors.Default;
+                    progressBar1.Visible = false;
                 }
 
             }
             else
             {
                 MessageBox.Show("Algunos campos requeridos estan vacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor.Current = Cursors.Default;
+                progressBar1.Visible = false;
             }
             
             //progressBar1.Visible = false;
@@ -603,9 +626,12 @@ namespace AurocoPublicidad.forms
                 }
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();
+
+                
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     result = streamReader.ReadToEnd();
+
                 }
 
             }
@@ -947,7 +973,7 @@ namespace AurocoPublicidad.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form childForm = new formReportes(valorIdOrden, inicioVigencia.Value.ToString());
+            Form childForm = new formReportes(valorIdOrden, inicioVigencia.Value.ToString(),txtAgencia.Text);
             //childForm.MdiParent = this;
             childForm.Text = "Orden nro: "+valorIdOrden;
             childForm.Show();

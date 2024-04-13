@@ -22,6 +22,7 @@ namespace AurocoPublicidad.forms
 
         private async void FrmOrdenes_Load(object sender, EventArgs e)
         {
+            
             string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
@@ -37,11 +38,12 @@ namespace AurocoPublicidad.forms
             comboMedio.SelectedValue = "0";
 
             cargaOrdenes();
-       
+            
         }
 
         private async void cargaOrdenes()
         {
+            Cursor.Current = Cursors.WaitCursor;
             string respuesta = await GetService(Global.servicio + "/api-auroco/ordenes");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
             //dgOrdenes.DataSource = lst;
@@ -70,9 +72,11 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
                 dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
                 dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
+                dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
 
 
             }
+            Cursor.Current = Cursors.Default;
         }
 
         private async Task<string> GetService(string cadena)
@@ -88,6 +92,9 @@ namespace AurocoPublicidad.forms
         {
             try
             {
+
+                Cursor.Current = Cursors.WaitCursor;
+                System.Threading.Thread.Sleep(500);
                 int pos;
                 pos = dgOrdenes.CurrentRow.Index;
                 //MessageBox.Show(dgOrdenes[1, pos].Value.ToString());
@@ -107,8 +114,10 @@ namespace AurocoPublicidad.forms
                 var motivo = dgOrdenes[14, pos].Value.ToString();
                 var duracion = dgOrdenes[15, pos].Value.ToString();
                 var observaciones = dgOrdenes[16, pos].Value.ToString();
-                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision,idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones);
+                var agencia = dgOrdenes[19, pos].Value.ToString();
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision,idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones,agencia);
                 frmOrden.ShowDialog();
+                Cursor.Current = Cursors.Default;
 
             }
             catch (NullReferenceException ex)
@@ -116,6 +125,7 @@ namespace AurocoPublicidad.forms
 
 
                 MessageBox.Show("Algun dato esta incompleto "+ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Cursor.Current = Cursors.Default;
             }
 
         }
@@ -314,7 +324,7 @@ namespace AurocoPublicidad.forms
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            Form childForm = new FrmOrden("", "", "", "", 0, "", "", "", "", "", "", "", "", "");
+            Form childForm = new FrmOrden("", "", "", "", 0, "", "", "", "", "", "", "", "", "", "" );
             //childForm.MdiParent = this;
             childForm.Text = "Ingresar Ordenes";
             childForm.Show();

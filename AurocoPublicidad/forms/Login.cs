@@ -19,6 +19,7 @@ namespace AurocoPublicidad
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string url = Global.servicio+"/api-auroco/login";
             UsuarioRequest usuarioR = new UsuarioRequest();
             usuarioR.usuario = txtNombre.Text;
@@ -31,8 +32,8 @@ namespace AurocoPublicidad
 
             if (nombre == "True")
             {
+                Cursor.Current = Cursors.Default;
                 Global.sessionUsuario = usuarioR.usuario;
-                //MessageBox.Show("Acceso autorizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Form childForm = new MDIPrincipal();
                 childForm.Show();
                 this.Hide();

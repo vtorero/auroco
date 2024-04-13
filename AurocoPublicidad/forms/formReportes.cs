@@ -24,11 +24,13 @@ namespace AurocoPublicidad.forms
     {
         private string numeroOrden;
         private string fechaInicial;
-        public formReportes(string idOrden,string fechainicio)
+        private string valorAgencia;
+        public formReportes(string idOrden,string fechainicio,string agencia)
         {
             InitializeComponent();
             numeroOrden= idOrden;
             fechaInicial= fechainicio;  
+            valorAgencia= agencia;  
             LoadReportAsync();
         }
 
@@ -42,12 +44,17 @@ namespace AurocoPublicidad.forms
             //Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
             //  reportDocument.Load("orden.rpt");
-            reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
-           // reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
+            // reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
+            if (valorAgencia == "AUROCO") { 
+            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
+            }
+            if (valorAgencia == "OPTIMIZA") {
+                reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
+            }
+            
+                // Asigna los datos al reporte
 
-            // Asigna los datos al reporte
-          
-            var datos = JsonConvert.DeserializeObject<List<Ordenprint>>(data);
+                var datos = JsonConvert.DeserializeObject<List<Ordenprint>>(data);
             reportDocument.SetDataSource(datos);
             
             var fecha = Convert.ToDateTime(fechaInicial);

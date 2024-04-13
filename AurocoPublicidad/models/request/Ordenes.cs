@@ -30,6 +30,7 @@
         public string C_MONEDA { get; set; }
         public string ACTIVA { get; set; }
         public string TOTAL { get; set; }
+        public string AGENCIA{ get; set; }
 
 
     }

@@ -28,6 +28,7 @@ public string d1 { get; set; }
         public string MOTIVO{ get; set; }
         public string DURACION{ get; set; }
         public string OBSERVACIONES { get; set; }
+        public string AGENCIA { get; set; }
 
         public List<Dictionary<string, object>> orden { get; set; }    
          public string C_USUARIO { get; set; }
