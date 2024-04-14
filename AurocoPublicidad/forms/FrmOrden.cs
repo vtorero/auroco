@@ -409,8 +409,9 @@ namespace AurocoPublicidad.forms
 
                     JObject jObject = JObject.Parse(resultado);
                     JToken objeto = jObject["status"];
+                    JToken objcodigo = jObject["codigo"];
                     string status = (string)objeto;
-
+                    string codigo = (string)objcodigo;
                                  
                     if (status == "True")
                     {
@@ -438,6 +439,10 @@ namespace AurocoPublicidad.forms
                         cNumeroFisico.Text = "";
                         cTipoCambio.Text = "";
                         cSaldo.Text = "";
+                            btnPrint.Visible = true;
+                            valorIdOrden = codigo;
+
+
                             
                         }
 

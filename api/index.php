@@ -1125,7 +1125,7 @@ try{
     if($fila2['@VALOR_ERROR']=='NO' || $fila2['@VALOR_ERROR']==NULL){
 
       //$result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data,"error"=>$error);
-      $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO']);
+      $result = array("status"=>true,"codigo"=>$fila['@SCODIGO'],"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO']);
 
     }
     else{
