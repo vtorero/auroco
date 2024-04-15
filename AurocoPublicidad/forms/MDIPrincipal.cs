@@ -86,8 +86,12 @@ namespace AurocoPublicidad.forms
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Form childForm = new FrmClientes();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Clientes";
+            childForm.Show();
         }
+    
 
         private void ingresarOrdenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -109,7 +113,16 @@ namespace AurocoPublicidad.forms
         {
             Form childForm = new FrmOrdenes();
             childForm.MdiParent = this;
-            childForm.Text = "Listado de Ordenes";
+            childForm.Text = "Mantenimiento de Ordenes";
+            childForm.Show();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
+            Form childForm = new FrmMedios();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Medios";
             childForm.Show();
         }
     }

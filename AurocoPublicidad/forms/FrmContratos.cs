@@ -52,22 +52,7 @@ namespace AurocoPublicidad.forms
             string respuesta = await GetService(Global.servicio + "/api-auroco/contratos");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
 
-            /*   DgContratos.DataSource = lst;
-               DgContratos.Columns[0].HeaderText = "Código";
-               DgContratos.Columns[1].HeaderText = "Contrato";
-               DgContratos.Columns[2].HeaderText = "Cliente";
-               DgContratos.Columns[3].HeaderText = "Razon Social";
-               DgContratos.Columns[4].HeaderText = "Inicio vigencia";
-               DgContratos.Columns[5].HeaderText = "Fin vigencia";
-               DgContratos.Columns[6].HeaderText = "Saldo";
-               DgContratos.Columns[7].HeaderText = "Nro Fisico";
-               DgContratos.Columns[8].HeaderText = "Moneda";
-               DgContratos.Columns[9].HeaderText = "Monto a pagar";
-               DgContratos.Columns[10].HeaderText = "Tipo de cambio";
-               DgContratos.Columns[11].HeaderText = "Observaciones";
-               DgContratos.Columns[12].HeaderText = "Usuario";
-               DgContratos.Columns[13].HeaderText = "F. Creación";
-              */
+   
 
             DgContratos.Rows.Clear();   
 

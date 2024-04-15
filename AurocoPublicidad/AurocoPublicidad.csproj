@@ -219,6 +219,12 @@
     <Compile Include="forms\FrmContratos.Designer.cs">
       <DependentUpon>FrmContratos.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FrmMedios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmMedios.Designer.cs">
+      <DependentUpon>FrmMedios.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\FrmOrden.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmContratos.resx">
       <DependentUpon>FrmContratos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmMedios.resx">
+      <DependentUpon>FrmMedios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmOrden.resx">
       <DependentUpon>FrmOrden.cs</DependentUpon>

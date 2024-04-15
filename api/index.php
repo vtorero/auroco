@@ -30,6 +30,26 @@ if (mysqli_connect_errno()) {
 
 $app = new Slim\Slim();
 
+
+$app->get("/clientes",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT * FROM ORD_CLIENTES ORDER BY ID DESC LIMIT 50");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $cliente[]=$fila;
+   }
+   if(count($cliente)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$cliente);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($cliente);
+
+});
+
+
 $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
