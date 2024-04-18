@@ -35,13 +35,13 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtTipo = new System.Windows.Forms.TextBox();
+            this.txtRazon = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.Label5 = new System.Windows.Forms.Label();
             this.Label4 = new System.Windows.Forms.Label();
             this.txtRUC = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.txtRazon = new System.Windows.Forms.TextBox();
+            this.txtcontacto = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.rpt_Direccion = new System.Windows.Forms.TextBox();
@@ -52,8 +52,16 @@
             this.txtRepresentante = new System.Windows.Forms.TextBox();
             this.DgClientes = new System.Windows.Forms.DataGridView();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.razon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ruc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.razon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rptlegal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rpt_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rptdireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -68,27 +76,29 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(737, 226);
+            this.tabControl1.Size = new System.Drawing.Size(737, 261);
             this.tabControl1.TabIndex = 36;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.btnGuardar);
             this.tabPage1.Controls.Add(this.Código);
             this.tabPage1.Controls.Add(this.Label1);
             this.tabPage1.Controls.Add(this.Label3);
             this.tabPage1.Controls.Add(this.Label2);
             this.tabPage1.Controls.Add(this.txtCodigo);
-            this.tabPage1.Controls.Add(this.txtTipo);
+            this.tabPage1.Controls.Add(this.txtRazon);
             this.tabPage1.Controls.Add(this.txtDireccion);
             this.tabPage1.Controls.Add(this.Label5);
             this.tabPage1.Controls.Add(this.Label4);
             this.tabPage1.Controls.Add(this.txtRUC);
             this.tabPage1.Controls.Add(this.txtTelefono);
-            this.tabPage1.Controls.Add(this.txtRazon);
+            this.tabPage1.Controls.Add(this.txtcontacto);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(729, 200);
+            this.tabPage1.Size = new System.Drawing.Size(729, 235);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Datos Cliente";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -96,16 +106,16 @@
             // Código
             // 
             this.Código.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Código.Location = new System.Drawing.Point(31, 22);
+            this.Código.Location = new System.Drawing.Point(41, 16);
             this.Código.Name = "Código";
-            this.Código.Size = new System.Drawing.Size(64, 16);
+            this.Código.Size = new System.Drawing.Size(58, 16);
             this.Código.TabIndex = 41;
-            this.Código.Text = "Código :";
+            this.Código.Text = "Código:";
             // 
             // Label1
             // 
             this.Label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(6, 76);
+            this.Label1.Location = new System.Drawing.Point(6, 75);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(91, 16);
             this.Label1.TabIndex = 42;
@@ -114,97 +124,98 @@
             // Label3
             // 
             this.Label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(34, 140);
+            this.Label3.Location = new System.Drawing.Point(32, 135);
             this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(64, 16);
+            this.Label3.Size = new System.Drawing.Size(71, 16);
             this.Label3.TabIndex = 44;
-            this.Label3.Text = "Dirección :";
+            this.Label3.Text = "Dirección:";
             // 
             // Label2
             // 
             this.Label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(34, 112);
+            this.Label2.Location = new System.Drawing.Point(34, 104);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(64, 16);
+            this.Label2.Size = new System.Drawing.Size(69, 16);
             this.Label2.TabIndex = 43;
-            this.Label2.Text = "Contácto :";
+            this.Label2.Text = "Contácto:";
             // 
             // txtCodigo
             // 
             this.txtCodigo.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.txtCodigo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(111, 17);
+            this.txtCodigo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigo.Location = new System.Drawing.Point(110, 13);
             this.txtCodigo.MaxLength = 6;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.ReadOnly = true;
-            this.txtCodigo.Size = new System.Drawing.Size(104, 22);
+            this.txtCodigo.Size = new System.Drawing.Size(104, 21);
             this.txtCodigo.TabIndex = 35;
+            this.txtCodigo.Text = "|";
             // 
-            // txtTipo
+            // txtRazon
             // 
-            this.txtTipo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTipo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipo.Location = new System.Drawing.Point(111, 75);
-            this.txtTipo.MaxLength = 180;
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(582, 22);
-            this.txtTipo.TabIndex = 38;
+            this.txtRazon.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRazon.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRazon.Location = new System.Drawing.Point(111, 75);
+            this.txtRazon.MaxLength = 180;
+            this.txtRazon.Name = "txtRazon";
+            this.txtRazon.Size = new System.Drawing.Size(582, 21);
+            this.txtRazon.TabIndex = 38;
             // 
             // txtDireccion
             // 
             this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDireccion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(111, 135);
+            this.txtDireccion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccion.Location = new System.Drawing.Point(111, 134);
             this.txtDireccion.MaxLength = 200;
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(582, 22);
+            this.txtDireccion.Size = new System.Drawing.Size(582, 21);
             this.txtDireccion.TabIndex = 39;
             // 
             // Label5
             // 
             this.Label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(43, 41);
+            this.Label5.Location = new System.Drawing.Point(53, 45);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(44, 16);
             this.Label5.TabIndex = 46;
-            this.Label5.Text = "RUC :";
+            this.Label5.Text = "RUC:";
             // 
             // Label4
             // 
             this.Label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label4.Location = new System.Drawing.Point(34, 170);
+            this.Label4.Location = new System.Drawing.Point(35, 164);
             this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(64, 16);
+            this.Label4.Size = new System.Drawing.Size(63, 16);
             this.Label4.TabIndex = 45;
-            this.Label4.Text = "Teléfono :";
+            this.Label4.Text = "Teléfono:";
             // 
             // txtRUC
             // 
-            this.txtRUC.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRUC.Location = new System.Drawing.Point(111, 46);
+            this.txtRUC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRUC.Location = new System.Drawing.Point(111, 44);
             this.txtRUC.MaxLength = 12;
             this.txtRUC.Name = "txtRUC";
-            this.txtRUC.Size = new System.Drawing.Size(104, 22);
+            this.txtRUC.Size = new System.Drawing.Size(138, 21);
             this.txtRUC.TabIndex = 37;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(111, 164);
+            this.txtTelefono.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(111, 163);
             this.txtTelefono.MaxLength = 12;
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(104, 22);
+            this.txtTelefono.Size = new System.Drawing.Size(147, 21);
             this.txtTelefono.TabIndex = 40;
             // 
-            // txtRazon
+            // txtcontacto
             // 
-            this.txtRazon.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRazon.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRazon.Location = new System.Drawing.Point(111, 104);
-            this.txtRazon.MaxLength = 100;
-            this.txtRazon.Name = "txtRazon";
-            this.txtRazon.Size = new System.Drawing.Size(582, 22);
-            this.txtRazon.TabIndex = 36;
+            this.txtcontacto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtcontacto.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcontacto.Location = new System.Drawing.Point(111, 104);
+            this.txtcontacto.MaxLength = 100;
+            this.txtcontacto.Name = "txtcontacto";
+            this.txtcontacto.Size = new System.Drawing.Size(582, 21);
+            this.txtcontacto.TabIndex = 36;
             // 
             // tabPage2
             // 
@@ -212,7 +223,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(729, 200);
+            this.tabPage2.Size = new System.Drawing.Size(729, 235);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Representante";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -234,18 +245,20 @@
             // 
             // rpt_Direccion
             // 
+            this.rpt_Direccion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rpt_Direccion.Location = new System.Drawing.Point(98, 91);
             this.rpt_Direccion.MaxLength = 200;
             this.rpt_Direccion.Name = "rpt_Direccion";
-            this.rpt_Direccion.Size = new System.Drawing.Size(545, 22);
+            this.rpt_Direccion.Size = new System.Drawing.Size(545, 21);
             this.rpt_Direccion.TabIndex = 8;
             // 
             // txtDNI
             // 
+            this.txtDNI.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDNI.Location = new System.Drawing.Point(98, 56);
             this.txtDNI.MaxLength = 10;
             this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(100, 22);
+            this.txtDNI.Size = new System.Drawing.Size(100, 21);
             this.txtDNI.TabIndex = 7;
             // 
             // Label8
@@ -277,10 +290,11 @@
             // 
             // txtRepresentante
             // 
+            this.txtRepresentante.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRepresentante.Location = new System.Drawing.Point(98, 19);
             this.txtRepresentante.MaxLength = 180;
             this.txtRepresentante.Name = "txtRepresentante";
-            this.txtRepresentante.Size = new System.Drawing.Size(545, 22);
+            this.txtRepresentante.Size = new System.Drawing.Size(545, 21);
             this.txtRepresentante.TabIndex = 6;
             // 
             // DgClientes
@@ -288,13 +302,21 @@
             this.DgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
+            this.ruc,
             this.razon,
-            this.ruc});
-            this.DgClientes.Location = new System.Drawing.Point(16, 245);
+            this.direccion,
+            this.telefono,
+            this.contacto,
+            this.rptlegal,
+            this.rpt_dni,
+            this.rptdireccion});
+            this.DgClientes.Location = new System.Drawing.Point(20, 279);
             this.DgClientes.Name = "DgClientes";
             this.DgClientes.ReadOnly = true;
-            this.DgClientes.Size = new System.Drawing.Size(729, 245);
+            this.DgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgClientes.Size = new System.Drawing.Size(729, 186);
             this.DgClientes.TabIndex = 37;
+            this.DgClientes.DoubleClick += new System.EventHandler(this.DgClientes_DoubleClick);
             // 
             // codigo
             // 
@@ -302,23 +324,79 @@
             this.codigo.Name = "codigo";
             this.codigo.ReadOnly = true;
             // 
-            // razon
-            // 
-            this.razon.HeaderText = "Razón Social";
-            this.razon.Name = "razon";
-            this.razon.ReadOnly = true;
-            // 
             // ruc
             // 
             this.ruc.HeaderText = "RUC";
             this.ruc.Name = "ruc";
             this.ruc.ReadOnly = true;
             // 
+            // razon
+            // 
+            this.razon.HeaderText = "Razón Social";
+            this.razon.Name = "razon";
+            this.razon.ReadOnly = true;
+            // 
+            // direccion
+            // 
+            this.direccion.HeaderText = "Dirección";
+            this.direccion.Name = "direccion";
+            this.direccion.ReadOnly = true;
+            // 
+            // telefono
+            // 
+            this.telefono.HeaderText = "Teléfono";
+            this.telefono.Name = "telefono";
+            this.telefono.ReadOnly = true;
+            // 
+            // contacto
+            // 
+            this.contacto.HeaderText = "Contácto";
+            this.contacto.Name = "contacto";
+            this.contacto.ReadOnly = true;
+            // 
+            // rptlegal
+            // 
+            this.rptlegal.HeaderText = "Rpt. Legal";
+            this.rptlegal.Name = "rptlegal";
+            this.rptlegal.ReadOnly = true;
+            // 
+            // rpt_dni
+            // 
+            this.rpt_dni.HeaderText = "Rpt. DNI";
+            this.rpt_dni.Name = "rpt_dni";
+            this.rpt_dni.ReadOnly = true;
+            // 
+            // rptdireccion
+            // 
+            this.rptdireccion.HeaderText = "Rpt. Dirección";
+            this.rptdireccion.Name = "rptdireccion";
+            this.rptdireccion.ReadOnly = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(470, 179);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(101, 40);
+            this.button2.TabIndex = 48;
+            this.button2.Text = "&Resetear";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
+            this.btnGuardar.Location = new System.Drawing.Point(577, 179);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(116, 40);
+            this.btnGuardar.TabIndex = 47;
+            this.btnGuardar.Text = "&Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 504);
+            this.ClientSize = new System.Drawing.Size(769, 484);
             this.Controls.Add(this.DgClientes);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmClientes";
@@ -344,13 +422,13 @@
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.Label Label2;
         protected System.Windows.Forms.TextBox txtCodigo;
-        internal System.Windows.Forms.TextBox txtTipo;
+        internal System.Windows.Forms.TextBox txtRazon;
         internal System.Windows.Forms.TextBox txtDireccion;
         internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.TextBox txtRUC;
         internal System.Windows.Forms.TextBox txtTelefono;
-        internal System.Windows.Forms.TextBox txtRazon;
+        internal System.Windows.Forms.TextBox txtcontacto;
         private System.Windows.Forms.TabPage tabPage2;
         internal System.Windows.Forms.GroupBox GroupBox1;
         internal System.Windows.Forms.TextBox rpt_Direccion;
@@ -361,7 +439,15 @@
         internal System.Windows.Forms.TextBox txtRepresentante;
         private System.Windows.Forms.DataGridView DgClientes;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn razon;
         private System.Windows.Forms.DataGridViewTextBoxColumn ruc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn razon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contacto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rptlegal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rpt_dni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rptdireccion;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }

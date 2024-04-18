@@ -120,6 +120,54 @@ $app->get("/monedas",function() use($db,$app){
     });
 
 
+    $app->post("/cliente",function() use($db,$app){
+        $json = $app->request->getBody();
+       $data = json_decode($json,false);
+
+       try {
+
+        $sql="call P_CLIENTE('{$data->RAZON_SOCIAL}','{$data->RUC}','{$data->DIRECCION}','{$data->TELEFONO}','{$data->CONTACTO}','{$data->RPT_LEGAL}','{$data->RPT_DNI}','{$data->RPT_DIRECCION}','{$data->USUARIO_CREACION}')";
+
+
+
+       $stmt = mysqli_prepare($db,$sql);
+        mysqli_stmt_execute($stmt);
+
+       $result = array("status"=>true,"message"=>"Cliente registrado correctamente");
+
+       }
+       catch(PDOException $e) {
+        $result = array("STATUS"=>false,"message"=>$e->getMessage());
+       }
+
+        echo  json_encode($result);
+
+    });
+
+
+
+    $app->put("/cliente",function() use($db,$app){
+        $json = $app->request->getBody();
+        $data = json_decode($json,false);
+        try {
+
+            $sql="call P_CLIENTE_UPD('{$data->C_CLIENTE}','{$data->RAZON_SOCIAL}','{$data->RUC}','{$data->DIRECCION}','{$data->TELEFONO}','{$data->CONTACTO}','{$data->RPT_LEGAL}','{$data->RPT_DNI}','{$data->RPT_DIRECCION}','{$data->USUARIO_CREACION}')";
+
+
+          $stmt = mysqli_prepare($db,$sql);
+        mysqli_stmt_execute($stmt);
+
+        $result = array("status"=>true,"message"=>"Cliente actualizado correctamente");
+        }
+        catch(PDOException $e) {
+
+            $result = array("status"=>false,"message"=>"Ocurrio un error");
+        }
+
+        echo  json_encode($result);
+    });
+
+
 $app->post("/contrato",function() use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json,false);
