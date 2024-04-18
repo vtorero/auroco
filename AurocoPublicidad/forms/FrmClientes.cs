@@ -201,5 +201,20 @@ namespace AurocoPublicidad.forms
 
             return result;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            nuevo = true;
+            txtCodigo.Text = "";
+            txtRUC.Text = "";
+            txtRazon.Text = "";
+            txtcontacto.Text = "";
+            txtDireccion.Text = "";
+            txtTelefono.Text = "";
+            txtRepresentante.Text = "";
+            txtDNI.Text = "";
+            txtDireccion.Text = "";
+            rpt_Direccion.Text = "";
+        }
     }
 }

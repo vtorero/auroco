@@ -575,7 +575,7 @@ namespace AurocoPublicidad.forms
             }
             else
             {
-                url = Global.servicio + "/api-auroco/contrato_cliente";
+                url = Global.servicio + "/api-auroco/contratos_clientes";
             }
             if (comboCliente.SelectedValue != null)
             {

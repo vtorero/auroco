@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.Código = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.Label3 = new System.Windows.Forms.Label();
@@ -60,8 +62,6 @@
             this.rptlegal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rpt_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rptdireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -102,6 +102,27 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Datos Cliente";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(470, 179);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(101, 40);
+            this.button2.TabIndex = 48;
+            this.button2.Text = "&Resetear";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
+            this.btnGuardar.Location = new System.Drawing.Point(577, 179);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(116, 40);
+            this.btnGuardar.TabIndex = 47;
+            this.btnGuardar.Text = "&Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // Código
             // 
@@ -149,7 +170,6 @@
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(104, 21);
             this.txtCodigo.TabIndex = 35;
-            this.txtCodigo.Text = "|";
             // 
             // txtRazon
             // 
@@ -371,26 +391,6 @@
             this.rptdireccion.HeaderText = "Rpt. Dirección";
             this.rptdireccion.Name = "rptdireccion";
             this.rptdireccion.ReadOnly = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(470, 179);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 40);
-            this.button2.TabIndex = 48;
-            this.button2.Text = "&Resetear";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(577, 179);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(116, 40);
-            this.btnGuardar.TabIndex = 47;
-            this.btnGuardar.Text = "&Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // FrmClientes
             // 

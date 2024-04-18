@@ -248,22 +248,22 @@ $app->post("/login",function() use($db,$app){
 });
 
 $app->get("/parse",function() use($db,$app){
-
-    $url = 'https://aprendeadistancia.online/api-auroco/ord_contratos.xml';
-    //$xmlc = file_get_contents($url);
+    //ni_set('allow_url_fopen',1);
+    $url = 'https://lh-cjm.com/api-auroco/ord_clientes.xml';
+//  $xml = file_get_contents($url);
     $xml = simplexml_load_file($url);
 
 
 //ejecutivos
 //$cadena="INSERT INTO `aprendea_auroco`.`ORD_EJECUTIVOS`    (`C_EJECUTIVO`,    `DNI_EJECUTIVO`,    `NOMBRES`,    `F_CREACION`,    `USUARIO`   ) VALUES ";
 //clientes
-//$cadena="INSERT INTO `aprendea_auroco`.`ORD_CLIENTES` ( `C_CLIENTE`, `RAZON_SOCIAL`, `CONTACTO`, `RPT_LEGAL`, `RPT_DNI`, `RPT_DIRECCION`, `RUC`, `DIRECCION`, `TELEFONO`, `F_CREACION`, `USUARIO`) VALUES ";
+$cadena="INSERT INTO `aprendea_auroco`.`ORD_CLIENTES` ( `C_CLIENTE`, `RAZON_SOCIAL`, `CONTACTO`, `RPT_LEGAL`, `RPT_DNI`, `RPT_DIRECCION`, `RUC`, `DIRECCION`, `TELEFONO`, `F_CREACION`, `USUARIO`) VALUES ";
 //medios
 //$cadena="INSERT INTO `aprendea_auroco`.`ORD_MEDIOS` (`ID`, `C_MEDIO`, `TIPO`, `NOMBRE`,`DESCRIPCION`,`F_CREACION`,`C_USUARIO_CREACION`) VALUES";
 //programas
 //$cadena="INSERT INTO `aprendea_auroco`.`ORD_PROGRAMAS_AUT` (`ID`, `PROGRAMA`, `REGION`,`CANAL`,`GENERO`,`TEMA`,`PERIODO`,`DIAS`,`RATING`,`MILES`,`COSTO`,`F_CREACION`,`C_USUARIO`) VALUES";
 //contratos
-$cadena="INSERT INTO `aprendea_auroco`.`ORD_CONTRATOS` (`C_CONTRATO`,`C_CLIENTE`,`INICIO_VIGENCIA`,`FIN_VIGENCIA`,`NRO_FISICO`,`C_MONEDA`,`INVERSION`,`INVER_IGV`,`MONTO_ORDENAR`,`MONTO_ORD_IGV`,`TIPO_CAMBIO`,`TASA_IGV`,`OBSERVACIONES`,`C_USUARIO`,`F_CREACION`) VALUES";
+//$cadena="INSERT INTO `aprendea_auroco`.`ORD_CONTRATOS` (`C_CONTRATO`,`C_CLIENTE`,`INICIO_VIGENCIA`,`FIN_VIGENCIA`,`NRO_FISICO`,`C_MONEDA`,`INVERSION`,`INVER_IGV`,`MONTO_ORDENAR`,`MONTO_ORD_IGV`,`TIPO_CAMBIO`,`TASA_IGV`,`OBSERVACIONES`,`C_USUARIO`,`F_CREACION`) VALUES";
 
 
     foreach ($xml->ROW as $dato) {
@@ -1222,7 +1222,7 @@ $app->post("/contrato_cliente",function() use ($app,$db){
    $data = json_decode($json, TRUE);
 
 
-   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}'  order by C_CONTRATO ASC";
+   $sql="SELECT * FROM aprendea_auroco.ORD_CONTRATOS  WHERE  C_CLIENTE='{$data['C_CLIENTE']}' order by C_CONTRATO ASC";
 
 
    $resultado = $db->query($sql);
