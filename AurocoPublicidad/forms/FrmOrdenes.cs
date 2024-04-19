@@ -22,7 +22,8 @@ namespace AurocoPublicidad.forms
 
         private async void FrmOrdenes_Load(object sender, EventArgs e)
         {
-            
+            Cursor.Current = Cursors.WaitCursor;
+
             string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
@@ -43,7 +44,7 @@ namespace AurocoPublicidad.forms
 
         private async void cargaOrdenes()
         {
-            Cursor.Current = Cursors.WaitCursor;
+            
             string respuesta = await GetService(Global.servicio + "/api-auroco/ordenes");
             List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
             //dgOrdenes.DataSource = lst;

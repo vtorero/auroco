@@ -109,9 +109,12 @@ namespace AurocoPublicidad.forms
             {
             simboloMoneda = "$";
             }
-
-            Double igv = Convert.ToDouble(valorTotal)*0.18;
+            Double igv = 0;
+            if (valorTotal != ""){
+                 igv = Convert.ToDouble(valorTotal)*0.18;
+               
             Double total = Convert.ToDouble(valorTotal) + igv;
+            }
             if (valorTotal!="") totalOrden.Text= string.Format("{0}{1:N2}", simboloMoneda, valorTotal);
             if (valorTotal != "") txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, igv);
             if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, total);

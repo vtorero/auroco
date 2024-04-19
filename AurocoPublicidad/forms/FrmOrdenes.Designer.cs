@@ -92,7 +92,7 @@
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(1174, 220);
+            this.dgOrdenes.Size = new System.Drawing.Size(1174, 289);
             this.dgOrdenes.TabIndex = 0;
             this.dgOrdenes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgOrdenes_CellFormatting);
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
@@ -299,7 +299,7 @@
             // 
             // Button2
             // 
-            this.Button2.Location = new System.Drawing.Point(1019, 381);
+            this.Button2.Location = new System.Drawing.Point(1021, 449);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(81, 24);
             this.Button2.TabIndex = 95;
@@ -309,7 +309,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(1106, 381);
+            this.btnEditar.Location = new System.Drawing.Point(1108, 449);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(96, 24);
             this.btnEditar.TabIndex = 94;
@@ -317,7 +317,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(931, 381);
+            this.btnNuevo.Location = new System.Drawing.Point(933, 449);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(80, 24);
             this.btnNuevo.TabIndex = 93;
@@ -328,7 +328,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1222, 421);
+            this.ClientSize = new System.Drawing.Size(1222, 485);
             this.Controls.Add(this.Button2);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
