@@ -110,8 +110,11 @@ namespace AurocoPublicidad.forms
             simboloMoneda = "$";
             }
 
-
+            Double igv = Convert.ToDouble(valorTotal)*0.18;
+            Double total = Convert.ToDouble(valorTotal) + igv;
             if (valorTotal!="") totalOrden.Text= string.Format("{0}{1:N2}", simboloMoneda, valorTotal);
+            if (valorTotal != "") txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, igv);
+            if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, total);
 
 
 
@@ -245,6 +248,12 @@ namespace AurocoPublicidad.forms
                     + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
                     + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
                     + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31)) *Convert.ToDouble(ord.INVERSION_TOTAL);
+                dataGridOrden.Rows[rowIndex].Cells["totalcalculo"].Value = (Convert.ToDouble(ord.d1) + Convert.ToDouble(ord.d2) + Convert.ToDouble(ord.d3) + Convert.ToDouble(ord.d4) +
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7) + Convert.ToDouble(ord.d8) + Convert.ToDouble(ord.d9)
+                    + Convert.ToDouble(ord.d10) + Convert.ToDouble(ord.d11) + Convert.ToDouble(ord.d12) + Convert.ToDouble(ord.d13) + Convert.ToDouble(ord.d14) + Convert.ToDouble(ord.d15)
+                    + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
+                    + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
+                    + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31)) * Convert.ToDouble(ord.INVERSION_TOTAL);
 
 
 

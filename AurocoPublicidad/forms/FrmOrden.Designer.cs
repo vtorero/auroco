@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrden));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtAgencia = new System.Windows.Forms.ComboBox();
             this.numRevision = new System.Windows.Forms.NumericUpDown();
             this.labelRevision = new System.Windows.Forms.Label();
             this.chkRevisar = new System.Windows.Forms.CheckBox();
@@ -72,6 +74,16 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.totalOrden = new System.Windows.Forms.TextBox();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtIgv = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.totalBruto = new System.Windows.Forms.TextBox();
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idprograma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,14 +121,6 @@
             this.avisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalcalculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.totalOrden = new System.Windows.Forms.TextBox();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.txtAgencia = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRevision)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
@@ -174,6 +178,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(935, 100);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(49, 13);
+            this.label20.TabIndex = 66;
+            this.label20.Text = "Agencia:";
+            // 
+            // txtAgencia
+            // 
+            this.txtAgencia.FormattingEnabled = true;
+            this.txtAgencia.Location = new System.Drawing.Point(998, 96);
+            this.txtAgencia.Name = "txtAgencia";
+            this.txtAgencia.Size = new System.Drawing.Size(101, 21);
+            this.txtAgencia.TabIndex = 65;
             // 
             // numRevision
             // 
@@ -632,6 +653,102 @@
             this.dataGridOrden.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridOrden_CellFormatting);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Location = new System.Drawing.Point(1014, 529);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
+            this.btnGuardar.TabIndex = 14;
+            this.btnGuardar.Text = "&Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.totalBruto);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.txtIgv);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.totalOrden);
+            this.groupBox2.Location = new System.Drawing.Point(602, 482);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(537, 41);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(35, 17);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Subtotal:";
+            // 
+            // totalOrden
+            // 
+            this.totalOrden.Location = new System.Drawing.Point(90, 13);
+            this.totalOrden.Name = "totalOrden";
+            this.totalOrden.ReadOnly = true;
+            this.totalOrden.Size = new System.Drawing.Size(100, 20);
+            this.totalOrden.TabIndex = 0;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(879, 529);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(129, 32);
+            this.btnPrint.TabIndex = 15;
+            this.btnPrint.Text = "&Imprimir";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.Color.Chartreuse;
+            this.progressBar1.Location = new System.Drawing.Point(1014, 560);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(129, 3);
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(199, 17);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(34, 13);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "I.G.V:";
+            // 
+            // txtIgv
+            // 
+            this.txtIgv.Location = new System.Drawing.Point(235, 14);
+            this.txtIgv.Name = "txtIgv";
+            this.txtIgv.ReadOnly = true;
+            this.txtIgv.Size = new System.Drawing.Size(112, 20);
+            this.txtIgv.TabIndex = 18;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(356, 17);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(34, 13);
+            this.label22.TabIndex = 19;
+            this.label22.Text = "Total:";
+            // 
+            // totalBruto
+            // 
+            this.totalBruto.Location = new System.Drawing.Point(396, 14);
+            this.totalBruto.Name = "totalBruto";
+            this.totalBruto.ReadOnly = true;
+            this.totalBruto.Size = new System.Drawing.Size(129, 20);
+            this.totalBruto.TabIndex = 20;
+            // 
             // horario
             // 
             this.horario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -864,80 +981,6 @@
             this.totalcalculo.Name = "totalcalculo";
             this.totalcalculo.Visible = false;
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(1014, 529);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "&Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.totalOrden);
-            this.groupBox2.Location = new System.Drawing.Point(783, 482);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 41);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(208, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(34, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Total:";
-            // 
-            // totalOrden
-            // 
-            this.totalOrden.Location = new System.Drawing.Point(249, 15);
-            this.totalOrden.Name = "totalOrden";
-            this.totalOrden.Size = new System.Drawing.Size(100, 20);
-            this.totalOrden.TabIndex = 0;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(879, 529);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(129, 32);
-            this.btnPrint.TabIndex = 15;
-            this.btnPrint.Text = "&Imprimir";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Visible = false;
-            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.BackColor = System.Drawing.Color.Chartreuse;
-            this.progressBar1.Location = new System.Drawing.Point(1014, 560);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(129, 3);
-            this.progressBar1.TabIndex = 16;
-            this.progressBar1.Visible = false;
-            // 
-            // txtAgencia
-            // 
-            this.txtAgencia.FormattingEnabled = true;
-            this.txtAgencia.Location = new System.Drawing.Point(998, 96);
-            this.txtAgencia.Name = "txtAgencia";
-            this.txtAgencia.Size = new System.Drawing.Size(101, 21);
-            this.txtAgencia.TabIndex = 65;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(935, 100);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(49, 13);
-            this.label20.TabIndex = 66;
-            this.label20.Text = "Agencia:";
-            // 
             // FrmOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1012,6 +1055,14 @@
         private System.Windows.Forms.Label LblNumero;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.CheckBox chkRevisar;
+        private System.Windows.Forms.NumericUpDown numRevision;
+        private System.Windows.Forms.Label labelRevision;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox txtAgencia;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtIgv;
+        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario;
         private System.Windows.Forms.DataGridViewTextBoxColumn idprograma;
         private System.Windows.Forms.DataGridViewTextBoxColumn costo;
@@ -1049,10 +1100,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn avisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalcalculo;
-        private System.Windows.Forms.NumericUpDown numRevision;
-        private System.Windows.Forms.Label labelRevision;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox txtAgencia;
+        private System.Windows.Forms.TextBox totalBruto;
     }
 }
