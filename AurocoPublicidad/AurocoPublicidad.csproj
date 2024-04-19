@@ -219,11 +219,17 @@
     <Compile Include="forms\FrmContratos.Designer.cs">
       <DependentUpon>FrmContratos.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\FrmMedios.cs">
+    <Compile Include="forms\FrmEjecutivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FrmMedios.Designer.cs">
-      <DependentUpon>FrmMedios.cs</DependentUpon>
+    <Compile Include="forms\FrmEjecutivo.Designer.cs">
+      <DependentUpon>FrmEjecutivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FrmMedio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmMedio.Designer.cs">
+      <DependentUpon>FrmMedio.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\FrmOrden.cs">
       <SubType>Form</SubType>
@@ -236,6 +242,12 @@
     </Compile>
     <Compile Include="forms\FrmOrdenes.Designer.cs">
       <DependentUpon>FrmOrdenes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FrmPrograma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmPrograma.Designer.cs">
+      <DependentUpon>FrmPrograma.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\Login.cs">
       <SubType>Form</SubType>
@@ -298,14 +310,20 @@
     <EmbeddedResource Include="forms\FrmContratos.resx">
       <DependentUpon>FrmContratos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FrmMedios.resx">
-      <DependentUpon>FrmMedios.cs</DependentUpon>
+    <EmbeddedResource Include="forms\FrmEjecutivo.resx">
+      <DependentUpon>FrmEjecutivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmMedio.resx">
+      <DependentUpon>FrmMedio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmOrden.resx">
       <DependentUpon>FrmOrden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmOrdenes.resx">
       <DependentUpon>FrmOrdenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmPrograma.resx">
+      <DependentUpon>FrmPrograma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -399,6 +417,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\buscar.png" />
+    <None Include="Resources\TV_4089.png" />
+    <None Include="Resources\710satelliteantenna_100238.png" />
+    <None Include="Resources\male3_85205.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

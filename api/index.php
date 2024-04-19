@@ -49,6 +49,104 @@ $app->get("/clientes",function() use ($app,$db){
 
 });
 
+$app->get("/ejecutivos",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT * FROM ORD_EJECUTIVOS ORDER BY F_CREACION DESC LIMIT 30");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $cliente[]=$fila;
+   }
+   if(count($cliente)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$cliente);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($cliente);
+
+});
+
+$app->get("/medios",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT * FROM ORD_MEDIOS ORDER BY F_CREACION DESC LIMIT 30");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $cliente[]=$fila;
+   }
+   if(count($cliente)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$cliente);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($cliente);
+
+});
+
+$app->get("/programas",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+
+   $resultado = $db->query("SELECT * FROM ORD_PROGRAMAS_AUT ORDER BY F_CREACION DESC LIMIT 30");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $cliente[]=$fila;
+   }
+   if(count($cliente)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$cliente);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($cliente);
+
+});
+
+$app->put("/programa",function() use($db,$app){
+    $json = $app->request->getBody();
+    $data = json_decode($json,false);
+    try {
+
+        $sql="call P_PROGRAMA_UPD('{$data->ID}','{$data->PROGRAMA}','{$data->CANAL}','{$data->PERIODO}','{$data->DIAS}',{$data->COSTO},'{$data->ESTADO}','{$data->C_USUARIO}')";
+
+
+
+
+      $stmt = mysqli_prepare($db,$sql);
+    mysqli_stmt_execute($stmt);
+
+    $result = array("status"=>true,"message"=>"Programa actualizado correctamente");
+    }
+    catch(PDOException $e) {
+
+        $result = array("status"=>false,"message"=>"Ocurrio un error");
+    }
+
+    echo  json_encode($result);
+});
+
+$app->post("/programa",function() use($db,$app){
+    $json = $app->request->getBody();
+    $data = json_decode($json,false);
+    try {
+
+        $sql="call P_PROGRAMA('{$data->PROGRAMA}','{$data->CANAL}','{$data->PERIODO}','{$data->DIAS}',{$data->COSTO},'{$data->ESTADO}','{$data->C_USUARIO}')";
+
+
+      $stmt = mysqli_prepare($db,$sql);
+    mysqli_stmt_execute($stmt);
+
+    $result = array("status"=>true,"message"=>"Programa registrado correctamente");
+    }
+    catch(PDOException $e) {
+
+        $result = array("status"=>false,"message"=>"Ocurrio un error");
+    }
+
+    echo  json_encode($result);
+});
+
 
 $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
@@ -119,6 +217,45 @@ $app->get("/monedas",function() use($db,$app){
         echo  json_encode($result);
     });
 
+    $app->post("/medio",function() use($db,$app){
+        $json = $app->request->getBody();
+       $data = json_decode($json,false);
+
+       try {
+
+        $sql="call P_MEDIO('{$data->NOMBRE}','{$data->DESCRIPCION}','{$data->TIPO}','{$data->C_USUARIO_CREACION}')";
+       $stmt = mysqli_prepare($db,$sql);
+        mysqli_stmt_execute($stmt);
+       $result = array("status"=>true,"message"=>"Medio registrado correctamente");
+       }
+       catch(PDOException $e) {
+        $result = array("STATUS"=>false,"message"=>$e->getMessage());
+       }
+
+        echo  json_encode($result);
+
+    });
+
+    $app->put("/medio",function() use($db,$app){
+        $json = $app->request->getBody();
+        $data = json_decode($json,false);
+        try {
+
+            $sql="call P_MEDIO_UPD('{$data->C_MEDIO}','{$data->NOMBRE}','{$data->DESCRIPCION}','{$data->TIPO}','{$data->C_USUARIO_CREACION}')";
+
+
+          $stmt = mysqli_prepare($db,$sql);
+        mysqli_stmt_execute($stmt);
+
+        $result = array("status"=>true,"message"=>"Medio actualizado correctamente");
+        }
+        catch(PDOException $e) {
+
+            $result = array("status"=>false,"message"=>"Ocurrio un error");
+        }
+
+        echo  json_encode($result);
+    });
 
     $app->post("/cliente",function() use($db,$app){
         $json = $app->request->getBody();

@@ -120,9 +120,57 @@ namespace AurocoPublicidad.forms
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
 
-            Form childForm = new FrmMedios();
+            Form childForm = new FrmMedio();
             childForm.MdiParent = this;
             childForm.Text = "Mantenimiento de Medios";
+            childForm.Show();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmClientes();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Clientes";
+            childForm.Show();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmPrograma();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Programas";
+            childForm.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmOrdenes();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Ordenes";
+            childForm.Show();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmPrograma();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Programas";
+            childForm.Show();
+        }
+
+        private void ejecutivosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmEjecutivo();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Ejecutivos";
+            childForm.Show();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmEjecutivo();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Ejecutivos";
             childForm.Show();
         }
     }

@@ -63,6 +63,16 @@ namespace AurocoPublicidad.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _710satelliteantenna_100238 {
+            get {
+                object obj = ResourceManager.GetObject("710satelliteantenna_100238", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap auroco_publicidad_sa_logo {
             get {
                 object obj = ResourceManager.GetObject("auroco_publicidad_sa_logo", resourceCulture);
@@ -86,6 +96,26 @@ namespace AurocoPublicidad.Properties {
         internal static System.Drawing.Bitmap buscar {
             get {
                 object obj = ResourceManager.GetObject("buscar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap male3_85205 {
+            get {
+                object obj = ResourceManager.GetObject("male3_85205", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TV_4089 {
+            get {
+                object obj = ResourceManager.GetObject("TV_4089", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
