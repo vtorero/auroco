@@ -46,12 +46,12 @@ namespace AurocoPublicidad.forms
             //  reportDocument.Load("orden.rpt");
             // reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
             if (valorAgencia == "AUROCO") { 
-            //reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
-             reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
+            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
+            // reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
             }
             if (valorAgencia == "OPTIMIZA") {
-             //  reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
-              reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
+               reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
+            //  reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
             }
             
                 // Asigna los datos al reporte

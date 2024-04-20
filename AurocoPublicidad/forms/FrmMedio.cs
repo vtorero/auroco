@@ -181,9 +181,9 @@ namespace AurocoPublicidad.forms
             txtNombre.Text = Convert.ToString(DgMedios[1, pos].Value);
             txtDescripcion.Text = Convert.ToString(DgMedios[2, pos].Value);
             string tipoo= Convert.ToString(DgMedios[3, pos].Value);
-            if (tipoo == "Televisión")
+            if (tipoo == "TELEVISIÓN")
                 cmbTipo.SelectedIndex = 1;
-            else if (tipoo== "Radio")
+            else if (tipoo== "RADIO")
                 cmbTipo.SelectedIndex = 2;
             else
                 cmbTipo.SelectedIndex = 0;

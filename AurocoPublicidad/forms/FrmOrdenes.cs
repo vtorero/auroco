@@ -88,8 +88,7 @@ namespace AurocoPublicidad.forms
             return await sr.ReadToEndAsync();
         }
 
-
-        private void dgOrdenes_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void EditarOrden()
         {
             try
             {
@@ -116,7 +115,7 @@ namespace AurocoPublicidad.forms
                 var duracion = dgOrdenes[15, pos].Value.ToString();
                 var observaciones = dgOrdenes[16, pos].Value.ToString();
                 var agencia = dgOrdenes[19, pos].Value.ToString();
-                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision,idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones,agencia);
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones, agencia);
                 frmOrden.ShowDialog();
                 Cursor.Current = Cursors.Default;
 
@@ -125,9 +124,18 @@ namespace AurocoPublicidad.forms
             {
 
 
-                MessageBox.Show("Algun dato esta incompleto "+ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Algun dato esta incompleto " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Cursor.Current = Cursors.Default;
             }
+
+
+
+        }
+
+
+        private void dgOrdenes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            EditarOrden();
 
         }
 
@@ -329,6 +337,16 @@ namespace AurocoPublicidad.forms
             //childForm.MdiParent = this;
             childForm.Text = "Ingresar Ordenes";
             childForm.Show();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            EditarOrden();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            cargaOrdenes();
         }
     }
 }

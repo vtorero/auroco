@@ -26,9 +26,9 @@ namespace AurocoPublicidad.forms
 
         private async void FrmContratos_Load(object sender, EventArgs e)
         {
-            cargarContratos();
+            
 
-            string clientes = await GetService(Global.servicio+"/api-auroco/clientes");
+            string clientes = await GetService(Global.servicio+ "/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
@@ -41,7 +41,7 @@ namespace AurocoPublicidad.forms
             comboMoneda.DisplayMember = "NOMBRE";
             comboMoneda.ValueMember = "VALOR";
 
-
+            cargarContratos();
             DgContratos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
         }

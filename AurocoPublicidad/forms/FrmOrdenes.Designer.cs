@@ -61,6 +61,7 @@
             this.Button2 = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -314,6 +315,7 @@
             this.btnEditar.Size = new System.Drawing.Size(96, 24);
             this.btnEditar.TabIndex = 94;
             this.btnEditar.Text = "&Modificar Orden";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnNuevo
             // 
@@ -324,11 +326,22 @@
             this.btnNuevo.Text = "N&ueva Orden";
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Image = global::AurocoPublicidad.Properties.Resources.refresh_arrow_1546;
+            this.btnRefresh.Location = new System.Drawing.Point(1167, 89);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(35, 35);
+            this.btnRefresh.TabIndex = 96;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FrmOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1222, 485);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.Button2);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
@@ -386,5 +399,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn revision;
         private System.Windows.Forms.DataGridViewTextBoxColumn activa;
         private System.Windows.Forms.DataGridViewTextBoxColumn agencia;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

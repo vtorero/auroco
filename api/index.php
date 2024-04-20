@@ -31,24 +31,6 @@ if (mysqli_connect_errno()) {
 $app = new Slim\Slim();
 
 
-$app->get("/clientes",function() use ($app,$db){
-    $json = $app->request->getBody();
-   $data = json_decode($json, true);
-
-   $resultado = $db->query("SELECT * FROM ORD_CLIENTES ORDER BY ID DESC LIMIT 50");
-   $contrato=array();
-   while ($fila = $resultado->fetch_object()) {
-   $cliente[]=$fila;
-   }
-   if(count($cliente)>0){
-       $data = array("status"=>true,"rows"=>1,"data"=>$cliente);
-   }else{
-       $data = array("status"=>false,"rows"=>0,"data"=>null);
-   }
-   echo  json_encode($cliente);
-
-});
-
 $app->get("/ejecutivos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
@@ -66,6 +48,45 @@ $app->get("/ejecutivos",function() use ($app,$db){
    echo  json_encode($cliente);
 
 });
+
+$app->post("/ejecutivo",function() use($db,$app){
+    $json = $app->request->getBody();
+   $data = json_decode($json,false);
+
+   try {
+
+    $sql="call P_EJECUTIVO('{$data->DNI_EJECUTIVO}','{$data->NOMBRES}','{$data->USUARIO}')";
+   $stmt = mysqli_prepare($db,$sql);
+    mysqli_stmt_execute($stmt);
+   $result = array("status"=>true,"message"=>"Ejecutivo registrado correctamente");
+   }
+   catch(PDOException $e) {
+    $result = array("STATUS"=>false,"message"=>$e->getMessage());
+   }
+
+    echo  json_encode($result);
+
+});
+
+
+    $app->put("/ejecutivo",function() use($db,$app){
+        $json = $app->request->getBody();
+       $data = json_decode($json,false);
+
+       try {
+        $sql="call P_EJECUTIVO_UPD('{$data->C_EJECUTIVO}','{$data->DNI_EJECUTIVO}','{$data->NOMBRES}','{$data->USUARIO}')";
+
+       $stmt = mysqli_prepare($db,$sql);
+        mysqli_stmt_execute($stmt);
+       $result = array("status"=>true,"message"=>"Ejecutivo registrado correctamente");
+       }
+       catch(PDOException $e) {
+        $result = array("STATUS"=>false,"message"=>$e->getMessage());
+       }
+
+        echo  json_encode($result);
+
+    });
 
 $app->get("/medios",function() use ($app,$db){
     $json = $app->request->getBody();
@@ -451,18 +472,18 @@ $app->get("/clientes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT CL.C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES CL ORDER  by CL.RAZON_SOCIAL ASC");
-   $contrato=array();
-   $contrato[]=["C_CLIENTE"=>"0","RAZON_SOCIAL"=>"Seleccionar Cliente"];
+   $resultado = $db->query("SELECT * FROM aprendea_auroco.ORD_CLIENTES;");
+   $clientes=array();
+   $clientes[]=["C_CLIENTE"=>"0","RAZON_SOCIAL"=>"Seleccionar Cliente"];
    while ($fila = $resultado->fetch_object()) {
-   $contrato[]=$fila;
+   $clientes[]=$fila;
    }
-   if(count($contrato)>0){
-       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   if(count($clientes)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$clientes);
    }else{
        $data = array("status"=>false,"rows"=>0,"data"=>null);
    }
-   echo  json_encode($contrato);
+   echo  json_encode($clientes);
 
 });
 

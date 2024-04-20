@@ -62,6 +62,7 @@
             this.rptlegal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rpt_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rptdireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.btnGuardar);
             this.tabPage1.Controls.Add(this.Código);
@@ -392,6 +394,19 @@
             this.rptdireccion.Name = "rptdireccion";
             this.rptdireccion.ReadOnly = true;
             // 
+            // button1
+            // 
+            this.button1.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(259, 44);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(66, 23);
+            this.button1.TabIndex = 49;
+            this.button1.Text = "&Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -449,5 +464,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rptdireccion;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button button1;
     }
 }

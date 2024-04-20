@@ -7,10 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AurocoPublicidad.forms
 {
@@ -34,7 +37,7 @@ namespace AurocoPublicidad.forms
             string respuesta = await GetService(Global.servicio + "/api-auroco/clientes");
             List<models.request.Cliente> lst = JsonConvert.DeserializeObject<List<models.request.Cliente>>(respuesta);
 
-        DgClientes.Rows.Clear();
+            DgClientes.Rows.Clear();
 
             foreach (Cliente ord in lst)
             {
@@ -69,8 +72,8 @@ namespace AurocoPublicidad.forms
             nuevo = false;
             btnGuardar.Text = "&Actualizar";
             pos = DgClientes.CurrentRow.Index;
-         
-            txtCodigo.Text = Convert.ToString(DgClientes[0,pos].Value);
+
+            txtCodigo.Text = Convert.ToString(DgClientes[0, pos].Value);
             txtRUC.Text = Convert.ToString(DgClientes[1, pos].Value);
             txtRazon.Text = Convert.ToString(DgClientes[2, pos].Value);
             txtcontacto.Text = Convert.ToString(DgClientes[5, pos].Value);
@@ -107,14 +110,14 @@ namespace AurocoPublicidad.forms
                 cliente.C_CLIENTE = txtCodigo.Text;
                 cliente.id = txtCodigo.Text;
                 cliente.RUC = txtRUC.Text;
-                cliente.RAZON_SOCIAL=txtRazon.Text;
+                cliente.RAZON_SOCIAL = txtRazon.Text;
                 cliente.CONTACTO = txtcontacto.Text;
-                cliente.DIRECCION = txtDireccion.Text;  
-                cliente.TELEFONO= txtTelefono.Text; 
-                cliente.RPT_LEGAL=txtRepresentante.Text;    
-                cliente.RPT_DNI=txtDNI.Text;
-                cliente.RPT_DIRECCION=txtDireccion.Text;
-                cliente.USUARIO_CREACION= Global.sessionUsuario.ToString();
+                cliente.DIRECCION = txtDireccion.Text;
+                cliente.TELEFONO = txtTelefono.Text;
+                cliente.RPT_LEGAL = txtRepresentante.Text;
+                cliente.RPT_DNI = txtDNI.Text;
+                cliente.RPT_DIRECCION = txtDireccion.Text;
+                cliente.USUARIO_CREACION = Global.sessionUsuario.ToString();
 
 
 
@@ -129,9 +132,9 @@ namespace AurocoPublicidad.forms
                 if (status == "True")
                 {
                     MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                     nuevo = true;
-                    txtCodigo.Text="";
+                    txtCodigo.Text = "";
                     txtRUC.Text = "";
                     txtRazon.Text = "";
                     txtcontacto.Text = "";
@@ -216,5 +219,70 @@ namespace AurocoPublicidad.forms
             txtDireccion.Text = "";
             rpt_Direccion.Text = "";
         }
+
+        private async Task<Ruc> GetJsonArrayFromUrlAsync<T>(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    // Realiza la solicitud HTTP GET a la URL especificada
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    // Verifica si la respuesta es exitosa
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Lee el contenido de la respuesta como una cadena
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        // Deserializa la cadena JSON en un array de tipo T
+                         Ruc ruc = JsonConvert.DeserializeObject<Ruc>(jsonResponse);
+
+                        return ruc;
+                    }
+                    else
+                    {
+                        throw new Exception("No se pudo obtener una respuesta exitosa del servidor.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Maneja excepciones si la solicitud HTTP falla
+                    throw new Exception($"Error al realizar la solicitud GET: {ex.Message}");
+                }
+            }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            if (txtRUC.Text != "") { 
+            try
+            {
+
+
+                Ruc people = await GetJsonArrayFromUrlAsync<Ruc>(Global.urlRuc+txtRUC.Text+"?token="+Global.tokenApi);
+                // Aquí puedes hacer algo con el array 'people'
+                txtRazon.Text = people.razonSocial;
+                txtDireccion.Text = people.direccion;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar un número de RUC", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
+       
+            
+
+                
+
+           
+        }
     }
-}
+

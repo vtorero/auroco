@@ -36,15 +36,15 @@
             this.Label2 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.DgMedios = new System.Windows.Forms.DataGridView();
+            this.txtDNI = new System.Windows.Forms.TextBox();
+            this.DgEjecutivos = new System.Windows.Forms.DataGridView();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fcreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgMedios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgEjecutivos)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -56,31 +56,33 @@
             this.groupBox1.Controls.Add(this.Label2);
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.txtNombre);
-            this.groupBox1.Controls.Add(this.txtDescripcion);
+            this.groupBox1.Controls.Add(this.txtDNI);
             this.groupBox1.Location = new System.Drawing.Point(27, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(706, 169);
+            this.groupBox1.Size = new System.Drawing.Size(665, 169);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(442, 114);
+            this.btnReset.Location = new System.Drawing.Point(414, 110);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(101, 40);
             this.btnReset.TabIndex = 62;
             this.btnReset.Text = "&Resetear";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(549, 114);
+            this.btnGuardar.Location = new System.Drawing.Point(521, 110);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(116, 40);
             this.btnGuardar.TabIndex = 61;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // Código
             // 
@@ -130,32 +132,32 @@
             this.txtNombre.Size = new System.Drawing.Size(464, 21);
             this.txtNombre.TabIndex = 52;
             // 
-            // txtDescripcion
+            // txtDNI
             // 
-            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDescripcion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(89, 81);
-            this.txtDescripcion.MaxLength = 100;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(147, 21);
-            this.txtDescripcion.TabIndex = 50;
+            this.txtDNI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDNI.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDNI.Location = new System.Drawing.Point(89, 81);
+            this.txtDNI.MaxLength = 100;
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(147, 21);
+            this.txtDNI.TabIndex = 50;
             // 
-            // DgMedios
+            // DgEjecutivos
             // 
-            this.DgMedios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgMedios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DgEjecutivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgEjecutivos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
             this.nombre,
             this.dni,
             this.usuario,
             this.fcreacion});
-            this.DgMedios.Location = new System.Drawing.Point(27, 200);
-            this.DgMedios.Name = "DgMedios";
-            this.DgMedios.ReadOnly = true;
-            this.DgMedios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgMedios.Size = new System.Drawing.Size(704, 213);
-            this.DgMedios.TabIndex = 41;
-            this.DgMedios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgMedios_CellContentClick);
+            this.DgEjecutivos.Location = new System.Drawing.Point(27, 200);
+            this.DgEjecutivos.Name = "DgEjecutivos";
+            this.DgEjecutivos.ReadOnly = true;
+            this.DgEjecutivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgEjecutivos.Size = new System.Drawing.Size(665, 213);
+            this.DgEjecutivos.TabIndex = 41;
+            this.DgEjecutivos.DoubleClick += new System.EventHandler(this.DdEjecutivos_DoubleClick);
             // 
             // codigo
             // 
@@ -168,7 +170,7 @@
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Width = 180;
+            this.nombre.Width = 220;
             // 
             // dni
             // 
@@ -192,15 +194,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 438);
+            this.ClientSize = new System.Drawing.Size(714, 438);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.DgMedios);
+            this.Controls.Add(this.DgEjecutivos);
             this.Name = "FrmEjecutivo";
             this.Text = "FrmEjecutivo";
             this.Load += new System.EventHandler(this.FrmEjecutivo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgMedios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgEjecutivos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -215,8 +217,8 @@
         internal System.Windows.Forms.Label Label2;
         protected System.Windows.Forms.TextBox txtCodigo;
         internal System.Windows.Forms.TextBox txtNombre;
-        internal System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.DataGridView DgMedios;
+        internal System.Windows.Forms.TextBox txtDNI;
+        private System.Windows.Forms.DataGridView DgEjecutivos;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;

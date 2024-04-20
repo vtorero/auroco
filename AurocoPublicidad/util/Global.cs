@@ -7,5 +7,7 @@ namespace AurocoPublicidad.util
         public static string sessionUsuario;
         public static string rutaReportes = "bin\\Debug";
         public static string servicio= "https://lh-cjm.com";
+        public static string tokenApi = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InZ0b3Jlcm9AZ21haWwuY29tIn0.j-kQo0Dz4mb9wH3NjeXcurSu0MpBWfqt-AODCMKzpjM";
+        public static string urlRuc = "https://dniruc.apisperu.com/api/v1/ruc/";
     }
 }
