@@ -38,6 +38,10 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.DgEjecutivos = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textoNombre = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +53,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.btnGuardar);
             this.groupBox1.Controls.Add(this.Código);
@@ -57,15 +62,15 @@
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.txtDNI);
-            this.groupBox1.Location = new System.Drawing.Point(27, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(665, 169);
+            this.groupBox1.Size = new System.Drawing.Size(665, 175);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(414, 110);
+            this.btnReset.Location = new System.Drawing.Point(415, 115);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(101, 40);
             this.btnReset.TabIndex = 62;
@@ -76,7 +81,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(521, 110);
+            this.btnGuardar.Location = new System.Drawing.Point(522, 115);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(116, 40);
             this.btnGuardar.TabIndex = 61;
@@ -96,16 +101,16 @@
             // Label1
             // 
             this.Label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(20, 51);
+            this.Label1.Location = new System.Drawing.Point(21, 80);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(63, 16);
             this.Label1.TabIndex = 56;
-            this.Label1.Text = "Nombre:";
+            this.Label1.Text = "Nombres:";
             // 
             // Label2
             // 
             this.Label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(46, 83);
+            this.Label2.Location = new System.Drawing.Point(46, 53);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(37, 21);
             this.Label2.TabIndex = 57;
@@ -126,7 +131,7 @@
             // 
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(89, 51);
+            this.txtNombre.Location = new System.Drawing.Point(90, 75);
             this.txtNombre.MaxLength = 180;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(464, 21);
@@ -136,7 +141,7 @@
             // 
             this.txtDNI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDNI.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNI.Location = new System.Drawing.Point(89, 81);
+            this.txtDNI.Location = new System.Drawing.Point(89, 48);
             this.txtDNI.MaxLength = 100;
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(147, 21);
@@ -151,13 +156,56 @@
             this.dni,
             this.usuario,
             this.fcreacion});
-            this.DgEjecutivos.Location = new System.Drawing.Point(27, 200);
+            this.DgEjecutivos.Location = new System.Drawing.Point(12, 232);
             this.DgEjecutivos.Name = "DgEjecutivos";
             this.DgEjecutivos.ReadOnly = true;
             this.DgEjecutivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgEjecutivos.Size = new System.Drawing.Size(665, 213);
+            this.DgEjecutivos.Size = new System.Drawing.Size(665, 183);
             this.DgEjecutivos.TabIndex = 41;
             this.DgEjecutivos.DoubleClick += new System.EventHandler(this.DdEjecutivos_DoubleClick);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(446, 200);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(63, 26);
+            this.button3.TabIndex = 55;
+            this.button3.Text = "Buscar";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textoNombre
+            // 
+            this.textoNombre.Location = new System.Drawing.Point(76, 204);
+            this.textoNombre.Name = "textoNombre";
+            this.textoNombre.Size = new System.Drawing.Size(363, 20);
+            this.textoNombre.TabIndex = 54;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 206);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 53;
+            this.label9.Text = "Nombres:";
+            // 
+            // button1
+            // 
+            this.button1.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(242, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(66, 23);
+            this.button1.TabIndex = 63;
+            this.button1.Text = "&Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // codigo
             // 
@@ -170,7 +218,7 @@
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Width = 220;
+            this.nombre.Width = 200;
             // 
             // dni
             // 
@@ -189,12 +237,16 @@
             this.fcreacion.HeaderText = "Fecha Creación";
             this.fcreacion.Name = "fcreacion";
             this.fcreacion.ReadOnly = true;
+            this.fcreacion.Width = 150;
             // 
             // FrmEjecutivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 438);
+            this.ClientSize = new System.Drawing.Size(700, 438);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textoNombre);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DgEjecutivos);
             this.Name = "FrmEjecutivo";
@@ -204,6 +256,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgEjecutivos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -219,6 +272,10 @@
         internal System.Windows.Forms.TextBox txtNombre;
         internal System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.DataGridView DgEjecutivos;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textoNombre;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni;

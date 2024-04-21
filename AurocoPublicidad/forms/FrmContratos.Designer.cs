@@ -52,6 +52,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textoRazon = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.DgContratos = new System.Windows.Forms.DataGridView();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,14 +73,10 @@
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textoRazon = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgContratos)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgContratos)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -304,6 +304,51 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.textoRazon);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Location = new System.Drawing.Point(34, 19);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(586, 59);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Busqueda";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.Location = new System.Drawing.Point(500, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(63, 26);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // textoRazon
+            // 
+            this.textoRazon.Location = new System.Drawing.Point(85, 23);
+            this.textoRazon.Name = "textoRazon";
+            this.textoRazon.Size = new System.Drawing.Size(407, 20);
+            this.textoRazon.TabIndex = 1;
+            this.textoRazon.TextChanged += new System.EventHandler(this.textoRazon_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Razón Social:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
             // DgContratos
             // 
             this.DgContratos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -429,49 +474,6 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Razón Social:";
-            // 
-            // textoRazon
-            // 
-            this.textoRazon.Location = new System.Drawing.Point(85, 23);
-            this.textoRazon.Name = "textoRazon";
-            this.textoRazon.Size = new System.Drawing.Size(407, 20);
-            this.textoRazon.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Image = global::AurocoPublicidad.Properties.Resources.buscar;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button1.Location = new System.Drawing.Point(500, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 26);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Buscar";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.textoRazon);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(34, 19);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(586, 59);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Busqueda";
-            // 
             // FrmContratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,9 +489,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgContratos)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgContratos)).EndInit();
             this.ResumeLayout(false);
 
         }

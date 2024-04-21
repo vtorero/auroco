@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.Código = new System.Windows.Forms.Label();
@@ -62,7 +63,9 @@
             this.rptlegal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rpt_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rptdireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textoRazon = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -77,7 +80,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(737, 261);
+            this.tabControl1.Size = new System.Drawing.Size(737, 222);
             this.tabControl1.TabIndex = 36;
             // 
             // tabPage1
@@ -100,16 +103,29 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(729, 235);
+            this.tabPage1.Size = new System.Drawing.Size(729, 196);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Datos Cliente";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(431, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(66, 23);
+            this.button1.TabIndex = 49;
+            this.button1.Text = "&Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(470, 179);
+            this.button2.Location = new System.Drawing.Point(470, 153);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 40);
+            this.button2.Size = new System.Drawing.Size(101, 37);
             this.button2.TabIndex = 48;
             this.button2.Text = "&Resetear";
             this.button2.UseVisualStyleBackColor = true;
@@ -118,9 +134,9 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(577, 179);
+            this.btnGuardar.Location = new System.Drawing.Point(577, 153);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(116, 40);
+            this.btnGuardar.Size = new System.Drawing.Size(116, 37);
             this.btnGuardar.TabIndex = 47;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -138,7 +154,7 @@
             // Label1
             // 
             this.Label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(6, 75);
+            this.Label1.Location = new System.Drawing.Point(6, 42);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(91, 16);
             this.Label1.TabIndex = 42;
@@ -147,7 +163,7 @@
             // Label3
             // 
             this.Label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(32, 135);
+            this.Label3.Location = new System.Drawing.Point(32, 102);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(71, 16);
             this.Label3.TabIndex = 44;
@@ -156,7 +172,7 @@
             // Label2
             // 
             this.Label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(34, 104);
+            this.Label2.Location = new System.Drawing.Point(34, 71);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(69, 16);
             this.Label2.TabIndex = 43;
@@ -177,7 +193,7 @@
             // 
             this.txtRazon.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRazon.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRazon.Location = new System.Drawing.Point(111, 75);
+            this.txtRazon.Location = new System.Drawing.Point(111, 42);
             this.txtRazon.MaxLength = 180;
             this.txtRazon.Name = "txtRazon";
             this.txtRazon.Size = new System.Drawing.Size(582, 21);
@@ -187,7 +203,7 @@
             // 
             this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDireccion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(111, 134);
+            this.txtDireccion.Location = new System.Drawing.Point(111, 101);
             this.txtDireccion.MaxLength = 200;
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(582, 21);
@@ -196,7 +212,7 @@
             // Label5
             // 
             this.Label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(53, 45);
+            this.Label5.Location = new System.Drawing.Point(225, 15);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(44, 16);
             this.Label5.TabIndex = 46;
@@ -205,7 +221,7 @@
             // Label4
             // 
             this.Label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label4.Location = new System.Drawing.Point(35, 164);
+            this.Label4.Location = new System.Drawing.Point(35, 129);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(63, 16);
             this.Label4.TabIndex = 45;
@@ -214,7 +230,7 @@
             // txtRUC
             // 
             this.txtRUC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRUC.Location = new System.Drawing.Point(111, 44);
+            this.txtRUC.Location = new System.Drawing.Point(283, 14);
             this.txtRUC.MaxLength = 12;
             this.txtRUC.Name = "txtRUC";
             this.txtRUC.Size = new System.Drawing.Size(138, 21);
@@ -223,7 +239,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(111, 163);
+            this.txtTelefono.Location = new System.Drawing.Point(111, 128);
             this.txtTelefono.MaxLength = 12;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(147, 21);
@@ -233,7 +249,7 @@
             // 
             this.txtcontacto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcontacto.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcontacto.Location = new System.Drawing.Point(111, 104);
+            this.txtcontacto.Location = new System.Drawing.Point(111, 71);
             this.txtcontacto.MaxLength = 100;
             this.txtcontacto.Name = "txtcontacto";
             this.txtcontacto.Size = new System.Drawing.Size(582, 21);
@@ -245,7 +261,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(729, 235);
+            this.tabPage2.Size = new System.Drawing.Size(729, 196);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Representante";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -394,25 +410,45 @@
             this.rptdireccion.Name = "rptdireccion";
             this.rptdireccion.ReadOnly = true;
             // 
-            // button1
+            // button3
             // 
-            this.button1.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(259, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 23);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "&Buscar";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(469, 247);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(63, 26);
+            this.button3.TabIndex = 52;
+            this.button3.Text = "Buscar";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textoRazon
+            // 
+            this.textoRazon.Location = new System.Drawing.Point(100, 250);
+            this.textoRazon.Name = "textoRazon";
+            this.textoRazon.Size = new System.Drawing.Size(363, 20);
+            this.textoRazon.TabIndex = 51;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(19, 253);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 13);
+            this.label9.TabIndex = 50;
+            this.label9.Text = "Razón Social:";
             // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 484);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textoRazon);
             this.Controls.Add(this.DgClientes);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmClientes";
             this.Text = "Clientes";
@@ -425,6 +461,7 @@
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgClientes)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -465,5 +502,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textoRazon;
+        private System.Windows.Forms.Label label9;
     }
 }

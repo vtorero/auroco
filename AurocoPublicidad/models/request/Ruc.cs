@@ -8,7 +8,7 @@ namespace AurocoPublicidad.models.request
 {
     internal class Ruc
     {
-        public string ruc { get; set; }
+    
         public string razonSocial { get; set; }
         public string direccion { get; set; }
        

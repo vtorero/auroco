@@ -268,8 +268,9 @@ namespace AurocoPublicidad.forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
+                    //MessageBox.Show($"Error: {ex.Message}");
+                    MessageBox.Show("Número de RUC iválido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -277,12 +278,33 @@ namespace AurocoPublicidad.forms
             }
 
         }
-       
-            
 
-                
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DgClientes.Rows.Clear();
+            string url = Global.servicio + "/api-auroco/buscaclientes";
+            Cliente cliente = new Cliente();
+            cliente.RAZON_SOCIAL = textoRazon.Text;
+            string resultado = Send<Cliente>(url, cliente, "POST");
+            List<models.request.Cliente> lst = JsonConvert.DeserializeObject<List<models.request.Cliente>>(resultado);
 
-           
+
+            foreach (Cliente ord in lst)
+            {
+                int rowIndex = DgClientes.Rows.Add();
+                DgClientes.Rows[rowIndex].Cells["codigo"].Value = ord.C_CLIENTE;
+                DgClientes.Rows[rowIndex].Cells["ruc"].Value = ord.RUC;
+                DgClientes.Rows[rowIndex].Cells["razon"].Value = ord.RAZON_SOCIAL;
+                DgClientes.Rows[rowIndex].Cells["direccion"].Value = ord.DIRECCION;
+                DgClientes.Rows[rowIndex].Cells["telefono"].Value = ord.TELEFONO;
+                DgClientes.Rows[rowIndex].Cells["contacto"].Value = ord.CONTACTO;
+                DgClientes.Rows[rowIndex].Cells["rptlegal"].Value = ord.RPT_LEGAL;
+                DgClientes.Rows[rowIndex].Cells["rpt_dni"].Value = ord.RPT_DNI;
+                DgClientes.Rows[rowIndex].Cells["rptdireccion"].Value = ord.RPT_DIRECCION;
+
+
+            }
         }
+    }
     }
 
