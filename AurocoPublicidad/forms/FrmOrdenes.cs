@@ -200,7 +200,7 @@ namespace AurocoPublicidad.forms
             string url = Global.servicio + "/api-auroco/buscaorden";
             Ordenes orden = new Ordenes();
             orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
-            orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+            orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
             orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
             orden.FIN_VIGENCIA = dtHasta.Value.ToString();
             string resultado = Send<Ordenes>(url, orden, "POST");
@@ -227,6 +227,10 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
                 dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
                 dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
+                dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
+                dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
+
 
 
             }
