@@ -193,6 +193,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dataset\DsContratos.cs">
+      <DependentUpon>DsContratos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\DsContratos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsContratos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\DsOrden.cs">
       <DependentUpon>DsOrden.xsd</DependentUpon>
     </Compile>
@@ -243,11 +251,23 @@
     <Compile Include="forms\FrmOrdenes.Designer.cs">
       <DependentUpon>FrmOrdenes.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FrmPreliminar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmPreliminar.Designer.cs">
+      <DependentUpon>FrmPreliminar.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\FrmPrograma.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\FrmPrograma.Designer.cs">
       <DependentUpon>FrmPrograma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FrmReporteContratos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmReporteContratos.Designer.cs">
+      <DependentUpon>FrmReporteContratos.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\Login.cs">
       <SubType>Form</SubType>
@@ -277,6 +297,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="generico\Generico.cs" />
+    <Compile Include="reportes\crLContratos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crLContratos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="reportes\OrdenesOpt.cs">
       <DependentUpon>OrdenesOpt.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -324,8 +350,14 @@
     <EmbeddedResource Include="forms\FrmOrdenes.resx">
       <DependentUpon>FrmOrdenes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmPreliminar.resx">
+      <DependentUpon>FrmPreliminar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmPrograma.resx">
       <DependentUpon>FrmPrograma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmReporteContratos.resx">
+      <DependentUpon>FrmReporteContratos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -352,6 +384,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="reportes\crLContratos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crLContratos.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportes\OrdenesOpt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdenesOpt.cs</LastGenOutput>
@@ -368,6 +404,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptOrden.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="dataset\DsContratos.xsc">
+      <DependentUpon>DsContratos.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DsContratos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsContratos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dataset\DsContratos.xss">
+      <DependentUpon>DsContratos.xsd</DependentUpon>
+    </None>
     <None Include="dataset\DsOrden.xsc">
       <DependentUpon>DsOrden.xsd</DependentUpon>
     </None>

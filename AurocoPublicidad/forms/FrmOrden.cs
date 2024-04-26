@@ -992,7 +992,7 @@ namespace AurocoPublicidad.forms
         private void button1_Click(object sender, EventArgs e)
         {
             Form childForm = new formReportes(valorIdOrden, inicioVigencia.Value.ToString(),txtAgencia.Text);
-            //childForm.MdiParent = this;
+       
             childForm.Text = "Orden nro: "+valorIdOrden;
             childForm.Show();
 

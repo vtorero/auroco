@@ -190,5 +190,13 @@ namespace AurocoPublicidad.forms
             childForm.Text = "Mantenimiento de Programas";
             childForm.Show();
         }
+
+        private void contratosPorClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmReporteContratos();
+            childForm.MdiParent = this;
+            childForm.Text = "Reporte Contratos";
+            childForm.Show();
+        }
     }
 }

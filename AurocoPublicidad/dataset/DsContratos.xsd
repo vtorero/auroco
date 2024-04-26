@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsContratos" targetNamespace="http://tempuri.org/DsContratos.xsd" xmlns:mstns="http://tempuri.org/DsContratos.xsd" xmlns="http://tempuri.org/DsContratos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsContratos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DsContratos" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsContratos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dsContrato" msprop:Generator_RowClassName="dsContratoRow" msprop:Generator_RowEvHandlerName="dsContratoRowChangeEventHandler" msprop:Generator_RowDeletedName="dsContratoRowDeleted" msprop:Generator_RowDeletingName="dsContratoRowDeleting" msprop:Generator_RowEvArgName="dsContratoRowChangeEvent" msprop:Generator_TablePropName="dsContrato" msprop:Generator_RowChangedName="dsContratoRowChanged" msprop:Generator_UserTableName="dsContrato" msprop:Generator_RowChangingName="dsContratoRowChanging" msprop:Generator_TableClassName="dsContratoDataTable" msprop:Generator_TableVarName="tabledsContrato">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="C_CONTRATO" msprop:Generator_UserColumnName="C_CONTRATO" msprop:Generator_ColumnPropNameInTable="C_CONTRATOColumn" msprop:Generator_ColumnPropNameInRow="C_CONTRATO" msprop:Generator_ColumnVarNameInTable="columnC_CONTRATO" type="xs:string" minOccurs="0" />
+              <xs:element name="C_CLIENTE" msprop:Generator_UserColumnName="C_CLIENTE" msprop:Generator_ColumnPropNameInTable="C_CLIENTEColumn" msprop:Generator_ColumnPropNameInRow="C_CLIENTE" msprop:Generator_ColumnVarNameInTable="columnC_CLIENTE" type="xs:string" minOccurs="0" />
+              <xs:element name="RAZON_SOCIAL" msprop:Generator_UserColumnName="RAZON_SOCIAL" msprop:Generator_ColumnPropNameInTable="RAZON_SOCIALColumn" msprop:Generator_ColumnPropNameInRow="RAZON_SOCIAL" msprop:Generator_ColumnVarNameInTable="columnRAZON_SOCIAL" type="xs:string" minOccurs="0" />
+              <xs:element name="C_MONEDA" msprop:Generator_UserColumnName="C_MONEDA" msprop:Generator_ColumnPropNameInTable="C_MONEDAColumn" msprop:Generator_ColumnPropNameInRow="C_MONEDA" msprop:Generator_ColumnVarNameInTable="columnC_MONEDA" type="xs:string" minOccurs="0" />
+              <xs:element name="INICIO_VIGENCIA" msprop:Generator_UserColumnName="INICIO_VIGENCIA" msprop:Generator_ColumnPropNameInTable="INICIO_VIGENCIAColumn" msprop:Generator_ColumnPropNameInRow="INICIO_VIGENCIA" msprop:Generator_ColumnVarNameInTable="columnINICIO_VIGENCIA" type="xs:string" minOccurs="0" />
+              <xs:element name="FIN_VIGENCIA" msprop:Generator_UserColumnName="FIN_VIGENCIA" msprop:Generator_ColumnPropNameInTable="FIN_VIGENCIAColumn" msprop:Generator_ColumnPropNameInRow="FIN_VIGENCIA" msprop:Generator_ColumnVarNameInTable="columnFIN_VIGENCIA" type="xs:string" minOccurs="0" />
+              <xs:element name="INVERSION" msprop:Generator_UserColumnName="INVERSION" msprop:Generator_ColumnPropNameInTable="INVERSIONColumn" msprop:Generator_ColumnPropNameInRow="INVERSION" msprop:Generator_ColumnVarNameInTable="columnINVERSION" type="xs:double" minOccurs="0" />
+              <xs:element name="SALDO" msprop:Generator_UserColumnName="SALDO" msprop:Generator_ColumnPropNameInTable="SALDOColumn" msprop:Generator_ColumnPropNameInRow="SALDO" msprop:Generator_ColumnVarNameInTable="columnSALDO" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
