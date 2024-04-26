@@ -31,10 +31,24 @@ namespace AurocoPublicidad.forms
         {
             Cursor.Current = Cursors.WaitCursor;
             string apiUrl = Global.servicio + "/api-auroco/reporte-contrato-cliente";
-            
-            Cliente cliente = new Cliente();
 
-            string resultado = Send<Cliente>(apiUrl, cliente, "POST");
+            Reporte reporte = new Reporte();
+            reporte.C_CLIENTE= comboCliente.SelectedValue.ToString();
+            reporte.FECHA_INICIO = inicioVigencia.Text.ToString();
+            reporte.FECHA_FIN = finVigencia.Text.ToString();
+            if (rbnDolares.Checked)
+            {
+                reporte.MONEDA = "Dolares";
+            }
+            if (rbnSoles.Checked)
+            {
+                reporte.MONEDA = "Soles";
+            }
+
+
+            // reporte.MONEDA = 
+
+            string resultado = Send<Reporte>(apiUrl, reporte, "POST");
 
 
             ReportDocument reportDocument = new ReportDocument();
@@ -44,6 +58,8 @@ namespace AurocoPublicidad.forms
             var datos = JsonConvert.DeserializeObject<List<Contrato>>(resultado);
             reportDocument.SetDataSource(datos);
             reportDocument.SetParameterValue("usuario", Global.sessionUsuario);
+            reportDocument.SetParameterValue("desde", inicioVigencia.Text.ToString());
+            reportDocument.SetParameterValue("hasta", finVigencia.Text.ToString());
             FrmPreliminar childForm = new FrmPreliminar();
             childForm.Text = "Reporte de Contratos";
             childForm.crystalReportViewer1.ReportSource = reportDocument;
@@ -95,5 +111,28 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
+        private void rbnFecha_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void FrmReporteContratos_Load(object sender, EventArgs e)
+        {
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            comboCliente.SelectedValue = "0";
+        }
+
+        private async Task<string> GetService(string cadena)
+        {
+            WebRequest oRequest = WebRequest.Create(cadena);
+            WebResponse oResponse = await oRequest.GetResponseAsync();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return await sr.ReadToEndAsync();
+
+        }
     }
 }

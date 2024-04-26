@@ -292,6 +292,7 @@
     <Compile Include="models\request\OrdenesLinea.cs" />
     <Compile Include="models\request\Ordenes.cs" />
     <Compile Include="models\request\Programa.cs" />
+    <Compile Include="models\request\Reporte.cs" />
     <Compile Include="models\request\Ruc.cs" />
     <Compile Include="models\request\UsuarioRequest.cs" />
     <Compile Include="Program.cs" />
