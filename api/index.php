@@ -1589,7 +1589,38 @@ and CO.INICIO_VIGENCIA BETWEEN '{$inicio}' AND '{$fin}' and C.C_CLIENTE='{$data-
 
 });
 
+$app->post("/reporte-medios-cliente",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+   $fecha1 = explode("/", $data->FECHA_INICIO);
+   $fecha2= explode("/", $data->FECHA_FIN);
+   $ano1=explode(" ",$fecha1[2]);
+   $ano2=explode(" ",$fecha2[2]);
+   $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
+   $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
+
+$sql="SELECT var.c_cliente,var.razon_social,var.nombre,var.c_moneda,sum(inversion) inversion from
+(SELECT O.C_CLIENTE,C.RAZON_SOCIAL ,M.C_MEDIO,ME.NOMBRE,O.C_MONEDA,SUM(INVERSION) INVERSION
+FROM ORD_ORDENES O,ORD_MEDIOS M, ORD_CLIENTES C,ORD_MEDIOS ME
+WHERE O.C_MEDIO=ME.C_MEDIO AND O.C_CLIENTE=C.C_CLIENTE AND O.ACTIVA='SI' AND O.C_MEDIO=M.C_MEDIO AND O.C_MONEDA='{$data->MONEDA}' AND O.C_CLIENTE='{$data->C_CLIENTE}'
+AND O.INICIO_VIGENCIA between '{$inicio}' AND '{$fin}' group by O.C_CLIENTE,C.RAZON_SOCIAL,O.C_MEDIO,ME.NOMBRE,O.INICIO_VIGENCIA) var group by 1,2,3 ORDER
+BY INVERSION ASC";
+
+   $resultado = $db->query($sql);
+
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contrato[]=$fila;
+   }
+   if(count($contrato)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contrato);
+
+});
 
 
 $app->run();

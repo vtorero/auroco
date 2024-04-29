@@ -193,6 +193,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dataset\ClienteMedio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClienteMedio.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\DsContratos.cs">
       <DependentUpon>DsContratos.xsd</DependentUpon>
     </Compile>
@@ -269,6 +274,12 @@
     <Compile Include="forms\FrmReporteContratos.Designer.cs">
       <DependentUpon>FrmReporteContratos.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FrmReporteMedios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmReporteMedios.Designer.cs">
+      <DependentUpon>FrmReporteMedios.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +292,7 @@
     <Compile Include="forms\MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="models\request\ClienteMedio.cs" />
     <Compile Include="models\request\Dni.cs" />
     <Compile Include="models\request\Ejecutivo.cs" />
     <Compile Include="models\request\Medio.cs" />
@@ -322,6 +334,12 @@
       <DependentUpon>orden.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="reportes\rpClientemedio.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rpClientemedio.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="reportes\rptOrden.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -359,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmReporteContratos.resx">
       <DependentUpon>FrmReporteContratos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmReporteMedios.resx">
+      <DependentUpon>FrmReporteMedios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -401,10 +422,25 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>orden.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="reportes\rpClientemedio.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rpClientemedio.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportes\rptOrden.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptOrden.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="dataset\ClienteMedio.xsc">
+      <DependentUpon>ClienteMedio.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\ClienteMedio.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ClienteMedio.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dataset\ClienteMedio.xss">
+      <DependentUpon>ClienteMedio.xsd</DependentUpon>
+    </None>
     <None Include="dataset\DsContratos.xsc">
       <DependentUpon>DsContratos.xsd</DependentUpon>
     </None>
