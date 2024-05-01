@@ -280,6 +280,12 @@
     <Compile Include="forms\FrmReporteMedios.Designer.cs">
       <DependentUpon>FrmReporteMedios.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FrmReporteUtilidadCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmReporteUtilidadCliente.Designer.cs">
+      <DependentUpon>FrmReporteUtilidadCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +311,7 @@
     <Compile Include="models\request\Ordenes.cs" />
     <Compile Include="models\request\Programa.cs" />
     <Compile Include="models\request\Reporte.cs" />
+    <Compile Include="models\request\ReporteUilidad.cs" />
     <Compile Include="models\request\Ruc.cs" />
     <Compile Include="models\request\UsuarioRequest.cs" />
     <Compile Include="Program.cs" />
@@ -380,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmReporteMedios.resx">
       <DependentUpon>FrmReporteMedios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmReporteUtilidadCliente.resx">
+      <DependentUpon>FrmReporteUtilidadCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

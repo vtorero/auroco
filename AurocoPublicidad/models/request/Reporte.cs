@@ -12,6 +12,8 @@ namespace AurocoPublicidad.models.request
         public string FECHA_INICIO { get; set; }
         public string FECHA_FIN { get; set; }
         public string MONEDA{ get; set; }
-        
+
+       
+
     }
 }
