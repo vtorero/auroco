@@ -198,6 +198,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClienteMedio.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\DataUtilidad.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataUtilidad.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\DsContratos.cs">
       <DependentUpon>DsContratos.xsd</DependentUpon>
     </Compile>
@@ -323,6 +328,12 @@
       <DependentUpon>crLContratos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="reportes\crUtilidad.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crUtilidad.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="reportes\OrdenesOpt.cs">
       <DependentUpon>OrdenesOpt.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -420,6 +431,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crLContratos.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="reportes\crUtilidad.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crUtilidad.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportes\OrdenesOpt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdenesOpt.cs</LastGenOutput>
@@ -450,6 +465,17 @@
     </None>
     <None Include="dataset\ClienteMedio.xss">
       <DependentUpon>ClienteMedio.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DataUtilidad.xsc">
+      <DependentUpon>DataUtilidad.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DataUtilidad.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataUtilidad.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dataset\DataUtilidad.xss">
+      <DependentUpon>DataUtilidad.xsd</DependentUpon>
     </None>
     <None Include="dataset\DsContratos.xsc">
       <DependentUpon>DsContratos.xsd</DependentUpon>

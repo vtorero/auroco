@@ -1622,5 +1622,45 @@ BY INVERSION ASC";
 
 });
 
+$app->post("/reporte-utilidades",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+   $fecha1 = explode("/", $data->INICIO_VIGENCIA);
+   $fecha2= explode("/", $data->FIN_VIGENCIA);
+   $ano1=explode(" ",$fecha1[2]);
+   $ano2=explode(" ",$fecha2[2]);
+   $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
+   $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
+
+
+$sql="SELECT CO.C_CONTRATO,C.C_CLIENTE,C.RAZON_SOCIAL,C.RUC,CO.INICIO_VIGENCIA,CO.FIN_VIGENCIA,
+CO.C_MONEDA,CO.INVERSION, (CO.INVERSION - (SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=CO.C_CONTRATO AND N_MOVIMIENTO=
+(SELECT MAX(N_MOVIMIENTO) FROM ORD_MOVIMIENTO_SALDOS SAL WHERE CO.C_CONTRATO = SAL.C_CONTRATO))) MONTO_ORDENADO,
+(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=CO.C_CONTRATO AND N_MOVIMIENTO=
+(SELECT MAX(N_MOVIMIENTO) FROM ORD_MOVIMIENTO_SALDOS SAL WHERE CO.C_CONTRATO = SAL.C_CONTRATO)) UTILIDAD FROM ORD_CONTRATOS   CO,
+ORD_MOVIMIENTO_SALDOS S, ORD_CLIENTES C
+ WHERE(S.C_CONTRATO = CO.C_CONTRATO) AND CO.C_CLIENTE = C.C_CLIENTE  AND S.N_MOVIMIENTO=
+(select max(M.N_MOVIMIENTO) from  ORD_MOVIMIENTO_SALDOS M
+  where M.C_CONTRATO = CO.C_CONTRATO) and CO.INICIO_VIGENCIA BETWEEN '{$inicio}' AND '{$fin}' AND CO.C_CLIENTE='{$data->C_CLIENTE}' AND CO.C_MONEDA='{$data->C_MONEDA}'
+  GROUP BY CO.C_CONTRATO, C.C_CLIENTE,C.RAZON_SOCIAL,C.RUC,CO.MONTO_ORDENAR, CO.C_MONEDA,CO.INICIO_VIGENCIA,CO.FIN_VIGENCIA,CO.INVERSION,S.SALDO_ACTUAL ORDER BY INICIO_VIGENCIA DESC";
+
+
+
+   $resultado = $db->query($sql);
+
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contrato[]=$fila;
+   }
+   if(count($contrato)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contrato);
+
+});
+
+
 
 $app->run();

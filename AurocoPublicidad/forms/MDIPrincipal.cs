@@ -206,5 +206,13 @@ namespace AurocoPublicidad.forms
             childForm.Text = "Reporte de medios";
             childForm.Show();
         }
+
+        private void reporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmReporteUtilidadCliente();
+            childForm.MdiParent = this;
+            childForm.Text = "Reporte de Utilidades";
+            childForm.Show();
+        }
     }
 }

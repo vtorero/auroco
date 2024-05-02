@@ -37,38 +37,38 @@ namespace AurocoPublicidad.forms
         private void btnPrint_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            string apiUrl = Global.servicio + "/api-auroco/reporte-medios-cliente";
+            string apiUrl = Global.servicio + "/api-auroco/reporte-utilidades";
 
-            Reporte reporte = new Reporte();
+            ReporteUilidad reporte = new ReporteUilidad();
             reporte.C_CLIENTE = comboCliente.SelectedValue.ToString();
-            reporte.FECHA_INICIO = inicioVigencia.Text.ToString();
-            reporte.FECHA_FIN = finVigencia.Text.ToString();
+            reporte.INICIO_VIGENCIA = inicioVigencia.Text.ToString();
+            reporte.FIN_VIGENCIA= finVigencia.Text.ToString();
             if (rbnDolares.Checked)
             {
-                reporte.MONEDA = "Dolares";
+                reporte.C_MONEDA = "Dolares";
             }
             if (rbnSoles.Checked)
             {
-                reporte.MONEDA = "Soles";
+                reporte.C_MONEDA = "Soles";
             }
 
 
             // reporte.MONEDA = 
 
-            string resultado = Send<Reporte>(apiUrl, reporte, "POST");
+            string resultado = Send<ReporteUilidad>(apiUrl, reporte, "POST");
 
 
             ReportDocument reportDocument = new ReportDocument();
 
 
-            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\rpClientemedio.rpt");
-            var datos = JsonConvert.DeserializeObject<List<ClienteMedio>>(resultado);
+            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\crUtilidad.rpt");
+            var datos = JsonConvert.DeserializeObject<List<ReporteUilidad>>(resultado);
             reportDocument.SetDataSource(datos);
-            /* reportDocument.SetParameterValue("usuario", Global.sessionUsuario);
-             reportDocument.SetParameterValue("desde", inicioVigencia.Text.ToString());
+             reportDocument.SetParameterValue("usuario", Global.sessionUsuario);
+            /* reportDocument.SetParameterValue("desde", inicioVigencia.Text.ToString());
              reportDocument.SetParameterValue("hasta", finVigencia.Text.ToString());*/
             FrmPreliminar childForm = new FrmPreliminar();
-            childForm.Text = "Reporte de Medios";
+            childForm.Text = "Reporte de Utilidades";
             childForm.crystalReportViewer1.ReportSource = reportDocument;
 
             childForm.crystalReportViewer1.Refresh();

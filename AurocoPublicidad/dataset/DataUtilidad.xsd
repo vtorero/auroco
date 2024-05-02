@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataUtilidad" targetNamespace="http://tempuri.org/DataUtilidad.xsd" xmlns:mstns="http://tempuri.org/DataUtilidad.xsd" xmlns="http://tempuri.org/DataUtilidad.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataUtilidad" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataUtilidad" msprop:Generator_DataSetName="DataUtilidad">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtUtilidad" msprop:Generator_RowEvHandlerName="dtUtilidadRowChangeEventHandler" msprop:Generator_RowDeletedName="dtUtilidadRowDeleted" msprop:Generator_RowDeletingName="dtUtilidadRowDeleting" msprop:Generator_RowEvArgName="dtUtilidadRowChangeEvent" msprop:Generator_TablePropName="dtUtilidad" msprop:Generator_RowChangedName="dtUtilidadRowChanged" msprop:Generator_RowChangingName="dtUtilidadRowChanging" msprop:Generator_TableClassName="dtUtilidadDataTable" msprop:Generator_RowClassName="dtUtilidadRow" msprop:Generator_TableVarName="tabledtUtilidad" msprop:Generator_UserTableName="dtUtilidad">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="C_CONTRATO" msprop:Generator_ColumnPropNameInRow="C_CONTRATO" msprop:Generator_ColumnPropNameInTable="C_CONTRATOColumn" msprop:Generator_ColumnVarNameInTable="columnC_CONTRATO" msprop:Generator_UserColumnName="C_CONTRATO" type="xs:string" minOccurs="0" />
+              <xs:element name="C_CLIENTE" msprop:Generator_ColumnPropNameInRow="C_CLIENTE" msprop:Generator_ColumnPropNameInTable="C_CLIENTEColumn" msprop:Generator_ColumnVarNameInTable="columnC_CLIENTE" msprop:Generator_UserColumnName="C_CLIENTE" type="xs:string" minOccurs="0" />
+              <xs:element name="RAZON_SOCIAL" msprop:Generator_ColumnPropNameInRow="RAZON_SOCIAL" msprop:Generator_ColumnPropNameInTable="RAZON_SOCIALColumn" msprop:Generator_ColumnVarNameInTable="columnRAZON_SOCIAL" msprop:Generator_UserColumnName="RAZON_SOCIAL" type="xs:string" minOccurs="0" />
+              <xs:element name="RUC" msprop:Generator_ColumnPropNameInRow="RUC" msprop:Generator_ColumnPropNameInTable="RUCColumn" msprop:Generator_ColumnVarNameInTable="columnRUC" msprop:Generator_UserColumnName="RUC" type="xs:string" minOccurs="0" />
+              <xs:element name="INICIO_VIGENCIA" msprop:Generator_ColumnPropNameInRow="INICIO_VIGENCIA" msprop:Generator_ColumnPropNameInTable="INICIO_VIGENCIAColumn" msprop:Generator_ColumnVarNameInTable="columnINICIO_VIGENCIA" msprop:Generator_UserColumnName="INICIO_VIGENCIA" type="xs:string" minOccurs="0" />
+              <xs:element name="FIN_VIGENCIA" msprop:Generator_ColumnPropNameInRow="FIN_VIGENCIA" msprop:Generator_ColumnPropNameInTable="FIN_VIGENCIAColumn" msprop:Generator_ColumnVarNameInTable="columnFIN_VIGENCIA" msprop:Generator_UserColumnName="FIN_VIGENCIA" type="xs:string" minOccurs="0" />
+              <xs:element name="C_MONEDA" msprop:Generator_ColumnPropNameInRow="C_MONEDA" msprop:Generator_ColumnPropNameInTable="C_MONEDAColumn" msprop:Generator_ColumnVarNameInTable="columnC_MONEDA" msprop:Generator_UserColumnName="C_MONEDA" type="xs:string" minOccurs="0" />
+              <xs:element name="INVERSION" msprop:Generator_ColumnPropNameInRow="INVERSION" msprop:Generator_ColumnPropNameInTable="INVERSIONColumn" msprop:Generator_ColumnVarNameInTable="columnINVERSION" msprop:Generator_UserColumnName="INVERSION" type="xs:double" minOccurs="0" />
+              <xs:element name="MONTO_ORDENADO" msprop:Generator_ColumnPropNameInRow="MONTO_ORDENADO" msprop:Generator_ColumnPropNameInTable="MONTO_ORDENADOColumn" msprop:Generator_ColumnVarNameInTable="columnMONTO_ORDENADO" msprop:Generator_UserColumnName="MONTO_ORDENADO" type="xs:double" minOccurs="0" />
+              <xs:element name="UTILIDAD" msprop:Generator_ColumnPropNameInRow="UTILIDAD" msprop:Generator_ColumnPropNameInTable="UTILIDADColumn" msprop:Generator_ColumnVarNameInTable="columnUTILIDAD" msprop:Generator_UserColumnName="UTILIDAD" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
