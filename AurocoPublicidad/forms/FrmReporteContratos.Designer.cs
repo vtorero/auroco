@@ -153,6 +153,8 @@
             this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnPrint);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmReporteContratos";
             this.Text = "FrmReporteContratos";
             this.Load += new System.EventHandler(this.FrmReporteContratos_Load);

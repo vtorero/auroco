@@ -285,6 +285,12 @@
     <Compile Include="forms\FrmReporteMedios.Designer.cs">
       <DependentUpon>FrmReporteMedios.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FrmReporteOrdenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmReporteOrdenes.Designer.cs">
+      <DependentUpon>FrmReporteOrdenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\FrmReporteUtilidadCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmReporteMedios.resx">
       <DependentUpon>FrmReporteMedios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmReporteOrdenes.resx">
+      <DependentUpon>FrmReporteOrdenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmReporteUtilidadCliente.resx">
       <DependentUpon>FrmReporteUtilidadCliente.cs</DependentUpon>
