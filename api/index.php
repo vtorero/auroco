@@ -1519,7 +1519,7 @@ $app->get("/medio_programas/:medio",function($medio) use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
 
-    $sql="SELECT p.ID,PROGRAMA,p.TEMA FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p inner join aprendea_auroco.ORD_MEDIOS m where  m.C_MEDIO='{$medio}' AND m.NOMBRE=p.CANAL ORDER BY PROGRAMA;";
+    $sql="SELECT p.ID,PROGRAMA,p.TEMA FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p inner join aprendea_auroco.ORD_MEDIOS m where  m.C_MEDIO='{$medio}' AND p.ESTADO='SI' AND m.NOMBRE=p.CANAL ORDER BY PROGRAMA;";
    $resultado = $db->query($sql);
    $contratos=array();
    while ($fila = $resultado->fetch_object()) {
