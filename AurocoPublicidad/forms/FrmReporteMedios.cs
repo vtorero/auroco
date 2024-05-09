@@ -113,9 +113,9 @@ namespace AurocoPublicidad.forms
             reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\rpClientemedio.rpt");
             var datos = JsonConvert.DeserializeObject<List<ClienteMedio>>(resultado);
             reportDocument.SetDataSource(datos);
-           /* reportDocument.SetParameterValue("usuario", Global.sessionUsuario);
+            reportDocument.SetParameterValue("usuario", Global.sessionUsuario);
             reportDocument.SetParameterValue("desde", inicioVigencia.Text.ToString());
-            reportDocument.SetParameterValue("hasta", finVigencia.Text.ToString());*/
+            reportDocument.SetParameterValue("hasta", finVigencia.Text.ToString());
             FrmPreliminar childForm = new FrmPreliminar();
             childForm.Text = "Reporte de Medios";
             childForm.crystalReportViewer1.ReportSource = reportDocument;

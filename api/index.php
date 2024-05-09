@@ -223,6 +223,41 @@ $app->post("/buscaejecutivos",function() use ($app,$db){
 
 });
 
+$app->post("/buscaprograma",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+
+   $resultado = $db->query("SELECT *  FROM ORD_PROGRAMAS_AUT WHERE PROGRAMA LIKE '%{$data->PROGRAMA}%'  order by PROGRAMA ASC");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contrato[]=$fila;
+   }
+   if(count($contrato)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contrato);
+
+});
+
+$app->post("/buscamedio",function() use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+
+   $resultado = $db->query("SELECT *  FROM ORD_MEDIOS WHERE NOMBRE LIKE '%{$data->NOMBRE}%'  order by NOMBRE ASC");
+   $contrato=array();
+   while ($fila = $resultado->fetch_object()) {
+   $contrato[]=$fila;
+   }
+   if(count($contrato)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$contrato);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($contrato);
+
+});
 
 $app->post("/buscacontratos",function() use ($app,$db){
     $json = $app->request->getBody();

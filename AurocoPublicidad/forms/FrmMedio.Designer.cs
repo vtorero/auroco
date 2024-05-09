@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.DgMedios = new System.Windows.Forms.DataGridView();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fcreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
@@ -40,12 +46,9 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fcreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textoNombre = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgMedios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,13 +63,50 @@
             this.tipo,
             this.usuario,
             this.fcreacion});
-            this.DgMedios.Location = new System.Drawing.Point(27, 232);
+            this.DgMedios.Location = new System.Drawing.Point(27, 284);
             this.DgMedios.Name = "DgMedios";
             this.DgMedios.ReadOnly = true;
             this.DgMedios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgMedios.Size = new System.Drawing.Size(704, 156);
             this.DgMedios.TabIndex = 39;
             this.DgMedios.DoubleClick += new System.EventHandler(this.DgMedios_DoubleClick);
+            // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Codigo";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            this.nombre.Width = 180;
+            // 
+            // descripcion
+            // 
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // tipo
+            // 
+            this.tipo.HeaderText = "Tipo";
+            this.tipo.Name = "tipo";
+            this.tipo.ReadOnly = true;
+            // 
+            // usuario
+            // 
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
+            // 
+            // fcreacion
+            // 
+            this.fcreacion.HeaderText = "Fecha Creación";
+            this.fcreacion.Name = "fcreacion";
+            this.fcreacion.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -182,48 +222,44 @@
             this.txtDescripcion.Size = new System.Drawing.Size(558, 21);
             this.txtDescripcion.TabIndex = 50;
             // 
-            // codigo
+            // button3
             // 
-            this.codigo.HeaderText = "Codigo";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(460, 245);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(63, 26);
+            this.button3.TabIndex = 61;
+            this.button3.Text = "Buscar";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // nombre
+            // textoNombre
             // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Width = 180;
+            this.textoNombre.Location = new System.Drawing.Point(86, 248);
+            this.textoNombre.Name = "textoNombre";
+            this.textoNombre.Size = new System.Drawing.Size(368, 20);
+            this.textoNombre.TabIndex = 60;
             // 
-            // descripcion
+            // label9
             // 
-            this.descripcion.HeaderText = "Descripción";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            // 
-            // tipo
-            // 
-            this.tipo.HeaderText = "Tipo";
-            this.tipo.Name = "tipo";
-            this.tipo.ReadOnly = true;
-            // 
-            // usuario
-            // 
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.Name = "usuario";
-            this.usuario.ReadOnly = true;
-            // 
-            // fcreacion
-            // 
-            this.fcreacion.HeaderText = "Fecha Creación";
-            this.fcreacion.Name = "fcreacion";
-            this.fcreacion.ReadOnly = true;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(31, 251);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.TabIndex = 59;
+            this.label9.Text = "Nombre:";
             // 
             // FrmMedio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 405);
+            this.ClientSize = new System.Drawing.Size(757, 452);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textoNombre);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DgMedios);
             this.Name = "FrmMedio";
@@ -233,6 +269,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -256,5 +293,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn fcreacion;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textoNombre;
+        private System.Windows.Forms.Label label9;
     }
 }

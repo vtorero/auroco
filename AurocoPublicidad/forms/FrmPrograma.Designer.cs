@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCosto = new System.Windows.Forms.TextBox();
+            this.chkEstado = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtHorario = new System.Windows.Forms.DateTimePicker();
+            this.txtDia = new System.Windows.Forms.ComboBox();
+            this.comboMedio = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -37,12 +45,6 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtPrograma = new System.Windows.Forms.TextBox();
             this.DgProgramas = new System.Windows.Forms.DataGridView();
-            this.comboMedio = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtDia = new System.Windows.Forms.ComboBox();
-            this.txtHorario = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chkEstado = new System.Windows.Forms.CheckBox();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.canal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,8 +54,9 @@
             this.fcreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtCosto = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textoNombre = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgProgramas)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +83,91 @@
             this.groupBox1.Size = new System.Drawing.Size(692, 209);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(47, 141);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 21);
+            this.label4.TabIndex = 75;
+            this.label4.Text = "Costo:";
+            // 
+            // txtCosto
+            // 
+            this.txtCosto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCosto.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCosto.Location = new System.Drawing.Point(108, 141);
+            this.txtCosto.MaxLength = 100;
+            this.txtCosto.Name = "txtCosto";
+            this.txtCosto.Size = new System.Drawing.Size(69, 21);
+            this.txtCosto.TabIndex = 7;
+            this.txtCosto.Text = "0.00";
+            // 
+            // chkEstado
+            // 
+            this.chkEstado.AutoSize = true;
+            this.chkEstado.Location = new System.Drawing.Point(394, 111);
+            this.chkEstado.Name = "chkEstado";
+            this.chkEstado.Size = new System.Drawing.Size(56, 17);
+            this.chkEstado.TabIndex = 6;
+            this.chkEstado.Text = "Activo";
+            this.chkEstado.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(218, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 21);
+            this.label1.TabIndex = 72;
+            this.label1.Text = "Horario:";
+            // 
+            // txtHorario
+            // 
+            this.txtHorario.CustomFormat = "HH:mm:ss";
+            this.txtHorario.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.txtHorario.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtHorario.Location = new System.Drawing.Point(278, 111);
+            this.txtHorario.Name = "txtHorario";
+            this.txtHorario.ShowUpDown = true;
+            this.txtHorario.Size = new System.Drawing.Size(99, 20);
+            this.txtHorario.TabIndex = 5;
+            this.txtHorario.Value = new System.DateTime(2006, 8, 17, 0, 0, 0, 0);
+            // 
+            // txtDia
+            // 
+            this.txtDia.BackColor = System.Drawing.Color.White;
+            this.txtDia.Items.AddRange(new object[] {
+            "L-V",
+            "S-D",
+            "S",
+            "D"});
+            this.txtDia.Location = new System.Drawing.Point(107, 110);
+            this.txtDia.Name = "txtDia";
+            this.txtDia.Size = new System.Drawing.Size(100, 21);
+            this.txtDia.TabIndex = 4;
+            // 
+            // comboMedio
+            // 
+            this.comboMedio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboMedio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboMedio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboMedio.FormattingEnabled = true;
+            this.comboMedio.Location = new System.Drawing.Point(108, 46);
+            this.comboMedio.Name = "comboMedio";
+            this.comboMedio.Size = new System.Drawing.Size(285, 24);
+            this.comboMedio.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(50, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 16);
+            this.label7.TabIndex = 66;
+            this.label7.Text = "Medio:";
             // 
             // label3
             // 
@@ -162,78 +250,13 @@
             this.fcreacion,
             this.usuario,
             this.estado});
-            this.DgProgramas.Location = new System.Drawing.Point(22, 237);
+            this.DgProgramas.Location = new System.Drawing.Point(22, 287);
             this.DgProgramas.Name = "DgProgramas";
             this.DgProgramas.ReadOnly = true;
             this.DgProgramas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgProgramas.Size = new System.Drawing.Size(695, 156);
+            this.DgProgramas.Size = new System.Drawing.Size(810, 156);
             this.DgProgramas.TabIndex = 10;
             this.DgProgramas.DoubleClick += new System.EventHandler(this.DgProgramas_DoubleClick);
-            // 
-            // comboMedio
-            // 
-            this.comboMedio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboMedio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboMedio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboMedio.FormattingEnabled = true;
-            this.comboMedio.Location = new System.Drawing.Point(108, 46);
-            this.comboMedio.Name = "comboMedio";
-            this.comboMedio.Size = new System.Drawing.Size(285, 24);
-            this.comboMedio.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(50, 49);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 16);
-            this.label7.TabIndex = 66;
-            this.label7.Text = "Medio:";
-            // 
-            // txtDia
-            // 
-            this.txtDia.BackColor = System.Drawing.Color.White;
-            this.txtDia.Items.AddRange(new object[] {
-            "L-V",
-            "S-D",
-            "S",
-            "D"});
-            this.txtDia.Location = new System.Drawing.Point(107, 110);
-            this.txtDia.Name = "txtDia";
-            this.txtDia.Size = new System.Drawing.Size(100, 21);
-            this.txtDia.TabIndex = 4;
-            // 
-            // txtHorario
-            // 
-            this.txtHorario.CustomFormat = "HH:mm:ss";
-            this.txtHorario.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.txtHorario.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtHorario.Location = new System.Drawing.Point(278, 111);
-            this.txtHorario.Name = "txtHorario";
-            this.txtHorario.ShowUpDown = true;
-            this.txtHorario.Size = new System.Drawing.Size(99, 20);
-            this.txtHorario.TabIndex = 5;
-            this.txtHorario.Value = new System.DateTime(2006, 8, 17, 0, 0, 0, 0);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(218, 111);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 21);
-            this.label1.TabIndex = 72;
-            this.label1.Text = "Horario:";
-            // 
-            // chkEstado
-            // 
-            this.chkEstado.AutoSize = true;
-            this.chkEstado.Location = new System.Drawing.Point(394, 111);
-            this.chkEstado.Name = "chkEstado";
-            this.chkEstado.Size = new System.Drawing.Size(56, 17);
-            this.chkEstado.TabIndex = 6;
-            this.chkEstado.Text = "Activo";
-            this.chkEstado.UseVisualStyleBackColor = true;
             // 
             // codigo
             // 
@@ -290,31 +313,44 @@
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
             // 
-            // txtCosto
+            // button3
             // 
-            this.txtCosto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCosto.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCosto.Location = new System.Drawing.Point(108, 141);
-            this.txtCosto.MaxLength = 100;
-            this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(69, 21);
-            this.txtCosto.TabIndex = 7;
-            this.txtCosto.Text = "0.00";
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(452, 237);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(63, 26);
+            this.button3.TabIndex = 58;
+            this.button3.Text = "Buscar";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label4
+            // textoNombre
             // 
-            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(47, 141);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 21);
-            this.label4.TabIndex = 75;
-            this.label4.Text = "Costo:";
+            this.textoNombre.Location = new System.Drawing.Point(78, 240);
+            this.textoNombre.Name = "textoNombre";
+            this.textoNombre.Size = new System.Drawing.Size(368, 20);
+            this.textoNombre.TabIndex = 57;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(23, 243);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Nombre:";
             // 
             // FrmPrograma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 417);
+            this.ClientSize = new System.Drawing.Size(866, 455);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textoNombre);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DgProgramas);
             this.Name = "FrmPrograma";
@@ -324,6 +360,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgProgramas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -355,5 +392,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         internal System.Windows.Forms.Label label4;
         internal System.Windows.Forms.TextBox txtCosto;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textoNombre;
+        private System.Windows.Forms.Label label9;
     }
 }

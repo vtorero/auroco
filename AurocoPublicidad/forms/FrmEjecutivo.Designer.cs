@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.Código = new System.Windows.Forms.Label();
@@ -38,15 +39,14 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.DgEjecutivos = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textoNombre = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fcreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textoNombre = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgEjecutivos)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +67,19 @@
             this.groupBox1.Size = new System.Drawing.Size(665, 175);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(242, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(66, 23);
+            this.button1.TabIndex = 63;
+            this.button1.Text = "&Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnReset
             // 
@@ -164,49 +177,6 @@
             this.DgEjecutivos.TabIndex = 41;
             this.DgEjecutivos.DoubleClick += new System.EventHandler(this.DdEjecutivos_DoubleClick);
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Image = global::AurocoPublicidad.Properties.Resources.buscar;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button3.Location = new System.Drawing.Point(446, 200);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(63, 26);
-            this.button3.TabIndex = 55;
-            this.button3.Text = "Buscar";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // textoNombre
-            // 
-            this.textoNombre.Location = new System.Drawing.Point(76, 204);
-            this.textoNombre.Name = "textoNombre";
-            this.textoNombre.Size = new System.Drawing.Size(363, 20);
-            this.textoNombre.TabIndex = 54;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 206);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 13);
-            this.label9.TabIndex = 53;
-            this.label9.Text = "Nombres:";
-            // 
-            // button1
-            // 
-            this.button1.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(242, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 23);
-            this.button1.TabIndex = 63;
-            this.button1.Text = "&Buscar";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // codigo
             // 
             this.codigo.HeaderText = "Codigo";
@@ -238,6 +208,38 @@
             this.fcreacion.Name = "fcreacion";
             this.fcreacion.ReadOnly = true;
             this.fcreacion.Width = 150;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Image = global::AurocoPublicidad.Properties.Resources.buscar;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(446, 200);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(63, 26);
+            this.button3.TabIndex = 55;
+            this.button3.Text = "Buscar";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textoNombre
+            // 
+            this.textoNombre.Location = new System.Drawing.Point(76, 204);
+            this.textoNombre.Name = "textoNombre";
+            this.textoNombre.Size = new System.Drawing.Size(363, 20);
+            this.textoNombre.TabIndex = 54;
+            this.textoNombre.TextChanged += new System.EventHandler(this.textoNombre_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 206);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 53;
+            this.label9.Text = "Nombres:";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // FrmEjecutivo
             // 

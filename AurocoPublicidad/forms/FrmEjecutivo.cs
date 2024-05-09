@@ -265,5 +265,15 @@ ejecutivo.USUARIO = Global.sessionUsuario.ToString().ToUpper();
 
             }
         }
+
+        private void textoNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

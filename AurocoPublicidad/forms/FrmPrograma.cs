@@ -218,5 +218,34 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DgProgramas.Rows.Clear();
+            string url = Global.servicio + "/api-auroco/buscaprograma";
+            Programa programa = new Programa();
+            programa.PROGRAMA = textoNombre.Text;
+            string resultado = Send<Programa>(url, programa, "POST");
+            List<models.request.Programa> lst = JsonConvert.DeserializeObject<List<models.request.Programa>>(resultado);
+
+
+            DgProgramas.Rows.Clear();
+
+
+            foreach (Programa med in lst)
+            {
+                int rowIndex = DgProgramas.Rows.Add();
+                DgProgramas.Rows[rowIndex].Cells["codigo"].Value = med.ID;
+                DgProgramas.Rows[rowIndex].Cells["nombre"].Value = med.PROGRAMA;
+                DgProgramas.Rows[rowIndex].Cells["canal"].Value = med.CANAL;
+                DgProgramas.Rows[rowIndex].Cells["dias"].Value = med.DIAS;
+                DgProgramas.Rows[rowIndex].Cells["horario"].Value = med.PERIODO;
+                DgProgramas.Rows[rowIndex].Cells["costo"].Value = med.COSTO;
+                DgProgramas.Rows[rowIndex].Cells["usuario"].Value = med.C_USUARIO;
+                DgProgramas.Rows[rowIndex].Cells["fcreacion"].Value = med.F_CREACION;
+                DgProgramas.Rows[rowIndex].Cells["estado"].Value = med.ESTADO;
+
+            }
+        }
     }
-}
+    }
+

@@ -201,5 +201,30 @@ namespace AurocoPublicidad.forms
             btnGuardar.Text = "&Guardar";
             cmbTipo.SelectedIndex = 0;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DgMedios.Rows.Clear();
+            string url = Global.servicio + "/api-auroco/buscamedio";
+            Medio medio= new Medio();
+            medio.NOMBRE = textoNombre.Text;
+            string resultado = Send<Medio>(url, medio, "POST");
+            List<models.request.Medio> lst = JsonConvert.DeserializeObject<List<models.request.Medio>>(resultado);
+
+
+            DgMedios.Rows.Clear();
+
+            foreach (Medio med in lst)
+            {
+                int rowIndex = DgMedios.Rows.Add();
+                DgMedios.Rows[rowIndex].Cells["codigo"].Value = med.C_MEDIO;
+                DgMedios.Rows[rowIndex].Cells["nombre"].Value = med.NOMBRE;
+                DgMedios.Rows[rowIndex].Cells["descripcion"].Value = med.DESCRIPCION;
+                DgMedios.Rows[rowIndex].Cells["tipo"].Value = med.TIPO.ToUpper();
+                DgMedios.Rows[rowIndex].Cells["usuario"].Value = med.C_USUARIO_CREACION;
+                DgMedios.Rows[rowIndex].Cells["fcreacion"].Value = med.F_CREACION;
+
+            }
+        }
     }
 }
