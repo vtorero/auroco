@@ -174,6 +174,7 @@
             this.Button1.Size = new System.Drawing.Size(80, 24);
             this.Button1.TabIndex = 80;
             this.Button1.Text = "&Imprimir";
+            this.Button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // dtFechaFinal
             // 

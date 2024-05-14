@@ -61,7 +61,7 @@ namespace AurocoPublicidad.forms
             ReportDocument reportDocument = new ReportDocument();
 
 
-            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\crUtilidad.rpt");
+            reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\reportes\\crUtilidad.rpt");
             var datos = JsonConvert.DeserializeObject<List<ReporteUilidad>>(resultado);
             reportDocument.SetDataSource(datos);
              reportDocument.SetParameterValue("usuario", Global.sessionUsuario);

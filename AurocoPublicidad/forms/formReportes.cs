@@ -41,17 +41,19 @@ namespace AurocoPublicidad.forms
 
             // Asegúrate de que tu reporte y el modelo de datos (MyDataModel) coincidan
             ReportDocument reportDocument = new ReportDocument();
+
+            //MessageBox.Show(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
             //  reportDocument.Load("orden.rpt");
             // reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
             if (valorAgencia == "AUROCO") { 
             //reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
-             reportDocument.Load("D:\\auroco\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
+             reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName+"\\reportes\\OrdenesAu.rpt");
             }
             if (valorAgencia == "OPTIMIZA") {
             //   reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
-              reportDocument.Load("D:\\auroco\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
+              reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName+"\\reportes\\OrdenesOpt.rpt");
             }
             
                 // Asigna los datos al reporte

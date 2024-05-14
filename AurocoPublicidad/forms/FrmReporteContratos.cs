@@ -54,7 +54,7 @@ namespace AurocoPublicidad.forms
             ReportDocument reportDocument = new ReportDocument();
            
 
-            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\crLContratos.rpt");
+            reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\reportes\\crLContratos.rpt");
             var datos = JsonConvert.DeserializeObject<List<Contrato>>(resultado);
             reportDocument.SetDataSource(datos);
             reportDocument.SetParameterValue("usuario", Global.sessionUsuario);

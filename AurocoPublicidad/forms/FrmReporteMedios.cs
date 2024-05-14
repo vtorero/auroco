@@ -110,7 +110,7 @@ namespace AurocoPublicidad.forms
             ReportDocument reportDocument = new ReportDocument();
 
 
-            reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\rpClientemedio.rpt");
+            reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\reportes\\rpClientemedio.rpt");
             var datos = JsonConvert.DeserializeObject<List<ClienteMedio>>(resultado);
             reportDocument.SetDataSource(datos);
             reportDocument.SetParameterValue("usuario", Global.sessionUsuario);
