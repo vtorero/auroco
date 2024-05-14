@@ -127,7 +127,7 @@ namespace AurocoPublicidad.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+            MessageBox.Show(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\reportes\\crUtilidad.rpt");
         }
     }
 }
