@@ -42,7 +42,7 @@ namespace AurocoPublicidad.forms
             // Asegúrate de que tu reporte y el modelo de datos (MyDataModel) coincidan
             ReportDocument reportDocument = new ReportDocument();
 
-            //MessageBox.Show(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+            MessageBox.Show(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //Console.Write(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
             //  reportDocument.Load("orden.rpt");
