@@ -125,7 +125,10 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+        }
     }
 }
 
