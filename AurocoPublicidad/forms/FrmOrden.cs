@@ -28,6 +28,7 @@ namespace AurocoPublicidad.forms
         private string valorContrato;
         private int valorRevision;
         private string valorEjecutivo;
+        private string valorFecha;
         private string valorInicio;
         private string valorFin;
         private string valorMoneda;
@@ -39,7 +40,7 @@ namespace AurocoPublicidad.forms
         private string valorAgencia;
         
         private  string apiUrl = Global.servicio + "/api-auroco/orden";
-        public  FrmOrden(string id,string medio,string cliente,string contrato,int revision,string ejecutivo,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones,string agencia)
+        public  FrmOrden(string id,string medio,string cliente,string contrato,int revision,string ejecutivo,string fecha,string fechainicio,string fechafin,string moneda,string total,string producto,string motivo,string duracion,string observaciones,string agencia)
         {
              
             InitializeComponent();
@@ -48,7 +49,8 @@ namespace AurocoPublicidad.forms
             valorRevision = revision;
             valorCliente = cliente;
             valorContrato=contrato;
-            valorEjecutivo = ejecutivo; 
+            valorEjecutivo = ejecutivo;
+            valorFecha = fecha;
             valorInicio = fechainicio;
             valorFin = fechafin;
             valorMoneda = moneda;

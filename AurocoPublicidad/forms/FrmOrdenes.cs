@@ -62,8 +62,9 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
                 dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
                 dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
-                dgOrdenes.Rows[rowIndex].Cells["finicio"].Value = ord.INICIO_VIGENCIA;
-                dgOrdenes.Rows[rowIndex].Cells["ffin"].Value = ord.FIN_VIGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["f_creacion"].Value = ord.F_CREACION;
+                dgOrdenes.Rows[rowIndex].Cells["f_inicio"].Value = ord.INICIO_VIGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["f_fin"].Value = ord.FIN_VIGENCIA;
                 dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
                 dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
                 dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
@@ -102,20 +103,21 @@ namespace AurocoPublicidad.forms
                 var idOrden = dgOrdenes[1, pos].Value.ToString();
                 var idMedio = dgOrdenes[4, pos].Value.ToString();
                 var idCliente = dgOrdenes[2, pos].Value.ToString();
+                var fcreacion = dgOrdenes[8, pos].Value.ToString();
                 var idEjecutivo = dgOrdenes[6, pos].Value.ToString();
-                var finicio = dgOrdenes[8, pos].Value.ToString();
-                var ffin = dgOrdenes[9, pos].Value.ToString();
-                var idContrato = dgOrdenes[10, pos].Value.ToString();
-                var revision = Convert.ToInt32(dgOrdenes[17, pos].Value);
-                var moneda = dgOrdenes[11, pos].Value.ToString();
-                var totalOrden = dgOrdenes[12, pos].Value.ToString();
+                var finicio = dgOrdenes[9, pos].Value.ToString();
+                var ffin = dgOrdenes[10, pos].Value.ToString();
+                var idContrato = dgOrdenes[11, pos].Value.ToString();
+                var revision = Convert.ToInt32(dgOrdenes[18, pos].Value);
+                var moneda = dgOrdenes[12, pos].Value.ToString();
+                var totalOrden = dgOrdenes[13, pos].Value.ToString();
 
-                var producto = dgOrdenes[13, pos].Value.ToString();
-                var motivo = dgOrdenes[14, pos].Value.ToString();
-                var duracion = dgOrdenes[15, pos].Value.ToString();
-                var observaciones = dgOrdenes[16, pos].Value.ToString();
-                var agencia = dgOrdenes[19, pos].Value.ToString();
-                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision, idEjecutivo, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones, agencia);
+                var producto = dgOrdenes[14, pos].Value.ToString();
+                var motivo = dgOrdenes[15, pos].Value.ToString();
+                var duracion = dgOrdenes[16, pos].Value.ToString();
+                var observaciones = dgOrdenes[17, pos].Value.ToString();
+                var agencia = dgOrdenes[20, pos].Value.ToString();
+                FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision, idEjecutivo,fcreacion, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones, agencia);
                 frmOrden.ShowDialog();
                 Cursor.Current = Cursors.Default;
 
@@ -218,8 +220,9 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
                 dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
                 dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
-                dgOrdenes.Rows[rowIndex].Cells["finicio"].Value = ord.INICIO_VIGENCIA;
-                dgOrdenes.Rows[rowIndex].Cells["ffin"].Value = ord.FIN_VIGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["f_creacion"].Value = ord.F_CREACION;
+                dgOrdenes.Rows[rowIndex].Cells["f_inicio"].Value = ord.INICIO_VIGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["f_fin"].Value = ord.FIN_VIGENCIA;
                 dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
                 dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
                 dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
@@ -337,7 +340,7 @@ namespace AurocoPublicidad.forms
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            Form childForm = new FrmOrden("", "", "", "", 0, "", "", "", "", "", "", "", "", "", "" );
+            Form childForm = new FrmOrden("", "", "", "", 0, "","", "", "", "", "", "", "", "", "", "" );
             //childForm.MdiParent = this;
             childForm.Text = "Ingresar Ordenes";
             childForm.Show();

@@ -29,26 +29,6 @@
         private void InitializeComponent()
         {
             this.dgOrdenes = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_MEDIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Medio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_EJECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EJECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.finicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ffin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.revision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label4 = new System.Windows.Forms.Label();
             this.dtHasta = new System.Windows.Forms.DateTimePicker();
             this.Label3 = new System.Windows.Forms.Label();
@@ -62,6 +42,27 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_MEDIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Medio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_EJECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EJECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.f_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.f_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.f_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.revision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,8 +78,9 @@
             this.Medio,
             this.C_EJECUTIVO,
             this.EJECUTIVO,
-            this.finicio,
-            this.ffin,
+            this.f_creacion,
+            this.f_inicio,
+            this.f_fin,
             this.C_CONTRATO,
             this.moneda,
             this.total,
@@ -97,111 +99,6 @@
             this.dgOrdenes.TabIndex = 0;
             this.dgOrdenes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgOrdenes_CellFormatting);
             this.dgOrdenes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgOrdenes_MouseDoubleClick);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // C_ORDEN
-            // 
-            this.C_ORDEN.HeaderText = "Orden";
-            this.C_ORDEN.Name = "C_ORDEN";
-            // 
-            // C_CLIENTE
-            // 
-            this.C_CLIENTE.HeaderText = "C_CLIENTE";
-            this.C_CLIENTE.Name = "C_CLIENTE";
-            this.C_CLIENTE.Visible = false;
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.Name = "Cliente";
-            // 
-            // C_MEDIO
-            // 
-            this.C_MEDIO.HeaderText = "C_MEDIO";
-            this.C_MEDIO.Name = "C_MEDIO";
-            this.C_MEDIO.Visible = false;
-            // 
-            // Medio
-            // 
-            this.Medio.HeaderText = "Medio";
-            this.Medio.Name = "Medio";
-            // 
-            // C_EJECUTIVO
-            // 
-            this.C_EJECUTIVO.HeaderText = "C_EJECUTIVO";
-            this.C_EJECUTIVO.Name = "C_EJECUTIVO";
-            this.C_EJECUTIVO.Visible = false;
-            // 
-            // EJECUTIVO
-            // 
-            this.EJECUTIVO.HeaderText = "Ejecutivo";
-            this.EJECUTIVO.Name = "EJECUTIVO";
-            // 
-            // finicio
-            // 
-            this.finicio.HeaderText = "Fecha inicio";
-            this.finicio.Name = "finicio";
-            // 
-            // ffin
-            // 
-            this.ffin.HeaderText = "Fecha Fin";
-            this.ffin.Name = "ffin";
-            // 
-            // C_CONTRATO
-            // 
-            this.C_CONTRATO.HeaderText = "C_CONTRATO";
-            this.C_CONTRATO.Name = "C_CONTRATO";
-            this.C_CONTRATO.Visible = false;
-            // 
-            // moneda
-            // 
-            this.moneda.HeaderText = "Moneda";
-            this.moneda.Name = "moneda";
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.Name = "producto";
-            // 
-            // motivo
-            // 
-            this.motivo.HeaderText = "Motivo";
-            this.motivo.Name = "motivo";
-            // 
-            // duracion
-            // 
-            this.duracion.HeaderText = "Duración";
-            this.duracion.Name = "duracion";
-            // 
-            // observaciones
-            // 
-            this.observaciones.HeaderText = "Observaciones";
-            this.observaciones.Name = "observaciones";
-            // 
-            // revision
-            // 
-            this.revision.HeaderText = "Revisión";
-            this.revision.Name = "revision";
-            // 
-            // activa
-            // 
-            this.activa.HeaderText = "Activa";
-            this.activa.Name = "activa";
-            // 
-            // agencia
-            // 
-            this.agencia.HeaderText = "AGENCIA";
-            this.agencia.Name = "agencia";
             // 
             // Label4
             // 
@@ -336,6 +233,118 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // C_ORDEN
+            // 
+            this.C_ORDEN.HeaderText = "Orden";
+            this.C_ORDEN.Name = "C_ORDEN";
+            // 
+            // C_CLIENTE
+            // 
+            this.C_CLIENTE.HeaderText = "C_CLIENTE";
+            this.C_CLIENTE.Name = "C_CLIENTE";
+            this.C_CLIENTE.Visible = false;
+            // 
+            // Cliente
+            // 
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.Name = "Cliente";
+            // 
+            // C_MEDIO
+            // 
+            this.C_MEDIO.HeaderText = "C_MEDIO";
+            this.C_MEDIO.Name = "C_MEDIO";
+            this.C_MEDIO.Visible = false;
+            // 
+            // Medio
+            // 
+            this.Medio.HeaderText = "Medio";
+            this.Medio.Name = "Medio";
+            // 
+            // C_EJECUTIVO
+            // 
+            this.C_EJECUTIVO.HeaderText = "C_EJECUTIVO";
+            this.C_EJECUTIVO.Name = "C_EJECUTIVO";
+            this.C_EJECUTIVO.Visible = false;
+            // 
+            // EJECUTIVO
+            // 
+            this.EJECUTIVO.HeaderText = "Ejecutivo";
+            this.EJECUTIVO.Name = "EJECUTIVO";
+            // 
+            // f_creacion
+            // 
+            this.f_creacion.HeaderText = "Fecha";
+            this.f_creacion.Name = "f_creacion";
+            // 
+            // f_inicio
+            // 
+            this.f_inicio.HeaderText = "fechainicio";
+            this.f_inicio.Name = "f_inicio";
+            this.f_inicio.Visible = false;
+            // 
+            // f_fin
+            // 
+            this.f_fin.HeaderText = "fechafin";
+            this.f_fin.Name = "f_fin";
+            this.f_fin.Visible = false;
+            // 
+            // C_CONTRATO
+            // 
+            this.C_CONTRATO.HeaderText = "C_CONTRATO";
+            this.C_CONTRATO.Name = "C_CONTRATO";
+            this.C_CONTRATO.Visible = false;
+            // 
+            // moneda
+            // 
+            this.moneda.HeaderText = "Moneda";
+            this.moneda.Name = "moneda";
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            // 
+            // motivo
+            // 
+            this.motivo.HeaderText = "Motivo";
+            this.motivo.Name = "motivo";
+            // 
+            // duracion
+            // 
+            this.duracion.HeaderText = "Duración";
+            this.duracion.Name = "duracion";
+            // 
+            // observaciones
+            // 
+            this.observaciones.HeaderText = "Observaciones";
+            this.observaciones.Name = "observaciones";
+            // 
+            // revision
+            // 
+            this.revision.HeaderText = "Revisión";
+            this.revision.Name = "revision";
+            // 
+            // activa
+            // 
+            this.activa.HeaderText = "Activa";
+            this.activa.Name = "activa";
+            // 
+            // agencia
+            // 
+            this.agencia.HeaderText = "AGENCIA";
+            this.agencia.Name = "agencia";
+            // 
             // FrmOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,6 +388,7 @@
         internal System.Windows.Forms.Button Button2;
         internal System.Windows.Forms.Button btnEditar;
         internal System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_ORDEN;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CLIENTE;
@@ -387,8 +397,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Medio;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_EJECUTIVO;
         private System.Windows.Forms.DataGridViewTextBoxColumn EJECUTIVO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn finicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ffin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn f_creacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn f_inicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn f_fin;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CONTRATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn moneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
@@ -399,6 +410,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn revision;
         private System.Windows.Forms.DataGridViewTextBoxColumn activa;
         private System.Windows.Forms.DataGridViewTextBoxColumn agencia;
-        private System.Windows.Forms.Button btnRefresh;
     }
 }

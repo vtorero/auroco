@@ -198,7 +198,6 @@
             // 
             // numRevision
             // 
-            this.numRevision.Enabled = false;
             this.numRevision.Location = new System.Drawing.Point(935, 149);
             this.numRevision.Name = "numRevision";
             this.numRevision.Size = new System.Drawing.Size(35, 20);
