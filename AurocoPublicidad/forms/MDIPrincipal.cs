@@ -214,5 +214,21 @@ namespace AurocoPublicidad.forms
             childForm.Text = "Reporte de Utilidades";
             childForm.Show();
         }
+
+        private void toolStripButton4_Click_1(object sender, EventArgs e)
+        {
+            Form childForm = new FrmOrdenes();
+            childForm.MdiParent = this;
+            childForm.Text = "Mantenimiento de Ordenes";
+            childForm.Show();
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FrmOrden("", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "");
+            childForm.MdiParent = this;
+            childForm.Text = "Ingresar Ordenes";
+            childForm.Show();
+        }
     }
 }
