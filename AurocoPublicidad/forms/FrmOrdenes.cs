@@ -198,6 +198,7 @@ namespace AurocoPublicidad.forms
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             dgOrdenes.Rows.Clear();
             string url = Global.servicio + "/api-auroco/buscaorden";
             Ordenes orden = new Ordenes();
@@ -238,7 +239,7 @@ namespace AurocoPublicidad.forms
 
             }
 
-
+            Cursor.Current = Cursors.Default;
 
 
         }

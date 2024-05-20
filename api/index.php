@@ -447,16 +447,19 @@ AND O.C_CLIENTE='{$data->C_CLIENTE}' ";
 
 if($data->C_MEDIO!="") {
 
-    $sql.=" AND M.C_MEDIO = '{$data->C_MEDIO}'";
+    $sql.=" AND M.C_MEDIO = '{$data->C_MEDIO}' ";
 
 }
 
 if($data->INICIO_VIGENCIA!="" && $data->FIN_VIGENCIA!="") {
 
-    $sql.=" AND O.F_CREACION BETWEEN '{$inicio}' and '{$fin}'";
+    $sql.=" AND O.INICIO_VIGENCIA BETWEEN '{$inicio}' and '{$fin}'";
 
 }
 $sql.=" ORDER  by O.F_CREACION DESC";
+
+//print_r($sql);
+//die;
    $resultado = $db->query($sql);
    $ordenes=array();
 
