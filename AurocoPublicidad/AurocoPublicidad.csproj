@@ -342,22 +342,28 @@
       <DependentUpon>crUtilidad.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="reportes\OrdenesAu.cs">
+      <DependentUpon>OrdenesAu.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="reportes\OrdenesOpt.cs">
       <DependentUpon>OrdenesOpt.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="reportes\OrdenesAu.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrdenesAu.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="reportes\orden.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>orden.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reportes\OrdenesOptm.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrdenesOptm.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="reportes\rpClientemedio.cs">
@@ -446,17 +452,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crUtilidad.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="reportes\OrdenesOpt.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>OrdenesOpt.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="reportes\OrdenesAu.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdenesAu.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="reportes\OrdenesOpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OrdenesOpt.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportes\orden.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>orden.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportes\OrdenesOptm.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OrdenesOptm.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="reportes\rpClientemedio.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

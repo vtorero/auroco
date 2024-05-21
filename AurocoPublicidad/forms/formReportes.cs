@@ -53,7 +53,7 @@ namespace AurocoPublicidad.forms
             }
             if (valorAgencia == "OPTIMIZA") {
             //   reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesOpt.rpt");
-              reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName+"\\reportes\\OrdenesOpt.rpt");
+              reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName+"\\reportes\\OrdenesOptm.rpt");
             }
             
                 // Asigna los datos al reporte

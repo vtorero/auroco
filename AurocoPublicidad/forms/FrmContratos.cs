@@ -49,6 +49,8 @@ namespace AurocoPublicidad.forms
 
         private async void cargarContratos()
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             string respuesta = await GetService(Global.servicio + "/api-auroco/contratos");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
 
@@ -76,7 +78,7 @@ namespace AurocoPublicidad.forms
                 DgContratos.Rows[rowIndex].Cells["tcambio"].Value = ord.TIPO_CAMBIO;
 
             }
-
+            Cursor.Current = Cursors.Default;
         }
 
             private async Task<string> GetService(string cadena)
@@ -249,35 +251,52 @@ namespace AurocoPublicidad.forms
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            DgContratos.Rows.Clear();   
-            string url = Global.servicio + "/api-auroco/buscacontratos";
-            Contrato contrato = new Contrato();
-            contrato.RAZON_SOCIAL = textoRazon.Text;
-            string resultado = Send<Contrato>(url, contrato, "POST");
-            List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
-
-    
-            foreach (Contrato ord in lst)
+            try
             {
-                int rowIndex = DgContratos.Rows.Add();
-                DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
-                DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
-                DgContratos.Rows[rowIndex].Cells["cliente"].Value = ord.C_CLIENTE;
-                DgContratos.Rows[rowIndex].Cells["razon_social"].Value = ord.RAZON_SOCIAL;
-                DgContratos.Rows[rowIndex].Cells["inicioVigencia"].Value = ord.INICIO_VIGENCIA;
-                DgContratos.Rows[rowIndex].Cells["finVigencia"].Value = ord.FIN_VIGENCIA;
-                DgContratos.Rows[rowIndex].Cells["saldo"].Value = ord.SALDO;
-                DgContratos.Rows[rowIndex].Cells["nrofisico"].Value = ord.NRO_FISICO;
-                DgContratos.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
-                DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
-                DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
-                DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
-                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
-                DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
+                Cursor.Current = Cursors.WaitCursor;
+                DgContratos.Rows.Clear();
+                string url = Global.servicio + "/api-auroco/buscacontratos";
+                Contrato contrato = new Contrato();
+                contrato.RAZON_SOCIAL = textoRazon.Text;
+                string resultado = Send<Contrato>(url, contrato, "POST");
+                List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
+
+                if (lst.Count > 0)
+                {
+                    foreach (Contrato ord in lst)
+                    {
+                        int rowIndex = DgContratos.Rows.Add();
+                        DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
+                        DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
+                        DgContratos.Rows[rowIndex].Cells["cliente"].Value = ord.C_CLIENTE;
+                        DgContratos.Rows[rowIndex].Cells["razon_social"].Value = ord.RAZON_SOCIAL;
+                        DgContratos.Rows[rowIndex].Cells["inicioVigencia"].Value = ord.INICIO_VIGENCIA;
+                        DgContratos.Rows[rowIndex].Cells["finVigencia"].Value = ord.FIN_VIGENCIA;
+                        DgContratos.Rows[rowIndex].Cells["saldo"].Value = ord.SALDO;
+                        DgContratos.Rows[rowIndex].Cells["nrofisico"].Value = ord.NRO_FISICO;
+                        DgContratos.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                        DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
+                        DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
+                        DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                        DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
+                        DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron resultados de la busqueda: " + textoRazon.Text, "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    Cursor.Current = Cursors.Default;
+                }
+            }
+            catch(Exception ex) {
+                MessageBox.Show("Aviso",ex.Message);
+                Cursor.Current = Cursors.Default;
 
             }
+            Cursor.Current = Cursors.Default;
 
-            }
+        }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
