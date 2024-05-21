@@ -118,7 +118,7 @@ namespace AurocoPublicidad.forms
                 var observaciones = dgOrdenes[17, pos].Value.ToString();
                 var agencia = dgOrdenes[20, pos].Value.ToString();
                 FrmOrden frmOrden = new FrmOrden(idOrden, idMedio, idCliente, idContrato, revision, idEjecutivo,fcreacion, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones, agencia);
-                frmOrden.ShowDialog();
+                frmOrden.Show();
                 Cursor.Current = Cursors.Default;
 
             }

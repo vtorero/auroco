@@ -402,7 +402,7 @@ namespace AurocoPublicidad.forms
                     bool isChecked = chkRevisar.Checked;
                     if (isChecked)
                     {
-                        orden.REVISION = 1;   
+                        orden.REVISION = numRevision.Value.ToString();   
                     }
                     
                     if (valorRecibido == "")

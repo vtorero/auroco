@@ -172,435 +172,261 @@
             this.groupBox1.Controls.Add(this.comboContratos);
             this.groupBox1.Controls.Add(this.comboCliente);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(26, 13);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1117, 287);
-            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Principales";
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(935, 100);
+            resources.ApplyResources(this.label20, "label20");
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(49, 13);
-            this.label20.TabIndex = 66;
-            this.label20.Text = "Agencia:";
             // 
             // txtAgencia
             // 
             this.txtAgencia.FormattingEnabled = true;
-            this.txtAgencia.Location = new System.Drawing.Point(998, 96);
+            resources.ApplyResources(this.txtAgencia, "txtAgencia");
             this.txtAgencia.Name = "txtAgencia";
-            this.txtAgencia.Size = new System.Drawing.Size(101, 21);
-            this.txtAgencia.TabIndex = 65;
             // 
             // numRevision
             // 
-            this.numRevision.Location = new System.Drawing.Point(935, 149);
+            resources.ApplyResources(this.numRevision, "numRevision");
             this.numRevision.Name = "numRevision";
-            this.numRevision.Size = new System.Drawing.Size(35, 20);
-            this.numRevision.TabIndex = 64;
-            this.numRevision.Visible = false;
             // 
             // labelRevision
             // 
-            this.labelRevision.AutoSize = true;
-            this.labelRevision.Location = new System.Drawing.Point(854, 152);
+            resources.ApplyResources(this.labelRevision, "labelRevision");
             this.labelRevision.Name = "labelRevision";
-            this.labelRevision.Size = new System.Drawing.Size(68, 13);
-            this.labelRevision.TabIndex = 63;
-            this.labelRevision.Text = "Nro Revisión";
-            this.labelRevision.Visible = false;
             // 
             // chkRevisar
             // 
-            this.chkRevisar.AutoSize = true;
-            this.chkRevisar.Location = new System.Drawing.Point(993, 151);
+            resources.ApplyResources(this.chkRevisar, "chkRevisar");
             this.chkRevisar.Name = "chkRevisar";
-            this.chkRevisar.Size = new System.Drawing.Size(67, 17);
-            this.chkRevisar.TabIndex = 62;
-            this.chkRevisar.Text = "&Revisión";
             this.chkRevisar.UseVisualStyleBackColor = true;
             // 
             // txtNumero
             // 
             this.txtNumero.BackColor = System.Drawing.Color.Cyan;
-            this.txtNumero.Enabled = false;
-            this.txtNumero.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumero.Location = new System.Drawing.Point(80, 24);
+            resources.ApplyResources(this.txtNumero, "txtNumero");
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(136, 25);
-            this.txtNumero.TabIndex = 61;
-            this.txtNumero.Visible = false;
+            this.txtNumero.ReadOnly = true;
             // 
             // LblNumero
             // 
-            this.LblNumero.AutoSize = true;
-            this.LblNumero.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNumero.Location = new System.Drawing.Point(16, 28);
+            resources.ApplyResources(this.LblNumero, "LblNumero");
             this.LblNumero.Name = "LblNumero";
-            this.LblNumero.Size = new System.Drawing.Size(46, 16);
-            this.LblNumero.TabIndex = 60;
-            this.LblNumero.Text = "Orden:";
-            this.LblNumero.Visible = false;
             this.LblNumero.Click += new System.EventHandler(this.label20_Click);
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(11, 111);
+            resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 16);
-            this.label11.TabIndex = 59;
-            this.label11.Text = "Consumo:";
             // 
             // cNumeroFisico
             // 
             this.cNumeroFisico.BackColor = System.Drawing.SystemColors.Info;
-            this.cNumeroFisico.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cNumeroFisico.Location = new System.Drawing.Point(998, 59);
+            resources.ApplyResources(this.cNumeroFisico, "cNumeroFisico");
             this.cNumeroFisico.Name = "cNumeroFisico";
             this.cNumeroFisico.ReadOnly = true;
-            this.cNumeroFisico.Size = new System.Drawing.Size(101, 22);
-            this.cNumeroFisico.TabIndex = 58;
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(934, 62);
+            resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 15);
-            this.label18.TabIndex = 57;
-            this.label18.Text = "Nro fisico:";
             // 
             // cTipoCambio
             // 
             this.cTipoCambio.BackColor = System.Drawing.SystemColors.Info;
-            this.cTipoCambio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cTipoCambio.Location = new System.Drawing.Point(657, 97);
+            resources.ApplyResources(this.cTipoCambio, "cTipoCambio");
             this.cTipoCambio.Name = "cTipoCambio";
             this.cTipoCambio.ReadOnly = true;
-            this.cTipoCambio.Size = new System.Drawing.Size(59, 22);
-            this.cTipoCambio.TabIndex = 56;
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(573, 100);
+            resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(81, 16);
-            this.label17.TabIndex = 55;
-            this.label17.Text = "Tipo/cambio:";
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(311, 260);
+            resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 16);
-            this.label16.TabIndex = 54;
-            this.label16.Text = "Duración:";
             // 
             // textDuracion
             // 
-            this.textDuracion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textDuracion.Location = new System.Drawing.Point(389, 257);
+            resources.ApplyResources(this.textDuracion, "textDuracion");
             this.textDuracion.Name = "textDuracion";
-            this.textDuracion.Size = new System.Drawing.Size(36, 22);
-            this.textDuracion.TabIndex = 11;
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(780, 63);
+            resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(17, 16);
-            this.label15.TabIndex = 50;
-            this.label15.Text = "al";
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(460, 182);
+            resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 16);
-            this.label14.TabIndex = 49;
-            this.label14.Text = "Observaciones:";
             // 
             // textObservaciones
             // 
-            this.textObservaciones.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textObservaciones.Location = new System.Drawing.Point(474, 205);
+            resources.ApplyResources(this.textObservaciones, "textObservaciones");
             this.textObservaciones.Name = "textObservaciones";
-            this.textObservaciones.Size = new System.Drawing.Size(612, 70);
-            this.textObservaciones.TabIndex = 12;
-            this.textObservaciones.Text = "";
             // 
             // textMotivo
             // 
-            this.textMotivo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textMotivo.Location = new System.Drawing.Point(94, 256);
+            resources.ApplyResources(this.textMotivo, "textMotivo");
             this.textMotivo.Name = "textMotivo";
-            this.textMotivo.Size = new System.Drawing.Size(199, 22);
-            this.textMotivo.TabIndex = 10;
             // 
             // textProducto
             // 
-            this.textProducto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textProducto.Location = new System.Drawing.Point(94, 224);
+            resources.ApplyResources(this.textProducto, "textProducto");
             this.textProducto.Name = "textProducto";
-            this.textProducto.Size = new System.Drawing.Size(335, 22);
-            this.textProducto.TabIndex = 9;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(26, 259);
+            resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(48, 16);
-            this.label13.TabIndex = 45;
-            this.label13.Text = "Motivo:";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(11, 226);
+            resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 16);
-            this.label12.TabIndex = 44;
-            this.label12.Text = "Producto:";
             // 
             // comboCambio
             // 
-            this.comboCambio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.comboCambio, "comboCambio");
             this.comboCambio.FormattingEnabled = true;
-            this.comboCambio.Location = new System.Drawing.Point(94, 108);
             this.comboCambio.Name = "comboCambio";
-            this.comboCambio.Size = new System.Drawing.Size(101, 24);
-            this.comboCambio.TabIndex = 3;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(230, 193);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 13);
-            this.label10.TabIndex = 41;
-            this.label10.Text = "al";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(14, 193);
+            resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 16);
-            this.label9.TabIndex = 40;
-            this.label9.Text = "Rango:";
             // 
             // cmbEjecutivo
             // 
             this.cmbEjecutivo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbEjecutivo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbEjecutivo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.cmbEjecutivo, "cmbEjecutivo");
             this.cmbEjecutivo.FormattingEnabled = true;
-            this.cmbEjecutivo.Location = new System.Drawing.Point(474, 147);
             this.cmbEjecutivo.Name = "cmbEjecutivo";
-            this.cmbEjecutivo.Size = new System.Drawing.Size(351, 24);
-            this.cmbEjecutivo.TabIndex = 6;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(389, 152);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 16);
-            this.label8.TabIndex = 38;
-            this.label8.Text = "Ejecutivo:";
             // 
             // comboMedio
             // 
             this.comboMedio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboMedio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboMedio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.comboMedio, "comboMedio");
             this.comboMedio.FormattingEnabled = true;
-            this.comboMedio.Location = new System.Drawing.Point(92, 149);
             this.comboMedio.Name = "comboMedio";
-            this.comboMedio.Size = new System.Drawing.Size(285, 24);
-            this.comboMedio.TabIndex = 5;
             this.comboMedio.Leave += new System.EventHandler(this.comboMedio_Leave);
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(16, 152);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 16);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Medio:";
             // 
             // comboIgv
             // 
-            this.comboIgv.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.comboIgv, "comboIgv");
             this.comboIgv.FormattingEnabled = true;
-            this.comboIgv.Location = new System.Drawing.Point(305, 109);
             this.comboIgv.Name = "comboIgv";
-            this.comboIgv.Size = new System.Drawing.Size(72, 24);
-            this.comboIgv.TabIndex = 4;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(249, 115);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 13);
-            this.label6.TabIndex = 34;
-            this.label6.Text = "I.G.V:";
             // 
             // cSaldo
             // 
             this.cSaldo.BackColor = System.Drawing.SystemColors.Info;
-            this.cSaldo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cSaldo.Location = new System.Drawing.Point(813, 97);
+            resources.ApplyResources(this.cSaldo, "cSaldo");
             this.cSaldo.Name = "cSaldo";
             this.cSaldo.ReadOnly = true;
-            this.cSaldo.Size = new System.Drawing.Size(108, 22);
-            this.cSaldo.TabIndex = 33;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(758, 99);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 16);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Saldo:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(417, 100);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 16);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Moneda:";
             // 
             // cMoneda
             // 
             this.cMoneda.BackColor = System.Drawing.SystemColors.Info;
-            this.cMoneda.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cMoneda.Location = new System.Drawing.Point(478, 97);
+            resources.ApplyResources(this.cMoneda, "cMoneda");
             this.cMoneda.Name = "cMoneda";
             this.cMoneda.ReadOnly = true;
-            this.cMoneda.Size = new System.Drawing.Size(89, 22);
-            this.cMoneda.TabIndex = 30;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(594, 63);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 16);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Vigencia";
             // 
             // cFinVigencia
             // 
             this.cFinVigencia.BackColor = System.Drawing.SystemColors.Info;
-            this.cFinVigencia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cFinVigencia.Location = new System.Drawing.Point(813, 59);
+            resources.ApplyResources(this.cFinVigencia, "cFinVigencia");
             this.cFinVigencia.Name = "cFinVigencia";
             this.cFinVigencia.ReadOnly = true;
-            this.cFinVigencia.Size = new System.Drawing.Size(108, 22);
-            this.cFinVigencia.TabIndex = 28;
             // 
             // cInicioVigencia
             // 
             this.cInicioVigencia.BackColor = System.Drawing.SystemColors.Info;
-            this.cInicioVigencia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cInicioVigencia.Location = new System.Drawing.Point(657, 60);
+            resources.ApplyResources(this.cInicioVigencia, "cInicioVigencia");
             this.cInicioVigencia.Name = "cInicioVigencia";
             this.cInicioVigencia.ReadOnly = true;
-            this.cInicioVigencia.Size = new System.Drawing.Size(108, 22);
-            this.cInicioVigencia.TabIndex = 27;
             // 
             // finVigencia
             // 
-            this.finVigencia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.finVigencia, "finVigencia");
             this.finVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.finVigencia.Location = new System.Drawing.Point(268, 188);
             this.finVigencia.Name = "finVigencia";
-            this.finVigencia.Size = new System.Drawing.Size(109, 22);
-            this.finVigencia.TabIndex = 8;
             // 
             // inicioVigencia
             // 
-            this.inicioVigencia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.inicioVigencia, "inicioVigencia");
             this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.inicioVigencia.Location = new System.Drawing.Point(94, 187);
             this.inicioVigencia.Name = "inicioVigencia";
-            this.inicioVigencia.Size = new System.Drawing.Size(118, 22);
-            this.inicioVigencia.TabIndex = 7;
             this.inicioVigencia.Validated += new System.EventHandler(this.inicioVigencia_Validated);
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(398, 64);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Contrato:";
             // 
             // comboContratos
             // 
             this.comboContratos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboContratos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.comboContratos, "comboContratos");
             this.comboContratos.FormattingEnabled = true;
-            this.comboContratos.Location = new System.Drawing.Point(473, 60);
             this.comboContratos.Name = "comboContratos";
-            this.comboContratos.Size = new System.Drawing.Size(98, 24);
-            this.comboContratos.TabIndex = 2;
             this.comboContratos.SelectedValueChanged += new System.EventHandler(this.comboContratos_SelectedValueChanged);
             // 
             // comboCliente
             // 
             this.comboCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.comboCliente, "comboCliente");
             this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(94, 63);
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(285, 24);
-            this.comboCliente.TabIndex = 1;
             this.comboCliente.SelectedValueChanged += new System.EventHandler(this.comboCliente_SelectedValueChanged);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 70);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 16);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Cliente:";
             // 
             // dataGridOrden
             // 
@@ -644,10 +470,8 @@
             this.avisos,
             this.total,
             this.totalcalculo});
-            this.dataGridOrden.Location = new System.Drawing.Point(26, 309);
+            resources.ApplyResources(this.dataGridOrden, "dataGridOrden");
             this.dataGridOrden.Name = "dataGridOrden";
-            this.dataGridOrden.Size = new System.Drawing.Size(1116, 142);
-            this.dataGridOrden.TabIndex = 13;
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridOrden_CellFormatting);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
@@ -655,243 +479,202 @@
             // horario
             // 
             this.horario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.horario.HeaderText = "Horario";
+            resources.ApplyResources(this.horario, "horario");
             this.horario.Name = "horario";
             this.horario.ReadOnly = true;
-            this.horario.Width = 60;
             // 
             // idprograma
             // 
-            this.idprograma.HeaderText = "idprograma";
+            resources.ApplyResources(this.idprograma, "idprograma");
             this.idprograma.Name = "idprograma";
-            this.idprograma.Visible = false;
             // 
             // costo
             // 
             this.costo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.costo.HeaderText = "Costo";
+            resources.ApplyResources(this.costo, "costo");
             this.costo.Name = "costo";
-            this.costo.Width = 60;
             // 
             // d1
             // 
             this.d1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d1.HeaderText = "1";
+            resources.ApplyResources(this.d1, "d1");
             this.d1.Name = "d1";
-            this.d1.Width = 21;
             // 
             // d2
             // 
             this.d2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d2.HeaderText = "2";
+            resources.ApplyResources(this.d2, "d2");
             this.d2.Name = "d2";
-            this.d2.Width = 21;
             // 
             // d3
             // 
             this.d3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d3.HeaderText = "3";
+            resources.ApplyResources(this.d3, "d3");
             this.d3.Name = "d3";
-            this.d3.Width = 21;
             // 
             // d4
             // 
             this.d4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d4.HeaderText = "4";
+            resources.ApplyResources(this.d4, "d4");
             this.d4.Name = "d4";
-            this.d4.Width = 21;
             // 
             // d5
             // 
             this.d5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.d5.HeaderText = "5";
+            resources.ApplyResources(this.d5, "d5");
             this.d5.Name = "d5";
-            this.d5.Width = 21;
             // 
             // d6
             // 
-            this.d6.HeaderText = "6";
+            resources.ApplyResources(this.d6, "d6");
             this.d6.Name = "d6";
-            this.d6.Width = 21;
             // 
             // d7
             // 
-            this.d7.HeaderText = "7";
+            resources.ApplyResources(this.d7, "d7");
             this.d7.Name = "d7";
-            this.d7.Width = 21;
             // 
             // d8
             // 
-            this.d8.HeaderText = "8";
+            resources.ApplyResources(this.d8, "d8");
             this.d8.Name = "d8";
-            this.d8.Width = 21;
             // 
             // d9
             // 
-            this.d9.HeaderText = "9";
+            resources.ApplyResources(this.d9, "d9");
             this.d9.Name = "d9";
-            this.d9.Width = 21;
             // 
             // d10
             // 
-            this.d10.HeaderText = "10";
+            resources.ApplyResources(this.d10, "d10");
             this.d10.Name = "d10";
-            this.d10.Width = 21;
             // 
             // d11
             // 
-            this.d11.HeaderText = "11";
+            resources.ApplyResources(this.d11, "d11");
             this.d11.Name = "d11";
-            this.d11.Width = 21;
             // 
             // d12
             // 
-            this.d12.HeaderText = "12";
+            resources.ApplyResources(this.d12, "d12");
             this.d12.Name = "d12";
-            this.d12.Width = 21;
             // 
             // d13
             // 
-            this.d13.HeaderText = "13";
+            resources.ApplyResources(this.d13, "d13");
             this.d13.Name = "d13";
-            this.d13.Width = 21;
             // 
             // d14
             // 
-            this.d14.HeaderText = "14";
+            resources.ApplyResources(this.d14, "d14");
             this.d14.Name = "d14";
-            this.d14.Width = 21;
             // 
             // d15
             // 
-            this.d15.HeaderText = "15";
+            resources.ApplyResources(this.d15, "d15");
             this.d15.Name = "d15";
-            this.d15.Width = 21;
             // 
             // d16
             // 
-            this.d16.HeaderText = "16";
+            resources.ApplyResources(this.d16, "d16");
             this.d16.Name = "d16";
-            this.d16.Width = 21;
             // 
             // d17
             // 
-            this.d17.HeaderText = "17";
+            resources.ApplyResources(this.d17, "d17");
             this.d17.Name = "d17";
-            this.d17.Width = 21;
             // 
             // d18
             // 
-            this.d18.HeaderText = "18";
+            resources.ApplyResources(this.d18, "d18");
             this.d18.Name = "d18";
-            this.d18.Width = 21;
             // 
             // d19
             // 
-            this.d19.HeaderText = "19";
+            resources.ApplyResources(this.d19, "d19");
             this.d19.Name = "d19";
-            this.d19.Width = 21;
             // 
             // d20
             // 
-            this.d20.HeaderText = "20";
+            resources.ApplyResources(this.d20, "d20");
             this.d20.Name = "d20";
-            this.d20.Width = 21;
             // 
             // d21
             // 
-            this.d21.HeaderText = "21";
+            resources.ApplyResources(this.d21, "d21");
             this.d21.Name = "d21";
-            this.d21.Width = 21;
             // 
             // d22
             // 
-            this.d22.HeaderText = "22";
+            resources.ApplyResources(this.d22, "d22");
             this.d22.Name = "d22";
-            this.d22.Width = 21;
             // 
             // d23
             // 
-            this.d23.HeaderText = "23";
+            resources.ApplyResources(this.d23, "d23");
             this.d23.Name = "d23";
-            this.d23.Width = 21;
             // 
             // d24
             // 
-            this.d24.HeaderText = "24";
+            resources.ApplyResources(this.d24, "d24");
             this.d24.Name = "d24";
-            this.d24.Width = 21;
             // 
             // d25
             // 
-            this.d25.HeaderText = "25";
+            resources.ApplyResources(this.d25, "d25");
             this.d25.Name = "d25";
-            this.d25.Width = 21;
             // 
             // d26
             // 
-            this.d26.HeaderText = "26";
+            resources.ApplyResources(this.d26, "d26");
             this.d26.Name = "d26";
-            this.d26.Width = 21;
             // 
             // d27
             // 
-            this.d27.HeaderText = "27";
+            resources.ApplyResources(this.d27, "d27");
             this.d27.Name = "d27";
-            this.d27.Width = 21;
             // 
             // d28
             // 
-            this.d28.HeaderText = "28";
+            resources.ApplyResources(this.d28, "d28");
             this.d28.Name = "d28";
-            this.d28.Width = 21;
             // 
             // d29
             // 
-            this.d29.HeaderText = "29";
+            resources.ApplyResources(this.d29, "d29");
             this.d29.Name = "d29";
-            this.d29.Width = 21;
             // 
             // d30
             // 
-            this.d30.HeaderText = "30";
+            resources.ApplyResources(this.d30, "d30");
             this.d30.Name = "d30";
-            this.d30.Width = 21;
             // 
             // d31
             // 
-            this.d31.HeaderText = "31";
+            resources.ApplyResources(this.d31, "d31");
             this.d31.Name = "d31";
-            this.d31.Width = 21;
             // 
             // avisos
             // 
-            this.avisos.HeaderText = "Avisos";
+            resources.ApplyResources(this.avisos, "avisos");
             this.avisos.Name = "avisos";
             this.avisos.ReadOnly = true;
-            this.avisos.Width = 45;
             // 
             // total
             // 
-            this.total.HeaderText = "Total";
+            resources.ApplyResources(this.total, "total");
             this.total.Name = "total";
             this.total.ReadOnly = true;
-            this.total.Width = 67;
             // 
             // totalcalculo
             // 
-            this.totalcalculo.HeaderText = "totalcalculo";
+            resources.ApplyResources(this.totalcalculo, "totalcalculo");
             this.totalcalculo.Name = "totalcalculo";
-            this.totalcalculo.Visible = false;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(1014, 503);
+            resources.ApplyResources(this.btnGuardar, "btnGuardar");
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(129, 32);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
@@ -903,98 +686,68 @@
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.totalOrden);
-            this.groupBox2.Location = new System.Drawing.Point(602, 456);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(537, 41);
-            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
             // totalBruto
             // 
-            this.totalBruto.Location = new System.Drawing.Point(396, 14);
+            resources.ApplyResources(this.totalBruto, "totalBruto");
             this.totalBruto.Name = "totalBruto";
             this.totalBruto.ReadOnly = true;
-            this.totalBruto.Size = new System.Drawing.Size(129, 20);
-            this.totalBruto.TabIndex = 20;
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(356, 17);
+            resources.ApplyResources(this.label22, "label22");
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(34, 13);
-            this.label22.TabIndex = 19;
-            this.label22.Text = "Total:";
             // 
             // txtIgv
             // 
-            this.txtIgv.Location = new System.Drawing.Point(235, 14);
+            resources.ApplyResources(this.txtIgv, "txtIgv");
             this.txtIgv.Name = "txtIgv";
             this.txtIgv.ReadOnly = true;
-            this.txtIgv.Size = new System.Drawing.Size(112, 20);
-            this.txtIgv.TabIndex = 18;
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(199, 17);
+            resources.ApplyResources(this.label21, "label21");
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(34, 13);
-            this.label21.TabIndex = 17;
-            this.label21.Text = "I.G.V:";
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(35, 17);
+            resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(49, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Subtotal:";
             // 
             // totalOrden
             // 
-            this.totalOrden.Location = new System.Drawing.Point(90, 13);
+            resources.ApplyResources(this.totalOrden, "totalOrden");
             this.totalOrden.Name = "totalOrden";
             this.totalOrden.ReadOnly = true;
-            this.totalOrden.Size = new System.Drawing.Size(100, 20);
-            this.totalOrden.TabIndex = 0;
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(879, 503);
+            resources.ApplyResources(this.btnPrint, "btnPrint");
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(129, 32);
-            this.btnPrint.TabIndex = 15;
-            this.btnPrint.Text = "&Imprimir";
             this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Visible = false;
             this.btnPrint.Click += new System.EventHandler(this.button1_Click);
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.Color.Chartreuse;
-            this.progressBar1.Location = new System.Drawing.Point(1014, 560);
+            resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(129, 3);
-            this.progressBar1.TabIndex = 16;
-            this.progressBar1.Visible = false;
             // 
             // FrmOrden
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 541);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridOrden);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmOrden";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ingresar Orden";
             this.Load += new System.EventHandler(this.FrmOrden_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
