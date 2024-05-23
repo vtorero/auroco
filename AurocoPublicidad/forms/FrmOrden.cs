@@ -404,6 +404,10 @@ namespace AurocoPublicidad.forms
                     {
                         orden.REVISION = numRevision.Value.ToString();   
                     }
+                    else
+                    {
+                        orden.REVISION = valorRevision.ToString();
+                    }
                     
                     if (valorRecibido == "")
                     {

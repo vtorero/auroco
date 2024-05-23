@@ -73,7 +73,7 @@ namespace AurocoPublicidad.forms
                 DgContratos.Rows[rowIndex].Cells["monto"].Value = ord.INVERSION;
                 DgContratos.Rows[rowIndex].Cells["tipocambio"].Value = ord.TIPO_CAMBIO;
                 DgContratos.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
-                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO;
+                DgContratos.Rows[rowIndex].Cells["usuario"].Value = ord.C_USUARIO.ToUpper();
                 DgContratos.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
                 DgContratos.Rows[rowIndex].Cells["tcambio"].Value = ord.TIPO_CAMBIO;
 

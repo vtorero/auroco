@@ -173,7 +173,7 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by INICIO_VIGENCIA DESC limit 50");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by F_CREACION DESC limit 50");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -407,9 +407,10 @@ $app->post("/contrato",function() use($db,$app){
 
 
 
-    $sql="call p_contrato('{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->MONTO_ORDENAR},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}')";
+    $sql="call p_contrato('{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO)";
 
-
+print_r($sql);
+die();
    $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
 
@@ -536,22 +537,7 @@ echo $cadena;
 });
 
 
-$app->post("/contrato",function() use($db,$app){
-    $json = $app->request->getBody();
-   $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM ORD_USUARIO where usuario='".$data['usuario']."' and password='".$data['password']."'");
-   $usuario=array();
-   while ($fila = $resultado->fetch_object()) {
-   $usuario[]=$fila;
-   }
-   if(count($usuario)==1){
-       $data = array("status"=>true,"rows"=>1,"data"=>$usuario);
-   }else{
-       $data = array("status"=>false,"rows"=>0,"data"=>null);
-   }
-   echo  json_encode($data);
-});
 
 $app->get("/clientes",function() use ($app,$db){
     $json = $app->request->getBody();
@@ -731,7 +717,7 @@ $app->get("/ordenprint/:id",function($id) use ($app,$db){
 $app->get("/orden/:id",function($id) use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
-   $resultado = $db->query("SELECT ORD.ID,ORD.TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
+   $resultado = $db->query("SELECT ORD.ID,ORD.PERIODO TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
          SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
          SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
          SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,
@@ -767,7 +753,7 @@ $app->get("/orden/:id",function($id) use ($app,$db){
                   month(O.INICIO_VIGENCIA)  AS  INICIO_VIGENCIA,
                   P.ID,
                   P.PROGRAMA,
-                  P.TEMA,
+                  P.PERIODO,
                   sum(l.inversion_total) COSTO,
                   O.PRODUCTO,
                   O.MOTIVO,
@@ -797,7 +783,7 @@ $app->get("/orden/:id",function($id) use ($app,$db){
                      O.OBSERVACIONES,
                      O.INICIO_VIGENCIA,
                      P.PROGRAMA,
-                     P.TEMA,
+                     P.PERIODO,
                      O.PRODUCTO,
                      O.MOTIVO,
                      l.RATING,
@@ -814,7 +800,7 @@ $app->get("/orden/:id",function($id) use ($app,$db){
           ORD.OBSERVACIONES,
           ORD.INICIO_VIGENCIA,
           ORD.PROGRAMA,
-          ORD.TEMA,
+          ORD.PERIODO,
         ORD.PRODUCTO,
              ORD.MOTIVO,
              ORD.RATING,
@@ -1562,7 +1548,7 @@ $app->get("/medio_programas/:medio",function($medio) use($db,$app){
     $json = $app->request->getBody();
    $data = json_decode($json, TRUE);
 
-    $sql="SELECT p.ID,PROGRAMA,p.TEMA FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p inner join aprendea_auroco.ORD_MEDIOS m where  m.C_MEDIO='{$medio}' AND p.ESTADO='SI' AND m.NOMBRE=p.CANAL ORDER BY PROGRAMA;";
+    $sql="SELECT p.ID,PROGRAMA,p.PERIODO TEMA FROM  aprendea_auroco.ORD_PROGRAMAS_AUT p inner join aprendea_auroco.ORD_MEDIOS m where  m.C_MEDIO='{$medio}' AND p.ESTADO='SI' AND m.NOMBRE=p.CANAL ORDER BY PROGRAMA;";
    $resultado = $db->query($sql);
    $contratos=array();
    while ($fila = $resultado->fetch_object()) {
