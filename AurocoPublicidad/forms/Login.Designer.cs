@@ -43,7 +43,7 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(314, 28);
+            this.txtNombre.Location = new System.Drawing.Point(314, 29);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(128, 25);
             this.txtNombre.TabIndex = 0;
@@ -51,7 +51,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(314, 62);
+            this.txtPassword.Location = new System.Drawing.Point(314, 63);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(128, 25);
