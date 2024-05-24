@@ -744,7 +744,7 @@ namespace AurocoPublicidad.forms
 
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Programa";
-            comboBoxColumn.Width = 210;
+            comboBoxColumn.Width = 340;
             comboBoxColumn.Name = "programa";
             comboBoxColumn.DisplayMember = "PROGRAMA";
             comboBoxColumn.ValueMember = "ID";
