@@ -98,8 +98,6 @@ namespace AurocoPublicidad.forms
                 System.Threading.Thread.Sleep(500);
                 int pos;
                 pos = dgOrdenes.CurrentRow.Index;
-                //MessageBox.Show(dgOrdenes[1, pos].Value.ToString());
-
                 var idOrden = dgOrdenes[1, pos].Value.ToString();
                 var idMedio = dgOrdenes[4, pos].Value.ToString();
                 var idCliente = dgOrdenes[2, pos].Value.ToString();
@@ -198,49 +196,61 @@ namespace AurocoPublicidad.forms
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            dgOrdenes.Rows.Clear();
-            string url = Global.servicio + "/api-auroco/buscaorden";
-            Ordenes orden = new Ordenes();
-            orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
-            orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
-            orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
-            orden.FIN_VIGENCIA = dtHasta.Value.ToString();
-            string resultado = Send<Ordenes>(url, orden, "POST");
-            List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
-
-            foreach (Ordenes ord in lst)
+            try
             {
-                int rowIndex = dgOrdenes.Rows.Add();
-                dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
-                dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
-                dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
-                dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
-                dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
-                dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
-                dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
-                dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
-                dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
-                dgOrdenes.Rows[rowIndex].Cells["f_creacion"].Value = ord.F_CREACION;
-                dgOrdenes.Rows[rowIndex].Cells["f_inicio"].Value = ord.INICIO_VIGENCIA;
-                dgOrdenes.Rows[rowIndex].Cells["f_fin"].Value = ord.FIN_VIGENCIA;
-                dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
-                dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
-                dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
-                dgOrdenes.Rows[rowIndex].Cells["producto"].Value = ord.PRODUCTO;
-                dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
-                dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
-                dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
-                dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
-                dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
-                dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
+
+              
+                
+                    Cursor.Current = Cursors.WaitCursor;
+                    dgOrdenes.Rows.Clear();
+                    string url = Global.servicio + "/api-auroco/buscaorden";
+                    Ordenes orden = new Ordenes();
+                    orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
+                    orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
+                    orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
+                    orden.FIN_VIGENCIA = dtHasta.Value.ToString();
+                    string resultado = Send<Ordenes>(url, orden, "POST");
+                    List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
+
+                    foreach (Ordenes ord in lst)
+                    {
+                        int rowIndex = dgOrdenes.Rows.Add();
+                        dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
+                        dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
+                        dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
+                        dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
+                        dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
+                        dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
+                        dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
+                        dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
+                        dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
+                        dgOrdenes.Rows[rowIndex].Cells["f_creacion"].Value = ord.F_CREACION;
+                        dgOrdenes.Rows[rowIndex].Cells["f_inicio"].Value = ord.INICIO_VIGENCIA;
+                        dgOrdenes.Rows[rowIndex].Cells["f_fin"].Value = ord.FIN_VIGENCIA;
+                        dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
+                        dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                        dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
+                        dgOrdenes.Rows[rowIndex].Cells["producto"].Value = ord.PRODUCTO;
+                        dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
+                        dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
+                        dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                        dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
+                        dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
+                        dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
 
 
 
+                    }
+
+                    Cursor.Current = Cursors.Default;
+              
+            
             }
+            catch (Exception ex)
+            {
 
-            Cursor.Current = Cursors.Default;
-
+                MessageBox.Show("Error",ex.Message,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
 
         }
 

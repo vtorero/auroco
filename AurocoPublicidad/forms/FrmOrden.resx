@@ -315,7 +315,7 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 111</value>
+    <value>11, 106</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
@@ -699,7 +699,7 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="comboCambio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 108</value>
+    <value>94, 102</value>
   </data>
   <data name="comboCambio.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 24</value>
@@ -888,7 +888,7 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="comboIgv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 109</value>
+    <value>305, 103</value>
   </data>
   <data name="comboIgv.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 24</value>
@@ -912,7 +912,7 @@
     <value>True</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 115</value>
+    <value>249, 109</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 13</value>
@@ -1227,10 +1227,10 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="comboCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 63</value>
+    <value>94, 57</value>
   </data>
   <data name="comboCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 24</value>
+    <value>375, 24</value>
   </data>
   <data name="comboCliente.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1254,7 +1254,7 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 70</value>
+    <value>16, 64</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 16</value>

@@ -409,8 +409,7 @@ $app->post("/contrato",function() use($db,$app){
 
     $sql="call p_contrato('{$data->C_CLIENTE}','{$data->INICIO_VIGENCIA}','{$data->FIN_VIGENCIA}','{$data->NRO_FISICO}','{$data->C_MONEDA}',{$data->INVERSION},{$data->TIPO_CAMBIO},'{$data->OBSERVACIONES}','{$data->C_USUARIO}',@SCODIGO)";
 
-print_r($sql);
-die();
+
    $stmt = mysqli_prepare($db,$sql);
     mysqli_stmt_execute($stmt);
 
@@ -440,8 +439,13 @@ $app->post("/buscaorden",function() use($db,$app){
    $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
    $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
-$sql="SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,O.F_CREACION,FIN_VIGENCIA,O.C_MONEDA,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,O.REVISION,O.ACTIVA,O.AGENCIA,O.INVERSION AS TOTAL FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO
-AND O.C_CLIENTE='{$data->C_CLIENTE}' ";
+$sql="SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,C.RAZON_SOCIAL,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,O.F_CREACION,FIN_VIGENCIA,O.C_MONEDA,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,O.REVISION,O.ACTIVA,O.AGENCIA,O.INVERSION AS TOTAL FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO";
+
+if($data->C_CLIENTE!="0"){
+
+    $sql.=" AND O.C_CLIENTE='{$data->C_CLIENTE}' ";
+
+}
 
 if($data->C_MEDIO!="") {
 
@@ -1101,7 +1105,7 @@ $app->put("/orden",function() use ($app,$db){
         if($fila2['@VALOR_ERROR']=='NO' || $fila2['@VALOR_ERROR']==NULL){
 
           //$result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO'],"data"=>$data,"error"=>$error);
-          $result = array("status"=>true,"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO']);
+          $result = array("status"=>true,"codigo"=>$fila['@SCODIGO'],"message"=>"Orden creada correctamente con el nro:".$fila['@SCODIGO']);
 
         }
         else{
