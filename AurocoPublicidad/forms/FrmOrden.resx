@@ -1872,7 +1872,7 @@
     <value>1</value>
   </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1239, 666</value>
+    <value>1239, 665</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 10</value>

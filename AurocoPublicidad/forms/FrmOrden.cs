@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 
@@ -437,10 +438,12 @@ namespace AurocoPublicidad.forms
                         
                         MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cargarContratos();
-                       Cursor.Current = Cursors.Default;
+                        valorIdOrden = codigo;
+                        btnPrint.Visible = true;
+                        Cursor.Current = Cursors.Default;
                         progressBar1.Visible = false;
                         // comboCliente.SelectedIndex = 0;
-                        if (valorIdOrden == "") { 
+                        /*if (valorIdOrden == "") { 
                         comboMedio.SelectedIndex = 0;
                         comboContratos.SelectedIndex = 0;   
                         comboCliente.SelectedIndex = 0;
@@ -459,11 +462,8 @@ namespace AurocoPublicidad.forms
                         cTipoCambio.Text = "";
                         cSaldo.Text = "";
                             btnPrint.Visible = true;
-                            valorIdOrden = codigo;
-
-
-                            
-                        }
+    
+                        }*/
 
                     }
 
@@ -750,6 +750,7 @@ namespace AurocoPublicidad.forms
             comboBoxColumn.ValueMember = "ID";
             comboBoxColumn.DataSource = lstC;
             comboBoxColumn.AutoComplete = true;
+
             dataGridOrden.Columns.Insert(0, comboBoxColumn);
 
 
