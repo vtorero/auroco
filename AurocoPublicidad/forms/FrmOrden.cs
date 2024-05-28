@@ -779,9 +779,14 @@ namespace AurocoPublicidad.forms
         {
             // Obtener el ComboBox que disparó el evento
             System.Windows.Forms.ComboBox comboBox = sender as System.Windows.Forms.ComboBox;
+
             if (comboBox != null)
             {
                 // Obtener el valor seleccionado
+
+                comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 if (comboBox.SelectedValue != null)
                 {
@@ -801,6 +806,10 @@ namespace AurocoPublicidad.forms
 
                         int currentRow = dataGridOrden.CurrentCell.RowIndex;
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+
+
+                 
+                      
                         foreach (var ansValue in data)
                         {
                             dataGridOrden.Rows[currentRow].Cells[1].Value = Convert.ToString(ansValue["DIAS"]) + " " + Convert.ToString(ansValue["PERIODO"]);
