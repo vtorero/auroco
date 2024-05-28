@@ -439,6 +439,8 @@ namespace AurocoPublicidad.forms
                         MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cargarContratos();
                         valorIdOrden = codigo;
+                        txtNumero.Visible=true;
+                        txtNumero.Text=codigo;
                         btnPrint.Visible = true;
                         Cursor.Current = Cursors.Default;
                         progressBar1.Visible = false;
