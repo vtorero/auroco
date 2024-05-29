@@ -296,9 +296,8 @@
             // 
             // C_CONTRATO
             // 
-            this.C_CONTRATO.HeaderText = "C_CONTRATO";
+            this.C_CONTRATO.HeaderText = "Contrato";
             this.C_CONTRATO.Name = "C_CONTRATO";
-            this.C_CONTRATO.Visible = false;
             // 
             // moneda
             // 
