@@ -346,7 +346,8 @@ namespace AurocoPublicidad.forms
         {
 
             if ((!string.IsNullOrWhiteSpace(textProducto.Text)) && (!string.IsNullOrWhiteSpace(textMotivo.Text))
-       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString()!="0"))
+       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString()!="0") && (comboCambio.SelectedValue.ToString() != "0") &&
+       (txtAgencia.SelectedIndex!=0))
                    
             {
                 Cursor.Current = Cursors.WaitCursor;
