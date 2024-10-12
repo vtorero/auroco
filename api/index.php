@@ -173,7 +173,7 @@ $app->get("/contratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by F_CREACION DESC limit 50");
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO  AND SALDO_ACTUAL IS NOT NULL ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE order by F_CREACION DESC limit 50");
    $contrato=array();
    while ($fila = $resultado->fetch_object()) {
    $contrato[]=$fila;
@@ -263,7 +263,7 @@ $app->post("/buscacontratos",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, false);
 
-   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE
+   $resultado = $db->query("SELECT co.id,co.C_CONTRATO,cl.C_CLIENTE,cl.RAZON_SOCIAL,INICIO_VIGENCIA,FIN_VIGENCIA,(SELECT SALDO_ACTUAL FROM ORD_MOVIMIENTO_SALDOS WHERE C_CONTRATO=co.C_CONTRATO  AND SALDO_ACTUAL IS NOT NULL ORDER BY N_MOVIMIENTO DESC LIMIT 1) as SALDO,NRO_FISICO,C_MONEDA,FORMAT(INVERSION,2) INVERSION,FORMAT(MONTO_ORDENAR,2) MONTO_ORDENAR,TIPO_CAMBIO,OBSERVACIONES,C_USUARIO,co.F_CREACION  FROM ORD_CONTRATOS co, ORD_CLIENTES cl where co.C_CLIENTE=cl.C_CLIENTE
    AND RAZON_SOCIAL LIKE '%{$data->RAZON_SOCIAL}%'
    order by INICIO_VIGENCIA DESC");
    $contrato=array();
@@ -547,7 +547,7 @@ $app->get("/clientes",function() use ($app,$db){
     $json = $app->request->getBody();
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT * FROM aprendea_auroco.ORD_CLIENTES;");
+   $resultado = $db->query("SELECT * FROM aprendea_auroco.ORD_CLIENTES order by RAZON_SOCIAL ASC;");
    $clientes=array();
    $clientes[]=["C_CLIENTE"=>"0","RAZON_SOCIAL"=>"Seleccionar Cliente"];
    while ($fila = $resultado->fetch_object()) {
@@ -858,9 +858,16 @@ $app->put("/orden",function() use ($app,$db){
     $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
     try{
-    $sql="call SP_UPDATE_ORDENES('{$data->C_ORDEN}','{$data->C_CONTRATO}','{$data->REVISION}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}',{$data->INVERSION},'{$data->OBSERVACIONES}','{$data->C_USUARIO}','{$data->AGENCIA}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
-    
+        
+    $producto=str_replace("'","\'",$data->PRODUCTO);
+    $motivo=str_replace("'","\'",$data->MOTIVO);
+    $duracion=str_replace("'","\'",$data->DURACION);
  
+    $sql="call SP_UPDATE_ORDENES('{$data->C_ORDEN}','{$data->C_CONTRATO}','{$data->REVISION}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$producto}','{$motivo}','{$duracion}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}',{$data->INVERSION},'{$data->OBSERVACIONES}','{$data->C_USUARIO}','{$data->AGENCIA}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+    
+
+    
+
     
     $stmt = mysqli_prepare($db,$sql);
    mysqli_stmt_execute($stmt);
@@ -938,6 +945,8 @@ $app->put("/orden",function() use ($app,$db){
                 $stmt = mysqli_prepare($db,$sql2);
                 mysqli_stmt_execute($stmt);
             }
+            
+     
 
             for ($v=0; $v < (int)$item->d9; $v++) {
                 $fec=date('Y-m-d', strtotime($inicio. ' + 8 days'));
@@ -1122,7 +1131,7 @@ $app->put("/orden",function() use ($app,$db){
 
 
 
-    $result = array("status"=>true,"message"=>"Orden actualizada correctamente :".$data->C_ORDEN);
+    $result = array("status"=>true,"codigo"=>$fila['@SCODIGO'],"message"=>"Orden actualizada correctamente :".$fila['@SCODIGO']);
 
 }
 catch(PDOException $e) {
@@ -1132,12 +1141,6 @@ catch(PDOException $e) {
 
 
 echo  json_encode($result);
-
-
-
-
-
-
 
 
 });
@@ -1175,8 +1178,12 @@ $app->post("/orden",function() use ($app,$db){
     $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
 try{
-//'
-    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$data->PRODUCTO}','{$data->MOTIVO}','{$data->DURACION}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}',{$data->INVERSION},'{$data->OBSERVACIONES}','{$data->C_USUARIO}','{$data->AGENCIA}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
+    $producto=str_replace("'","\'",$data->PRODUCTO);
+    $motivo=str_replace("'","\'",$data->MOTIVO);
+    $duracion=str_replace("'","\'",$data->DURACION);
+
+
+    $sql="call SP_GRABA_ORDENES('{$data->C_CONTRATO}','{$data->C_CLIENTE}','{$data->C_MEDIO}','{$data->C_EJECUTIVO}','{$producto}','{$motivo}','{$duracion}','{$inicio}','{$fin}','{$data->IGV}','{$data->C_MONEDA}',{$data->INVERSION},'{$data->OBSERVACIONES}','{$data->C_USUARIO}','{$data->AGENCIA}',@SCODIGO,@PV_MENSAJE_ERROR,@VAL_ERROR)";
 
 
 
@@ -1205,6 +1212,7 @@ try{
 
 
         }
+        
         for ($v=0; $v < (int)$item->d2; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 1 days'));
 
@@ -1261,6 +1269,7 @@ try{
             $stmt = mysqli_prepare($db,$sql2);
             mysqli_stmt_execute($stmt);
         }
+     
 
         for ($v=0; $v < (int)$item->d9; $v++) {
             $fec=date('Y-m-d', strtotime($inicio. ' + 8 days'));
