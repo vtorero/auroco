@@ -4,6 +4,7 @@ C:\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x86\msvcr120.dll
 C:\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
 C:\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe.config
 C:\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe
+C:\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.pdb
 C:\auroco\AurocoPublicidad\bin\Debug\BouncyCastle.Cryptography.dll
 C:\auroco\AurocoPublicidad\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
 C:\auroco\AurocoPublicidad\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
@@ -124,4 +125,3 @@ C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInputs.c
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPu.B3E24C9F.Up2Date
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb
-C:\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.pdb
