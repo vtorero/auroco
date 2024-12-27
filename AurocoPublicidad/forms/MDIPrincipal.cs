@@ -230,5 +230,10 @@ namespace AurocoPublicidad.forms
             childForm.Text = "Ingresar Ordenes";
             childForm.Show();
         }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

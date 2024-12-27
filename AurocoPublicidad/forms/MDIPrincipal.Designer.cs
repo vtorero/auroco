@@ -71,8 +71,10 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contabilidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -85,7 +87,8 @@
             this.operacionesToolStripMenuItem,
             this.reportesToolStripMenuItem,
             this.windowsMenu,
-            this.helpMenu});
+            this.helpMenu,
+            this.contabilidadToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
@@ -173,14 +176,14 @@
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItem6.Text = "&Listado de Ordenes";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // ingresarOrdenToolStripMenuItem
             // 
             this.ingresarOrdenToolStripMenuItem.Name = "ingresarOrdenToolStripMenuItem";
-            this.ingresarOrdenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ingresarOrdenToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ingresarOrdenToolStripMenuItem.Text = "&Ingresar Orden";
             this.ingresarOrdenToolStripMenuItem.Click += new System.EventHandler(this.ingresarOrdenToolStripMenuItem_Click);
             // 
@@ -344,6 +347,7 @@
             this.toolStrip1.Size = new System.Drawing.Size(632, 53);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // toolStripButton1
             // 
@@ -432,15 +436,29 @@
             this.toolStripButton4.Text = "Ordenes de publicidad";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click_1);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 53);
+            // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(32, 19);
             // 
-            // toolStripSeparator2
+            // contabilidadToolStripMenuItem
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 53);
+            this.contabilidadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.facturaciónToolStripMenuItem});
+            this.contabilidadToolStripMenuItem.Name = "contabilidadToolStripMenuItem";
+            this.contabilidadToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.contabilidadToolStripMenuItem.Text = "&Contabilidad";
+            // 
+            // facturaciónToolStripMenuItem
+            // 
+            this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaciónToolStripMenuItem.Text = "Facturación";
             // 
             // MDIPrincipal
             // 
@@ -512,6 +530,8 @@
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem contabilidadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
     }
 }
 
