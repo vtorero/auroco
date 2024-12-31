@@ -850,7 +850,7 @@ if($data->C_MEDIO!="") {
     $sql.=" AND M.C_MEDIO = '{$data->C_MEDIO}' ";
 }
 
-if($data->INICIO_VIGENCIA!="" && $data->FIN_VIGENCIA!="") {
+if($data->INICIO_VIGENCIA!="" && $data->FIN_VIGENCIA!="" && $data->C_ORDEN=="") {
     $sql.=" AND O.INICIO_VIGENCIA BETWEEN '{$inicio}' and '{$fin}'";
 }
 
