@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using AurocoPublicidad.util;
 
 namespace AurocoPublicidad.forms
 {
@@ -231,9 +232,17 @@ namespace AurocoPublicidad.forms
             childForm.Show();
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void MDIPrincipal_Load(object sender, EventArgs e)
         {
+            if (Global.sessionUsuario == "auroco")
+            {
+                contabilidadToolStripMenuItem.Visible = false;  
+            }
+            else
+            {
+                contabilidadToolStripMenuItem.Visible=true;
 
+            }
         }
     }
 }

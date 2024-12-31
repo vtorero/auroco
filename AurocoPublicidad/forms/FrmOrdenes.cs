@@ -209,6 +209,7 @@ namespace AurocoPublicidad.forms
                     orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
                     orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
                     orden.FIN_VIGENCIA = dtHasta.Value.ToString();
+                   orden.C_ORDEN= txtOrden.Text;
                     string resultado = Send<Ordenes>(url, orden, "POST");
                     List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
 
@@ -249,7 +250,8 @@ namespace AurocoPublicidad.forms
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error",ex.Message,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("El criterio no tiene resultados pruebe otras opciones", "Mensaje", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                //MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -365,6 +367,41 @@ namespace AurocoPublicidad.forms
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             cargaOrdenes();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboMedio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtDesde_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
