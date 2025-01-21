@@ -481,9 +481,13 @@
             this.dataGridOrden.DefaultCellStyle = dataGridViewCellStyle1;
             resources.ApplyResources(this.dataGridOrden, "dataGridOrden");
             this.dataGridOrden.Name = "dataGridOrden";
+            this.dataGridOrden.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellClick);
             this.dataGridOrden.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellEndEdit);
             this.dataGridOrden.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridOrden_CellFormatting);
+            this.dataGridOrden.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellValidated);
+            this.dataGridOrden.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrden_CellValueChanged);
             this.dataGridOrden.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridOrden_EditingControlShowing);
+            this.dataGridOrden.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridOrden_RowStateChanged);
             // 
             // horario
             // 

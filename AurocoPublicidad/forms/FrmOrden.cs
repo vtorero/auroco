@@ -104,6 +104,9 @@ namespace AurocoPublicidad.forms
     
        private async void FrmOrden_Load(object sender, EventArgs e)
         {
+            comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
             string simboloMoneda = "";
             if (valorMoneda == "Soles") { 
             simboloMoneda = "S/.";
@@ -150,7 +153,7 @@ namespace AurocoPublicidad.forms
             comboMedio.SelectedValue = "0";
             if (valorRecibido != "") {  
             comboMedio.SelectedValue = valorRecibido;
-            btnGuardar.Enabled = true;
+            //btnGuardar.Enabled = true;
             btnGuardar.Text = "&Actualizar";
             }
 
@@ -188,6 +191,39 @@ namespace AurocoPublicidad.forms
                 txtAgencia.SelectedIndex = 2;
             else
                 txtAgencia.SelectedIndex = 1;
+        }
+        private async void ComboBoxAutocomplete_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && comboCliente.Text != "")
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                string clientes = await GetService(Global.servicio + "/api-auroco/cliente_buscar/" + comboCliente.Text);
+                List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+                comboCliente.DataSource = lstC;
+                comboCliente.DisplayMember = "RAZON_SOCIAL";
+                comboCliente.ValueMember = "C_CLIENTE";
+                comboCliente.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
+            }
+            if (e.KeyCode == Keys.Enter && comboCliente.Text == "")
+            {
+                fillClientes();
+            }
+
+
+
+        }
+
+
+        private async void fillClientes()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            Cursor.Current = Cursors.Default;
         }
 
 
@@ -934,7 +970,7 @@ namespace AurocoPublicidad.forms
                 else
                 {
                     // Si no está vacío, activar el botón
-                    btnGuardar.Enabled = true;
+                  //  btnGuardar.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1015,6 +1051,26 @@ namespace AurocoPublicidad.forms
             childForm.Text = "Orden nro: "+valorIdOrden;
             childForm.Show();
 
+        }
+
+        private void dataGridOrden_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //btnGuardar.Enabled = true;
+        }
+
+        private void dataGridOrden_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+           // btnGuardar.Enabled = true;
+        }
+
+        private void dataGridOrden_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+             //btnGuardar.Enabled = true;
+        }
+
+        private void dataGridOrden_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+             btnGuardar.Enabled = true;
         }
     }
 }

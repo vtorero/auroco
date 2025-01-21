@@ -29,7 +29,7 @@ namespace AurocoPublicidad.forms
 
         private async void FrmContratos_Load(object sender, EventArgs e)
         {
-            //comboCliente.AutoCompleteCustomSource = cargarDatosAPI();
+           
             comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
             comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
             comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
@@ -129,7 +129,7 @@ namespace AurocoPublicidad.forms
         }
 
       
-        private async void button1_Click(object sender, EventArgs e)
+        private  void button1_Click(object sender, EventArgs e)
         {
             if (nuevo)
             {
