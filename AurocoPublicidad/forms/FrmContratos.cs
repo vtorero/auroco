@@ -250,6 +250,7 @@ namespace AurocoPublicidad.forms
         private void DgContratos_DoubleClick(object sender, EventArgs e)
         {
             nuevo = false;
+                    
             btnGuardar.Text = "&Actualizar";
             pos = DgContratos.CurrentRow.Index;
             comboMoneda.SelectedText=null;

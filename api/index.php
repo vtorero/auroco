@@ -1046,7 +1046,22 @@ $app->get("/clientes",function() use ($app,$db){
 });
 
 
-
+$app->get("/cliente_buscar/:criterio",function($criterio) use ($app,$db){
+    $json = $app->request->getBody();
+   $data = json_decode($json, true);
+   $resultado = $db->query("SELECT C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES WHERE RAZON_SOCIAL LIKE '%{$criterio}%' order by RAZON_SOCIAL ASC");
+   $clientes=array();
+   $clientes[]=["C_CLIENTE"=>"0","RAZON_SOCIAL"=>"Seleccionar Cliente"];
+   while ($fila = $resultado->fetch_object()) {
+   $clientes[]=$fila;
+   }
+      if(count($clientes)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$clientes);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($clientes);
+});
 
 
 $app->get("/clientes_orden",function() use ($app,$db){
