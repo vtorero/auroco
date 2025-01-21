@@ -73,6 +73,7 @@
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.txtObservaciones);
             this.groupBox1.Controls.Add(this.txtSaldo);
             this.groupBox1.Controls.Add(this.label9);
@@ -177,7 +179,7 @@
             this.comboCliente.FormattingEnabled = true;
             this.comboCliente.Location = new System.Drawing.Point(77, 43);
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(462, 24);
+            this.comboCliente.Size = new System.Drawing.Size(492, 24);
             this.comboCliente.TabIndex = 20;
             // 
             // button2
@@ -337,7 +339,7 @@
             this.textoRazon.Name = "textoRazon";
             this.textoRazon.Size = new System.Drawing.Size(407, 20);
             this.textoRazon.TabIndex = 1;
-            this.textoRazon.TextChanged += new System.EventHandler(this.textoRazon_TextChanged);
+      
             // 
             // label7
             // 
@@ -347,7 +349,7 @@
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 0;
             this.label7.Text = "Razón Social:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+         
             // 
             // DgContratos
             // 
@@ -474,6 +476,17 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefresh.Image = global::AurocoPublicidad.Properties.Resources.xmag_search_find_export_locate_5984;
+            this.btnRefresh.Location = new System.Drawing.Point(575, 35);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(32, 32);
+            this.btnRefresh.TabIndex = 97;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FrmContratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,5 +555,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textoRazon;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

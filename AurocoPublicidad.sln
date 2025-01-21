@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AurocoPublicidad", "AurocoPublicidad\AurocoPublicidad.csproj", "{172D50B2-3011-40CC-AE50-748B2DFE6C00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pruebacombo", "..\Users\vtore\source\repos\pruebacombo\pruebacombo.csproj", "{475DBAD9-6B14-44ED-9C2A-E609AFE2F71F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{172D50B2-3011-40CC-AE50-748B2DFE6C00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{172D50B2-3011-40CC-AE50-748B2DFE6C00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{172D50B2-3011-40CC-AE50-748B2DFE6C00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475DBAD9-6B14-44ED-9C2A-E609AFE2F71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475DBAD9-6B14-44ED-9C2A-E609AFE2F71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475DBAD9-6B14-44ED-9C2A-E609AFE2F71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475DBAD9-6B14-44ED-9C2A-E609AFE2F71F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

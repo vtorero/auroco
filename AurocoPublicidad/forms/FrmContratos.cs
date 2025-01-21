@@ -9,12 +9,15 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AurocoPublicidad.forms
 {
 
     public partial class FrmContratos : Form
     {
+
+        System.Windows.Forms.Button button = new System.Windows.Forms.Button();
         int pos;
         Boolean nuevo = true;
         String metodo;
@@ -26,40 +29,76 @@ namespace AurocoPublicidad.forms
 
         private async void FrmContratos_Load(object sender, EventArgs e)
         {
-            
+            //comboCliente.AutoCompleteCustomSource = cargarDatosAPI();
+            comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
 
             string clientes = await GetService(Global.servicio+ "/api-auroco/clientes_orden");
             List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
             comboCliente.DataSource = lstC;
             comboCliente.DisplayMember = "RAZON_SOCIAL";
             comboCliente.ValueMember = "C_CLIENTE";
-
+            
 
             string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
             List<models.request.Monedas> lstM = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
             comboMoneda.DataSource = lstM;
             comboMoneda.DisplayMember = "NOMBRE";
             comboMoneda.ValueMember = "VALOR";
-
-            cargarContratos();
             DgContratos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
+            cargarContratos();
+            
 
         }
 
+        private async void fillClientes()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            Cursor.Current = Cursors.Default;
+        }
+
+        private async  void ComboBoxAutocomplete_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && comboCliente.Text!="") {
+                Cursor.Current = Cursors.WaitCursor;
+                string clientes = await GetService(Global.servicio + "/api-auroco/cliente_buscar/"+comboCliente.Text);
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+                comboCliente.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
+            }
+            if(e.KeyCode == Keys.Enter && comboCliente.Text == "")
+            {
+                fillClientes(); 
+            }
+           
+            
+            
+        }
 
         private async void cargarContratos()
         {
-            Cursor.Current = Cursors.WaitCursor;
+           Cursor.Current = Cursors.WaitCursor;
 
             string respuesta = await GetService(Global.servicio + "/api-auroco/contratos");
             List<models.request.Contrato> lst = JsonConvert.DeserializeObject<List<models.request.Contrato>>(respuesta);
 
    
 
-            DgContratos.Rows.Clear();   
-
+            DgContratos.Rows.Clear();
+         
             foreach (Contrato ord in lst)
             {
+              
                 int rowIndex = DgContratos.Rows.Add();
                 DgContratos.Rows[rowIndex].Cells["codigo"].Value = ord.ID;
                 DgContratos.Rows[rowIndex].Cells["contrato"].Value = ord.C_CONTRATO;
@@ -78,7 +117,7 @@ namespace AurocoPublicidad.forms
                 DgContratos.Rows[rowIndex].Cells["tcambio"].Value = ord.TIPO_CAMBIO;
 
             }
-            Cursor.Current = Cursors.Default;
+           Cursor.Current = Cursors.Default;
         }
 
             private async Task<string> GetService(string cadena)
@@ -122,7 +161,7 @@ namespace AurocoPublicidad.forms
                 contratoR.C_USUARIO = Global.sessionUsuario.ToString();
                       
 
-            string resultado = Send<Contrato>(url, contratoR, metodo);
+            string resultado =  Send<Contrato>(url, contratoR, metodo);
 
             JObject jObject = JObject.Parse(resultado);
             JToken objeto = jObject["status"];
@@ -215,7 +254,9 @@ namespace AurocoPublicidad.forms
             pos = DgContratos.CurrentRow.Index;
             comboMoneda.SelectedText=null;
             txtCodigo.Text = Convert.ToString(DgContratos[1, pos].Value);
+        
             comboCliente.SelectedValue = Convert.ToString(DgContratos[2, pos].Value);
+
 
             string simboloMoneda = "";
             if (Convert.ToString(DgContratos[8, pos].Value) == "Soles")
@@ -243,12 +284,7 @@ namespace AurocoPublicidad.forms
             
         }
 
-        private void txtMonto_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
+   
         private void button1_Click_1(object sender, EventArgs e)
         {
             try
@@ -412,14 +448,24 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private void label7_Click(object sender, EventArgs e)
+          private async void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            if(comboCliente.Text.Length > 0) {
+            Cursor.Current = Cursors.WaitCursor;
+            string clientes = await GetService(Global.servicio + "/api-auroco/cliente_buscar/" + comboCliente.Text);
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            comboCliente.DroppedDown = true;
+            Cursor.Current = Cursors.Default;
         }
+            if(comboCliente.Text == "")
+            {
+                fillClientes(); 
+            }
 
-        private void textoRazon_TextChanged(object sender, EventArgs e)
-        {
-
+            //fillClientes();
         }
     }
 

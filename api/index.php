@@ -1055,9 +1055,9 @@ $app->get("/clientes_orden",function() use ($app,$db){
 
    $data = json_decode($json, true);
 
+   $resultado = $db->query("SELECT CL.C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES CL ORDER  by CL.RAZON_SOCIAL ASC");
 
-
-   $resultado = $db->query("SELECT CL.C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES CL , ORD_CONTRATOS CO WHERE CL.C_CLIENTE=CO.C_CLIENTE group by C_CLIENTE,RAZON_SOCIAL ORDER  by CL.RAZON_SOCIAL ASC");
+   /*$resultado = $db->query("SELECT CL.C_CLIENTE,RAZON_SOCIAL FROM ORD_CLIENTES CL , ORD_CONTRATOS CO WHERE CL.C_CLIENTE=CO.C_CLIENTE group by C_CLIENTE,RAZON_SOCIAL ORDER  by CL.RAZON_SOCIAL ASC");*/
 
    $contrato=array();
 

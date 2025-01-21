@@ -52,9 +52,6 @@ namespace AurocoPublicidad.forms
                 DgClientes.Rows[rowIndex].Cells["rpt_dni"].Value = ord.RPT_DNI;
                 DgClientes.Rows[rowIndex].Cells["rptdireccion"].Value = ord.RPT_DIRECCION;
 
-
-
-
             }
 
         }
