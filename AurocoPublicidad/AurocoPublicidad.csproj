@@ -221,6 +221,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsOrden.xsd</DependentUpon>
     </Compile>
+    <Compile Include="forms\FormFacturarOrdenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormFacturarOrdenes.Designer.cs">
+      <DependentUpon>FormFacturarOrdenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\formReportes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +386,9 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="util\Global.cs" />
+    <EmbeddedResource Include="forms\FormFacturarOrdenes.resx">
+      <DependentUpon>FormFacturarOrdenes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\formReportes.resx">
       <DependentUpon>formReportes.cs</DependentUpon>
     </EmbeddedResource>

@@ -125,3 +125,4 @@ C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInputs.c
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPu.B3E24C9F.Up2Date
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb
+C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.FormFacturarOrdenes.resources

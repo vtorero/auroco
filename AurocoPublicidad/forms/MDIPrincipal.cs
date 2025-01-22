@@ -244,5 +244,13 @@ namespace AurocoPublicidad.forms
 
             }
         }
+
+        private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form childForm = new FormFacturarOrdenes();
+            childForm.MdiParent = this;
+            childForm.Text = "Facturación de Ordenes";
+            childForm.Show();
+        }
     }
 }
