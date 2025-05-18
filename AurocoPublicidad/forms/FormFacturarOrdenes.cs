@@ -89,5 +89,58 @@ namespace AurocoPublicidad.forms
             }
             Cursor.Current = Cursors.Default;
         }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgOrdenes_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            EditarOrden();
+        }
+
+        private void EditarOrden()
+        {
+            try
+            {
+
+                Cursor.Current = Cursors.WaitCursor;
+                System.Threading.Thread.Sleep(500);
+                int pos;
+                pos = dgOrdenes.CurrentRow.Index;
+                var idOrden = dgOrdenes[1, pos].Value.ToString();
+                var idMedio = dgOrdenes[4, pos].Value.ToString();
+                var idCliente = dgOrdenes[2, pos].Value.ToString();
+                var fcreacion = dgOrdenes[8, pos].Value.ToString();
+                var idEjecutivo = dgOrdenes[6, pos].Value.ToString();
+                var finicio = dgOrdenes[9, pos].Value.ToString();
+                var ffin = dgOrdenes[10, pos].Value.ToString();
+                var idContrato = dgOrdenes[11, pos].Value.ToString();
+                var revision = Convert.ToInt32(dgOrdenes[18, pos].Value);
+                var moneda = dgOrdenes[12, pos].Value.ToString();
+                var totalOrden = dgOrdenes[13, pos].Value.ToString();
+
+                var producto = dgOrdenes[14, pos].Value.ToString();
+                var motivo = dgOrdenes[15, pos].Value.ToString();
+                var duracion = dgOrdenes[16, pos].Value.ToString();
+                var observaciones = dgOrdenes[17, pos].Value.ToString();
+                var agencia = dgOrdenes[20, pos].Value.ToString();
+                FrmFacturar frmFacturar = new FrmFacturar(idOrden, idMedio, idCliente, idContrato, revision, idEjecutivo, fcreacion, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones, agencia);
+                frmFacturar.Show();
+                Cursor.Current = Cursors.Default;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+
+                MessageBox.Show("Algun dato esta incompleto " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Cursor.Current = Cursors.Default;
+            }
+
+
+
+        }
     }
 }

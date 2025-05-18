@@ -251,6 +251,12 @@
     <Compile Include="forms\FrmEjecutivo.Designer.cs">
       <DependentUpon>FrmEjecutivo.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FrmFacturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmFacturar.Designer.cs">
+      <DependentUpon>FrmFacturar.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\FrmMedio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -400,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmEjecutivo.resx">
       <DependentUpon>FrmEjecutivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmFacturar.resx">
+      <DependentUpon>FrmFacturar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmMedio.resx">
       <DependentUpon>FrmMedio.cs</DependentUpon>

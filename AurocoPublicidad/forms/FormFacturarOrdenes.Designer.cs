@@ -228,6 +228,7 @@
             this.btnNuevo.TabIndex = 101;
             this.btnNuevo.Text = "F&acturar Orden";
             this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // dgOrdenes
             // 
@@ -260,6 +261,7 @@
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgOrdenes.Size = new System.Drawing.Size(1241, 327);
             this.dgOrdenes.TabIndex = 100;
+            this.dgOrdenes.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgOrdenes_CellMouseDoubleClick);
             // 
             // id
             // 
