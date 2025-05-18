@@ -1082,5 +1082,105 @@ namespace AurocoPublicidad.forms
         {
 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void  FrmFacturar_Load(object sender, EventArgs e)
+        {
+            comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
+            string simboloMoneda = "";
+            if (valorMoneda == "Soles")
+            {
+                simboloMoneda = "S/.";
+            }
+            else
+            {
+                simboloMoneda = "$";
+            }
+            Double igv = 0;
+            Double totalOrd = 0;
+            if (valorTotal != "")
+            {
+                igv = Convert.ToDouble(valorTotal) * 0.18;
+
+                totalOrd = Convert.ToDouble(valorTotal) + igv;
+            }
+            if (valorTotal != "") totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, valorTotal);
+            if (valorTotal != "") txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, igv);
+            if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
+
+
+
+            if (valorInicio != "") inicioVigencia.Value = Convert.ToDateTime(valorInicio);
+            if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
+            if (valorProducto != "") textProducto.Text = valorProducto;
+            if (valorMotivo != "") textMotivo.Text = valorMotivo;
+            if (valorDuracion != "") textDuracion.Text = valorDuracion;
+            if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
+
+
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            comboCliente.SelectedValue = "0";
+            if (valorCliente != "")
+                comboCliente.SelectedValue = valorCliente;
+
+            string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
+            comboMedio.DataSource = lstM;
+            comboMedio.DisplayMember = "NOMBRE";
+            comboMedio.ValueMember = "C_MEDIO";
+            comboMedio.SelectedValue = "0";
+            if (valorRecibido != "")
+            {
+                comboMedio.SelectedValue = valorRecibido;
+                //btnGuardar.Enabled = true;
+                btnGuardar.Text = "&Actualizar";
+            }
+
+
+            string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
+            List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
+            cmbEjecutivo.DataSource = lstE;
+            cmbEjecutivo.DisplayMember = "NOMBRES";
+            cmbEjecutivo.ValueMember = "C_EJECUTIVO";
+            if (valorEjecutivo != "")
+                cmbEjecutivo.SelectedValue = valorEjecutivo;
+
+            string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
+            List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
+            comboCambio.DataSource = lstMo;
+            comboCambio.DisplayMember = "NOMBRE";
+            comboCambio.ValueMember = "VALOR";
+            if (valorMoneda != "")
+                comboCambio.SelectedValue = valorMoneda;
+
+            comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
+            comboIgv.Items.Add(new ListItem("Si", "Si"));
+            comboIgv.Items.Add(new ListItem("No", "No"));
+            // Seleccionar el primer elemento por defecto
+            comboIgv.SelectedIndex = 1;
+
+            txtAgencia.Items.Add(new ListItem("0", "Seleccionar"));
+            txtAgencia.Items.Add(new ListItem("AUROCO", "AUROCO"));
+            txtAgencia.Items.Add(new ListItem("OPTIMIZA", "OPTIMIZA"));
+            // Seleccionar el primer elemento por defecto
+
+            if (valorAgencia != "" && valorAgencia == "AUROCO")
+                txtAgencia.SelectedIndex = 1;
+            else if (valorAgencia != "" && valorAgencia == "OPTIMIZA")
+                txtAgencia.SelectedIndex = 2;
+            else
+                txtAgencia.SelectedIndex = 1;
+
+        }
     }
 }
