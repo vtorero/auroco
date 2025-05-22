@@ -66,6 +66,7 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
                 dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
                 dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
+                dgOrdenes.Rows[rowIndex].Cells["C_RUC"].Value = ord.C_RUC;
                 dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
                 dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
                 dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
@@ -117,7 +118,6 @@ namespace AurocoPublicidad.forms
                 var finicio = dgOrdenes[9, pos].Value.ToString();
                 var ffin = dgOrdenes[10, pos].Value.ToString();
                 var idContrato = dgOrdenes[11, pos].Value.ToString();
-                var revision = Convert.ToInt32(dgOrdenes[18, pos].Value);
                 var moneda = dgOrdenes[12, pos].Value.ToString();
                 var totalOrden = dgOrdenes[13, pos].Value.ToString();
 
@@ -126,7 +126,7 @@ namespace AurocoPublicidad.forms
                 var duracion = dgOrdenes[16, pos].Value.ToString();
                 var observaciones = dgOrdenes[17, pos].Value.ToString();
                 var agencia = dgOrdenes[20, pos].Value.ToString();
-                FrmFacturar frmFacturar = new FrmFacturar(idOrden, idMedio, idCliente, idContrato, revision, idEjecutivo, fcreacion, finicio, ffin, moneda, totalOrden, producto, motivo, duracion, observaciones, agencia);
+                FrmFacturar frmFacturar = new FrmFacturar(idOrden, idMedio, idCliente,   fcreacion, finicio, ffin, moneda, totalOrden);
                 frmFacturar.Show();
                 Cursor.Current = Cursors.Default;
 

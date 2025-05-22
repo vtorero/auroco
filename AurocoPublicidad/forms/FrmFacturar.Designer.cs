@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFacturar));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,52 +78,36 @@
             this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label20 = new System.Windows.Forms.Label();
             this.txtAgencia = new System.Windows.Forms.ComboBox();
-            this.numRevision = new System.Windows.Forms.NumericUpDown();
-            this.labelRevision = new System.Windows.Forms.Label();
-            this.chkRevisar = new System.Windows.Forms.CheckBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.LblNumero = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.cNumeroFisico = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.cTipoCambio = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.textDuracion = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textObservaciones = new System.Windows.Forms.RichTextBox();
             this.textMotivo = new System.Windows.Forms.TextBox();
-            this.textProducto = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtRuc = new System.Windows.Forms.TextBox();
             this.comboCambio = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.cmbEjecutivo = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboMedio = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboIgv = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cSaldo = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cMoneda = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cFinVigencia = new System.Windows.Forms.TextBox();
-            this.cInicioVigencia = new System.Windows.Forms.TextBox();
             this.finVigencia = new System.Windows.Forms.DateTimePicker();
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboContratos = new System.Windows.Forms.ComboBox();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.dataGridOrden = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRevision)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).BeginInit();
             this.SuspendLayout();
@@ -389,22 +373,6 @@
             resources.ApplyResources(this.txtAgencia, "txtAgencia");
             this.txtAgencia.Name = "txtAgencia";
             // 
-            // numRevision
-            // 
-            resources.ApplyResources(this.numRevision, "numRevision");
-            this.numRevision.Name = "numRevision";
-            // 
-            // labelRevision
-            // 
-            resources.ApplyResources(this.labelRevision, "labelRevision");
-            this.labelRevision.Name = "labelRevision";
-            // 
-            // chkRevisar
-            // 
-            resources.ApplyResources(this.chkRevisar, "chkRevisar");
-            this.chkRevisar.Name = "chkRevisar";
-            this.chkRevisar.UseVisualStyleBackColor = true;
-            // 
             // txtNumero
             // 
             this.txtNumero.BackColor = System.Drawing.Color.Cyan;
@@ -421,18 +389,6 @@
             // 
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            // 
-            // cNumeroFisico
-            // 
-            this.cNumeroFisico.BackColor = System.Drawing.SystemColors.Info;
-            resources.ApplyResources(this.cNumeroFisico, "cNumeroFisico");
-            this.cNumeroFisico.Name = "cNumeroFisico";
-            this.cNumeroFisico.ReadOnly = true;
-            // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
             // 
             // cTipoCambio
             // 
@@ -456,11 +412,6 @@
             resources.ApplyResources(this.textDuracion, "textDuracion");
             this.textDuracion.Name = "textDuracion";
             // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
@@ -476,11 +427,6 @@
             resources.ApplyResources(this.textMotivo, "textMotivo");
             this.textMotivo.Name = "textMotivo";
             // 
-            // textProducto
-            // 
-            resources.ApplyResources(this.textProducto, "textProducto");
-            this.textProducto.Name = "textProducto";
-            // 
             // label13
             // 
             resources.ApplyResources(this.label13, "label13");
@@ -493,53 +439,43 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtRuc);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.txtAgencia);
-            this.groupBox1.Controls.Add(this.numRevision);
-            this.groupBox1.Controls.Add(this.labelRevision);
-            this.groupBox1.Controls.Add(this.chkRevisar);
             this.groupBox1.Controls.Add(this.txtNumero);
             this.groupBox1.Controls.Add(this.LblNumero);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.cNumeroFisico);
-            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.cTipoCambio);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.textDuracion);
-            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.textObservaciones);
             this.groupBox1.Controls.Add(this.textMotivo);
-            this.groupBox1.Controls.Add(this.textProducto);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.comboCambio);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.cmbEjecutivo);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.comboMedio);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.comboIgv);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.cSaldo);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cMoneda);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cFinVigencia);
-            this.groupBox1.Controls.Add(this.cInicioVigencia);
             this.groupBox1.Controls.Add(this.finVigencia);
             this.groupBox1.Controls.Add(this.inicioVigencia);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboContratos);
             this.groupBox1.Controls.Add(this.comboCliente);
             this.groupBox1.Controls.Add(this.label2);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // txtRuc
+            // 
+            resources.ApplyResources(this.txtRuc, "txtRuc");
+            this.txtRuc.Name = "txtRuc";
             // 
             // comboCambio
             // 
@@ -557,27 +493,11 @@
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
-            // cmbEjecutivo
-            // 
-            this.cmbEjecutivo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cmbEjecutivo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            resources.ApplyResources(this.cmbEjecutivo, "cmbEjecutivo");
-            this.cmbEjecutivo.FormattingEnabled = true;
-            this.cmbEjecutivo.Name = "cmbEjecutivo";
-            // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
             this.label8.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // comboMedio
-            // 
-            this.comboMedio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboMedio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            resources.ApplyResources(this.comboMedio, "comboMedio");
-            this.comboMedio.FormattingEnabled = true;
-            this.comboMedio.Name = "comboMedio";
             // 
             // label7
             // 
@@ -595,18 +515,6 @@
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
-            // cSaldo
-            // 
-            this.cSaldo.BackColor = System.Drawing.SystemColors.Info;
-            resources.ApplyResources(this.cSaldo, "cSaldo");
-            this.cSaldo.Name = "cSaldo";
-            this.cSaldo.ReadOnly = true;
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
@@ -619,25 +527,6 @@
             this.cMoneda.Name = "cMoneda";
             this.cMoneda.ReadOnly = true;
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // cFinVigencia
-            // 
-            this.cFinVigencia.BackColor = System.Drawing.SystemColors.Info;
-            resources.ApplyResources(this.cFinVigencia, "cFinVigencia");
-            this.cFinVigencia.Name = "cFinVigencia";
-            this.cFinVigencia.ReadOnly = true;
-            // 
-            // cInicioVigencia
-            // 
-            this.cInicioVigencia.BackColor = System.Drawing.SystemColors.Info;
-            resources.ApplyResources(this.cInicioVigencia, "cInicioVigencia");
-            this.cInicioVigencia.Name = "cInicioVigencia";
-            this.cInicioVigencia.ReadOnly = true;
-            // 
             // finVigencia
             // 
             resources.ApplyResources(this.finVigencia, "finVigencia");
@@ -649,19 +538,6 @@
             resources.ApplyResources(this.inicioVigencia, "inicioVigencia");
             this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.inicioVigencia.Name = "inicioVigencia";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // comboContratos
-            // 
-            this.comboContratos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            resources.ApplyResources(this.comboContratos, "comboContratos");
-            this.comboContratos.FormattingEnabled = true;
-            this.comboContratos.Name = "comboContratos";
             // 
             // comboCliente
             // 
@@ -724,14 +600,14 @@
             this.avisos,
             this.total,
             this.totalcalculo});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridOrden.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridOrden.DefaultCellStyle = dataGridViewCellStyle1;
             resources.ApplyResources(this.dataGridOrden, "dataGridOrden");
             this.dataGridOrden.Name = "dataGridOrden";
             // 
@@ -751,7 +627,6 @@
             this.Load += new System.EventHandler(this.FrmFacturar_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRevision)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrden)).EndInit();
@@ -810,49 +685,34 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn horario;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox txtAgencia;
-        private System.Windows.Forms.NumericUpDown numRevision;
-        private System.Windows.Forms.Label labelRevision;
-        private System.Windows.Forms.CheckBox chkRevisar;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.Label LblNumero;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox cNumeroFisico;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox cTipoCambio;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textDuracion;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RichTextBox textObservaciones;
         private System.Windows.Forms.TextBox textMotivo;
-        private System.Windows.Forms.TextBox textProducto;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboCambio;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cmbEjecutivo;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboMedio;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboIgv;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox cSaldo;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox cMoneda;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox cFinVigencia;
-        private System.Windows.Forms.TextBox cInicioVigencia;
         private System.Windows.Forms.DateTimePicker finVigencia;
         private System.Windows.Forms.DateTimePicker inicioVigencia;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboContratos;
         private System.Windows.Forms.ComboBox comboCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.DataGridView dataGridOrden;
+        private System.Windows.Forms.TextBox txtRuc;
     }
 }

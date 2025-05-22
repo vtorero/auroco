@@ -8,6 +8,7 @@
         public string NOMBRE { get; set; }
 
         public string C_CLIENTE { get; set; }
+        public string C_RUC { get; set; }
 
         public string RAZON_SOCIAL { get; set; }
 

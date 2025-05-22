@@ -47,6 +47,7 @@
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_RUC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.C_MEDIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Medio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -237,6 +238,7 @@
             this.id,
             this.C_ORDEN,
             this.C_CLIENTE,
+            this.C_RUC,
             this.Cliente,
             this.C_MEDIO,
             this.Medio,
@@ -279,6 +281,11 @@
             this.C_CLIENTE.HeaderText = "C_CLIENTE";
             this.C_CLIENTE.Name = "C_CLIENTE";
             this.C_CLIENTE.Visible = false;
+            // 
+            // C_RUC
+            // 
+            this.C_RUC.HeaderText = "RUC";
+            this.C_RUC.Name = "C_RUC";
             // 
             // Cliente
             // 
@@ -417,6 +424,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_ORDEN;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_CLIENTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_RUC;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn C_MEDIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn Medio;

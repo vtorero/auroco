@@ -26,6 +26,7 @@ namespace AurocoPublicidad.forms
         private string valorRecibido;
         private string valorIdOrden;
         private string valorCliente;
+        private string valorRuc;
         private string valorContrato;
         private int valorRevision;
         private string valorEjecutivo;
@@ -41,27 +42,24 @@ namespace AurocoPublicidad.forms
         private string valorAgencia;
 
         private string apiUrl = Global.servicio + "/api-auroco/orden";
-        public FrmFacturar(string id, string medio, string cliente, string contrato, int revision, string ejecutivo, string fecha, string fechainicio, string fechafin, string moneda, string total, string producto, string motivo, string duracion, string observaciones, string agencia)
+        public FrmFacturar(string id, string medio, string cliente, string ruc, string fecha,  string fechafin, string moneda, string total)
         {
 
             InitializeComponent();
             valorIdOrden = id;
             valorRecibido = medio;
-            valorRevision = revision;
+          
             valorCliente = cliente;
-            valorContrato = contrato;
-            valorEjecutivo = ejecutivo;
+            valorRuc = ruc;
+   
             valorFecha = fecha;
-            valorInicio = fechainicio;
+    
             valorFin = fechafin;
             valorMoneda = moneda;
             valorTotal = total;
-            valorProducto = producto;
-            valorMotivo = motivo;
-            valorDuracion = duracion;
-            valorAgencia = agencia;
+    
 
-            valorObservaciones = observaciones;
+      
 
 
             if (id != "")
@@ -71,12 +69,9 @@ namespace AurocoPublicidad.forms
                 cargaprograma(medio);
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
-                chkRevisar.Visible = true;
-                numRevision.Visible = true;
-                labelRevision.Visible = true;
-                txtNumero.Text = id;
+                 txtNumero.Text = id;
                 btnPrint.Visible = true;
-                numRevision.Value = valorRevision;
+             
                 pintaDias();
                 cargarLineas(id);
 
@@ -85,9 +80,7 @@ namespace AurocoPublicidad.forms
             {
                 LblNumero.Visible = false;
                 txtNumero.Visible = false;
-                numRevision.Visible = false;
-                labelRevision.Visible = false;
-                chkRevisar.Visible = false;
+               
                 btnPrint.Visible = false;
                 txtNumero.Text = "";
                 DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -132,8 +125,7 @@ namespace AurocoPublicidad.forms
 
             if (valorInicio != "") inicioVigencia.Value = Convert.ToDateTime(valorInicio);
             if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
-            if (valorProducto != "") textProducto.Text = valorProducto;
-            if (valorMotivo != "") textMotivo.Text = valorMotivo;
+                   if (valorMotivo != "") textMotivo.Text = valorMotivo;
             if (valorDuracion != "") textDuracion.Text = valorDuracion;
             if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
 
@@ -149,25 +141,14 @@ namespace AurocoPublicidad.forms
 
             string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
-            comboMedio.DataSource = lstM;
-            comboMedio.DisplayMember = "NOMBRE";
-            comboMedio.ValueMember = "C_MEDIO";
-            comboMedio.SelectedValue = "0";
-            if (valorRecibido != "")
-            {
-                comboMedio.SelectedValue = valorRecibido;
-                //btnGuardar.Enabled = true;
-                btnGuardar.Text = "&Actualizar";
-            }
+  
+        
 
 
             string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
-            cmbEjecutivo.DataSource = lstE;
-            cmbEjecutivo.DisplayMember = "NOMBRES";
-            cmbEjecutivo.ValueMember = "C_EJECUTIVO";
-            if (valorEjecutivo != "")
-                cmbEjecutivo.SelectedValue = valorEjecutivo;
+           
+         
 
             string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
             List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
@@ -385,9 +366,7 @@ namespace AurocoPublicidad.forms
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
-            if ((!string.IsNullOrWhiteSpace(textProducto.Text)) && (!string.IsNullOrWhiteSpace(textMotivo.Text))
-       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString() != "0") && (comboCambio.SelectedValue.ToString() != "0") &&
-       (txtAgencia.SelectedIndex != 0))
+            if ((!string.IsNullOrWhiteSpace(txtRuc.Text)) && (txtAgencia.SelectedIndex != 0))
 
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -410,14 +389,12 @@ namespace AurocoPublicidad.forms
                     Orden orden = new Orden();
                     orden.C_ORDEN = txtNumero.Text;
                     orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
-                    orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
-                    orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+                   
                     orden.IGV = comboIgv.SelectedItem.ToString();
                     orden.C_MONEDA = comboCambio.SelectedValue.ToString();
                     orden.FECHA_INICIO = inicioVigencia.Value.ToString();
                     orden.FECHA_FIN = finVigencia.Value.ToString();
-                    orden.C_EJECUTIVO = cmbEjecutivo.SelectedValue.ToString();
-                    orden.PRODUCTO = textProducto.Text;
+                 
                     orden.MOTIVO = textMotivo.Text;
                     orden.DURACION = textDuracion.Text;
                     orden.OBSERVACIONES = textObservaciones.Text;
@@ -441,15 +418,7 @@ namespace AurocoPublicidad.forms
 
 
 
-                    bool isChecked = chkRevisar.Checked;
-                    if (isChecked)
-                    {
-                        orden.REVISION = numRevision.Value.ToString();
-                    }
-                    else
-                    {
-                        orden.REVISION = valorRevision.ToString();
-                    }
+                   
 
                     if (valorRecibido == "")
                     {
@@ -581,8 +550,7 @@ namespace AurocoPublicidad.forms
             {
                 // Serializa los datos a formato JSON
                 Orden orden = new Orden();
-                orden.C_MEDIO = comboMedio.SelectedValue.ToString();
-                orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
+              
                 orden.orden = datos;
 
 
@@ -629,8 +597,7 @@ namespace AurocoPublicidad.forms
 
         private void cargarContratos()
         {
-            comboContratos.DataSource = null;
-            comboContratos.Items.Clear();
+          
             string url = "";
             if (valorContrato != "")
             {
@@ -650,13 +617,7 @@ namespace AurocoPublicidad.forms
                     cliente.C_CLIENTE = cod_cliente;
                     string resultado = Send<Cliente>(url, cliente, "POST");
                     List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
-                    comboContratos.DataSource = lstC;
-                    comboContratos.DisplayMember = "C_CONTRATO";
-                    comboContratos.ValueMember = "C_CONTRATO";
-                    if (valorContrato != "")
-                    {
-                        comboContratos.SelectedValue = valorContrato;
-                    }
+               
 
 
                 }
@@ -715,63 +676,6 @@ namespace AurocoPublicidad.forms
 
 
 
-        private async void comboContratos_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cInicioVigencia.Text = "";
-                cFinVigencia.Text = "";
-                cNumeroFisico.Text = "";
-                cTipoCambio.Text = "";
-                cSaldo.Text = "";
-
-
-
-                HttpClient clienteHttp = new HttpClient();
-                if (comboContratos.SelectedValue != null)
-                {
-                    string codigo_contrato = comboContratos.SelectedValue.ToString();
-
-                    string urlApi = Global.servicio + "/api-auroco/index.php/contrato_detalle/" + codigo_contrato; // URL de tu servicio API con parámetros   
-
-                    HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
-
-                    if (respuesta.IsSuccessStatusCode)
-                    {
-                        string contenido = await respuesta.Content.ReadAsStringAsync();
-                        // Procesar el contenido recibido y mostrarlo en TextBoxes
-                        // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
-                        dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
-                        cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
-                        cFinVigencia.Text = (data[0].FIN_VIGENCIA);
-                        cMoneda.Text = data[0].C_MONEDA;
-
-                        cNumeroFisico.Text = data[0].NRO_FISICO;
-
-                        string simboloMoneda = "";
-                        if (data[0].C_MONEDA == "Soles")
-                        {
-                            simboloMoneda = "S/.";
-                        }
-                        else
-                        {
-                            simboloMoneda = "$";
-                        }
-
-
-                        cTipoCambio.Text = string.Format("{0}{1:N2}", "$", data[0].TIPO_CAMBIO);
-
-                        cSaldo.Text = string.Format("{0}{1:N2}", simboloMoneda, data[0].SALDO_ACTUAL);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                // MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
 
 
 
@@ -985,12 +889,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private void comboMedio_Leave(object sender, EventArgs e)
-        {
-
-            cargaprograma(comboMedio.SelectedValue.ToString());
-        }
-
+    
         public class ListItem
         {
             public string Value { get; set; }
@@ -1118,7 +1017,7 @@ namespace AurocoPublicidad.forms
 
             if (valorInicio != "") inicioVigencia.Value = Convert.ToDateTime(valorInicio);
             if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
-            if (valorProducto != "") textProducto.Text = valorProducto;
+          
             if (valorMotivo != "") textMotivo.Text = valorMotivo;
             if (valorDuracion != "") textDuracion.Text = valorDuracion;
             if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
@@ -1135,25 +1034,11 @@ namespace AurocoPublicidad.forms
 
             string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
-            comboMedio.DataSource = lstM;
-            comboMedio.DisplayMember = "NOMBRE";
-            comboMedio.ValueMember = "C_MEDIO";
-            comboMedio.SelectedValue = "0";
-            if (valorRecibido != "")
-            {
-                comboMedio.SelectedValue = valorRecibido;
-                //btnGuardar.Enabled = true;
-                btnGuardar.Text = "&Actualizar";
-            }
-
+       
 
             string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
-            cmbEjecutivo.DataSource = lstE;
-            cmbEjecutivo.DisplayMember = "NOMBRES";
-            cmbEjecutivo.ValueMember = "C_EJECUTIVO";
-            if (valorEjecutivo != "")
-                cmbEjecutivo.SelectedValue = valorEjecutivo;
+       
 
             string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
             List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
