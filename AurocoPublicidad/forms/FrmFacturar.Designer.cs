@@ -38,27 +38,26 @@
             this.totalOrden = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
             this.txtAgencia = new System.Windows.Forms.ComboBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.LblNumero = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textObservaciones = new System.Windows.Forms.RichTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtRuc = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cMoneda = new System.Windows.Forms.TextBox();
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -117,11 +116,6 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
             // txtAgencia
             // 
             resources.ApplyResources(this.txtAgencia, "txtAgencia");
@@ -134,16 +128,12 @@
             resources.ApplyResources(this.txtNumero, "txtNumero");
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.ReadOnly = true;
+            this.txtNumero.TextChanged += new System.EventHandler(this.txtNumero_TextChanged);
             // 
             // LblNumero
             // 
             resources.ApplyResources(this.LblNumero, "LblNumero");
             this.LblNumero.Name = "LblNumero";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
             // 
             // label14
             // 
@@ -154,6 +144,7 @@
             // 
             resources.ApplyResources(this.textObservaciones, "textObservaciones");
             this.textObservaciones.Name = "textObservaciones";
+            this.textObservaciones.TextChanged += new System.EventHandler(this.textObservaciones_TextChanged);
             // 
             // label13
             // 
@@ -167,23 +158,22 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtIgv);
             this.groupBox1.Controls.Add(this.totalBruto);
             this.groupBox1.Controls.Add(this.txtRuc);
-            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.txtAgencia);
             this.groupBox1.Controls.Add(this.txtNumero);
             this.groupBox1.Controls.Add(this.totalOrden);
             this.groupBox1.Controls.Add(this.LblNumero);
-            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.textObservaciones);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cMoneda);
             this.groupBox1.Controls.Add(this.inicioVigencia);
@@ -198,26 +188,6 @@
             // 
             resources.ApplyResources(this.txtRuc, "txtRuc");
             this.txtRuc.Name = "txtRuc";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
             // 
             // label3
             // 
@@ -257,6 +227,31 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
             // FrmFacturar
             // 
             resources.ApplyResources(this, "$this");
@@ -286,20 +281,14 @@
         private System.Windows.Forms.TextBox totalOrden;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox txtAgencia;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.Label LblNumero;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RichTextBox textObservaciones;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox cMoneda;
         private System.Windows.Forms.DateTimePicker inicioVigencia;
@@ -307,5 +296,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtRuc;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

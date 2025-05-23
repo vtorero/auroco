@@ -558,5 +558,20 @@ namespace AurocoPublicidad.forms
         {
 
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNumero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textObservaciones_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
