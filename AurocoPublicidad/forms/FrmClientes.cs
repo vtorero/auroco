@@ -34,6 +34,11 @@ namespace AurocoPublicidad.forms
 
         private async void cargarClientes()
         {
+            if (Global.sessionUsuario == "AUROCO")
+            {
+                tabControl1.TabPages.Remove(tabPage3);
+            }
+
             string respuesta = await GetService(Global.servicio + "/api-auroco/clientes");
             List<models.request.Cliente> lst = JsonConvert.DeserializeObject<List<models.request.Cliente>>(respuesta);
 
@@ -51,8 +56,13 @@ namespace AurocoPublicidad.forms
                 DgClientes.Rows[rowIndex].Cells["rptlegal"].Value = ord.RPT_LEGAL;
                 DgClientes.Rows[rowIndex].Cells["rpt_dni"].Value = ord.RPT_DNI;
                 DgClientes.Rows[rowIndex].Cells["rptdireccion"].Value = ord.RPT_DIRECCION;
+                DgClientes.Rows[rowIndex].Cells["det_banco"].Value = ord.DET_BANCO;
+                DgClientes.Rows[rowIndex].Cells["det_cuenta"].Value = ord.DET_CUENTA;
+
 
             }
+
+        
 
         }
 
@@ -79,6 +89,8 @@ namespace AurocoPublicidad.forms
             txtRepresentante.Text = Convert.ToString(DgClientes[6, pos].Value);
             txtDNI.Text = Convert.ToString(DgClientes[7, pos].Value);
             rpt_Direccion.Text = Convert.ToString(DgClientes[8, pos].Value);
+            txtBanco.Text = Convert.ToString(DgClientes[9, pos].Value);
+            txtcuenta.Text = Convert.ToString(DgClientes[10, pos].Value);
 
 
         }
@@ -114,6 +126,8 @@ namespace AurocoPublicidad.forms
                 cliente.RPT_LEGAL = txtRepresentante.Text;
                 cliente.RPT_DNI = txtDNI.Text;
                 cliente.RPT_DIRECCION = txtDireccion.Text;
+                cliente.DET_BANCO = txtBanco.Text;
+                cliente.DET_CUENTA = txtcuenta.Text;
                 cliente.USUARIO_CREACION = Global.sessionUsuario.ToString();
 
 
@@ -141,6 +155,8 @@ namespace AurocoPublicidad.forms
                     txtDNI.Text = "";
                     txtDireccion.Text = "";
                     rpt_Direccion.Text = "";
+                    txtBanco.Text = "";
+                    txtcuenta.Text = "";
 
                     cargarClientes();
 
@@ -298,9 +314,16 @@ namespace AurocoPublicidad.forms
                 DgClientes.Rows[rowIndex].Cells["rptlegal"].Value = ord.RPT_LEGAL;
                 DgClientes.Rows[rowIndex].Cells["rpt_dni"].Value = ord.RPT_DNI;
                 DgClientes.Rows[rowIndex].Cells["rptdireccion"].Value = ord.RPT_DIRECCION;
+                DgClientes.Rows[rowIndex].Cells["det_banco"].Value = ord.DET_BANCO;
+                DgClientes.Rows[rowIndex].Cells["det_cuenta"].Value = ord.DET_CUENTA;
 
 
             }
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }
