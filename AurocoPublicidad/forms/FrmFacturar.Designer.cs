@@ -316,8 +316,8 @@
             // 
             // txtAgencia
             // 
-            resources.ApplyResources(this.txtAgencia, "txtAgencia");
             this.txtAgencia.FormattingEnabled = true;
+            resources.ApplyResources(this.txtAgencia, "txtAgencia");
             this.txtAgencia.Name = "txtAgencia";
             // 
             // label15
