@@ -51,6 +51,7 @@ namespace AurocoPublicidad.forms
             valorFecha = fecha;
             valorMoneda = moneda;
             valorTotal = total;
+            Console.Write(valorTotal);
             valorObservaciones= observaciones;  
     
 
@@ -587,7 +588,49 @@ namespace AurocoPublicidad.forms
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            dataCuentas.Enabled = true;
+        }
 
+        private void rdContado_CheckedChanged(object sender, EventArgs e)
+        {
+            dataCuentas.Rows.Clear();
+            dataCuentas.Enabled=false;
+        }
+
+        private void CalcularTotalYComparar()
+        {
+            decimal total = 0;
+
+            foreach (DataGridViewRow row in dataCuentas.Rows)
+            {
+                if (row.Cells[1].Value != null && decimal.TryParse(row.Cells[1].Value.ToString(), out decimal monto))
+                {
+                    total += monto;
+                    Console.Write(total);
+                }
+            }
+
+            // Mostrar el total (opcional, por ejemplo en un label)
+            //lblTotal.Text = "Total: " + total.ToString("C");
+
+            // Comparar con monto máximo
+            if (decimal.TryParse(totalBruto.Text, out decimal montoMaximo))
+            {
+                if (total > montoMaximo)
+                {
+                    MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void dataCuentas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            CalcularTotalYComparar();
+        }
+
+        private void dataCuentas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            CalcularTotalYComparar();
         }
     }
 }

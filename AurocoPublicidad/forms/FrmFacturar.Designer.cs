@@ -45,36 +45,40 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rdContado = new System.Windows.Forms.RadioButton();
+            this.rdCredito = new System.Windows.Forms.RadioButton();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtDistrito = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtProvincia = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtDpto = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRuc = new System.Windows.Forms.TextBox();
+            this.txtAgencia = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cMoneda = new System.Windows.Forms.TextBox();
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtDpto = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtProvincia = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtDistrito = new System.Windows.Forms.TextBox();
-            this.txtAgencia = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.dataCuentas = new System.Windows.Forms.DataGridView();
+            this.cuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -167,6 +171,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dataCuentas);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -205,6 +210,87 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.rdContado);
+            this.groupBox3.Controls.Add(this.rdCredito);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // rdContado
+            // 
+            resources.ApplyResources(this.rdContado, "rdContado");
+            this.rdContado.Name = "rdContado";
+            this.rdContado.TabStop = true;
+            this.rdContado.UseVisualStyleBackColor = true;
+            this.rdContado.CheckedChanged += new System.EventHandler(this.rdContado_CheckedChanged);
+            // 
+            // rdCredito
+            // 
+            resources.ApplyResources(this.rdCredito, "rdCredito");
+            this.rdCredito.Name = "rdCredito";
+            this.rdCredito.TabStop = true;
+            this.rdCredito.UseVisualStyleBackColor = true;
+            this.rdCredito.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // textBox2
+            // 
+            resources.ApplyResources(this.textBox2, "textBox2");
+            this.textBox2.Name = "textBox2";
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // txtDistrito
+            // 
+            resources.ApplyResources(this.txtDistrito, "txtDistrito");
+            this.txtDistrito.Name = "txtDistrito";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // txtProvincia
+            // 
+            resources.ApplyResources(this.txtProvincia, "txtProvincia");
+            this.txtProvincia.Name = "txtProvincia";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // txtDpto
+            // 
+            resources.ApplyResources(this.txtDpto, "txtDpto");
+            this.txtDpto.Name = "txtDpto";
+            // 
+            // txtDireccion
+            // 
+            resources.ApplyResources(this.txtDireccion, "txtDireccion");
+            this.txtDireccion.Name = "txtDireccion";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
@@ -234,6 +320,12 @@
             // 
             resources.ApplyResources(this.txtRuc, "txtRuc");
             this.txtRuc.Name = "txtRuc";
+            // 
+            // txtAgencia
+            // 
+            this.txtAgencia.FormattingEnabled = true;
+            resources.ApplyResources(this.txtAgencia, "txtAgencia");
+            this.txtAgencia.Name = "txtAgencia";
             // 
             // label3
             // 
@@ -273,91 +365,26 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // dataCuentas
             // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
+            this.dataCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataCuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cuota,
+            this.monto});
+            resources.ApplyResources(this.dataCuentas, "dataCuentas");
+            this.dataCuentas.Name = "dataCuentas";
+            this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
+            this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
             // 
-            // txtDireccion
+            // cuota
             // 
-            resources.ApplyResources(this.txtDireccion, "txtDireccion");
-            this.txtDireccion.Name = "txtDireccion";
+            resources.ApplyResources(this.cuota, "cuota");
+            this.cuota.Name = "cuota";
             // 
-            // txtDpto
+            // monto
             // 
-            resources.ApplyResources(this.txtDpto, "txtDpto");
-            this.txtDpto.Name = "txtDpto";
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // txtProvincia
-            // 
-            resources.ApplyResources(this.txtProvincia, "txtProvincia");
-            this.txtProvincia.Name = "txtProvincia";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // txtDistrito
-            // 
-            resources.ApplyResources(this.txtDistrito, "txtDistrito");
-            this.txtDistrito.Name = "txtDistrito";
-            // 
-            // txtAgencia
-            // 
-            this.txtAgencia.FormattingEnabled = true;
-            resources.ApplyResources(this.txtAgencia, "txtAgencia");
-            this.txtAgencia.Name = "txtAgencia";
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // textBox1
-            // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            // 
-            // textBox2
-            // 
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.Name = "textBox2";
-            // 
-            // radioButton1
-            // 
-            resources.ApplyResources(this.radioButton1, "radioButton1");
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // radioButton2
-            // 
-            resources.ApplyResources(this.radioButton2, "radioButton2");
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.TabStop = true;
-            this.radioButton2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.monto, "monto");
+            this.monto.Name = "monto";
             // 
             // FrmFacturar
             // 
@@ -376,6 +403,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,8 +449,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdCredito;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-    }
+        private System.Windows.Forms.RadioButton rdContado;
+        private System.Windows.Forms.DataGridView dataCuentas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cuota;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
+
+        }
 }
