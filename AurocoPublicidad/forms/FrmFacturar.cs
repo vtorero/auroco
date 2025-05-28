@@ -509,6 +509,7 @@ namespace AurocoPublicidad.forms
             if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
             if (valorRuc != "") txtRuc.Text = valorRuc;
             if (valorObservaciones!= "") textObservaciones.Text = valorObservaciones;
+            if(valorMoneda!="")  cMoneda.Text = valorMoneda;    
 
 
 
@@ -570,6 +571,21 @@ namespace AurocoPublicidad.forms
         }
 
         private void textObservaciones_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

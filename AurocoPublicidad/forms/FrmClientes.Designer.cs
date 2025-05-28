@@ -57,12 +57,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.textoRazon = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtBanco = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtcuenta = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ruc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razon = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,22 +66,17 @@
             this.rptlegal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rpt_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rptdireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.det_banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.det_cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgClientes)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -358,9 +347,7 @@
             this.contacto,
             this.rptlegal,
             this.rpt_dni,
-            this.rptdireccion,
-            this.det_banco,
-            this.det_cuenta});
+            this.rptdireccion});
             this.DgClientes.Location = new System.Drawing.Point(20, 279);
             this.DgClientes.Name = "DgClientes";
             this.DgClientes.ReadOnly = true;
@@ -398,67 +385,6 @@
             this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 50;
             this.label9.Text = "Razón Social:";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.groupBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(729, 196);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Cuenta Destracción";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // txtBanco
-            // 
-            this.txtBanco.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBanco.Location = new System.Drawing.Point(174, 17);
-            this.txtBanco.MaxLength = 180;
-            this.txtBanco.Name = "txtBanco";
-            this.txtBanco.Size = new System.Drawing.Size(460, 21);
-            this.txtBanco.TabIndex = 6;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtcuenta);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtBanco);
-            this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(23, 25);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(662, 124);
-            this.groupBox2.TabIndex = 37;
-            this.groupBox2.TabStop = false;
-            // 
-            // txtcuenta
-            // 
-            this.txtcuenta.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcuenta.Location = new System.Drawing.Point(174, 54);
-            this.txtcuenta.MaxLength = 10;
-            this.txtcuenta.Name = "txtcuenta";
-            this.txtcuenta.Size = new System.Drawing.Size(400, 21);
-            this.txtcuenta.TabIndex = 7;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 59);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(117, 16);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Número de cuenta:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(32, 22);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(110, 16);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Entidad Bancaria:";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // codigo
             // 
@@ -514,18 +440,6 @@
             this.rptdireccion.Name = "rptdireccion";
             this.rptdireccion.ReadOnly = true;
             // 
-            // det_banco
-            // 
-            this.det_banco.HeaderText = "Det. Banco";
-            this.det_banco.Name = "det_banco";
-            this.det_banco.ReadOnly = true;
-            // 
-            // det_cuenta
-            // 
-            this.det_cuenta.HeaderText = "Det. Cuenta";
-            this.det_cuenta.Name = "det_cuenta";
-            this.det_cuenta.ReadOnly = true;
-            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -546,9 +460,6 @@
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgClientes)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -585,12 +496,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textoRazon;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TabPage tabPage3;
-        internal System.Windows.Forms.GroupBox groupBox2;
-        internal System.Windows.Forms.TextBox txtcuenta;
-        internal System.Windows.Forms.Label label11;
-        internal System.Windows.Forms.Label label12;
-        internal System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ruc;
         private System.Windows.Forms.DataGridViewTextBoxColumn razon;
@@ -600,7 +505,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rptlegal;
         private System.Windows.Forms.DataGridViewTextBoxColumn rpt_dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn rptdireccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn det_banco;
-        private System.Windows.Forms.DataGridViewTextBoxColumn det_cuenta;
     }
 }
