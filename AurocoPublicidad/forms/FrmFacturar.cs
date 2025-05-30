@@ -45,7 +45,7 @@ namespace AurocoPublicidad.forms
         private decimal totalorden;
 
         private string apiUrl = Global.servicio + "/api-auroco/orden";
-        public FrmFacturar(string id,  string cliente, string ruc, string fecha, string observaciones,string moneda, string total)
+        public FrmFacturar(string id,  string cliente, string ruc, string fecha, string observaciones,string moneda,string producto,string motivo, string total)
         {
 
             InitializeComponent();
@@ -55,6 +55,8 @@ namespace AurocoPublicidad.forms
             valorFecha = fecha;
             valorMoneda = moneda;
             valorTotal = total;
+            valorProducto = producto;
+            valorMotivo = motivo;   
             Console.Write(valorTotal);
             valorObservaciones= observaciones;  
     
@@ -70,7 +72,7 @@ namespace AurocoPublicidad.forms
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
                  txtNumero.Text = id;
-                btnPrint.Visible = true;
+                btnEnviar.Visible = true;
              
                 pintaDias();
             
@@ -81,7 +83,7 @@ namespace AurocoPublicidad.forms
                 LblNumero.Visible = false;
                 txtNumero.Visible = false;
                
-                btnPrint.Visible = false;
+                btnEnviar.Visible = false;
                 txtNumero.Text = "";
                 DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DateTime ultimoDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
@@ -489,6 +491,7 @@ namespace AurocoPublicidad.forms
 
         private async void  FrmFacturar_Load(object sender, EventArgs e)
         {
+
             comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
             comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
             comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
@@ -516,7 +519,10 @@ namespace AurocoPublicidad.forms
             if (valorRuc != "") txtRuc.Text = valorRuc;
             cargaRuc(valorRuc);
             if (valorObservaciones!= "") textObservaciones.Text = valorObservaciones;
-            if(valorMoneda!="")  cMoneda.Text = valorMoneda;    
+            if(valorMoneda!="")  cMoneda.Text = valorMoneda;
+            if (valorProducto != "") txtProducto.Text = valorProducto;
+            if (valorMotivo != "") txtMotivo.Text = valorMotivo;
+
 
 
 
@@ -560,6 +566,13 @@ namespace AurocoPublicidad.forms
             else
                 txtAgencia.SelectedIndex = 1;
 
+            dataCuentas.Columns.Add(new CalendarColumn
+            {
+                HeaderText = "Fecha Vencimiento",
+                Name = "colFecha"
+            });
+
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -590,12 +603,14 @@ namespace AurocoPublicidad.forms
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             dataCuentas.Enabled = true;
+            dataCuentas.Visible = true;
         }
 
         private void rdContado_CheckedChanged(object sender, EventArgs e)
         {
             dataCuentas.Rows.Clear();
             dataCuentas.Enabled=false;
+            dataCuentas.Visible=false;  
         }
 
         private void CalcularTotalYComparar()
@@ -604,7 +619,7 @@ namespace AurocoPublicidad.forms
 
             foreach (DataGridViewRow row in dataCuentas.Rows)
             {
-                if (row.Cells[1].Value != null && decimal.TryParse(row.Cells[1].Value.ToString(), out decimal monto))
+                if (row.Cells[0].Value != null && decimal.TryParse(row.Cells[0].Value.ToString(), out decimal monto))
                 {
                     total += monto;
                     Console.Write(total);
@@ -697,6 +712,6 @@ namespace AurocoPublicidad.forms
             }
         }
 
-      
+       
     }
 }

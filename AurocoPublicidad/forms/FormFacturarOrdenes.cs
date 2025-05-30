@@ -126,7 +126,7 @@ namespace AurocoPublicidad.forms
                 var duracion = dgOrdenes[17, pos].Value.ToString();
                 var observaciones = dgOrdenes[18, pos].Value.ToString();
                 var agencia = dgOrdenes[21, pos].Value.ToString();
-                FrmFacturar frmFacturar = new FrmFacturar(idOrden,idCliente,ruc,fcreacion, observaciones,moneda, totalOrden);
+                FrmFacturar frmFacturar = new FrmFacturar(idOrden,idCliente,ruc,fcreacion, observaciones,moneda,producto,motivo, totalOrden);
                 frmFacturar.Show();
                 Cursor.Current = Cursors.Default;
 

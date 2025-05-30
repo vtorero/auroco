@@ -323,6 +323,7 @@
     <Compile Include="forms\MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="generico\CalendarColumn.cs" />
     <Compile Include="models\request\ClienteMedio.cs" />
     <Compile Include="models\request\Dni.cs" />
     <Compile Include="models\request\Ejecutivo.cs" />

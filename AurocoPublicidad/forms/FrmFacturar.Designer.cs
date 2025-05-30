@@ -47,13 +47,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataCuentas = new System.Windows.Forms.DataGridView();
-            this.cuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdContado = new System.Windows.Forms.RadioButton();
             this.rdCredito = new System.Windows.Forms.RadioButton();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMotivo = new System.Windows.Forms.TextBox();
+            this.btnEnviar = new System.Windows.Forms.Button();
+            this.txtProducto = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtDistrito = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnVistaPrevia = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).BeginInit();
@@ -171,11 +171,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnVistaPrevia);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dataCuentas);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtMotivo);
+            this.groupBox1.Controls.Add(this.btnEnviar);
+            this.groupBox1.Controls.Add(this.txtProducto);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.txtDistrito);
             this.groupBox1.Controls.Add(this.label11);
@@ -219,17 +221,11 @@
             // 
             this.dataCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataCuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cuota,
             this.monto});
             resources.ApplyResources(this.dataCuentas, "dataCuentas");
             this.dataCuentas.Name = "dataCuentas";
             this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
             this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
-            // 
-            // cuota
-            // 
-            resources.ApplyResources(this.cuota, "cuota");
-            this.cuota.Name = "cuota";
             // 
             // monto
             // 
@@ -260,15 +256,21 @@
             this.rdCredito.UseVisualStyleBackColor = true;
             this.rdCredito.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // textBox2
+            // txtMotivo
             // 
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.Name = "textBox2";
+            resources.ApplyResources(this.txtMotivo, "txtMotivo");
+            this.txtMotivo.Name = "txtMotivo";
             // 
-            // textBox1
+            // btnEnviar
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
+            resources.ApplyResources(this.btnEnviar, "btnEnviar");
+            this.btnEnviar.Name = "btnEnviar";
+            this.btnEnviar.UseVisualStyleBackColor = true;
+            // 
+            // txtProducto
+            // 
+            resources.ApplyResources(this.txtProducto, "txtProducto");
+            this.txtProducto.Name = "txtProducto";
             // 
             // label15
             // 
@@ -341,6 +343,7 @@
             // 
             resources.ApplyResources(this.txtRuc, "txtRuc");
             this.txtRuc.Name = "txtRuc";
+            this.txtRuc.ReadOnly = true;
             // 
             // txtAgencia
             // 
@@ -380,11 +383,11 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // btnPrint
+            // btnVistaPrevia
             // 
-            resources.ApplyResources(this.btnPrint, "btnPrint");
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnVistaPrevia, "btnVistaPrevia");
+            this.btnVistaPrevia.Name = "btnVistaPrevia";
+            this.btnVistaPrevia.UseVisualStyleBackColor = true;
             // 
             // FrmFacturar
             // 
@@ -394,7 +397,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnPrint);
             this.Name = "FrmFacturar";
             this.Load += new System.EventHandler(this.FrmFacturar_Load);
             this.groupBox2.ResumeLayout(false);
@@ -430,7 +432,7 @@
         private System.Windows.Forms.DateTimePicker inicioVigencia;
         private System.Windows.Forms.ComboBox comboCliente;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox txtRuc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
@@ -446,14 +448,14 @@
         private System.Windows.Forms.TextBox txtDistrito;
         private System.Windows.Forms.ComboBox txtAgencia;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMotivo;
+        private System.Windows.Forms.TextBox txtProducto;
         private System.Windows.Forms.RadioButton rdCredito;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton rdContado;
         private System.Windows.Forms.DataGridView dataCuentas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cuota;
-        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
+        private System.Windows.Forms.Button btnVistaPrevia;
     }
 }
