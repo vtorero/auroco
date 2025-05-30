@@ -268,8 +268,8 @@ namespace AurocoPublicidad.forms
 
                 Ruc people = await GetJsonArrayFromUrlAsync<Ruc>(Global.urlRuc+txtRUC.Text+"?token="+Global.tokenApi);
                 // Aquí puedes hacer algo con el array 'people'
-                txtRazon.Text = people.razonSocial;
-                txtDireccion.Text = people.direccion;
+                txtRazon.Text = people.RazonSocial;
+                txtDireccion.Text = people.Direccion;
 
             }
             catch (Exception ex)

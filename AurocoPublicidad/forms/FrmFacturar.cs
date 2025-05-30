@@ -1,7 +1,10 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
+using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Org.BouncyCastle.Tls;
+using Org.BouncyCastle.Utilities.IO.Pem;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -39,6 +42,7 @@ namespace AurocoPublicidad.forms
         private string valorDuracion;
         private string valorObservaciones;
         private string valorAgencia;
+        private decimal totalorden;
 
         private string apiUrl = Global.servicio + "/api-auroco/orden";
         public FrmFacturar(string id,  string cliente, string ruc, string fecha, string observaciones,string moneda, string total)
@@ -504,11 +508,13 @@ namespace AurocoPublicidad.forms
                 igv = Convert.ToDouble(valorTotal) * 0.18;
 
                 totalOrd = Convert.ToDouble(valorTotal) + igv;
+                totalorden = Convert.ToDecimal(totalOrd);
             }
             if (valorTotal != "") totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, valorTotal);
             if (valorTotal != "") txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, igv);
             if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
             if (valorRuc != "") txtRuc.Text = valorRuc;
+            cargaRuc(valorRuc);
             if (valorObservaciones!= "") textObservaciones.Text = valorObservaciones;
             if(valorMoneda!="")  cMoneda.Text = valorMoneda;    
 
@@ -561,12 +567,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNumero_TextChanged(object sender, EventArgs e)
+       private void txtNumero_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -614,13 +615,13 @@ namespace AurocoPublicidad.forms
             //lblTotal.Text = "Total: " + total.ToString("C");
 
             // Comparar con monto máximo
-            if (decimal.TryParse(totalBruto.Text, out decimal montoMaximo))
-            {
-                if (total > montoMaximo)
+            //if (totalorden, out decimal montoMaximo))
+            //{
+                if (total > totalorden)
                 {
                     MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-            }
+            //}
         }
 
         private void dataCuentas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -632,5 +633,70 @@ namespace AurocoPublicidad.forms
         {
             CalcularTotalYComparar();
         }
+
+        private async void cargaRuc(string nro)
+        {
+            if (nro != "")
+            {
+                try
+                {
+
+
+                    Ruc people = await GetJsonArrayFromUrlAsync<Ruc>(Global.urlRuc + nro + "?token=" + Global.tokenApi);
+                    // Aquí puedes hacer algo con el array 'people'
+                    txtDireccion.Text = people.Direccion;
+                    txtDpto.Text = people.Departamento;
+                    txtProvincia.Text = people.Provincia;
+                    txtDistrito.Text = people.Distrito;
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error: {ex.Message}");
+                    MessageBox.Show("Número de RUC iválido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar un número de RUC", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
+
+
+
+        private async Task<Ruc> GetJsonArrayFromUrlAsync<T>(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    // Realiza la solicitud HTTP GET a la URL especificada
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    // Verifica si la respuesta es exitosa
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Lee el contenido de la respuesta como una cadena
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        // Deserializa la cadena JSON en un array de tipo T
+                        Ruc ruc = JsonConvert.DeserializeObject<Ruc>(jsonResponse);
+
+                        return ruc;
+                    }
+                    else
+                    {
+                        throw new Exception("No se pudo obtener una respuesta exitosa del servidor.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Maneja excepciones si la solicitud HTTP falla
+                    throw new Exception($"Error al realizar la solicitud GET: {ex.Message}");
+                }
+            }
+        }
+
+      
     }
 }

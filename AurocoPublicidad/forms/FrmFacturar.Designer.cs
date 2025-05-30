@@ -45,6 +45,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataCuentas = new System.Windows.Forms.DataGridView();
+            this.cuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdContado = new System.Windows.Forms.RadioButton();
             this.rdCredito = new System.Windows.Forms.RadioButton();
@@ -63,7 +67,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.txtAgencia = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,13 +75,10 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.dataCuentas = new System.Windows.Forms.DataGridView();
-            this.cuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -171,6 +171,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dataCuentas);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -188,7 +189,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtIgv);
             this.groupBox1.Controls.Add(this.totalBruto);
             this.groupBox1.Controls.Add(this.txtRuc);
@@ -209,6 +209,32 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // dataCuentas
+            // 
+            this.dataCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataCuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cuota,
+            this.monto});
+            resources.ApplyResources(this.dataCuentas, "dataCuentas");
+            this.dataCuentas.Name = "dataCuentas";
+            this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
+            this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
+            // 
+            // cuota
+            // 
+            resources.ApplyResources(this.cuota, "cuota");
+            this.cuota.Name = "cuota";
+            // 
+            // monto
+            // 
+            resources.ApplyResources(this.monto, "monto");
+            this.monto.Name = "monto";
             // 
             // groupBox3
             // 
@@ -311,11 +337,6 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // txtRuc
             // 
             resources.ApplyResources(this.txtRuc, "txtRuc");
@@ -365,27 +386,6 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
-            // dataCuentas
-            // 
-            this.dataCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataCuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cuota,
-            this.monto});
-            resources.ApplyResources(this.dataCuentas, "dataCuentas");
-            this.dataCuentas.Name = "dataCuentas";
-            this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
-            this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
-            // 
-            // cuota
-            // 
-            resources.ApplyResources(this.cuota, "cuota");
-            this.cuota.Name = "cuota";
-            // 
-            // monto
-            // 
-            resources.ApplyResources(this.monto, "monto");
-            this.monto.Name = "monto";
-            // 
             // FrmFacturar
             // 
             resources.ApplyResources(this, "$this");
@@ -401,9 +401,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -432,7 +432,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtRuc;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -455,6 +454,6 @@
         private System.Windows.Forms.DataGridView dataCuentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn cuota;
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
-
-        }
+        private System.Windows.Forms.Label label1;
+    }
 }

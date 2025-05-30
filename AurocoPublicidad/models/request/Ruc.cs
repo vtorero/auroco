@@ -9,9 +9,13 @@ namespace AurocoPublicidad.models.request
     internal class Ruc
     {
     
-        public string razonSocial { get; set; }
-        public string direccion { get; set; }
-       
-            
+        public string RazonSocial { get; set; }
+        public string Direccion { get; set; }
+        public string Departamento { get; set; }
+        public string Provincia { get; set; }
+        public string Distrito { get;set; }
+
+
+
     }
 }
