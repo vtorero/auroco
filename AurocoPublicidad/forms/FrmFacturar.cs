@@ -1,5 +1,6 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
+using CrystalDecisions.ReportAppServer.CommonControls;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -712,6 +713,16 @@ namespace AurocoPublicidad.forms
             }
         }
 
-       
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.checkBox1.Checked)
+            {
+                porcentajeDet.Enabled = true;
+            }
+            else
+            {
+                porcentajeDet.Enabled=false;    
+            }
+        }
     }
 }

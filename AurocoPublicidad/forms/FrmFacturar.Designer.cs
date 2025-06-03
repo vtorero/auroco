@@ -45,6 +45,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnVistaPrevia = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataCuentas = new System.Windows.Forms.DataGridView();
             this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,11 +75,16 @@
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnVistaPrevia = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.porcentajeDet = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.porcentajeDet)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -171,6 +177,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.btnVistaPrevia);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dataCuentas);
@@ -211,6 +218,12 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // btnVistaPrevia
+            // 
+            resources.ApplyResources(this.btnVistaPrevia, "btnVistaPrevia");
+            this.btnVistaPrevia.Name = "btnVistaPrevia";
+            this.btnVistaPrevia.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -383,11 +396,31 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // btnVistaPrevia
+            // groupBox4
             // 
-            resources.ApplyResources(this.btnVistaPrevia, "btnVistaPrevia");
-            this.btnVistaPrevia.Name = "btnVistaPrevia";
-            this.btnVistaPrevia.UseVisualStyleBackColor = true;
+            this.groupBox4.Controls.Add(this.porcentajeDet);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.checkBox1);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // porcentajeDet
+            // 
+            resources.ApplyResources(this.porcentajeDet, "porcentajeDet");
+            this.porcentajeDet.Name = "porcentajeDet";
             // 
             // FrmFacturar
             // 
@@ -406,6 +439,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.porcentajeDet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,5 +493,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
         private System.Windows.Forms.Button btnVistaPrevia;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown porcentajeDet;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
