@@ -1,5 +1,6 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.util;
+using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 namespace AurocoPublicidad.forms
@@ -142,5 +144,112 @@ namespace AurocoPublicidad.forms
 
 
         }
+
+        private async void btnConsultar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+
+                Cursor.Current = Cursors.WaitCursor;
+                dgOrdenes.Rows.Clear();
+                /*string url = Global.servicio + "/api-auroco/ordenes";
+                //string url = Global.servicio + "/api-auroco/buscaorden";
+                Ordenes orden = new Ordenes();
+                orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
+                orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
+                orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
+                orden.FIN_VIGENCIA = dtHasta.Value.ToString();
+                orden.C_ORDEN = txtOrden.Text;
+                string resultado = Send<Ordenes>(url, orden, "POST");
+                */
+
+                string respuesta = await GetService(Global.servicio + "/api-auroco/ordenes");
+                List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
+               // List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
+
+                foreach (Ordenes ord in lst)
+                {
+                    int rowIndex = dgOrdenes.Rows.Add();
+                    dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
+                    dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
+                    dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
+                    dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
+                    dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
+                    dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
+                    dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
+                    dgOrdenes.Rows[rowIndex].Cells["C_EJECUTIVO"].Value = ord.C_EJECUTIVO;
+                    dgOrdenes.Rows[rowIndex].Cells["EJECUTIVO"].Value = ord.EJECUTIVO;
+                    dgOrdenes.Rows[rowIndex].Cells["f_creacion"].Value = ord.F_CREACION;
+                    dgOrdenes.Rows[rowIndex].Cells["f_inicio"].Value = ord.INICIO_VIGENCIA;
+                    dgOrdenes.Rows[rowIndex].Cells["f_fin"].Value = ord.FIN_VIGENCIA;
+                    dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
+                    dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                    dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
+                    dgOrdenes.Rows[rowIndex].Cells["producto"].Value = ord.PRODUCTO;
+                    dgOrdenes.Rows[rowIndex].Cells["motivo"].Value = ord.MOTIVO;
+                    dgOrdenes.Rows[rowIndex].Cells["duracion"].Value = ord.DURACION;
+                    dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
+                    dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
+                    dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
+                    dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
+
+
+
+                }
+
+                Cursor.Current = Cursors.Default;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("El criterio no tiene resultados pruebe otras opciones", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public string Send<T>(string url, T ObjectRequest, string method = "POST")
+        {
+            string result = "";
+
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                //serializar el objeto
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(ObjectRequest);
+
+                //peticion
+                WebRequest request = WebRequest.Create(url);
+                //header
+                request.Method = method;
+                request.PreAuthenticate = true;
+                request.ContentType = "application/json;charset=utf-8";
+                request.Timeout = 30000;
+
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    result = streamReader.ReadToEnd();
+                }
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+
+            return result;
+        }
+
     }
 }

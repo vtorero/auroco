@@ -171,6 +171,7 @@
             this.btnConsultar.Size = new System.Drawing.Size(101, 49);
             this.btnConsultar.TabIndex = 80;
             this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // Label1
             // 
