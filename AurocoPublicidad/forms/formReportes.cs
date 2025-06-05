@@ -47,8 +47,8 @@ namespace AurocoPublicidad.forms
             //  reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "\\AurocoPublicidad\\reportes\\orden.rpt"));
             //  reportDocument.Load("orden.rpt");
             // reportDocument.Load("d:\\auroco\\AurocoPublicidad\\reportes\\NcrOrdenes.rpt");
-            if (valorAgencia == "AUROCO") { 
-            //reportDocument.Load("C:\\Users\\vtore\\source\\repos\\AurocoPublicidad\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
+            if (valorAgencia == "AUROCO") {
+            //reportDocument.Load("D:\\proy\\auroco\\AurocoPublicidad\\reportes\\OrdenesAu.rpt");
              reportDocument.Load(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName+"\\reportes\\OrdenesAu.rpt");
             }
             if (valorAgencia == "OPTIMIZA") {

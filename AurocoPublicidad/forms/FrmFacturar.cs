@@ -724,5 +724,12 @@ namespace AurocoPublicidad.forms
                 porcentajeDet.Enabled=false;    
             }
         }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataCuentas);
+            //MessageBox.Show(datos + "");
+            Console.Write(datos);
+        }
     }
 }

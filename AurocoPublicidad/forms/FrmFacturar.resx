@@ -711,6 +711,9 @@
   <metadata name="monto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="monto.HeaderText" xml:space="preserve">
+    <value>Monto</value>
+  </data>
   <data name="dataCuentas.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -738,6 +741,24 @@
   <data name="&gt;&gt;dataCuentas.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="rdContado.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdContado.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rdContado.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 17</value>
+  </data>
+  <data name="rdContado.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 17</value>
+  </data>
+  <data name="rdContado.TabIndex" type="System.Int32, mscorlib">
+    <value>85</value>
+  </data>
+  <data name="rdContado.Text" xml:space="preserve">
+    <value>Con&amp;tado:</value>
+  </data>
   <data name="&gt;&gt;rdContado.Name" xml:space="preserve">
     <value>rdContado</value>
   </data>
@@ -749,6 +770,21 @@
   </data>
   <data name="&gt;&gt;rdContado.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="rdCredito.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdCredito.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 17</value>
+  </data>
+  <data name="rdCredito.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
+  </data>
+  <data name="rdCredito.TabIndex" type="System.Int32, mscorlib">
+    <value>84</value>
+  </data>
+  <data name="rdCredito.Text" xml:space="preserve">
+    <value>&amp;Credito</value>
   </data>
   <data name="&gt;&gt;rdCredito.Name" xml:space="preserve">
     <value>rdCredito</value>
@@ -1445,69 +1481,6 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <metadata name="monto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="monto.HeaderText" xml:space="preserve">
-    <value>Monto</value>
-  </data>
-  <data name="rdContado.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdContado.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rdContado.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 17</value>
-  </data>
-  <data name="rdContado.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 17</value>
-  </data>
-  <data name="rdContado.TabIndex" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="rdContado.Text" xml:space="preserve">
-    <value>Con&amp;tado:</value>
-  </data>
-  <data name="&gt;&gt;rdContado.Name" xml:space="preserve">
-    <value>rdContado</value>
-  </data>
-  <data name="&gt;&gt;rdContado.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdContado.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;rdContado.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rdCredito.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdCredito.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 17</value>
-  </data>
-  <data name="rdCredito.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 17</value>
-  </data>
-  <data name="rdCredito.TabIndex" type="System.Int32, mscorlib">
-    <value>84</value>
-  </data>
-  <data name="rdCredito.Text" xml:space="preserve">
-    <value>&amp;Credito</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.Name" xml:space="preserve">
-    <value>rdCredito</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

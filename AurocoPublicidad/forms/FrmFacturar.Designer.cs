@@ -45,6 +45,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.porcentajeDet = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnVistaPrevia = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataCuentas = new System.Windows.Forms.DataGridView();
@@ -75,16 +79,12 @@
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.porcentajeDet = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.porcentajeDet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -219,6 +219,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.porcentajeDet);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.checkBox1);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // porcentajeDet
+            // 
+            resources.ApplyResources(this.porcentajeDet, "porcentajeDet");
+            this.porcentajeDet.Name = "porcentajeDet";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // btnVistaPrevia
             // 
             resources.ApplyResources(this.btnVistaPrevia, "btnVistaPrevia");
@@ -279,6 +305,7 @@
             resources.ApplyResources(this.btnEnviar, "btnEnviar");
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // txtProducto
             // 
@@ -396,32 +423,6 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.porcentajeDet);
-            this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.checkBox1);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            resources.ApplyResources(this.checkBox1, "checkBox1");
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // porcentajeDet
-            // 
-            resources.ApplyResources(this.porcentajeDet, "porcentajeDet");
-            this.porcentajeDet.Name = "porcentajeDet";
-            // 
             // FrmFacturar
             // 
             resources.ApplyResources(this, "$this");
@@ -436,12 +437,12 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.porcentajeDet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCuentas)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
