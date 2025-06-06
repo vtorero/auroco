@@ -729,6 +729,12 @@ namespace AurocoPublicidad.forms
         {
             Factura factura = new Factura();
             factura.tipoMoneda = "PEN";
+            FormaPago fpago = new FormaPago();
+            fpago.Moneda = "PEN";
+            fpago.Monto = 100;
+            fpago.Tipo = "Contado";
+            factura.formaPago = fpago;  
+
             
 
             List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataCuentas);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AurocoPublicidad.models.request
 {
-    internal class FormaPago
+    public class FormaPago
     {
 
             public string Moneda { get; set; }
