@@ -727,9 +727,15 @@ namespace AurocoPublicidad.forms
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
+            Factura factura = new Factura();
+            factura.tipoMoneda = "PEN";
+            
+
             List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataCuentas);
             //MessageBox.Show(datos + "");
             Console.Write(datos);
+            Console.Write(factura.ToString());  
+
         }
     }
 }

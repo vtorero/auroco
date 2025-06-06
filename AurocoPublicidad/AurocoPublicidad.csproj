@@ -344,6 +344,13 @@
     <Compile Include="models\request\ClienteMedio.cs" />
     <Compile Include="models\request\Dni.cs" />
     <Compile Include="models\request\Ejecutivo.cs" />
+    <Compile Include="models\request\factura\Client.cs" />
+    <Compile Include="models\request\factura\Company.cs" />
+    <Compile Include="models\request\factura\Cuotas.cs" />
+    <Compile Include="models\request\factura\Address.cs" />
+    <Compile Include="models\request\factura\Details .cs" />
+    <Compile Include="models\request\factura\FormaPago.cs" />
+    <Compile Include="models\request\factura\Legends.cs" />
     <Compile Include="models\request\Medio.cs" />
     <Compile Include="models\request\Monedas.cs" />
     <Compile Include="models\request\Cliente.cs" />
