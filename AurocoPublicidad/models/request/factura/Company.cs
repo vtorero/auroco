@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AurocoPublicidad.models.request.factura
 {
-    internal class Company
+    public class Company
     {
 
         public string ruc { get; set; }

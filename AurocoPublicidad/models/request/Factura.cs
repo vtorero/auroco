@@ -15,7 +15,7 @@ namespace AurocoPublicidad.models.request
         public string fechaEmision { get; set; }
 
         public FormaPago formaPago { get; set; }
-        public List<Dictionary<Cuotas, object>> orden { get; set; }
+        public List<Dictionary<Cuotas, object>> cuotas { get; set; }
         public string tipoMoneda { get; set; }
         public Client client { get; set; }
         public Company company { get; set; }

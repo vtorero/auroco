@@ -1,4 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
+using AurocoPublicidad.models.request.factura;
 using AurocoPublicidad.util;
 using CrystalDecisions.ReportAppServer.CommonControls;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
@@ -728,8 +729,31 @@ namespace AurocoPublicidad.forms
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             Factura factura = new Factura();
-            factura.tipoMoneda = "PEN";
             FormaPago fpago = new FormaPago();
+            Client client = new Client();
+            Address address = new Address();
+            Cuotas cuotas = new Cuotas();
+            /*cuerpo factura*/
+            factura.ublVersion = "2.1";
+            factura.tipoOperacion = "0101";
+            factura.tipoDoc = "01";
+            factura.serie = "F001";
+            factura.correlativo = "00001";
+            factura.fechaEmision = "2021-01-27T00:00:00-05:00";
+            factura.formaPago = new FormaPago();
+                factura.formaPago.Moneda = "";
+                factura.formaPago.Tipo = "";
+                factura.formaPago.Monto = 100;
+            //factura.cuotas;
+            factura.tipoMoneda = "PEN";
+            
+            
+            address.departamento = txtDpto.Text;
+            address.provincia = txtProvincia.Text;
+            address.distrito = txtDistrito.Text;    
+            client.numDoc = txtRuc.Text;
+            client.Address = address;
+            factura.client = client;    
             fpago.Moneda = "PEN";
             fpago.Monto = 100;
             fpago.Tipo = "Contado";

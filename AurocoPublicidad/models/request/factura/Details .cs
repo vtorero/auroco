@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AurocoPublicidad.models.request.factura
 {
-    internal class Details
+    public class Details
     {
        public string codProducto {  get; set; }
         public string unidad { get; set; } = "NIU";

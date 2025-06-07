@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace AurocoPublicidad.models.request.factura
 {
-    internal class Cuotas
-
+    public class Cuotas
     {
-        string moneda { get; set; }
-        decimal monto { get; set; }
-        string fechaPago { get; set; }
+        public string moneda { get; set; }
+        public decimal monto { get; set; }
+        public string fechaPago { get; set; }
     }
 }
