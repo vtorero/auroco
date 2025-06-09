@@ -47,7 +47,7 @@ namespace AurocoPublicidad.forms
         private decimal totalorden;
 
         private string apiUrl = Global.servicio + "/api-auroco/orden";
-        public FrmFacturar(string id,  string cliente, string ruc, string fecha, string observaciones,string moneda,string producto,string motivo, string total)
+        public FrmFacturar(string id, string cliente, string ruc, string fecha, string observaciones, string moneda, string producto, string motivo, string total)
         {
 
             InitializeComponent();
@@ -58,48 +58,48 @@ namespace AurocoPublicidad.forms
             valorMoneda = moneda;
             valorTotal = total;
             valorProducto = producto;
-            valorMotivo = motivo;   
+            valorMotivo = motivo;
             Console.Write(valorTotal);
-            valorObservaciones= observaciones;  
-    
+            valorObservaciones = observaciones;
 
-      
+
+
 
 
             if (id != "")
             {
 
 
-           
+
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
-                 txtNumero.Text = id;
+                txtNumero.Text = id;
                 btnEnviar.Visible = true;
-             
+
                 pintaDias();
-            
+
 
             }
             else
             {
                 LblNumero.Visible = false;
                 txtNumero.Visible = false;
-               
+
                 btnEnviar.Visible = false;
                 txtNumero.Text = "";
                 DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DateTime ultimoDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
                 // Establecer el valor del DateTimePicker al primer día del mes actual
                 inicioVigencia.Value = primerDiaDelMes;
-                
+
                 pintaDias();
             }
 
-            
+
         }
 
 
-        
+
         private async void ComboBoxAutocomplete_TextChanged(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && comboCliente.Text != "")
@@ -150,9 +150,9 @@ namespace AurocoPublicidad.forms
             string ordenes = await GetService(Global.servicio + "/api-auroco/orden/" + id);
             List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes);
 
-            
 
-        
+
+
 
 
             return lstC;
@@ -184,7 +184,7 @@ namespace AurocoPublicidad.forms
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
-                     //progressBar1.Visible = false;
+            //progressBar1.Visible = false;
         }
 
         private List<Dictionary<string, object>> ObtenerDatosDataGridView(DataGridView dgv)
@@ -230,7 +230,7 @@ namespace AurocoPublicidad.forms
             {
                 // Serializa los datos a formato JSON
                 Orden orden = new Orden();
-              
+
                 orden.orden = datos;
 
 
@@ -277,7 +277,7 @@ namespace AurocoPublicidad.forms
 
         private void cargarContratos()
         {
-          
+
             string url = "";
             if (valorContrato != "")
             {
@@ -297,7 +297,7 @@ namespace AurocoPublicidad.forms
                     cliente.C_CLIENTE = cod_cliente;
                     string resultado = Send<Cliente>(url, cliente, "POST");
                     List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
-               
+
 
 
                 }
@@ -361,17 +361,17 @@ namespace AurocoPublicidad.forms
 
         public async void cargaprograma(string canal)
         {
-            
-           
 
 
- 
+
+
+
         }
 
         private void dataGridOrden_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             // Verificar si la celda actual es la que contiene un ComboBox
-       
+
         }
 
         private async void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -403,13 +403,13 @@ namespace AurocoPublicidad.forms
                     {
                         string contenido = await respuesta.Content.ReadAsStringAsync();
 
-                    
+
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
 
 
 
 
-                     
+
 
 
 
@@ -424,10 +424,10 @@ namespace AurocoPublicidad.forms
         private void dataGridOrden_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
-         
-            }
 
-    
+        }
+
+
         public class ListItem
         {
             public string Value { get; set; }
@@ -450,7 +450,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-       
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -491,7 +491,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-        private async void  FrmFacturar_Load(object sender, EventArgs e)
+        private async void FrmFacturar_Load(object sender, EventArgs e)
         {
 
             comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -520,8 +520,8 @@ namespace AurocoPublicidad.forms
             if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
             if (valorRuc != "") txtRuc.Text = valorRuc;
             cargaRuc(valorRuc);
-            if (valorObservaciones!= "") textObservaciones.Text = valorObservaciones;
-            if(valorMoneda!="")  cMoneda.Text = valorMoneda;
+            if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
+            if (valorMoneda != "") cMoneda.Text = valorMoneda;
             if (valorProducto != "") txtProducto.Text = valorProducto;
             if (valorMotivo != "") txtMotivo.Text = valorMotivo;
 
@@ -544,18 +544,18 @@ namespace AurocoPublicidad.forms
 
             string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
             List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
-       
+
 
             string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
             List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
-       
+
 
             string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
             List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
-           
-     
+
+
             // Seleccionar el primer elemento por defecto
-          
+
             txtAgencia.Items.Add(new ListItem("0", "Seleccionar"));
             txtAgencia.Items.Add(new ListItem("AUROCO", "AUROCO"));
             txtAgencia.Items.Add(new ListItem("OPTIMIZA", "OPTIMIZA"));
@@ -582,7 +582,7 @@ namespace AurocoPublicidad.forms
 
         }
 
-       private void txtNumero_TextChanged(object sender, EventArgs e)
+        private void txtNumero_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -611,8 +611,8 @@ namespace AurocoPublicidad.forms
         private void rdContado_CheckedChanged(object sender, EventArgs e)
         {
             dataCuentas.Rows.Clear();
-            dataCuentas.Enabled=false;
-            dataCuentas.Visible=false;  
+            dataCuentas.Enabled = false;
+            dataCuentas.Visible = false;
         }
 
         private void CalcularTotalYComparar()
@@ -634,10 +634,10 @@ namespace AurocoPublicidad.forms
             // Comparar con monto máximo
             //if (totalorden, out decimal montoMaximo))
             //{
-                if (total > totalorden)
-                {
-                    MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+            if (total > totalorden)
+            {
+                MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             //}
         }
 
@@ -716,13 +716,13 @@ namespace AurocoPublicidad.forms
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(this.checkBox1.Checked)
+            if (this.checkBox1.Checked)
             {
                 porcentajeDet.Enabled = true;
             }
             else
             {
-                porcentajeDet.Enabled=false;    
+                porcentajeDet.Enabled = false;
             }
         }
 
@@ -741,31 +741,53 @@ namespace AurocoPublicidad.forms
             factura.correlativo = "00001";
             factura.fechaEmision = "2021-01-27T00:00:00-05:00";
             factura.formaPago = new FormaPago();
-                factura.formaPago.Moneda = "";
-                factura.formaPago.Tipo = "";
-                factura.formaPago.Monto = 100;
+            factura.formaPago.Moneda = "";
+            factura.formaPago.Tipo = "";
+            factura.formaPago.Monto = 100;
             //factura.cuotas;
+            List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
+            foreach (DataGridViewRow fila in dataCuentas.Rows)
+            {
+                if (!fila.IsNewRow)
+                {
+                    Dictionary<string, object> filaDatos = new Dictionary<string, object>();
+
+                    // Itera a través de las celdas en la fila
+                    foreach (DataGridViewCell celda in fila.Cells)
+                    {
+                        // Usa el nombre de la columna como clave y el valor de la celda como valor
+                        filaDatos[dataCuentas.Columns[celda.ColumnIndex].Name] = celda.Value;
+                    }
+
+                    // Agrega la fila de datos a la lista
+                    datos.Add(filaDatos);
+                }
+            }
+            
+            factura.cuotas = datos;
             factura.tipoMoneda = "PEN";
-            
-            
+
+
             address.departamento = txtDpto.Text;
             address.provincia = txtProvincia.Text;
-            address.distrito = txtDistrito.Text;    
+            address.distrito = txtDistrito.Text;
             client.numDoc = txtRuc.Text;
             client.Address = address;
-            factura.client = client;    
+            factura.client = client;
             fpago.Moneda = "PEN";
             fpago.Monto = 100;
             fpago.Tipo = "Contado";
-            factura.formaPago = fpago;  
+            factura.formaPago = fpago;
 
-            
 
-            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataCuentas);
+
+        
             //MessageBox.Show(datos + "");
             Console.Write(datos);
-            Console.Write(factura.ToString());  
+            Console.Write(factura.ToString());
 
         }
+
+
     }
 }

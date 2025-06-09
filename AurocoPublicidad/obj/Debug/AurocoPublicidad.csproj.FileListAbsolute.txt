@@ -126,14 +126,3 @@ C:\auroco\AurocoPublicidad\obj\Debug\AurocoPu.B3E24C9F.Up2Date
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb
 C:\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.forms.FormFacturarOrdenes.resources
-D:\proy\auroco\AurocoPublicidad\bin\Debug\System.Numerics.Vectors.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\System.Threading.Tasks.Extensions.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\ZstdSharp.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\zh-HANS\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
