@@ -2,7 +2,8 @@
 using AurocoPublicidad.models.request.factura;
 using System.Collections.Generic;
 
-namespace AurocoPublicidad.models.request
+namespace AurocoPublicidad.models.request.factura
+
 {
     internal class Factura
 
@@ -18,7 +19,7 @@ namespace AurocoPublicidad.models.request
         //public List<Dictionary<Cuotas, object>> cuotas { get; set; }
         public List<Dictionary<string, object>> cuotas { get; set; }
         public string tipoMoneda { get; set; }
-        public Client client { get; set; }
+        public Cliente cliente { get; set; }
         public Company company { get; set; }
 
         public decimal mtoOperGravadas { get; set; }

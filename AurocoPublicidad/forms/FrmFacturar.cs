@@ -1,8 +1,10 @@
 ﻿using AurocoPublicidad.models.request;
 using AurocoPublicidad.models.request.factura;
+using AurocoPublicidad.reportes;
 using AurocoPublicidad.util;
 using CrystalDecisions.ReportAppServer.CommonControls;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
+using MySqlX.XDevAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Tls;
@@ -16,8 +18,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using Cliente = AurocoPublicidad.models.request.factura.Cliente;
 
 
 
@@ -46,7 +50,7 @@ namespace AurocoPublicidad.forms
         private string valorAgencia;
         private decimal totalorden;
 
-        private string apiUrl = Global.servicio + "/api-auroco/orden";
+        private string apiUrl = Global.servicio + "/api-auroco/facturacion.php/test-factura";
         public FrmFacturar(string id, string cliente, string ruc, string fecha, string observaciones, string moneda, string producto, string motivo, string total)
         {
 
@@ -238,7 +242,7 @@ namespace AurocoPublicidad.forms
                 string datosJson = Newtonsoft.Json.JsonConvert.SerializeObject(orden);
 
                 // Crea el contenido de la solicitud HTTP
-                StringContent resultado = new StringContent(Send(apiUrl, orden, "POST"));
+                StringContent resultado = new StringContent(Send(apiUrl, orden, "POST",""   ));
 
                 //StringContent contenido = new StringContent(datosJson, Encoding.UTF8, "application/json");
 
@@ -270,46 +274,44 @@ namespace AurocoPublicidad.forms
 
 
 
-        private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
+
+
+
+        public static string SendDos<T>(string url, T data, string method, string token)
         {
-            cargarContratos();
-        }
+            // Serializar el objeto a JSON
+            string jsonData = JsonConvert.SerializeObject(data);
 
-        private void cargarContratos()
-        {
+            // Crear el request
+            WebRequest request = WebRequest.Create(url);
+            request.Method = method.ToUpper();
+            request.ContentType = "application/json";
 
-            string url = "";
-            if (valorContrato != "")
+            // Agregar encabezado Authorization con el token
+            request.Headers["Authorization"] = "Bearer " + token;
+
+            // Escribir el cuerpo de la solicitud
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
-                url = Global.servicio + "/api-auroco/contrato_cliente";
+                streamWriter.Write(jsonData);
+                streamWriter.Flush();
             }
-            else
+
+            // Obtener la respuesta
+            using (WebResponse response = request.GetResponse())
+            using (var streamReader = new StreamReader(response.GetResponseStream()))
             {
-                url = Global.servicio + "/api-auroco/contratos_clientes";
-            }
-            if (comboCliente.SelectedValue != null)
-            {
-                string cod_cliente = comboCliente.SelectedValue.ToString();
-
-                if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
-                {
-                    Cliente cliente = new Cliente();
-                    cliente.C_CLIENTE = cod_cliente;
-                    string resultado = Send<Cliente>(url, cliente, "POST");
-                    List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
-
-
-
-                }
-
-
-
+                string result = streamReader.ReadToEnd();
+                return result;
             }
 
 
         }
+        
 
-        public string Send<T>(string url, T ObjectRequest, string method = "POST")
+
+
+        public string Send<T>(string url, T ObjectRequest, string method = "POST",string token="")
         {
             string result = "";
 
@@ -324,6 +326,7 @@ namespace AurocoPublicidad.forms
                 WebRequest request = WebRequest.Create(url);
                 //header
                 request.Method = method;
+                request.Headers["Authorization"] = "Bearer " + token;
                 request.PreAuthenticate = true;
                 request.ContentType = "application/json;charset=utf-8";
                 request.Timeout = 30000;
@@ -730,7 +733,8 @@ namespace AurocoPublicidad.forms
         {
             Factura factura = new Factura();
             FormaPago fpago = new FormaPago();
-            Client client = new Client();
+            Company comp = new Company();   
+            Cliente client = new Cliente();
             Address address = new Address();
             Cuotas cuotas = new Cuotas();
             /*cuerpo factura*/
@@ -744,6 +748,10 @@ namespace AurocoPublicidad.forms
             factura.formaPago.Moneda = "";
             factura.formaPago.Tipo = "";
             factura.formaPago.Monto = 100;
+            comp.razonSocial = "AUROCO PUBLICIDAD S A";
+            comp.ruc = "20111409391";
+            comp.nombreComercial = "AUROCO PUBLICIDAD S A";
+            factura.company= comp;  
             //factura.cuotas;
             List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
             bool campoOEsNulo = false;
@@ -765,7 +773,7 @@ namespace AurocoPublicidad.forms
                         }
                         // Usa el nombre de la columna como clave y el valor de la celda como valor
                         filaDatos[nombreColumna] = valorCelda;
-                        //filaDatos[dataCuentas.Columns[celda.ColumnIndex].Name] = celda.Value;
+                        
                     }
                     if (!campoOEsNulo)
                     {
@@ -785,17 +793,22 @@ namespace AurocoPublicidad.forms
             address.distrito = txtDistrito.Text;
             client.numDoc = txtRuc.Text;
             client.Address = address;
-            factura.client = client;
+            factura.cliente = client;
             fpago.Moneda = "PEN";
             fpago.Monto = 100;
             fpago.Tipo = "Contado";
             factura.formaPago = fpago;
 
 
+            string Resultado = SendDos<Factura>("https://facturacion.apisperu.com/api/v1/invoice/send", factura,"POST", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6InZ0b3Jlcm8iLCJjb21wYW55IjoiMjAxMTE0MDkzOTEiLCJpYXQiOjE3Mjg1OTYwNjIsImV4cCI6ODAzNTc5NjA2Mn0.i-MOya93NHQM8G1b457hSVFu57isfM08ePqjoIPBdTTrG2_MGnWT9sYACoTFLxspRXSngO3-QbTpP7gT9oL1tutEW1Yo7qboXJyWOAGP9MDTvG-fwJwB0SRi_qYmnBkZgzu9KooITZky7RER1I3VY1RmvoOAfrJmlo9pe_9cOd66kkKqpChW_tNg-BqooF1c8hB4tsPXudkOSmncV3A2n1gSoV4LHgkvWxEVCG8iK0CFjhPcID6ySdQRf_ARJHOMi0yoX4UEPJ-wcg-3zqB1Hma_QA_omirao1A2lvR2mCO1InOmVpCCAj8rfARFktchiC1bV86F0CVku9Obq4jkLwJrDn6PGVk17HIuJ_DyPxCMFxLdPHHrC2iqWAemZkiOVNYPLHRgOc17RIGhjEmdRKz0zsyOK-tevuQa4AsYFQIzUEQDfgH48vrSDRD1Z_RNLjk0utqhgbWfQq3QWAg7ls5UtXEKuCf5otKA82tqEUPajkhpFAg5SQZFQopHFrYZmJWvQyjMKF3CVAw6E7kqzd9ujDHWKnqwltx3TFQ9laWPo9iE7J8jAHcgwFkUE7Zlj7ZRpOIeA2K-eE-MG7qFLk5011sMSujW9f9Sh0Te7LRfJ6LMPsXLUt8NpZ4wGSMBhCrRdqDYadJUL7Cq09nv7APVWKp-i3fd_QX-I9UH9M4");
 
-        
-            //MessageBox.Show(datos + "");
-            Console.Write(datos);
+          
+            JObject jObject = JObject.Parse(Resultado);
+            JToken objeto = jObject["sunatResponse"];
+           // JToken objcodigo = jObject["codigo"];
+            MessageBox.Show("" + (string)objeto["error"]["message"]);
+            Console.Write(Resultado);
+
             Console.Write(factura.ToString());
 
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AurocoPublicidad.models.request.factura
 {
-    public class Client
+    public class Cliente
     {
 
         public string tipoDoc {  get; set; }
