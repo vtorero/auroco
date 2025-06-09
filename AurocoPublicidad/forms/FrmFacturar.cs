@@ -746,6 +746,7 @@ namespace AurocoPublicidad.forms
             factura.formaPago.Monto = 100;
             //factura.cuotas;
             List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
+            bool campoOEsNulo = false;
             foreach (DataGridViewRow fila in dataCuentas.Rows)
             {
                 if (!fila.IsNewRow)
@@ -755,12 +756,23 @@ namespace AurocoPublicidad.forms
                     // Itera a través de las celdas en la fila
                     foreach (DataGridViewCell celda in fila.Cells)
                     {
+                        string nombreColumna = dataCuentas.Columns[celda.ColumnIndex].Name;
+                        object valorCelda = celda.Value;
+                        if (nombreColumna == "o" && valorCelda == null)
+                        {
+                            campoOEsNulo = true;
+                            break; // No hace falta seguir iterando esta fila
+                        }
                         // Usa el nombre de la columna como clave y el valor de la celda como valor
-                        filaDatos[dataCuentas.Columns[celda.ColumnIndex].Name] = celda.Value;
+                        filaDatos[nombreColumna] = valorCelda;
+                        //filaDatos[dataCuentas.Columns[celda.ColumnIndex].Name] = celda.Value;
                     }
-
+                    if (!campoOEsNulo)
+                    {
+                        datos.Add(filaDatos);
+                    }
                     // Agrega la fila de datos a la lista
-                    datos.Add(filaDatos);
+                    //datos.Add(filaDatos);
                 }
             }
             
