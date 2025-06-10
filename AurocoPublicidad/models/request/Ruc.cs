@@ -14,6 +14,7 @@ namespace AurocoPublicidad.models.request
         public string Departamento { get; set; }
         public string Provincia { get; set; }
         public string Distrito { get;set; }
+        public string Ubigeo { get; set; }
 
 
 

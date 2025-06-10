@@ -356,7 +356,7 @@
     <Compile Include="models\request\Monedas.cs" />
     <Compile Include="models\request\Cliente.cs" />
     <Compile Include="models\request\Contrato.cs" />
-    <Compile Include="models\request\Factura.cs" />
+    <Compile Include="models\request\factura\Factura.cs" />
     <Compile Include="models\request\Ordenprint.cs" />
     <Compile Include="models\request\Orden.cs" />
     <Compile Include="models\request\OrdenesLinea.cs" />

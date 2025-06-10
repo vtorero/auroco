@@ -2,25 +2,18 @@
 using AurocoPublicidad.models.request.factura;
 using AurocoPublicidad.reportes;
 using AurocoPublicidad.util;
-using CrystalDecisions.ReportAppServer.CommonControls;
-using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
-using MySqlX.XDevAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Org.BouncyCastle.Tls;
-using Org.BouncyCastle.Utilities.IO.Pem;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+
+
 using Cliente = AurocoPublicidad.models.request.factura.Cliente;
 
 
@@ -668,6 +661,7 @@ namespace AurocoPublicidad.forms
                     txtDpto.Text = people.Departamento;
                     txtProvincia.Text = people.Provincia;
                     txtDistrito.Text = people.Distrito;
+                    txtUbigeo.Text=people.Ubigeo;
                 }
                 catch (Exception ex)
                 {
@@ -736,16 +730,27 @@ namespace AurocoPublicidad.forms
             Cliente client = new Cliente();
             Address address = new Address();
             Cuotas cuotas = new Cuotas();
+            var details = new Details();
+            var legends =new Legends();
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
+            factura.fecVencimiento = "2021-01-27T00:00:00-05:00";
             factura.tipoDoc = "01";
             factura.serie = "F001";
             factura.correlativo = "00001";
             factura.fechaEmision = "2021-01-27T00:00:00-05:00";
+            
             comp.razonSocial = "AUROCO PUBLICIDAD S A";
             comp.ruc = "20111409391";
             comp.nombreComercial = "AUROCO PUBLICIDAD S A";
+            comp.address = new Address();
+            comp.address.direccion = Global.DireccionAuroco;
+            comp.address.departamento = Global.dptoAuroco;
+            comp.address.provincia = Global.ProvinciaAuroco;
+            comp.address.distrito =Global.DistritoAuroco;
+            comp.address.ubigueo= Global.UbigeoAuroco;
+            
             factura.company= comp;  
             //factura.cuotas;
             List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
@@ -786,40 +791,79 @@ namespace AurocoPublicidad.forms
             address.departamento = txtDpto.Text;
             address.provincia = txtProvincia.Text;
             address.distrito = txtDistrito.Text;
+            address.direccion= txtDireccion.Text;
+            address.ubigueo = txtUbigeo.Text;
+            client.tipoDoc = "6";
             client.numDoc = txtRuc.Text;
             client.Address = address;
-            factura.cliente = client;
+            client.rznSocial = "PRUEBA PRUEBA";
+            factura.client = client;
             factura.formaPago = new FormaPago();
 
-            
             if (rdContado.Checked) {
-            factura.formaPago.Tipo = "Contado";
+            factura.formaPago.tipo = "Contado";
             }
             if (rdCredito.Checked) {
-                factura.formaPago.Tipo = "Credito";
-                factura.formaPago.Monto = 100;
+                factura.formaPago.tipo = "Credito";
+                factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", ""));
             }
             factura.cuotas = datos;
             if (cMoneda.Text == "Soles")
             {
                 factura.tipoMoneda = "PEN";
-                factura.formaPago.Moneda = "PEN";
+                factura.formaPago.moneda = "PEN";
 
             }
             if (cMoneda.Text == "Dolares")
             {
                 factura.tipoMoneda = "USD";
-                factura.formaPago.Moneda = "USD";
+                factura.formaPago.moneda = "USD";
             }
 
+            factura.mtoOperGravadas = Convert.ToDecimal(totalOrden.Text.Replace("$", ""));
+            factura.mtoIGV = Convert.ToDecimal(txtIgv.Text.Replace("$", ""));
+            factura.totalImpuestos= Convert.ToDecimal(txtIgv.Text.Replace("$", ""));
+            factura.valorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", ""));
+            factura.subTotal = Convert.ToDecimal(totalBruto.Text.Replace("$", ""));
+            factura.mtoImpVenta= Convert.ToDecimal(totalBruto.Text.Replace("$", ""));
+            
+            details.unidad = "NIU";
+            details.codProducto = "P001";
+            details.descripcion = "Orden Nro:"+ txtNumero.Text + " " +txtProducto.Text+" "+txtMotivo.Text + "OBS:" + textObservaciones.Text;
+            details.cantidad = 1;
+            details.mtoValorUnitario= Convert.ToDecimal(totalOrden.Text.Replace("$", ""));
+            details.mtoValorVenta= Convert.ToDecimal(totalOrden.Text.Replace("$", ""));
+            details.mtoBaseIgv = Convert.ToDecimal(totalOrden.Text.Replace("$", ""));
+            details.porcentajeIgv = 18;
+            details.igv = Convert.ToDecimal(txtIgv.Text.Replace("$", ""));
+            details.tipAfeIgv = 10;
+            details.totalImpuestos= Convert.ToDecimal(txtIgv.Text.Replace("$", ""));
+            details.mtoPrecioUnitario= Convert.ToDecimal(totalBruto.Text.Replace("$", ""));
+            
+            factura.details = new List<Details> { details };
 
-            string Resultado = SendDos<Factura>("https://facturacion.apisperu.com/api/v1/invoice/send", factura,"POST", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6InZ0b3Jlcm8iLCJjb21wYW55IjoiMjAxMTE0MDkzOTEiLCJpYXQiOjE3Mjg1OTYwNjIsImV4cCI6ODAzNTc5NjA2Mn0.i-MOya93NHQM8G1b457hSVFu57isfM08ePqjoIPBdTTrG2_MGnWT9sYACoTFLxspRXSngO3-QbTpP7gT9oL1tutEW1Yo7qboXJyWOAGP9MDTvG-fwJwB0SRi_qYmnBkZgzu9KooITZky7RER1I3VY1RmvoOAfrJmlo9pe_9cOd66kkKqpChW_tNg-BqooF1c8hB4tsPXudkOSmncV3A2n1gSoV4LHgkvWxEVCG8iK0CFjhPcID6ySdQRf_ARJHOMi0yoX4UEPJ-wcg-3zqB1Hma_QA_omirao1A2lvR2mCO1InOmVpCCAj8rfARFktchiC1bV86F0CVku9Obq4jkLwJrDn6PGVk17HIuJ_DyPxCMFxLdPHHrC2iqWAemZkiOVNYPLHRgOc17RIGhjEmdRKz0zsyOK-tevuQa4AsYFQIzUEQDfgH48vrSDRD1Z_RNLjk0utqhgbWfQq3QWAg7ls5UtXEKuCf5otKA82tqEUPajkhpFAg5SQZFQopHFrYZmJWvQyjMKF3CVAw6E7kqzd9ujDHWKnqwltx3TFQ9laWPo9iE7J8jAHcgwFkUE7Zlj7ZRpOIeA2K-eE-MG7qFLk5011sMSujW9f9Sh0Te7LRfJ6LMPsXLUt8NpZ4wGSMBhCrRdqDYadJUL7Cq09nv7APVWKp-i3fd_QX-I9UH9M4");
+            legends.code = "101";
+            legends.value = "Son ssss Soles";
+            factura.Legends = new List<Legends> { legends};
+
+            string Resultado = SendDos<Factura>(Global.urlFactura, factura,"POST", Global.TokenFacturar);
 
           
             JObject jObject = JObject.Parse(Resultado);
             JToken objeto = jObject["sunatResponse"];
-           // JToken objcodigo = jObject["codigo"];
-            MessageBox.Show("" + (string)objeto["error"]["message"]);
+            // JToken objcodigo = jObject["codigo"];
+            if (objeto["error"]?["message"] != null)
+            {
+                string mensaje = objeto["error"]["message"].ToString();
+                MessageBox.Show(mensaje);
+
+            }
+            else
+            {
+                string mensaje = objeto["cdrResponse"]["description"].ToString();
+                MessageBox.Show(mensaje);
+            }
+           
             Console.Write(Resultado);
 
             Console.Write(factura.ToString());

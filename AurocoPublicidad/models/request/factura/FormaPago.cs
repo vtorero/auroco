@@ -9,9 +9,9 @@ namespace AurocoPublicidad.models.request
     public class FormaPago
     {
 
-            public string Moneda { get; set; }
-            public string Tipo { get; set; } 
-            public decimal Monto { get; set; } 
+            public string moneda { get; set; }
+            public string tipo { get; set; } 
+            public decimal monto { get; set; } 
         
     }
 }

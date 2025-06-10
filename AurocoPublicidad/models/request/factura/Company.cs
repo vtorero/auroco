@@ -10,7 +10,6 @@ namespace AurocoPublicidad.models.request.factura
     {
 
         public string ruc { get; set; }
-
         public string razonSocial { get; set; }
         public string nombreComercial { get; set; }
         public Address address { get; set; }    

@@ -79,6 +79,8 @@
             this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtUbigeo = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -177,6 +179,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.txtUbigeo);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.btnVistaPrevia);
             this.groupBox1.Controls.Add(this.label1);
@@ -423,6 +427,16 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // txtUbigeo
+            // 
+            resources.ApplyResources(this.txtUbigeo, "txtUbigeo");
+            this.txtUbigeo.Name = "txtUbigeo";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
             // FrmFacturar
             // 
             resources.ApplyResources(this, "$this");
@@ -498,5 +512,7 @@
         private System.Windows.Forms.NumericUpDown porcentajeDet;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtUbigeo;
     }
 }

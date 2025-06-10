@@ -8,12 +8,10 @@ namespace AurocoPublicidad.models.request.factura
 {
     public class Address
     {
-    
-       public string  direccion {  get; set; }  
+     public string direccion {  get; set; }  
       public string provincia { get; set; }  
       public string departamento { get; set; }  
       public string distrito { get; set; }
       public string ubigueo { get; set; }
-
     }
 }
