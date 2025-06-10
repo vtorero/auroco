@@ -282,6 +282,7 @@
             // rdContado
             // 
             resources.ApplyResources(this.rdContado, "rdContado");
+            this.rdContado.Checked = true;
             this.rdContado.Name = "rdContado";
             this.rdContado.TabStop = true;
             this.rdContado.UseVisualStyleBackColor = true;
@@ -291,7 +292,6 @@
             // 
             resources.ApplyResources(this.rdCredito, "rdCredito");
             this.rdCredito.Name = "rdCredito";
-            this.rdCredito.TabStop = true;
             this.rdCredito.UseVisualStyleBackColor = true;
             this.rdCredito.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 

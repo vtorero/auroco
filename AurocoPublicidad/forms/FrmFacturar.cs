@@ -732,7 +732,6 @@ namespace AurocoPublicidad.forms
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             Factura factura = new Factura();
-            FormaPago fpago = new FormaPago();
             Company comp = new Company();   
             Cliente client = new Cliente();
             Address address = new Address();
@@ -744,10 +743,6 @@ namespace AurocoPublicidad.forms
             factura.serie = "F001";
             factura.correlativo = "00001";
             factura.fechaEmision = "2021-01-27T00:00:00-05:00";
-            factura.formaPago = new FormaPago();
-            factura.formaPago.Moneda = "";
-            factura.formaPago.Tipo = "";
-            factura.formaPago.Monto = 100;
             comp.razonSocial = "AUROCO PUBLICIDAD S A";
             comp.ruc = "20111409391";
             comp.nombreComercial = "AUROCO PUBLICIDAD S A";
@@ -784,8 +779,8 @@ namespace AurocoPublicidad.forms
                 }
             }
             
-            factura.cuotas = datos;
-            factura.tipoMoneda = "PEN";
+     
+
 
 
             address.departamento = txtDpto.Text;
@@ -794,10 +789,28 @@ namespace AurocoPublicidad.forms
             client.numDoc = txtRuc.Text;
             client.Address = address;
             factura.cliente = client;
-            fpago.Moneda = "PEN";
-            fpago.Monto = 100;
-            fpago.Tipo = "Contado";
-            factura.formaPago = fpago;
+            factura.formaPago = new FormaPago();
+
+            
+            if (rdContado.Checked) {
+            factura.formaPago.Tipo = "Contado";
+            }
+            if (rdCredito.Checked) {
+                factura.formaPago.Tipo = "Credito";
+                factura.formaPago.Monto = 100;
+            }
+            factura.cuotas = datos;
+            if (cMoneda.Text == "Soles")
+            {
+                factura.tipoMoneda = "PEN";
+                factura.formaPago.Moneda = "PEN";
+
+            }
+            if (cMoneda.Text == "Dolares")
+            {
+                factura.tipoMoneda = "USD";
+                factura.formaPago.Moneda = "USD";
+            }
 
 
             string Resultado = SendDos<Factura>("https://facturacion.apisperu.com/api/v1/invoice/send", factura,"POST", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6InZ0b3Jlcm8iLCJjb21wYW55IjoiMjAxMTE0MDkzOTEiLCJpYXQiOjE3Mjg1OTYwNjIsImV4cCI6ODAzNTc5NjA2Mn0.i-MOya93NHQM8G1b457hSVFu57isfM08ePqjoIPBdTTrG2_MGnWT9sYACoTFLxspRXSngO3-QbTpP7gT9oL1tutEW1Yo7qboXJyWOAGP9MDTvG-fwJwB0SRi_qYmnBkZgzu9KooITZky7RER1I3VY1RmvoOAfrJmlo9pe_9cOd66kkKqpChW_tNg-BqooF1c8hB4tsPXudkOSmncV3A2n1gSoV4LHgkvWxEVCG8iK0CFjhPcID6ySdQRf_ARJHOMi0yoX4UEPJ-wcg-3zqB1Hma_QA_omirao1A2lvR2mCO1InOmVpCCAj8rfARFktchiC1bV86F0CVku9Obq4jkLwJrDn6PGVk17HIuJ_DyPxCMFxLdPHHrC2iqWAemZkiOVNYPLHRgOc17RIGhjEmdRKz0zsyOK-tevuQa4AsYFQIzUEQDfgH48vrSDRD1Z_RNLjk0utqhgbWfQq3QWAg7ls5UtXEKuCf5otKA82tqEUPajkhpFAg5SQZFQopHFrYZmJWvQyjMKF3CVAw6E7kqzd9ujDHWKnqwltx3TFQ9laWPo9iE7J8jAHcgwFkUE7Zlj7ZRpOIeA2K-eE-MG7qFLk5011sMSujW9f9Sh0Te7LRfJ6LMPsXLUt8NpZ4wGSMBhCrRdqDYadJUL7Cq09nv7APVWKp-i3fd_QX-I9UH9M4");
