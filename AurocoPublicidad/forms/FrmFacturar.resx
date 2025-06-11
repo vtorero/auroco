@@ -1431,28 +1431,28 @@
   <data name="&gt;&gt;cMoneda.ZOrder" xml:space="preserve">
     <value>35</value>
   </data>
-  <data name="inicioVigencia.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="fechaEmision.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
   </data>
-  <data name="inicioVigencia.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="fechaEmision.Location" type="System.Drawing.Point, System.Drawing">
     <value>818, 102</value>
   </data>
-  <data name="inicioVigencia.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="fechaEmision.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
   </data>
-  <data name="inicioVigencia.TabIndex" type="System.Int32, mscorlib">
+  <data name="fechaEmision.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;inicioVigencia.Name" xml:space="preserve">
-    <value>inicioVigencia</value>
+  <data name="&gt;&gt;fechaEmision.Name" xml:space="preserve">
+    <value>fechaEmision</value>
   </data>
-  <data name="&gt;&gt;inicioVigencia.Type" xml:space="preserve">
+  <data name="&gt;&gt;fechaEmision.Type" xml:space="preserve">
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;inicioVigencia.Parent" xml:space="preserve">
+  <data name="&gt;&gt;fechaEmision.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;inicioVigencia.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;fechaEmision.ZOrder" xml:space="preserve">
     <value>36</value>
   </data>
   <data name="comboCliente.Enabled" type="System.Boolean, mscorlib">

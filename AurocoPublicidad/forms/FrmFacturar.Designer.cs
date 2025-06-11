@@ -45,6 +45,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtUbigeo = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.porcentajeDet = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
@@ -76,11 +78,9 @@
             this.txtAgencia = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cMoneda = new System.Windows.Forms.TextBox();
-            this.inicioVigencia = new System.Windows.Forms.DateTimePicker();
+            this.fechaEmision = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtUbigeo = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -215,13 +215,23 @@
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cMoneda);
-            this.groupBox1.Controls.Add(this.inicioVigencia);
+            this.groupBox1.Controls.Add(this.fechaEmision);
             this.groupBox1.Controls.Add(this.comboCliente);
             this.groupBox1.Controls.Add(this.label2);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // txtUbigeo
+            // 
+            resources.ApplyResources(this.txtUbigeo, "txtUbigeo");
+            this.txtUbigeo.Name = "txtUbigeo";
             // 
             // groupBox4
             // 
@@ -254,6 +264,7 @@
             resources.ApplyResources(this.btnVistaPrevia, "btnVistaPrevia");
             this.btnVistaPrevia.Name = "btnVistaPrevia";
             this.btnVistaPrevia.UseVisualStyleBackColor = true;
+            this.btnVistaPrevia.Click += new System.EventHandler(this.btnVistaPrevia_Click);
             // 
             // label1
             // 
@@ -408,11 +419,11 @@
             this.cMoneda.Name = "cMoneda";
             this.cMoneda.ReadOnly = true;
             // 
-            // inicioVigencia
+            // fechaEmision
             // 
-            resources.ApplyResources(this.inicioVigencia, "inicioVigencia");
-            this.inicioVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.inicioVigencia.Name = "inicioVigencia";
+            resources.ApplyResources(this.fechaEmision, "fechaEmision");
+            this.fechaEmision.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.fechaEmision.Name = "fechaEmision";
             // 
             // comboCliente
             // 
@@ -426,16 +437,6 @@
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
-            // txtUbigeo
-            // 
-            resources.ApplyResources(this.txtUbigeo, "txtUbigeo");
-            this.txtUbigeo.Name = "txtUbigeo";
-            // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
             // 
             // FrmFacturar
             // 
@@ -480,7 +481,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox cMoneda;
-        private System.Windows.Forms.DateTimePicker inicioVigencia;
+        private System.Windows.Forms.DateTimePicker fechaEmision;
         private System.Windows.Forms.ComboBox comboCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnEnviar;

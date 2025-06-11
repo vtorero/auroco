@@ -12,6 +12,6 @@ namespace AurocoPublicidad.models.request.factura
         public string tipoDoc {  get; set; }
         public string numDoc {  get; set; }
         public string  rznSocial { get; set; }
-        public Address Address { get; set; }    
+        public Address address { get; set; }    
     }
 }
