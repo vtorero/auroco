@@ -482,6 +482,9 @@
     <EmbeddedResource Include="forms\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\VistaPdfForm.resx">
+      <DependentUpon>VistaPdfForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\MDIParent1.resx">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </EmbeddedResource>

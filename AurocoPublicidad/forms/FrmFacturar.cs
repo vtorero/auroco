@@ -749,7 +749,7 @@ namespace AurocoPublicidad.forms
             factura.fechaEmision = "2021-01-27T00:00:00-05:00";
             
             comp.razonSocial = "AUROCO PUBLICIDAD S A";
-            comp.ruc = "20111409391";
+            comp.ruc = Global.RucAuroco;
             comp.nombreComercial = "AUROCO PUBLICIDAD S A";
             comp.address = new Address();
             comp.address.direccion = Global.DireccionAuroco;
@@ -851,7 +851,7 @@ namespace AurocoPublicidad.forms
 
             legends.code = "101";
             legends.value = "Son ssss Soles";
-            factura.Legends = new List<Legends> { legends};
+            factura.legends = new List<Legends> { legends};
 
             try
             {
@@ -872,8 +872,9 @@ namespace AurocoPublicidad.forms
                     string mensaje = objeto["cdrResponse"]["description"].ToString();
                     MessageBox.Show(mensaje);
                 }
-            }catch{
-                MessageBox.Show("error"); 
+            }catch (Exception m) {
+                
+                MessageBox.Show(m.Message); 
             }
          
 
@@ -901,7 +902,7 @@ namespace AurocoPublicidad.forms
             factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd")+ "T00:00:00-05:00";
 
             comp.razonSocial = "AUROCO PUBLICIDAD S A";
-            comp.ruc = "20111409391";
+            comp.ruc = Global.RucAuroco;
             comp.nombreComercial = "AUROCO PUBLICIDAD S A";
             comp.address = new Address();
             comp.address.direccion = Global.DireccionAuroco;
@@ -1003,9 +1004,9 @@ namespace AurocoPublicidad.forms
 
             factura.details = new List<Details> { details };
 
-            legends.code = "101";
-            legends.value = "Son ssss Soles";
-            factura.Legends = new List<Legends> { legends };
+            legends.code = "1000";
+            legends.value = "SON CIENTO DIECIOCHO CON 00/100 SOLES";
+            factura.legends = new List<Legends> { legends };
 
             //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
             var cliente = new HttpClient();
@@ -1022,11 +1023,11 @@ namespace AurocoPublicidad.forms
             {
                 var response = await cliente.PostAsync("https://facturacion.apisperu.com/api/v1/invoice/pdf", content);
 
-                if (!response.IsSuccessStatusCode)
+                /*if (!response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Error al obtener el PDF.");
-                    return;
-                }
+              //      MessageBox.Show("Error al obtener el PDF.");
+            //        return;
+                }*/
 
                 var pdfBytes = await response.Content.ReadAsByteArrayAsync();
 

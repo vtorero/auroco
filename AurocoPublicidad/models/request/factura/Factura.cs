@@ -36,7 +36,7 @@ namespace AurocoPublicidad.models.request.factura
 
         //public List<Dictionary<string, object>> detail { get; set; }
 
-        public List<Legends> Legends { get; set; }
+        public List<Legends> legends { get; set; }
 
     }
 }
