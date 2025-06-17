@@ -424,7 +424,7 @@
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 181</value>
+    <value>12, 195</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
@@ -451,10 +451,10 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="textObservaciones.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 200</value>
+    <value>10, 214</value>
   </data>
   <data name="textObservaciones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>926, 50</value>
+    <value>926, 36</value>
   </data>
   <data name="textObservaciones.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>

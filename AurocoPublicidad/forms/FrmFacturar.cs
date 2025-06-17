@@ -845,17 +845,17 @@ namespace AurocoPublicidad.forms
             details.igv = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
             details.tipAfeIgv = 10;
             details.totalImpuestos= Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoPrecioUnitario= Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
+            details.mtoPrecioUnitario= Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", "")) + Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
             
             factura.details = new List<Details> { details };
 
-            legends.code = "101";
+            legends.code = "1000";
             legends.value = "Son ssss Soles";
             factura.legends = new List<Legends> { legends};
 
             try
             {
-                string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
+                string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenAuroco);
 
 
                 JObject jObject = JObject.Parse(Resultado);
@@ -900,17 +900,27 @@ namespace AurocoPublicidad.forms
             factura.serie = "F001";
             factura.correlativo = "00001";
             factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd")+ "T00:00:00-05:00";
-
-            comp.razonSocial = "AUROCO PUBLICIDAD S A";
-            comp.ruc = Global.RucAuroco;
-            comp.nombreComercial = "AUROCO PUBLICIDAD S A";
             comp.address = new Address();
-            comp.address.direccion = Global.DireccionAuroco;
+
+            if (txtAgencia.Text == "AUROCO") { 
+                comp.razonSocial = Global.nombreAuroco;
+                comp.ruc = Global.RucAuroco;
+                comp.nombreComercial = Global.nombreAuroco;
+                comp.address.direccion = Global.DireccionAuroco;
+                }
+            else
+            {
+                comp.razonSocial = Global.nombreOptimiza;
+                comp.ruc = Global.RucOptimiza;
+                comp.nombreComercial = Global.nombreOptimiza;
+                comp.address.direccion = Global.DireccionOptimiza;
+
+            }
+
             comp.address.departamento = Global.dptoAuroco;
             comp.address.provincia = Global.ProvinciaAuroco;
             comp.address.distrito = Global.DistritoAuroco;
             comp.address.ubigueo = Global.UbigeoAuroco;
-
             factura.company = comp;
             //factura.cuotas;
             List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
@@ -956,7 +966,7 @@ namespace AurocoPublicidad.forms
             client.tipoDoc = "6";
             client.numDoc = txtRuc.Text;
             client.address = address;
-            client.rznSocial = "PRUEBA PRUEBA";
+            client.rznSocial = comboCliente.Text;
             factura.client = client;
             factura.formaPago = new FormaPago();
 
@@ -1000,7 +1010,7 @@ namespace AurocoPublicidad.forms
             details.igv = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
             details.tipAfeIgv = 10;
             details.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoPrecioUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
+            details.mtoPrecioUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""))+ Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
 
             factura.details = new List<Details> { details };
 
@@ -1011,11 +1021,16 @@ namespace AurocoPublicidad.forms
             //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
             var cliente = new HttpClient();
 
-            cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenFacturar);
+            if (txtAgencia.Text == "Auroco") { 
+            cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenAuroco);
+            }
+            else
+            {
+                cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenOptimiza);
+            }
 
 
-
-            var parametros = new { dato = "valor123" };
+                var parametros = new { dato = "valor123" };
             var json = JsonConvert.SerializeObject(factura);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
