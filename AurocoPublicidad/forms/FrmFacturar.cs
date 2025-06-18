@@ -608,6 +608,8 @@ namespace AurocoPublicidad.forms
         {
             dataCuentas.Enabled = true;
             dataCuentas.Visible = true;
+            fechaVcto.Enabled = true;
+            lblvenc.Enabled = true; 
         }
 
         private void rdContado_CheckedChanged(object sender, EventArgs e)
@@ -615,6 +617,8 @@ namespace AurocoPublicidad.forms
             dataCuentas.Rows.Clear();
             dataCuentas.Enabled = false;
             dataCuentas.Visible = false;
+            fechaVcto.Enabled = false;
+            lblvenc.Enabled = false;
         }
 
         private void CalcularTotalYComparar()
@@ -829,24 +833,24 @@ namespace AurocoPublicidad.forms
 
             factura.mtoOperGravadas = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             factura.mtoIGV = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            factura.totalImpuestos= Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
+            factura.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
             factura.valorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             factura.subTotal = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-            factura.mtoImpVenta= Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-            
+            factura.mtoImpVenta = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
+
             details.unidad = "NIU";
             details.codProducto = "P001";
-            details.descripcion = "Orden Nro:"+ txtNumero.Text + " " +txtProducto.Text+" "+txtMotivo.Text + "OBS:" + textObservaciones.Text;
+            details.descripcion = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text + "OBS: " + textObservaciones.Text;
             details.cantidad = 1;
-            details.mtoValorUnitario= Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoValorVenta= Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
+            details.mtoValorUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
+            details.mtoValorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             details.mtoBaseIgv = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             details.porcentajeIgv = 18;
             details.igv = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
             details.tipAfeIgv = 10;
-            details.totalImpuestos= Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoPrecioUnitario= Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", "")) + Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            
+            details.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
+            details.mtoPrecioUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", "")) + Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
+
             factura.details = new List<Details> { details };
 
             legends.code = "1000";
@@ -1001,7 +1005,7 @@ namespace AurocoPublicidad.forms
 
             details.unidad = "NIU";
             details.codProducto = "P001";
-            details.descripcion = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text + "OBS:" + textObservaciones.Text;
+            details.descripcion = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text + "OBS: " + textObservaciones.Text;
             details.cantidad = 1;
             details.mtoValorUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             details.mtoValorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
@@ -1021,16 +1025,14 @@ namespace AurocoPublicidad.forms
             //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
             var cliente = new HttpClient();
 
-            if (txtAgencia.Text == "Auroco") { 
+            if (txtAgencia.Text == "AUROCO") { 
             cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenAuroco);
             }
             else
             {
-                cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenOptimiza);
+              cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenOptimiza);
             }
 
-
-                var parametros = new { dato = "valor123" };
             var json = JsonConvert.SerializeObject(factura);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -1059,6 +1061,16 @@ namespace AurocoPublicidad.forms
         private async void btnVistaPrevia_Click(object sender, EventArgs e)
         {
              await AbrirPdfDesdeApi();
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fechaEmision_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

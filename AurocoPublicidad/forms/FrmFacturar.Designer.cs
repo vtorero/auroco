@@ -81,6 +81,8 @@
             this.fechaEmision = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblvenc = new System.Windows.Forms.Label();
+            this.fechaVcto = new System.Windows.Forms.DateTimePicker();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -179,6 +181,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.fechaVcto);
+            this.groupBox1.Controls.Add(this.lblvenc);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.txtUbigeo);
             this.groupBox1.Controls.Add(this.groupBox4);
@@ -424,6 +428,7 @@
             resources.ApplyResources(this.fechaEmision, "fechaEmision");
             this.fechaEmision.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fechaEmision.Name = "fechaEmision";
+            this.fechaEmision.ValueChanged += new System.EventHandler(this.fechaEmision_ValueChanged);
             // 
             // comboCliente
             // 
@@ -437,6 +442,18 @@
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
+            // 
+            // lblvenc
+            // 
+            resources.ApplyResources(this.lblvenc, "lblvenc");
+            this.lblvenc.Name = "lblvenc";
+            this.lblvenc.Click += new System.EventHandler(this.label18_Click);
+            // 
+            // fechaVcto
+            // 
+            resources.ApplyResources(this.fechaVcto, "fechaVcto");
+            this.fechaVcto.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.fechaVcto.Name = "fechaVcto";
             // 
             // FrmFacturar
             // 
@@ -515,5 +532,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtUbigeo;
+        private System.Windows.Forms.Label lblvenc;
+        private System.Windows.Forms.DateTimePicker fechaVcto;
     }
 }
