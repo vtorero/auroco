@@ -267,11 +267,6 @@ namespace AurocoPublicidad.forms
 
         }
 
-
-
-
-
-
         public static string SendDos<T>(string url, T data, string method, string token)
         {
             string resultado = "Error";
@@ -643,6 +638,13 @@ namespace AurocoPublicidad.forms
             if (total > totalorden)
             {
                 MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnEnviar.Enabled = false;
+                btnVistaPrevia.Enabled = false; 
+            }
+            else
+            {
+                btnEnviar.Enabled = true;
+                btnVistaPrevia.Enabled = true;
             }
             //}
         }
@@ -899,8 +901,7 @@ namespace AurocoPublicidad.forms
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
-            factura.fecVencimiento = fechaEmision.Value.ToString("yyyy-MM-dd")+"T00:00:00-05:00";
-            factura.tipoDoc = "01";
+factura.tipoDoc = "01";
             factura.serie = "F001";
             factura.correlativo = "00001";
             factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd")+ "T00:00:00-05:00";
@@ -982,6 +983,7 @@ namespace AurocoPublicidad.forms
             {
                 factura.formaPago.tipo = "Credito";
                 factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
+                factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
             }
             factura.cuotas = datos;
             if (cMoneda.Text == "Soles")
@@ -1019,7 +1021,7 @@ namespace AurocoPublicidad.forms
             factura.details = new List<Details> { details };
 
             legends.code = "1000";
-            legends.value = "SON CIENTO DIECIOCHO CON 00/100 SOLES";
+            legends.value ="SON "+generico.NumeroALetras(details.mtoPrecioUnitario) +" "+cMoneda.Text.ToUpper();
             factura.legends = new List<Legends> { legends };
 
             //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
@@ -1063,10 +1065,7 @@ namespace AurocoPublicidad.forms
              await AbrirPdfDesdeApi();
         }
 
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void fechaEmision_ValueChanged(object sender, EventArgs e)
         {

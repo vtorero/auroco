@@ -1,9 +1,0 @@
-D:\proy\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x86\msvcr120.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\System.Buffers.xml
-D:\proy\auroco\AurocoPublicidad\bin\Debug\System.Memory.xml
-D:\proy\auroco\AurocoPublicidad\bin\Debug\System.Threading.Tasks.Extensions.xml
-D:\proy\auroco\AurocoPublicidad\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\nl\PdfiumViewer.resources.dll

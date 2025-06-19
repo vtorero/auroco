@@ -447,8 +447,7 @@
             // 
             resources.ApplyResources(this.lblvenc, "lblvenc");
             this.lblvenc.Name = "lblvenc";
-            this.lblvenc.Click += new System.EventHandler(this.label18_Click);
-            // 
+                      // 
             // fechaVcto
             // 
             resources.ApplyResources(this.fechaVcto, "fechaVcto");
