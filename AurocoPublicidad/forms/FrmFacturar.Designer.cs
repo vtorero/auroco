@@ -56,7 +56,6 @@
             this.btnVistaPrevia = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataCuentas = new System.Windows.Forms.DataGridView();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdContado = new System.Windows.Forms.RadioButton();
             this.rdCredito = new System.Windows.Forms.RadioButton();
@@ -83,6 +82,10 @@
             this.fechaEmision = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtCambio = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -181,6 +184,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCambio);
+            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.fechaVcto);
             this.groupBox1.Controls.Add(this.lblvenc);
             this.groupBox1.Controls.Add(this.label17);
@@ -225,7 +230,7 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+         
             // 
             // fechaVcto
             // 
@@ -295,11 +300,6 @@
             this.dataCuentas.Name = "dataCuentas";
             this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
             this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
-            // 
-            // monto
-            // 
-            resources.ApplyResources(this.monto, "monto");
-            this.monto.Name = "monto";
             // 
             // groupBox3
             // 
@@ -454,6 +454,28 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            resources.ApplyResources(this.dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // monto
+            // 
+            resources.ApplyResources(this.monto, "monto");
+            this.monto.Name = "monto";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // txtCambio
+            // 
+            this.txtCambio.BackColor = System.Drawing.SystemColors.Info;
+            resources.ApplyResources(this.txtCambio, "txtCambio");
+            this.txtCambio.Name = "txtCambio";
+            this.txtCambio.ReadOnly = true;
+            // 
             // FrmFacturar
             // 
             resources.ApplyResources(this, "$this");
@@ -533,5 +555,8 @@
         private System.Windows.Forms.TextBox txtUbigeo;
         private System.Windows.Forms.Label lblvenc;
         private System.Windows.Forms.DateTimePicker fechaVcto;
+        private System.Windows.Forms.TextBox txtCambio;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

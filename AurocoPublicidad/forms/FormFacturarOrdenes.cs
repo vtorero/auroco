@@ -87,6 +87,7 @@ namespace AurocoPublicidad.forms
                 dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
                 dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
                 dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
+                dgOrdenes.Rows[rowIndex].Cells["tipoCambio"].Value = ord.TIPO_CAMBIO;
 
 
             }
@@ -127,8 +128,9 @@ namespace AurocoPublicidad.forms
                 var motivo = dgOrdenes[16, pos].Value.ToString();
                 var duracion = dgOrdenes[17, pos].Value.ToString();
                 var observaciones = dgOrdenes[18, pos].Value.ToString();
-                var agencia = dgOrdenes[21, pos].Value.ToString();
-                FrmFacturar frmFacturar = new FrmFacturar(idOrden,idCliente,ruc,fcreacion, observaciones,moneda,producto,motivo, totalOrden);
+                var agencia = dgOrdenes[22, pos].Value.ToString();
+                var tipo_cambio = dgOrdenes[21, pos].Value.ToString();
+                FrmFacturar frmFacturar = new FrmFacturar(idOrden,idCliente,ruc,fcreacion, observaciones,moneda,producto,motivo, totalOrden, tipo_cambio);
                 frmFacturar.Show();
                 Cursor.Current = Cursors.Default;
 

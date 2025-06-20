@@ -33,6 +33,7 @@
         public string ACTIVA { get; set; }
         public string TOTAL { get; set; }
         public string AGENCIA{ get; set; }
+        public string TIPO_CAMBIO{ get; set; }
 
 
     }

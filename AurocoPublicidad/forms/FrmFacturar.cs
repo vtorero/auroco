@@ -44,9 +44,10 @@ namespace AurocoPublicidad.forms
         private string valorObservaciones;
         private string valorAgencia;
         private decimal totalorden;
+        private string valortipocambio;
 
         private string apiUrl = Global.servicio + "/api-auroco/facturacion.php/test-factura";
-        public FrmFacturar(string id, string cliente, string ruc, string fecha, string observaciones, string moneda, string producto, string motivo, string total)
+        public FrmFacturar(string id, string cliente, string ruc, string fecha, string observaciones, string moneda, string producto, string motivo, string total,string tipocambio)
         {
 
             InitializeComponent();
@@ -59,6 +60,7 @@ namespace AurocoPublicidad.forms
             valorProducto = producto;
             valorMotivo = motivo;
             Console.Write(valorTotal);
+            valortipocambio = tipocambio;
             valorObservaciones = observaciones;
 
 
@@ -90,11 +92,12 @@ namespace AurocoPublicidad.forms
                 DateTime ultimoDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
                 // Establecer el valor del DateTimePicker al primer día del mes actual
                 fechaEmision.Value = primerDiaDelMes;
+                txtCambio.Text = valortipocambio;
 
                 pintaDias();
             }
 
-
+            //this.tipocambio = tipocambio;
         }
 
 
@@ -478,15 +481,9 @@ namespace AurocoPublicidad.forms
             btnGuardar.Enabled = true;
         }
 
-        private void label8_Click(object sender, EventArgs e)
-        {
+ 
 
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private async void FrmFacturar_Load(object sender, EventArgs e)
         {
@@ -521,6 +518,7 @@ namespace AurocoPublicidad.forms
             if (valorMoneda != "") cMoneda.Text = valorMoneda;
             if (valorProducto != "") txtProducto.Text = valorProducto;
             if (valorMotivo != "") txtMotivo.Text = valorMotivo;
+            if (valortipocambio != "") txtCambio.Text = valortipocambio;
 
 
 
