@@ -45,12 +45,14 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fechaVcto = new System.Windows.Forms.DateTimePicker();
+            this.lblvenc = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtUbigeo = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.porcentajeDet = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkDetrac = new System.Windows.Forms.CheckBox();
             this.btnVistaPrevia = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataCuentas = new System.Windows.Forms.DataGridView();
@@ -81,8 +83,6 @@
             this.fechaEmision = new System.Windows.Forms.DateTimePicker();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblvenc = new System.Windows.Forms.Label();
-            this.fechaVcto = new System.Windows.Forms.DateTimePicker();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -227,6 +227,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // fechaVcto
+            // 
+            resources.ApplyResources(this.fechaVcto, "fechaVcto");
+            this.fechaVcto.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.fechaVcto.Name = "fechaVcto";
+            // 
+            // lblvenc
+            // 
+            resources.ApplyResources(this.lblvenc, "lblvenc");
+            this.lblvenc.Name = "lblvenc";
+            // 
             // label17
             // 
             resources.ApplyResources(this.label17, "label17");
@@ -241,7 +252,7 @@
             // 
             this.groupBox4.Controls.Add(this.porcentajeDet);
             this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.checkBox1);
+            this.groupBox4.Controls.Add(this.chkDetrac);
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
@@ -256,12 +267,12 @@
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
             // 
-            // checkBox1
+            // chkDetrac
             // 
-            resources.ApplyResources(this.checkBox1, "checkBox1");
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            resources.ApplyResources(this.chkDetrac, "chkDetrac");
+            this.chkDetrac.Name = "chkDetrac";
+            this.chkDetrac.UseVisualStyleBackColor = true;
+            this.chkDetrac.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // btnVistaPrevia
             // 
@@ -443,17 +454,6 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // lblvenc
-            // 
-            resources.ApplyResources(this.lblvenc, "lblvenc");
-            this.lblvenc.Name = "lblvenc";
-                      // 
-            // fechaVcto
-            // 
-            resources.ApplyResources(this.fechaVcto, "fechaVcto");
-            this.fechaVcto.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.fechaVcto.Name = "fechaVcto";
-            // 
             // FrmFacturar
             // 
             resources.ApplyResources(this, "$this");
@@ -528,7 +528,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.NumericUpDown porcentajeDet;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkDetrac;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtUbigeo;
         private System.Windows.Forms.Label lblvenc;

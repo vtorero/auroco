@@ -725,7 +725,7 @@ namespace AurocoPublicidad.forms
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked)
+            if (this.chkDetrac.Checked)
             {
                 porcentajeDet.Enabled = true;
             }
@@ -901,7 +901,7 @@ namespace AurocoPublicidad.forms
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
-factura.tipoDoc = "01";
+            factura.tipoDoc = "01";
             factura.serie = "F001";
             factura.correlativo = "00001";
             factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd")+ "T00:00:00-05:00";
@@ -1004,6 +1004,16 @@ factura.tipoDoc = "01";
             factura.valorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             factura.subTotal = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
             factura.mtoImpVenta = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
+
+            if (chkDetrac.Checked)
+            {
+
+                factura.detraccion = new Detraccion();
+                factura.detraccion.codBienDetraccion = "022";
+                factura.detraccion.codMedioPago = "001";
+                factura.detraccion.percent = porcentajeDet.Value;   
+                //factura.detraccion.mount = 
+            }
 
             details.unidad = "NIU";
             details.codProducto = "P001";

@@ -132,3 +132,8 @@ D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInp
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPu.B3E24C9F.Up2Date
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb
+E:\auroco\AurocoPublicidad\bin\Debug\K4os.Compression.LZ4.xml
+E:\auroco\AurocoPublicidad\bin\Debug\System.Numerics.Vectors.xml
+E:\auroco\AurocoPublicidad\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\auroco\AurocoPublicidad\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\auroco\AurocoPublicidad\bin\Debug\zh-HANT\Microsoft.ReportViewer.WinForms.resources.dll

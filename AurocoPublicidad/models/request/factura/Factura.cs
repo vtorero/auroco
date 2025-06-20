@@ -30,6 +30,8 @@ namespace AurocoPublicidad.models.request.factura
         public decimal valorVenta { get; set; }
         public decimal subTotal { get; set; }
         public decimal mtoImpVenta { get; set; }
+
+        public Detraccion detraccion { get; set; }  
         public List<Details> details { get; set; }
         
         //public Details details { get; set; }   
