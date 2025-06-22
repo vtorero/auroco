@@ -14,6 +14,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 using VistaPdfDesdeApi;
 using Cliente = AurocoPublicidad.models.request.factura.Cliente;
@@ -487,7 +488,7 @@ namespace AurocoPublicidad.forms
 
         private async void FrmFacturar_Load(object sender, EventArgs e)
         {
-
+         //   dataCuentas.AllowUserToAddRows = false;
             comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
             comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
             comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
@@ -633,22 +634,38 @@ namespace AurocoPublicidad.forms
             // Comparar con monto máximo
             //if (totalorden, out decimal montoMaximo))
             //{
-            if (total > totalorden)
-            {
-                MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                btnEnviar.Enabled = false;
-                btnVistaPrevia.Enabled = false; 
-            }
-            else
+            if (total <= totalorden)
             {
                 btnEnviar.Enabled = true;
                 btnVistaPrevia.Enabled = true;
             }
+            else
+            {
+                MessageBox.Show("El total de montos excede el monto permitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnEnviar.Enabled = false;
+                btnVistaPrevia.Enabled = false;
+                
+            }
             //}
+
+
         }
 
         private void dataCuentas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+
+            if (e.RowIndex == dataCuentas.Rows.Count - 1 && dataCuentas.AllowUserToAddRows)
+            {
+                // Desactiva temporalmente la capacidad de agregar más filas
+                dataCuentas.AllowUserToAddRows = false;
+
+                // Forzar actualización visual
+                dataCuentas.Refresh();
+
+                // Opcional: puedes volver a activarlo más adelante si lo deseas
+            }
+
+
             CalcularTotalYComparar();
         }
 
@@ -743,15 +760,16 @@ namespace AurocoPublicidad.forms
             Cuotas cuotas = new Cuotas();
             var details = new Details();
             var legends =new Legends();
+            var legendDet = new Legends();
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
-            factura.fecVencimiento = "2021-01-27T00:00:00-05:00";
+            factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
             factura.tipoDoc = "01";
             factura.serie = "F001";
             factura.correlativo = "00001";
-            factura.fechaEmision = "2021-01-27T00:00:00-05:00";
-            
+            factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
+
             comp.razonSocial = "AUROCO PUBLICIDAD S A";
             comp.ruc = Global.RucAuroco;
             comp.nombreComercial = "AUROCO PUBLICIDAD S A";
@@ -816,7 +834,7 @@ namespace AurocoPublicidad.forms
             }
             if (rdCredito.Checked) {
                 factura.formaPago.tipo = "Credito";
-                factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", ""));
+                factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
                 factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
             }
             factura.cuotas = datos;
@@ -856,7 +874,15 @@ namespace AurocoPublicidad.forms
 
             legends.code = "1000";
             legends.value = "Son ssss Soles";
-            factura.legends = new List<Legends> { legends};
+            legends.value = "SON " + generico.NumeroALetras(details.mtoPrecioUnitario) + " " + cMoneda.Text.ToUpper();
+            factura.legends = new List<Legends> { legends };
+            if (chkDetrac.Checked)
+            {
+                legendDet.code = "2006";
+                legendDet.value = "Monto:" + txtCambio.Text + "<br/>" + totalBruto.Text;
+                factura.legends.Add(legendDet);
+            }
+         
 
             try
             {
@@ -869,17 +895,22 @@ namespace AurocoPublicidad.forms
                 if (objeto["error"]?["message"] != null)
                 {
                     string mensaje = objeto["error"]["message"].ToString();
-                    MessageBox.Show(mensaje);
+
+                    MessageBox.Show(mensaje, "Facturación", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                   // MessageBox.Show(mensaje);
 
                 }
                 else
                 {
                     string mensaje = objeto["cdrResponse"]["description"].ToString();
-                    MessageBox.Show(mensaje);
+                    //MessageBox.Show(mensaje);
+                    MessageBox.Show(mensaje, "Error de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }catch (Exception m) {
                 
-                MessageBox.Show(m.Message); 
+                //MessageBox.Show(m.Message);
+                MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
          
 
