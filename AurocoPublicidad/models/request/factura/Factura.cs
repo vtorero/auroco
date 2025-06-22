@@ -18,7 +18,6 @@ namespace AurocoPublicidad.models.request.factura
         public string fechaEmision { get; set; }
         public string fecVencimiento { get; set; }
         public FormaPago formaPago { get; set; }
-        //public List<Dictionary<Cuotas, object>> cuotas { get; set; }
         public List<Dictionary<string, object>> cuotas { get; set; }
         public string tipoMoneda { get; set; }
         public Cliente client { get; set; }

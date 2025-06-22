@@ -807,7 +807,7 @@ namespace AurocoPublicidad.forms
             client.tipoDoc = "6";
             client.numDoc = txtRuc.Text;
             client.address = address;
-            client.rznSocial = "PRUEBA PRUEBA";
+            client.rznSocial = comboCliente.Text;
             factura.client = client;
             factura.formaPago = new FormaPago();
 
@@ -817,6 +817,7 @@ namespace AurocoPublicidad.forms
             if (rdCredito.Checked) {
                 factura.formaPago.tipo = "Credito";
                 factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", ""));
+                factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
             }
             factura.cuotas = datos;
             if (cMoneda.Text == "Soles")
@@ -896,6 +897,7 @@ namespace AurocoPublicidad.forms
             Cuotas cuotas = new Cuotas();
             var details = new Details();
             var legends = new Legends();
+            var legendDet = new Legends();
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
@@ -957,10 +959,6 @@ namespace AurocoPublicidad.forms
                 }
             }
 
-
-
-
-
             address.departamento = txtDpto.Text;
             address.provincia = txtProvincia.Text;
             address.distrito = txtDistrito.Text;
@@ -1005,7 +1003,6 @@ namespace AurocoPublicidad.forms
 
             if (chkDetrac.Checked)
             {
-
                 factura.detraccion = new Detraccion();
                 factura.detraccion.codBienDetraccion = "022";
                 factura.detraccion.codMedioPago = "001";
@@ -1031,7 +1028,13 @@ namespace AurocoPublicidad.forms
             legends.code = "1000";
             legends.value ="SON "+generico.NumeroALetras(details.mtoPrecioUnitario) +" "+cMoneda.Text.ToUpper();
             factura.legends = new List<Legends> { legends };
-
+            if (chkDetrac.Checked)
+            {
+                legendDet.code = "2006";
+                legendDet.value = "Monto:" + txtCambio.Text + "<br/>" + totalBruto.Text;
+                factura.legends.Add(legendDet);
+            }
+       
             //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
             var cliente = new HttpClient();
 
