@@ -567,7 +567,7 @@ namespace AurocoPublicidad.forms
             dataCuentas.Columns.Add(new CalendarColumn
             {
                 HeaderText = "Fecha Vencimiento",
-                Name = "colFecha"
+                Name = "fechaPago"
             });
 
 
@@ -634,7 +634,7 @@ namespace AurocoPublicidad.forms
             // Comparar con monto máximo
             //if (totalorden, out decimal montoMaximo))
             //{
-            if (total <= totalorden)
+            if (total <= Math.Round(totalorden,2))
             {
                 btnEnviar.Enabled = true;
                 btnVistaPrevia.Enabled = true;
@@ -654,19 +654,7 @@ namespace AurocoPublicidad.forms
         private void dataCuentas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex == dataCuentas.Rows.Count - 1 && dataCuentas.AllowUserToAddRows)
-            {
-                // Desactiva temporalmente la capacidad de agregar más filas
-                dataCuentas.AllowUserToAddRows = false;
-
-                // Forzar actualización visual
-                dataCuentas.Refresh();
-
-                // Opcional: puedes volver a activarlo más adelante si lo deseas
-            }
-
-
-            CalcularTotalYComparar();
+                   CalcularTotalYComparar();
         }
 
         private void dataCuentas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -800,9 +788,18 @@ namespace AurocoPublicidad.forms
                             campoOEsNulo = true;
                             break; // No hace falta seguir iterando esta fila
                         }
-                        // Usa el nombre de la columna como clave y el valor de la celda como valor
-                        filaDatos[nombreColumna] = valorCelda;
-                        
+
+                        if (nombreColumna == "fechaPago")
+                        {
+                            
+                            filaDatos[nombreColumna] =  Convert.ToString(valorCelda).Substring(6,4) +"-"+ Convert.ToString(valorCelda).Substring(3,2) +"-"+ Convert.ToString(valorCelda).Substring(0, 2) + "T00:00:00-05:00";
+                        //    filaDatos[nombreColumna] = Convert.ToDateTime(celda.Value) + "T00:00:00-05:00"; ;
+                        }
+                        else { 
+                            // Usa el nombre de la columna como clave y el valor de la celda como valor
+                            filaDatos[nombreColumna] = valorCelda;
+                        }
+
                     }
                     if (!campoOEsNulo)
                     {
@@ -873,7 +870,6 @@ namespace AurocoPublicidad.forms
             factura.details = new List<Details> { details };
 
             legends.code = "1000";
-            legends.value = "Son ssss Soles";
             legends.value = "SON " + generico.NumeroALetras(details.mtoPrecioUnitario) + " " + cMoneda.Text.ToUpper();
             factura.legends = new List<Legends> { legends };
             if (chkDetrac.Checked)
