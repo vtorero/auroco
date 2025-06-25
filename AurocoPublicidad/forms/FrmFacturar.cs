@@ -925,6 +925,8 @@ namespace AurocoPublicidad.forms
             var details = new Details();
             var legends = new Legends();
             var legendDet = new Legends();
+            var legendDetCta = new Legends();
+            var legendDetbien = new Legends();
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
@@ -1058,8 +1060,17 @@ namespace AurocoPublicidad.forms
             if (chkDetrac.Checked)
             {
                 legendDet.code = "2006";
-                legendDet.value = "Monto:" + txtCambio.Text + "<br/>" + totalBruto.Text;
+                legendDet.value = "Operación sujeta a detracción";
                 factura.legends.Add(legendDet);
+
+                legendDetCta.code = "3001";
+                legendDetCta.value = "Nro. Cta. Banco de la Nación: "+ Global.ctaRetraccion +" Porcentaje detracción: "+ porcentajeDet.Value+"% | Monto detracción: " + totalBruto.Text ;
+                factura.legends.Add(legendDetCta);
+
+                legendDetbien.code = "3000";
+                legendDetbien.value = "022 Otros servicios empresariales";
+                factura.legends.Add(legendDetbien);
+
             }
        
             //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
