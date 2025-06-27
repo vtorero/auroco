@@ -33,6 +33,9 @@ namespace AurocoPublicidad.util
         public static string RucOptimiza = "20504668682";
 
         public static string ctaRetraccion = "00000- 427055";
+        public static string ctaDetOptimiza ="00000-414484";
+
+
 
 
     }

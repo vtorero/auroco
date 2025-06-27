@@ -1064,8 +1064,14 @@ namespace AurocoPublicidad.forms
                 factura.legends.Add(legendDet);
 
                 legendDetCta.code = "3001";
+                if (txtAgencia.Text == "AUROCO") { 
                 legendDetCta.value = "Nro. Cta. Banco de la Nación: "+ Global.ctaRetraccion +" Porcentaje detracción: "+ porcentajeDet.Value+"% | Monto detracción: " + totalBruto.Text ;
-                factura.legends.Add(legendDetCta);
+                }
+                else
+                {
+                    legendDetCta.value = "Nro. Cta. Banco de la Nación: " + Global.ctaDetOptimiza + " Porcentaje detracción: " + porcentajeDet.Value + "% | Monto detracción: " + totalBruto.Text;
+                }
+                    factura.legends.Add(legendDetCta);
 
                 legendDetbien.code = "3000";
                 legendDetbien.value = "022 Otros servicios empresariales";
