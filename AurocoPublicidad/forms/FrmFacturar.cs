@@ -1032,6 +1032,8 @@ namespace AurocoPublicidad.forms
 
             if (chkDetrac.Checked)
             {
+
+                
                 factura.detraccion = new Detraccion();
                 factura.detraccion.codBienDetraccion = "022";
                 factura.detraccion.codMedioPago = "001";
@@ -1063,9 +1065,13 @@ namespace AurocoPublicidad.forms
                 legendDet.value = "Operación sujeta a detracción";
                 factura.legends.Add(legendDet);
 
+                var totalDet = Math.Round(Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", "")) * Convert.ToDecimal(porcentajeDet.Value) / 100,2);
+                var totalCobranza = Convert.ToDecimal(Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""))-totalDet);
+                totalBruto.Text = Convert.ToString(totalCobranza);
+                factura.mtoImpVenta = Convert.ToDecimal(totalCobranza);
                 legendDetCta.code = "3001";
                 if (txtAgencia.Text == "AUROCO") { 
-                legendDetCta.value = "Nro. Cta. Banco de la Nación: "+ Global.ctaRetraccion +" Porcentaje detracción: "+ porcentajeDet.Value+"% | Monto detracción: " + totalBruto.Text ;
+                legendDetCta.value = "Nro. Cta. Banco de la Nación: "+ Global.ctaRetraccion +" Porcentaje detracción: "+ porcentajeDet.Value+"% | Monto detracción: " + Convert.ToString(totalDet );
                 }
                 else
                 {
