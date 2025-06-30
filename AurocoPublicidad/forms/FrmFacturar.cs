@@ -975,8 +975,18 @@ namespace AurocoPublicidad.forms
                             campoOEsNulo = true;
                             break; // No hace falta seguir iterando esta fila
                         }
-                        // Usa el nombre de la columna como clave y el valor de la celda como valor
-                        filaDatos[nombreColumna] = valorCelda;
+
+                        if (nombreColumna == "fechaPago")
+                        {
+
+                            filaDatos[nombreColumna] = Convert.ToString(valorCelda).Substring(6, 4) + "-" + Convert.ToString(valorCelda).Substring(3, 2) + "-" + Convert.ToString(valorCelda).Substring(0, 2) + "T00:00:00-05:00";
+                            //    filaDatos[nombreColumna] = Convert.ToDateTime(celda.Value) + "T00:00:00-05:00"; ;
+                        }
+                        else
+                        {
+                            // Usa el nombre de la columna como clave y el valor de la celda como valor
+                            filaDatos[nombreColumna] = valorCelda;
+                        }
 
                     }
                     if (!campoOEsNulo)
