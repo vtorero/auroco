@@ -927,6 +927,9 @@ namespace AurocoPublicidad.forms
             var legendDet = new Legends();
             var legendDetCta = new Legends();
             var legendDetbien = new Legends();
+            var legendDetPendiente = new Legends();
+            var legendDetPorcenjate = new Legends();
+            var legendDetMonto = new Legends();
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
@@ -987,6 +990,8 @@ namespace AurocoPublicidad.forms
                             // Usa el nombre de la columna como clave y el valor de la celda como valor
                             filaDatos[nombreColumna] = valorCelda;
                         }
+
+                        filaDatos["moneda"] = "USD";
 
                     }
                     if (!campoOEsNulo)
@@ -1072,26 +1077,46 @@ namespace AurocoPublicidad.forms
             if (chkDetrac.Checked)
             {
                 legendDet.code = "2006";
-                legendDet.value = "Operación sujeta a detracción";
+                legendDet.value = "Operación sujeta al Sistema de Pago de Obligaciones Tributarias con el Gobierno Central";
                 factura.legends.Add(legendDet);
 
                 var totalDet = Math.Round(Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", "")) * Convert.ToDecimal(porcentajeDet.Value) / 100,2);
                 var totalCobranza = Convert.ToDecimal(Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""))-totalDet);
                 totalBruto.Text = Convert.ToString(totalCobranza);
-                factura.mtoImpVenta = Convert.ToDecimal(totalCobranza);
+
+                if (rdCredito.Checked) { 
+                legendDetPendiente.code = "2003";
+                legendDetPendiente.value = "Monto neto pendiente de pago " + Convert.ToDecimal(totalCobranza);
+                factura.legends.Add(legendDetPendiente);
+                }
+
+                legendDetPorcenjate.code = "2004";
+                legendDetPorcenjate.value = "Porcentaje detracción: " + porcentajeDet.Value + "%";
+                factura.legends.Add(legendDetPorcenjate);
+
+                //factura.mtoImpVenta = Convert.ToDecimal(totalCobranza);
                 legendDetCta.code = "3001";
-                if (txtAgencia.Text == "AUROCO") { 
-                legendDetCta.value = "Nro. Cta. Banco de la Nación: "+ Global.ctaRetraccion +" Porcentaje detracción: "+ porcentajeDet.Value+"% | Monto detracción: " + Convert.ToString(totalDet );
+                if (txtAgencia.Text == "AUROCO") {
+                    legendDetCta.value = "Nro. Cta. Banco de la Nación: " + Global.ctaRetraccion;
                 }
                 else
                 {
-                    legendDetCta.value = "Nro. Cta. Banco de la Nación: " + Global.ctaDetOptimiza + " Porcentaje detracción: " + porcentajeDet.Value + "% | Monto detracción: " + totalBruto.Text;
+                    legendDetCta.value = "Nro. Cta. Banco de la Nación: " + Global.ctaDetOptimiza + " Porcentaje detracción: " + porcentajeDet.Value + "%"; 
                 }
                     factura.legends.Add(legendDetCta);
 
+
+
+
                 legendDetbien.code = "3000";
-                legendDetbien.value = "022 Otros servicios empresariales";
+                legendDetbien.value = "Bien o Servicio: 022 Otros servicios empresariales";
                 factura.legends.Add(legendDetbien);
+
+                legendDetMonto.code = "3002";
+                legendDetMonto.value =  "Monto detracción: " + Convert.ToString(Math.Round(totalDet));
+                factura.legends.Add(legendDetMonto);
+
+
 
             }
        
