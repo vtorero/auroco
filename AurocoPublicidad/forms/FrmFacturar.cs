@@ -602,8 +602,7 @@ namespace AurocoPublicidad.forms
         {
             dataCuentas.Enabled = true;
             dataCuentas.Visible = true;
-            fechaVcto.Enabled = true;
-            lblvenc.Enabled = true; 
+            
         }
 
         private void rdContado_CheckedChanged(object sender, EventArgs e)
@@ -611,8 +610,7 @@ namespace AurocoPublicidad.forms
             dataCuentas.Rows.Clear();
             dataCuentas.Enabled = false;
             dataCuentas.Visible = false;
-            fechaVcto.Enabled = false;
-            lblvenc.Enabled = false;
+     
         }
 
         private void CalcularTotalYComparar()
@@ -752,7 +750,7 @@ namespace AurocoPublicidad.forms
             /*cuerpo factura*/
             factura.ublVersion = "2.1";
             factura.tipoOperacion = "0101";
-            factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
+           
             factura.tipoDoc = "01";
             factura.serie = "F001";
             factura.correlativo = "00001";
@@ -832,7 +830,7 @@ namespace AurocoPublicidad.forms
             if (rdCredito.Checked) {
                 factura.formaPago.tipo = "Credito";
                 factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-                factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
+               
             }
             factura.cuotas = datos;
             if (cMoneda.Text == "Soles")
@@ -936,6 +934,7 @@ namespace AurocoPublicidad.forms
             factura.tipoDoc = "01";
             factura.serie = "F001";
             factura.correlativo = "00001";
+            factura.observacion = textObservaciones.Text;
             factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd")+ "T00:00:00-05:00";
             comp.address = new Address();
 
@@ -1023,7 +1022,7 @@ namespace AurocoPublicidad.forms
             {
                 factura.formaPago.tipo = "Credito";
                 factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-                factura.fecVencimiento = fechaVcto.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
+               
             }
             factura.cuotas = datos;
             if (cMoneda.Text == "Soles")
@@ -1113,7 +1112,7 @@ namespace AurocoPublicidad.forms
                 factura.legends.Add(legendDetbien);
 
                 legendDetMonto.code = "3002";
-                legendDetMonto.value =  "Monto detracción: " + Convert.ToString(Math.Round(totalDet));
+                legendDetMonto.value =  "Monto detracción: S/ " + Convert.ToString(Math.Round(totalDet*Convert.ToDecimal(3.805)));
                 factura.legends.Add(legendDetMonto);
 
 
