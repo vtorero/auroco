@@ -50,6 +50,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtUbigeo = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.txtCambioSunat = new System.Windows.Forms.TextBox();
             this.porcentajeDet = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
             this.chkDetrac = new System.Windows.Forms.CheckBox();
@@ -251,12 +253,26 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.linkLabel1);
+            this.groupBox4.Controls.Add(this.txtCambioSunat);
             this.groupBox4.Controls.Add(this.porcentajeDet);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.chkDetrac);
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // linkLabel1
+            // 
+            resources.ApplyResources(this.linkLabel1, "linkLabel1");
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // txtCambioSunat
+            // 
+            resources.ApplyResources(this.txtCambioSunat, "txtCambioSunat");
+            this.txtCambioSunat.Name = "txtCambioSunat";
             // 
             // porcentajeDet
             // 
@@ -540,5 +556,7 @@
         private System.Windows.Forms.TextBox txtCambio;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.TextBox txtCambioSunat;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

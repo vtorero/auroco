@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -515,7 +516,7 @@ namespace AurocoPublicidad.forms
             if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
             if (valorRuc != "") txtRuc.Text = valorRuc;
             cargaRuc(valorRuc);
-            if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
+            if (valorObservaciones != "" || valorProducto!="" || valorMotivo!="") textObservaciones.Text = valorProducto + " " + valorMotivo + " " + valorObservaciones;
             if (valorMoneda != "") cMoneda.Text = valorMoneda;
             if (valorProducto != "") txtProducto.Text = valorProducto;
             if (valorMotivo != "") txtMotivo.Text = valorMotivo;
@@ -526,7 +527,7 @@ namespace AurocoPublicidad.forms
 
 
 
-            if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
+         //   if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
 
 
             string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
@@ -729,10 +730,14 @@ namespace AurocoPublicidad.forms
             if (this.chkDetrac.Checked)
             {
                 porcentajeDet.Enabled = true;
+                linkLabel1.Enabled= true;  
+                txtCambioSunat.Enabled= true;   
             }
             else
             {
-                porcentajeDet.Enabled = false;
+                porcentajeDet.Enabled = false; 
+                linkLabel1.Enabled = false; 
+                txtCambioSunat.Enabled = false;
             }
         }
 
@@ -1055,9 +1060,10 @@ namespace AurocoPublicidad.forms
                 //factura.detraccion.mount = 
             }
 
+            textObservaciones.Text = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text;
             details.unidad = "NIU";
             details.codProducto = "P001";
-            details.descripcion = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text + "OBS: " + textObservaciones.Text;
+            details.descripcion =  textObservaciones.Text;
             details.cantidad = 1;
             details.mtoValorUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
             details.mtoValorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
@@ -1165,6 +1171,24 @@ namespace AurocoPublicidad.forms
         private void fechaEmision_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.LinkVisited = true;
+
+            // Obtiene la URL del enlace
+            string url = "https://e-consulta.sunat.gob.pe/cl-at-ittipcam/tcS01Alias";
+
+            // Abre el navegador con la URL
+            if (!string.IsNullOrEmpty(url))
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true // importante para .NET Core/.NET 5+ y para abrir con el navegador
+                });
+            }
         }
     }
 

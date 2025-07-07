@@ -651,11 +651,65 @@
   <data name="&gt;&gt;txtUbigeo.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabel1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 46</value>
+  </data>
+  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>91</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>TC. SUNAT</value>
+  </data>
+  <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
+    <value>linkLabel1</value>
+  </data>
+  <data name="&gt;&gt;linkLabel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLabel1.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtCambioSunat.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtCambioSunat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 43</value>
+  </data>
+  <data name="txtCambioSunat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 20</value>
+  </data>
+  <data name="txtCambioSunat.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="&gt;&gt;txtCambioSunat.Name" xml:space="preserve">
+    <value>txtCambioSunat</value>
+  </data>
+  <data name="&gt;&gt;txtCambioSunat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCambioSunat.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;txtCambioSunat.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="porcentajeDet.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="porcentajeDet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 29</value>
+    <value>132, 16</value>
   </data>
   <data name="porcentajeDet.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -673,7 +727,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;porcentajeDet.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -685,7 +739,7 @@
     <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 30</value>
+    <value>53, 18</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 16</value>
@@ -706,7 +760,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="chkDetrac.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -715,7 +769,7 @@
     <value>NoControl</value>
   </data>
   <data name="chkDetrac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 29</value>
+    <value>16, 19</value>
   </data>
   <data name="chkDetrac.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 17</value>
@@ -736,7 +790,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkDetrac.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>746, 131</value>
