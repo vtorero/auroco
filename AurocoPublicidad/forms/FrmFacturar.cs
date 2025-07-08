@@ -218,7 +218,7 @@ namespace AurocoPublicidad.forms
             return datos;
         }
 
-        private async Task<string> GetService(string cadena)
+        private async Task<string> GetService2(string cadena)
         {
             WebRequest oRequest = WebRequest.Create(cadena);
             WebResponse oResponse = await oRequest.GetResponseAsync();
@@ -226,6 +226,30 @@ namespace AurocoPublicidad.forms
             return await sr.ReadToEndAsync();
 
         }
+
+        private async Task<string> GetService(string cadena)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var response = await client.GetAsync(cadena);
+                    response.EnsureSuccessStatusCode();
+                    string content = await response.Content.ReadAsStringAsync();
+                    //WebRequest oRequest = WebRequest.Create(cadena);
+                    //WebResponse oResponse = await oRequest.GetResponseAsync();
+                    //StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                    return content;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+
+                return "error";
+
+            }
+         }
 
 
         private async Task EnviarDatosAlApi(List<Dictionary<string, object>> datos)
