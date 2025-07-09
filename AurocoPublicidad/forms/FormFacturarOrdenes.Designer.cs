@@ -250,7 +250,7 @@
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNuevo.Location = new System.Drawing.Point(1106, 477);
+            this.btnNuevo.Location = new System.Drawing.Point(1065, 477);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(157, 30);
             this.btnNuevo.TabIndex = 101;
@@ -538,7 +538,7 @@
             // lblPorcentaje
             // 
             this.lblPorcentaje.AutoSize = true;
-            this.lblPorcentaje.Location = new System.Drawing.Point(571, 469);
+            this.lblPorcentaje.Location = new System.Drawing.Point(590, 469);
             this.lblPorcentaje.Name = "lblPorcentaje";
             this.lblPorcentaje.Size = new System.Drawing.Size(0, 13);
             this.lblPorcentaje.TabIndex = 107;

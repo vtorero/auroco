@@ -75,7 +75,6 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.facturarContratosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -318,11 +317,10 @@
             // contabilidadToolStripMenuItem
             // 
             this.contabilidadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.facturaciónToolStripMenuItem,
-            this.facturarContratosToolStripMenuItem});
+            this.facturaciónToolStripMenuItem});
             this.contabilidadToolStripMenuItem.Name = "contabilidadToolStripMenuItem";
-            this.contabilidadToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.contabilidadToolStripMenuItem.Text = "&Contabilidad";
+            this.contabilidadToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.contabilidadToolStripMenuItem.Text = "&Facturación";
             // 
             // facturaciónToolStripMenuItem
             // 
@@ -462,12 +460,6 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(32, 19);
             // 
-            // facturarContratosToolStripMenuItem
-            // 
-            this.facturarContratosToolStripMenuItem.Name = "facturarContratosToolStripMenuItem";
-            this.facturarContratosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.facturarContratosToolStripMenuItem.Text = "Facturar &Contratos";
-            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,7 +533,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem contabilidadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem facturarContratosToolStripMenuItem;
     }
 }
 

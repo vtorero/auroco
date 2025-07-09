@@ -82,7 +82,7 @@ namespace AurocoPublicidad.forms
                     dgOrdenes.Rows.Clear();
                     foreach (Ordenes ord in lst)
                     {
-
+                        await Task.Delay(50);
                         contador++;
                         int porcentaje = (int)((contador * 100.0) / total);
                         progressBar1.Value = porcentaje;
@@ -121,8 +121,10 @@ namespace AurocoPublicidad.forms
                         }
 
                     }
-                    lblPorcentaje.Visible = false;  
-                    progressBar1.Visible = false;   
+                    lblPorcentaje.Text = "¡Carga completa!";
+                    await Task.Delay(50);
+                    lblPorcentaje.Visible = false;
+                    progressBar1.Visible = false;
                     Cursor.Current = Cursors.Default;
                 }
 
@@ -135,7 +137,7 @@ namespace AurocoPublicidad.forms
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            EditarOrden();
         }
 
         private void dgOrdenes_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

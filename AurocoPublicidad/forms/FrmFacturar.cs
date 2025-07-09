@@ -1081,7 +1081,7 @@ namespace AurocoPublicidad.forms
                 factura.detraccion.codBienDetraccion = "022";
                 factura.detraccion.codMedioPago = "001";
                 factura.detraccion.percent = porcentajeDet.Value;   
-                //factura.detraccion.mount = 
+                
             }
 
             textObservaciones.Text = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text;
@@ -1142,9 +1142,20 @@ namespace AurocoPublicidad.forms
                 factura.legends.Add(legendDetbien);
 
                 legendDetMonto.code = "3002";
-                legendDetMonto.value =  "Monto detracción: S/ " + Convert.ToString(Math.Round(totalDet*Convert.ToDecimal(3.805)));
-                factura.legends.Add(legendDetMonto);
+                if(cMoneda.Text == "Dolares")
+                {
+                    legendDetMonto.value = "Monto detracción: S/ " + Convert.ToString(Math.Round(totalDet * Convert.ToDecimal(txtCambioSunat.Text)));
+                    factura.detraccion.mount = Math.Round(totalDet * Convert.ToDecimal(txtCambioSunat.Text));
+                }
+                else
+                {
+                    legendDetMonto.value = "Monto detracción: S/ " + Convert.ToString(Math.Round(totalDet));
+                    factura.detraccion.mount = Math.Round(totalDet);
+                }
 
+
+                    factura.legends.Add(legendDetMonto);
+                
 
 
             }
