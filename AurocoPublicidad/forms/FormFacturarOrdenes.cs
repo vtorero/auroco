@@ -122,6 +122,7 @@ namespace AurocoPublicidad.forms
 
                     }
                     lblPorcentaje.Visible = false;  
+                    progressBar1.Visible = false;   
                     Cursor.Current = Cursors.Default;
                 }
 
