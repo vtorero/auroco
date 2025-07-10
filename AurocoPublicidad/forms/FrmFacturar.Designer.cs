@@ -451,7 +451,7 @@
             resources.ApplyResources(this.fechaEmision, "fechaEmision");
             this.fechaEmision.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fechaEmision.Name = "fechaEmision";
-            this.fechaEmision.ValueChanged += new System.EventHandler(this.fechaEmision_ValueChanged);
+      
             // 
             // comboCliente
             // 

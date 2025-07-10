@@ -73,6 +73,11 @@ namespace AurocoPublicidad
             return letras.Trim().ToUpper();
         }
 
+        public static  decimal ObtenerDecimal(string input)
+        {
+            return Convert.ToDecimal(input.Replace("$", "").Replace("S/.", "").Trim());
+        }
+
         private static string ConvertirNumero(long numero)
         {
             if (numero == 0)
@@ -127,6 +132,8 @@ namespace AurocoPublicidad
             return resultado.Trim();
         }
 
-
-    } 
-}
+     
+    }
+    
+     
+    }

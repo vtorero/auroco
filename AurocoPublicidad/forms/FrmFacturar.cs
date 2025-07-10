@@ -944,232 +944,217 @@ namespace AurocoPublicidad.forms
 
         private async Task AbrirPdfDesdeApi()
         {
-            Factura factura = new Factura();
-            Company comp = new Company();
-            Cliente client = new Cliente();
-            Address address = new Address();
-            Cuotas cuotas = new Cuotas();
-            var details = new Details();
-            var legends = new Legends();
-            var legendDet = new Legends();
-            var legendDetCta = new Legends();
-            var legendDetbien = new Legends();
-            var legendDetPendiente = new Legends();
-            var legendDetPorcenjate = new Legends();
-            var legendDetMonto = new Legends();
-            /*cuerpo factura*/
-            factura.ublVersion = "2.1";
-            factura.tipoOperacion = "0101";
-            factura.tipoDoc = "01";
-            factura.serie = "F001";
-            factura.correlativo = "00001";
-            factura.observacion = textObservaciones.Text;
-            factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd")+ "T00:00:00-05:00";
-            comp.address = new Address();
+            var factura = CrearFacturaBase();
+            factura.client = CrearCliente();
+            factura.company = CrearEmpresa();
+            factura.details = new List<Details> { CrearDetalle() };
+            factura.formaPago = ObtenerFormaPago();
 
-            if (txtAgencia.Text == "AUROCO") { 
-                comp.razonSocial = Global.nombreAuroco;
-                comp.ruc = Global.RucAuroco;
-                comp.nombreComercial = Global.nombreAuroco;
-                comp.address.direccion = Global.DireccionAuroco;
-                }
-            else
+            if (factura.formaPago.tipo == "Credito")
+                factura.cuotas = ObtenerCuotasDesdeGrid();
+
+            factura.legends = CrearLeyendas(factura.details[0].mtoPrecioUnitario, factura.formaPago.moneda);
+
+            if (chkDetrac.Checked)
+                AgregarDetraccion(factura);
+
+            await EnviarFacturaYMostrarPdf(factura);
+        }
+
+
+        private Factura CrearFacturaBase()
+        {
+            var total = generico.ObtenerDecimal(totalOrden.Text);
+            var igv = generico.ObtenerDecimal(txtIgv.Text);
+            var bruto = generico.ObtenerDecimal(totalBruto.Text);
+
+            return new Factura
             {
-                comp.razonSocial = Global.nombreOptimiza;
-                comp.ruc = Global.RucOptimiza;
-                comp.nombreComercial = Global.nombreOptimiza;
-                comp.address.direccion = Global.DireccionOptimiza;
+                ublVersion = "2.1",
+                tipoOperacion = "0101",
+                tipoDoc = "01",
+                serie = "F001",
+                correlativo = "00001",
+                observacion = textObservaciones.Text,
+                fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00",
+                tipoMoneda = cMoneda.Text == "Soles" ? "PEN" : "USD",
+                mtoOperGravadas = total,
+                mtoIGV = igv,
+                totalImpuestos = igv,
+                valorVenta = total,
+                subTotal = bruto,
+                mtoImpVenta = bruto
+            };
+        }
 
-            }
+        private Cliente CrearCliente()
+        {
+            return new Cliente
+            {
+                tipoDoc = "6",
+                numDoc = txtRuc.Text,
+                rznSocial = comboCliente.Text,
+                address = new Address
+                {
+                    departamento = txtDpto.Text,
+                    provincia = txtProvincia.Text,
+                    distrito = txtDistrito.Text,
+                    direccion = txtDireccion.Text,
+                    ubigueo = txtUbigeo.Text
+                }
+            };
+        }
 
-            comp.address.departamento = Global.dptoAuroco;
-            comp.address.provincia = Global.ProvinciaAuroco;
-            comp.address.distrito = Global.DistritoAuroco;
-            comp.address.ubigueo = Global.UbigeoAuroco;
-            factura.company = comp;
-            //factura.cuotas;
-            List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
-            bool campoOEsNulo = false;
+        private Company CrearEmpresa()
+        {
+            bool esAuroco = txtAgencia.Text == "AUROCO";
+
+            return new Company
+            {
+                razonSocial = esAuroco ? Global.nombreAuroco : Global.nombreOptimiza,
+                ruc = esAuroco ? Global.RucAuroco : Global.RucOptimiza,
+                nombreComercial = esAuroco ? Global.nombreAuroco : Global.nombreOptimiza,
+                address = new Address
+                {
+                    direccion = esAuroco ? Global.DireccionAuroco : Global.DireccionOptimiza,
+                    departamento = Global.dptoAuroco,
+                    provincia = Global.ProvinciaAuroco,
+                    distrito = Global.DistritoAuroco,
+                    ubigueo = Global.UbigeoAuroco
+                }
+            };
+        }
+
+        private Details CrearDetalle()
+        {
+            var total = generico.ObtenerDecimal(totalOrden.Text);
+            var igv = generico.ObtenerDecimal(txtIgv.Text);
+
+            var descripcion = $"Orden Nro:{txtNumero.Text} {txtProducto.Text} {txtMotivo.Text}";
+            textObservaciones.Text = descripcion;
+
+            return new Details
+            {
+                unidad = "NIU",
+                codProducto = "P001",
+                descripcion = descripcion,
+                cantidad = 1,
+                mtoValorUnitario = total,
+                mtoValorVenta = total,
+                mtoBaseIgv = total,
+                porcentajeIgv = 18,
+                igv = igv,
+                tipAfeIgv = 10,
+                totalImpuestos = igv,
+                mtoPrecioUnitario = total + igv
+            };
+        }
+
+        private FormaPago ObtenerFormaPago()
+        {
+            string tipo = rdContado.Checked ? "Contado" : "Credito";
+            var moneda = cMoneda.Text == "Soles" ? "PEN" : "USD";
+
+            return new FormaPago
+            {
+                tipo = tipo,
+                moneda = moneda,
+                monto = tipo == "Credito" ? generico.ObtenerDecimal(totalBruto.Text) : 0
+            };
+        }
+
+        private List<Dictionary<string, object>> ObtenerCuotasDesdeGrid()
+        {
+            var cuotas = new List<Dictionary<string, object>>();
+
             foreach (DataGridViewRow fila in dataCuentas.Rows)
             {
                 if (!fila.IsNewRow)
                 {
-                    Dictionary<string, object> filaDatos = new Dictionary<string, object>();
+                    var filaDatos = new Dictionary<string, object>();
+                    bool campoOEsNulo = false;
 
-                    // Itera a través de las celdas en la fila
                     foreach (DataGridViewCell celda in fila.Cells)
                     {
-                        string nombreColumna = dataCuentas.Columns[celda.ColumnIndex].Name;
-                        object valorCelda = celda.Value;
-                        if (nombreColumna == "o" && valorCelda == null)
+                        string col = dataCuentas.Columns[celda.ColumnIndex].Name;
+                        object val = celda.Value;
+
+                        if (col == "o" && val == null)
                         {
                             campoOEsNulo = true;
-                            break; // No hace falta seguir iterando esta fila
+                            break;
                         }
 
-                        if (nombreColumna == "fechaPago")
-                        {
-
-                            filaDatos[nombreColumna] = Convert.ToString(valorCelda).Substring(6, 4) + "-" + Convert.ToString(valorCelda).Substring(3, 2) + "-" + Convert.ToString(valorCelda).Substring(0, 2) + "T00:00:00-05:00";
-                            //    filaDatos[nombreColumna] = Convert.ToDateTime(celda.Value) + "T00:00:00-05:00"; ;
-                        }
+                        if (col == "fechaPago" && val != null)
+                            filaDatos[col] = Convert.ToDateTime(val).ToString("yyyy-MM-dd") + "T00:00:00-05:00";
                         else
-                        {
-                            // Usa el nombre de la columna como clave y el valor de la celda como valor
-                            filaDatos[nombreColumna] = valorCelda;
-                        }
+                            filaDatos[col] = val;
 
                         filaDatos["moneda"] = "USD";
-
                     }
+
                     if (!campoOEsNulo)
-                    {
-                        datos.Add(filaDatos);
-                    }
-                    // Agrega la fila de datos a la lista
-                    //datos.Add(filaDatos);
+                        cuotas.Add(filaDatos);
                 }
             }
 
-            address.departamento = txtDpto.Text;
-            address.provincia = txtProvincia.Text;
-            address.distrito = txtDistrito.Text;
-            address.direccion = txtDireccion.Text;
-            address.ubigueo = txtUbigeo.Text;
-            client.tipoDoc = "6";
-            client.numDoc = txtRuc.Text;
-            client.address = address;
-            client.rznSocial = comboCliente.Text;
-            factura.client = client;
-            factura.formaPago = new FormaPago();
+            return cuotas;
+        }
 
-            if (rdContado.Checked)
+        private List<Legends> CrearLeyendas(decimal total, string moneda)
+        {
+            return new List<Legends>
+    {
+        new Legends
+        {
+            code = "1000",
+            value = "SON " + generico.NumeroALetras(total) + " " + moneda.ToUpper()
+        }
+    };
+        }
+
+        private void AgregarDetraccion(Factura factura)
+        {
+            var totalBrutoVal = generico.ObtenerDecimal(totalBruto.Text);
+            var porcentaje = porcentajeDet.Value;
+            var totalDet = Math.Round(totalBrutoVal * porcentaje / 100, 2);
+            var totalCobranza = totalBrutoVal - totalDet;
+            totalBruto.Text = totalCobranza.ToString();
+
+            factura.detraccion = new Detraccion
             {
-                factura.formaPago.tipo = "Contado";
-            }
+                codBienDetraccion = "022",
+                codMedioPago = "001",
+                percent = porcentaje,
+                mount = cMoneda.Text == "Dolares"
+                    ? Math.Round(totalDet * generico.ObtenerDecimal(txtCambioSunat.Text))
+                    : Math.Round(totalDet)
+            };
+
+            var legends = factura.legends;
+            legends.Add(new Legends { code = "2006", value = "Operación sujeta al Sistema de Pago..." });
+
             if (rdCredito.Checked)
+                legends.Add(new Legends { code = "2003", value = "Monto neto pendiente de pago " + totalCobranza });
+
+            legends.Add(new Legends { code = "2004", value = "Porcentaje detracción: " + porcentaje + "%" });
+
+            legends.Add(new Legends
             {
-                factura.formaPago.tipo = "Credito";
-                factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-               
-            }
-            factura.cuotas = datos;
-            if (cMoneda.Text == "Soles")
-            {
-                factura.tipoMoneda = "PEN";
-                factura.formaPago.moneda = "PEN";
+                code = "3001",
+                value = "Nro. Cta. Banco de la Nación: " + (txtAgencia.Text == "AUROCO" ? Global.ctaRetraccion : Global.ctaDetOptimiza)
+            });
 
-            }
-            if (cMoneda.Text == "Dolares")
-            {
-                factura.tipoMoneda = "USD";
-                factura.formaPago.moneda = "USD";
-            }
+            legends.Add(new Legends { code = "3000", value = "Bien o Servicio: 022 Otros servicios empresariales" });
 
-            factura.mtoOperGravadas = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            factura.mtoIGV = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            factura.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            factura.valorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            factura.subTotal = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-            factura.mtoImpVenta = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
+            var montoDetraccion = factura.detraccion.mount;
+            legends.Add(new Legends { code = "3002", value = "Monto detracción: S/ " + montoDetraccion });
+        }
 
-            if (chkDetrac.Checked)
-            {
-
-                
-                factura.detraccion = new Detraccion();
-                factura.detraccion.codBienDetraccion = "022";
-                factura.detraccion.codMedioPago = "001";
-                factura.detraccion.percent = porcentajeDet.Value;   
-                
-            }
-
-            textObservaciones.Text = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text;
-            details.unidad = "NIU";
-            details.codProducto = "P001";
-            details.descripcion =  textObservaciones.Text;
-            details.cantidad = 1;
-            details.mtoValorUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoValorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoBaseIgv = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.porcentajeIgv = 18;
-            details.igv = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.tipAfeIgv = 10;
-            details.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoPrecioUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""))+ Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-
-            factura.details = new List<Details> { details };
-
-            legends.code = "1000";
-            legends.value ="SON "+generico.NumeroALetras(details.mtoPrecioUnitario) +" "+cMoneda.Text.ToUpper();
-            factura.legends = new List<Legends> { legends };
-            if (chkDetrac.Checked)
-            {
-                legendDet.code = "2006";
-                legendDet.value = "Operación sujeta al Sistema de Pago de Obligaciones Tributarias con el Gobierno Central";
-                factura.legends.Add(legendDet);
-
-                var totalDet = Math.Round(Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", "")) * Convert.ToDecimal(porcentajeDet.Value) / 100,2);
-                var totalCobranza = Convert.ToDecimal(Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""))-totalDet);
-                totalBruto.Text = Convert.ToString(totalCobranza);
-
-                if (rdCredito.Checked) { 
-                legendDetPendiente.code = "2003";
-                legendDetPendiente.value = "Monto neto pendiente de pago " + Convert.ToDecimal(totalCobranza);
-                factura.legends.Add(legendDetPendiente);
-                }
-
-                legendDetPorcenjate.code = "2004";
-                legendDetPorcenjate.value = "Porcentaje detracción: " + porcentajeDet.Value + "%";
-                factura.legends.Add(legendDetPorcenjate);
-
-                //factura.mtoImpVenta = Convert.ToDecimal(totalCobranza);
-                legendDetCta.code = "3001";
-                if (txtAgencia.Text == "AUROCO") {
-                    legendDetCta.value = "Nro. Cta. Banco de la Nación: " + Global.ctaRetraccion;
-                }
-                else
-                {
-                    legendDetCta.value = "Nro. Cta. Banco de la Nación: " + Global.ctaDetOptimiza + " Porcentaje detracción: " + porcentajeDet.Value + "%"; 
-                }
-                    factura.legends.Add(legendDetCta);
-
-
-
-
-                legendDetbien.code = "3000";
-                legendDetbien.value = "Bien o Servicio: 022 Otros servicios empresariales";
-                factura.legends.Add(legendDetbien);
-
-                legendDetMonto.code = "3002";
-                if(cMoneda.Text == "Dolares")
-                {
-                    legendDetMonto.value = "Monto detracción: S/ " + Convert.ToString(Math.Round(totalDet * Convert.ToDecimal(txtCambioSunat.Text)));
-                    factura.detraccion.mount = Math.Round(totalDet * Convert.ToDecimal(txtCambioSunat.Text));
-                }
-                else
-                {
-                    legendDetMonto.value = "Monto detracción: S/ " + Convert.ToString(Math.Round(totalDet));
-                    factura.detraccion.mount = Math.Round(totalDet);
-                }
-
-
-                    factura.legends.Add(legendDetMonto);
-                
-
-
-            }
-       
-            //string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenFacturar);
+        private async Task EnviarFacturaYMostrarPdf(Factura factura)
+        {
             var cliente = new HttpClient();
-
-            if (txtAgencia.Text == "AUROCO") { 
-            cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenAuroco);
-            }
-            else
-            {
-              cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Global.TokenOptimiza);
-            }
+            cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", txtAgencia.Text == "AUROCO" ? Global.TokenAuroco : Global.TokenOptimiza);
 
             var json = JsonConvert.SerializeObject(factura);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -1177,16 +1162,8 @@ namespace AurocoPublicidad.forms
             try
             {
                 var response = await cliente.PostAsync("https://facturacion.apisperu.com/api/v1/invoice/pdf", content);
-
-                /*if (!response.IsSuccessStatusCode)
-                {
-              //      MessageBox.Show("Error al obtener el PDF.");
-            //        return;
-                }*/
-
                 var pdfBytes = await response.Content.ReadAsByteArrayAsync();
 
-                // Mostrar PDF en nuevo formulario
                 var vistaPdf = new VistaPdfForm(pdfBytes);
                 vistaPdf.Show();
             }
@@ -1196,17 +1173,14 @@ namespace AurocoPublicidad.forms
             }
         }
 
+
+
         private async void btnVistaPrevia_Click(object sender, EventArgs e)
         {
              await AbrirPdfDesdeApi();
         }
 
       
-
-        private void fechaEmision_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

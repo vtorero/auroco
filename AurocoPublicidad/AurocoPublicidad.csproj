@@ -362,6 +362,7 @@
     <Compile Include="models\request\factura\Address.cs" />
     <Compile Include="models\request\factura\Details .cs" />
     <Compile Include="models\request\factura\Detraccion.cs" />
+    <Compile Include="models\request\factura\FacturaContado.cs" />
     <Compile Include="models\request\factura\FormaPago.cs" />
     <Compile Include="models\request\factura\Legends.cs" />
     <Compile Include="models\request\factura\RespueaSunat.cs" />
