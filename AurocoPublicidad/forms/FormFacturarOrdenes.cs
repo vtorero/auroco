@@ -172,7 +172,9 @@ namespace AurocoPublicidad.forms
                 var agencia = dgOrdenes[22, pos].Value.ToString();
                 var tipo_cambio = dgOrdenes[21, pos].Value.ToString();
                 FrmFacturar frmFacturar = new FrmFacturar(idOrden,idCliente,ruc,fcreacion, observaciones,moneda,producto,motivo, totalOrden, tipo_cambio);
-                frmFacturar.Show();
+                frmFacturar.FormClosed += (s, args) => cargaOrdenes();
+
+                frmFacturar.ShowDialog();
                 Cursor.Current = Cursors.Default;
 
             }

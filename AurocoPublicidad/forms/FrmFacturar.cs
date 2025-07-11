@@ -768,144 +768,20 @@ namespace AurocoPublicidad.forms
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            Factura factura = new Factura();
-            Company comp = new Company();   
-            Cliente client = new Cliente();
-            Address address = new Address();
-            Cuotas cuotas = new Cuotas();
-            var details = new Details();
-            var legends =new Legends();
-            var legendDet = new Legends();
-            /*cuerpo factura*/
-            factura.ublVersion = "2.1";
-            factura.tipoOperacion = "0101";
-           
-            factura.tipoDoc = "01";
-            factura.serie = "F001";
-            factura.correlativo = "00001";
-            factura.fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00";
+            var factura = CrearFacturaBase();
+            factura.client = CrearCliente();
+            factura.company = CrearEmpresa();
+            factura.details = new List<Details> { CrearDetalle() };
+            factura.formaPago = ObtenerFormaPago();
 
-            comp.razonSocial = "AUROCO PUBLICIDAD S A";
-            comp.ruc = Global.RucAuroco;
-            comp.nombreComercial = "AUROCO PUBLICIDAD S A";
-            comp.address = new Address();
-            comp.address.direccion = Global.DireccionAuroco;
-            comp.address.departamento = Global.dptoAuroco;
-            comp.address.provincia = Global.ProvinciaAuroco;
-            comp.address.distrito =Global.DistritoAuroco;
-            comp.address.ubigueo= Global.UbigeoAuroco;
-            
-            factura.company= comp;  
-            //factura.cuotas;
-            List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
-            bool campoOEsNulo = false;
-            foreach (DataGridViewRow fila in dataCuentas.Rows)
-            {
-                if (!fila.IsNewRow)
-                {
-                    Dictionary<string, object> filaDatos = new Dictionary<string, object>();
+            if (factura.formaPago.tipo == "Credito")
+                factura.cuotas = ObtenerCuotasDesdeGrid();
 
-                    // Itera a través de las celdas en la fila
-                    foreach (DataGridViewCell celda in fila.Cells)
-                    {
-                        string nombreColumna = dataCuentas.Columns[celda.ColumnIndex].Name;
-                        object valorCelda = celda.Value;
-                        if (nombreColumna == "o" && valorCelda == null)
-                        {
-                            campoOEsNulo = true;
-                            break; // No hace falta seguir iterando esta fila
-                        }
+            factura.legends = CrearLeyendas(factura.details[0].mtoPrecioUnitario, factura.formaPago.moneda);
 
-                        if (nombreColumna == "fechaPago")
-                        {
-                            
-                            filaDatos[nombreColumna] =  Convert.ToString(valorCelda).Substring(6,4) +"-"+ Convert.ToString(valorCelda).Substring(3,2) +"-"+ Convert.ToString(valorCelda).Substring(0, 2) + "T00:00:00-05:00";
-                        //    filaDatos[nombreColumna] = Convert.ToDateTime(celda.Value) + "T00:00:00-05:00"; ;
-                        }
-                        else { 
-                            // Usa el nombre de la columna como clave y el valor de la celda como valor
-                            filaDatos[nombreColumna] = valorCelda;
-                        }
-
-                    }
-                    if (!campoOEsNulo)
-                    {
-                        datos.Add(filaDatos);
-                    }
-                    // Agrega la fila de datos a la lista
-                    //datos.Add(filaDatos);
-                }
-            }
-            
-     
-
-
-
-            address.departamento = txtDpto.Text;
-            address.provincia = txtProvincia.Text;
-            address.distrito = txtDistrito.Text;
-            address.direccion= txtDireccion.Text;
-            address.ubigueo = txtUbigeo.Text;
-            client.tipoDoc = "6";
-            client.numDoc = txtRuc.Text;
-            client.address = address;
-            client.rznSocial = comboCliente.Text;
-            factura.client = client;
-            factura.formaPago = new FormaPago();
-
-            if (rdContado.Checked) {
-            factura.formaPago.tipo = "Contado";
-            }
-            if (rdCredito.Checked) {
-                factura.formaPago.tipo = "Credito";
-                factura.formaPago.monto = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-               
-            }
-            factura.cuotas = datos;
-            if (cMoneda.Text == "Soles")
-            {
-                factura.tipoMoneda = "PEN";
-                factura.formaPago.moneda = "PEN";
-
-            }
-            if (cMoneda.Text == "Dolares")
-            {
-                factura.tipoMoneda = "USD";
-                factura.formaPago.moneda = "USD";
-            }
-
-            factura.mtoOperGravadas = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            factura.mtoIGV = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            factura.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            factura.valorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            factura.subTotal = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-            factura.mtoImpVenta = Convert.ToDecimal(totalBruto.Text.Replace("$", "").Replace("S/.", ""));
-
-            details.unidad = "NIU";
-            details.codProducto = "P001";
-            details.descripcion = "Orden Nro:" + txtNumero.Text + " " + txtProducto.Text + " " + txtMotivo.Text + "OBS: " + textObservaciones.Text;
-            details.cantidad = 1;
-            details.mtoValorUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoValorVenta = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoBaseIgv = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", ""));
-            details.porcentajeIgv = 18;
-            details.igv = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.tipAfeIgv = 10;
-            details.totalImpuestos = Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-            details.mtoPrecioUnitario = Convert.ToDecimal(totalOrden.Text.Replace("$", "").Replace("S/.", "")) + Convert.ToDecimal(txtIgv.Text.Replace("$", "").Replace("S/.", ""));
-
-            factura.details = new List<Details> { details };
-
-            legends.code = "1000";
-            legends.value = "SON " + generico.NumeroALetras(details.mtoPrecioUnitario) + " " + cMoneda.Text.ToUpper();
-            factura.legends = new List<Legends> { legends };
             if (chkDetrac.Checked)
-            {
-                legendDet.code = "2006";
-                legendDet.value = "Monto:" + txtCambio.Text + "<br/>" + totalBruto.Text;
-                factura.legends.Add(legendDet);
-            }
-         
+                AgregarDetraccion(factura);
+
 
             try
             {
@@ -935,12 +811,30 @@ namespace AurocoPublicidad.forms
                 //MessageBox.Show(m.Message);
                 MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-         
 
-         
+            this.Close();
+        
 
         }
 
+        private async Task EnviarFacturaSunat()
+        {
+            var factura = CrearFacturaBase();
+            factura.client = CrearCliente();
+            factura.company = CrearEmpresa();
+            factura.details = new List<Details> { CrearDetalle() };
+            factura.formaPago = ObtenerFormaPago();
+
+            if (factura.formaPago.tipo == "Credito")
+                factura.cuotas = ObtenerCuotasDesdeGrid();
+
+            factura.legends = CrearLeyendas(factura.details[0].mtoPrecioUnitario, factura.formaPago.moneda);
+
+            if (chkDetrac.Checked)
+                AgregarDetraccion(factura);
+
+            await EnviarFacturaYMostrarPdf(factura);
+        }
 
         private async Task AbrirPdfDesdeApi()
         {
@@ -1161,6 +1055,7 @@ namespace AurocoPublicidad.forms
 
             try
             {
+               
                 var response = await cliente.PostAsync("https://facturacion.apisperu.com/api/v1/invoice/pdf", content);
                 var pdfBytes = await response.Content.ReadAsByteArrayAsync();
 
@@ -1177,9 +1072,9 @@ namespace AurocoPublicidad.forms
 
         private async void btnVistaPrevia_Click(object sender, EventArgs e)
         {
-             await AbrirPdfDesdeApi();
-        }
+            await AbrirPdfDesdeApi();
 
+        }
       
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
