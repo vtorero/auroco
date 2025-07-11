@@ -35,6 +35,10 @@ namespace AurocoPublicidad.util
         public static string ctaRetraccion = "00000- 427055";
         public static string ctaDetOptimiza ="00000-414484";
 
+        //public static string connectionString = "server=localhost;user=root;password=;database=auroco";
+        public static string connectionString = "server=kvconsult.com;user=kvconsul_auroco;password=auroco2023;database=kvconsul_auroco";
+
+
 
 
 

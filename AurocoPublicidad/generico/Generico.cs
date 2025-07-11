@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AurocoPublicidad.models.request.factura;
+using AurocoPublicidad.util;
+using MySql.Data.MySqlClient;
+using System;
 
 namespace AurocoPublicidad
 {
@@ -132,8 +135,35 @@ namespace AurocoPublicidad
             return resultado.Trim();
         }
 
-     
+
+        public static string ObtenerSiguienteCorrelativo()
+        {
+            string correlativo = "00001"; // Valor por defecto
+            
+            using (var connection = new MySqlConnection(Global.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT MAX(CAST(correlativo AS UNSIGNED)) FROM facturas WHERE serie = 'F001'";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    var result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value && result != null)
+                    {
+                        int maxCorrelativo = Convert.ToInt32(result);
+                        correlativo = (maxCorrelativo + 1).ToString("D5"); // Formato 00001
+                    }
+                }
+            }
+
+            return correlativo;
+        }
+
+
+
+
     }
-    
-     
-    }
+
+
+}

@@ -2,6 +2,7 @@
 using AurocoPublicidad.models.request.factura;
 using AurocoPublicidad.reportes;
 using AurocoPublicidad.util;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -795,7 +796,7 @@ namespace AurocoPublicidad.forms
                 {
                     string mensaje = objeto["error"]["message"].ToString();
 
-                    MessageBox.Show(mensaje, "Facturación", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show(mensaje, "Error de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                    // MessageBox.Show(mensaje);
 
                 }
@@ -803,7 +804,7 @@ namespace AurocoPublicidad.forms
                 {
                     string mensaje = objeto["cdrResponse"]["description"].ToString();
                     //MessageBox.Show(mensaje);
-                    MessageBox.Show(mensaje, "Error de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(mensaje, "Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
             }catch (Exception m) {
@@ -811,11 +812,27 @@ namespace AurocoPublicidad.forms
                 //MessageBox.Show(m.Message);
                 MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
+            InsertarFacturaEnMySQL(factura);
             this.Close();
         
 
         }
+
+        private void InsertarFacturaEnMySQL(Factura factura)
+        {
+            using (var conn = new MySqlConnection(Global.connectionString))
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha, total, ord_orden) VALUES (@serie, @correlativo, @fecha, @total, @orden)", conn);
+                cmd.Parameters.AddWithValue("@serie", factura.serie);
+                cmd.Parameters.AddWithValue("@correlativo", factura.correlativo);
+                cmd.Parameters.AddWithValue("@fecha", Convert.ToString(factura.fechaEmision).Substring(0, 11)); 
+                cmd.Parameters.AddWithValue("@total", factura.mtoImpVenta);
+                cmd.Parameters.AddWithValue("@orden",txtNumero.Text);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         private async Task EnviarFacturaSunat()
         {
@@ -868,7 +885,7 @@ namespace AurocoPublicidad.forms
                 tipoOperacion = "0101",
                 tipoDoc = "01",
                 serie = "F001",
-                correlativo = "00001",
+                correlativo = generico.ObtenerSiguienteCorrelativo(),
                 observacion = textObservaciones.Text,
                 fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00",
                 tipoMoneda = cMoneda.Text == "Soles" ? "PEN" : "USD",
@@ -998,7 +1015,7 @@ namespace AurocoPublicidad.forms
         private List<Legends> CrearLeyendas(decimal total, string moneda)
         {
             return new List<Legends>
-    {
+        {
         new Legends
         {
             code = "1000",
