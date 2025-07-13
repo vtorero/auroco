@@ -782,19 +782,20 @@ namespace AurocoPublicidad.forms
 
             if (chkDetrac.Checked)
                 AgregarDetraccion(factura);
-
+            string mensaje = "";
 
             try
             {
                 string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenAuroco);
 
+               
 
                 JObject jObject = JObject.Parse(Resultado);
                 JToken objeto = jObject["sunatResponse"];
                 // JToken objcodigo = jObject["codigo"];
                 if (objeto["error"]?["message"] != null)
                 {
-                    string mensaje = objeto["error"]["message"].ToString();
+                     mensaje = objeto["error"]["message"].ToString();
 
                     MessageBox.Show(mensaje, "Error de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                    // MessageBox.Show(mensaje);
@@ -802,33 +803,34 @@ namespace AurocoPublicidad.forms
                 }
                 else
                 {
-                    string mensaje = objeto["cdrResponse"]["description"].ToString();
+                     mensaje = objeto["cdrResponse"]["description"].ToString();
                     //MessageBox.Show(mensaje);
                     MessageBox.Show(mensaje, "Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
             }catch (Exception m) {
-                
+                mensaje=m.Message;  
                 //MessageBox.Show(m.Message);
                 MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            InsertarFacturaEnMySQL(factura);
+            InsertarFacturaEnMySQL(factura,mensaje);
             this.Close();
         
 
         }
 
-        private void InsertarFacturaEnMySQL(Factura factura)
+        private void InsertarFacturaEnMySQL(Factura factura,string mensaje)
         {
             using (var conn = new MySqlConnection(Global.connectionString))
             {
                 conn.Open();
-                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha, total, ord_orden) VALUES (@serie, @correlativo, @fecha, @total, @orden)", conn);
+                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha, total, ord_orden,mensaje) VALUES (@serie, @correlativo, @fecha, @total, @orden,@mensaje)", conn);
                 cmd.Parameters.AddWithValue("@serie", factura.serie);
                 cmd.Parameters.AddWithValue("@correlativo", factura.correlativo);
                 cmd.Parameters.AddWithValue("@fecha", Convert.ToString(factura.fechaEmision).Substring(0, 11)); 
                 cmd.Parameters.AddWithValue("@total", factura.mtoImpVenta);
                 cmd.Parameters.AddWithValue("@orden",txtNumero.Text);
+                cmd.Parameters.AddWithValue("@mensaje", mensaje);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -875,6 +877,7 @@ namespace AurocoPublicidad.forms
 
         private Factura CrearFacturaBase()
         {
+            bool esAuroco = txtAgencia.Text == "AUROCO";
             var total = generico.ObtenerDecimal(totalOrden.Text);
             var igv = generico.ObtenerDecimal(txtIgv.Text);
             var bruto = generico.ObtenerDecimal(totalBruto.Text);
@@ -884,8 +887,8 @@ namespace AurocoPublicidad.forms
                 ublVersion = "2.1",
                 tipoOperacion = "0101",
                 tipoDoc = "01",
-                serie = "F001",
-                correlativo = generico.ObtenerSiguienteCorrelativo(),
+                serie = esAuroco ? "F001":"F002",
+                correlativo = generico.ObtenerSiguienteCorrelativo(esAuroco),
                 observacion = textObservaciones.Text,
                 fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00",
                 tipoMoneda = cMoneda.Text == "Soles" ? "PEN" : "USD",

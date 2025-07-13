@@ -136,14 +136,23 @@ namespace AurocoPublicidad
         }
 
 
-        public static string ObtenerSiguienteCorrelativo()
+        public static string ObtenerSiguienteCorrelativo(bool agencia)
         {
             string correlativo = "00001"; // Valor por defecto
-            
+            string query = "";
+
+
             using (var connection = new MySqlConnection(Global.connectionString))
             {
                 connection.Open();
-                string query = "SELECT MAX(CAST(correlativo AS UNSIGNED)) FROM facturas WHERE serie = 'F001'";
+
+                if (agencia) {
+                   query = "SELECT MAX(CAST(correlativo AS UNSIGNED)) FROM facturas WHERE serie = 'F001'";
+                }
+                else
+                {
+                 query = "SELECT MAX(CAST(correlativo AS UNSIGNED)) FROM facturas WHERE serie = 'F002'";
+                }
 
                 using (var command = new MySqlCommand(query, connection))
                 {
