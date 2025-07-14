@@ -564,16 +564,16 @@ namespace AurocoPublicidad.forms
             if (valorCliente != "")
                 comboCliente.SelectedValue = valorCliente;
 
-            string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
-            List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
+            //string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            //List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
 
 
-            string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
-            List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
+            //string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
+            //List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
 
 
-            string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
-            List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
+            //string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
+            //List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
 
 
             // Seleccionar el primer elemento por defecto
@@ -596,6 +596,8 @@ namespace AurocoPublicidad.forms
                 Name = "fechaPago"
             });
 
+            btnEnviar.Enabled = true;
+            btnVistaPrevia.Enabled = true;  
 
         }
 

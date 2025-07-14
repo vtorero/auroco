@@ -58,6 +58,7 @@
             this.btnVistaPrevia = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataCuentas = new System.Windows.Forms.DataGridView();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdContado = new System.Windows.Forms.RadioButton();
             this.rdCredito = new System.Windows.Forms.RadioButton();
@@ -85,7 +86,6 @@
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -313,6 +313,11 @@
             this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
             this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
             // 
+            // monto
+            // 
+            resources.ApplyResources(this.monto, "monto");
+            this.monto.Name = "monto";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.rdContado);
@@ -451,7 +456,6 @@
             resources.ApplyResources(this.fechaEmision, "fechaEmision");
             this.fechaEmision.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fechaEmision.Name = "fechaEmision";
-      
             // 
             // comboCliente
             // 
@@ -470,11 +474,6 @@
             // 
             resources.ApplyResources(this.dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // monto
-            // 
-            resources.ApplyResources(this.monto, "monto");
-            this.monto.Name = "monto";
             // 
             // FrmFacturar
             // 

@@ -651,6 +651,27 @@
   <data name="&gt;&gt;txtUbigeo.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabel1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="linkLabel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 46</value>
+  </data>
+  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>91</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>TC. SUNAT</value>
+  </data>
   <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
     <value>linkLabel1</value>
   </data>
@@ -662,6 +683,18 @@
   </data>
   <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="txtCambioSunat.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtCambioSunat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 43</value>
+  </data>
+  <data name="txtCambioSunat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 20</value>
+  </data>
+  <data name="txtCambioSunat.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
   </data>
   <data name="&gt;&gt;txtCambioSunat.Name" xml:space="preserve">
     <value>txtCambioSunat</value>
@@ -675,6 +708,18 @@
   <data name="&gt;&gt;txtCambioSunat.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="porcentajeDet.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="porcentajeDet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 16</value>
+  </data>
+  <data name="porcentajeDet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="porcentajeDet.TabIndex" type="System.Int32, mscorlib">
+    <value>89</value>
+  </data>
   <data name="&gt;&gt;porcentajeDet.Name" xml:space="preserve">
     <value>porcentajeDet</value>
   </data>
@@ -687,6 +732,27 @@
   <data name="&gt;&gt;porcentajeDet.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9.75pt</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 18</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 16</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>88</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Porcentaje:</value>
+  </data>
   <data name="&gt;&gt;label16.Name" xml:space="preserve">
     <value>label16</value>
   </data>
@@ -698,6 +764,24 @@
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="chkDetrac.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkDetrac.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkDetrac.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 19</value>
+  </data>
+  <data name="chkDetrac.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 17</value>
+  </data>
+  <data name="chkDetrac.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkDetrac.Text" xml:space="preserve">
+    <value>Si</value>
   </data>
   <data name="&gt;&gt;chkDetrac.Name" xml:space="preserve">
     <value>chkDetrac</value>
@@ -734,6 +818,9 @@
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="btnVistaPrevia.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnVistaPrevia.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -798,6 +885,9 @@
   <metadata name="monto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="monto.HeaderText" xml:space="preserve">
+    <value>Monto</value>
+  </data>
   <data name="dataCuentas.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -932,6 +1022,9 @@
   </data>
   <data name="&gt;&gt;txtMotivo.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="btnEnviar.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnEnviar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1572,157 +1665,7 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel1.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="linkLabel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 46</value>
-  </data>
-  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
-  </data>
-  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
-  </data>
-  <data name="linkLabel1.Text" xml:space="preserve">
-    <value>TC. SUNAT</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
-    <value>linkLabel1</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtCambioSunat.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="txtCambioSunat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 43</value>
-  </data>
-  <data name="txtCambioSunat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 20</value>
-  </data>
-  <data name="txtCambioSunat.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.Name" xml:space="preserve">
-    <value>txtCambioSunat</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="porcentajeDet.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="porcentajeDet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 16</value>
-  </data>
-  <data name="porcentajeDet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="porcentajeDet.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.Name" xml:space="preserve">
-    <value>porcentajeDet</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9.75pt</value>
-  </data>
-  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 18</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 16</value>
-  </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Porcentaje:</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="chkDetrac.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkDetrac.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkDetrac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 19</value>
-  </data>
-  <data name="chkDetrac.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 17</value>
-  </data>
-  <data name="chkDetrac.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="chkDetrac.Text" xml:space="preserve">
-    <value>Si</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.Name" xml:space="preserve">
-    <value>chkDetrac</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
-    <value>Monto</value>
-  </data>
-  <metadata name="monto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="monto.HeaderText" xml:space="preserve">
     <value>Monto</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1734,22 +1677,19 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1028, 464</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Facturar Orden</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn1</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;monto.Name" xml:space="preserve">
     <value>monto</value>
   </data>
   <data name="&gt;&gt;monto.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn1</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
