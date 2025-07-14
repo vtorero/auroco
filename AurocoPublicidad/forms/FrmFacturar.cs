@@ -786,7 +786,19 @@ namespace AurocoPublicidad.forms
 
             try
             {
-                string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", Global.TokenAuroco);
+
+                string tokenApi = "";
+
+                if (txtAgencia.Text == "Auroco")
+                {
+                    tokenApi = Global.TokenAuroco;
+                }
+                else
+                {
+                    tokenApi = Global.TokenOptimiza;
+
+                }
+                string Resultado = SendDos<Factura>(Global.urlFactura, factura, "POST", tokenApi);
 
                
 
