@@ -882,8 +882,9 @@ namespace AurocoPublicidad.forms
 
             factura.legends = CrearLeyendas(factura.details[0].mtoPrecioUnitario, factura.formaPago.moneda);
 
-            if (chkDetrac.Checked)
+            if (chkDetrac.Checked && txtCambioSunat.Text != "")
                 AgregarDetraccion(factura);
+            
 
             await EnviarFacturaYMostrarPdf(factura);
         }
@@ -959,7 +960,7 @@ namespace AurocoPublicidad.forms
             var igv = generico.ObtenerDecimal(txtIgv.Text);
 
             var descripcion = $"Orden Nro:{txtNumero.Text} {txtProducto.Text} {txtMotivo.Text}";
-            textObservaciones.Text = descripcion;
+           // textObservaciones.Text = descripcion;
 
             return new Details
             {
@@ -1043,40 +1044,49 @@ namespace AurocoPublicidad.forms
 
         private void AgregarDetraccion(Factura factura)
         {
-            var totalBrutoVal = generico.ObtenerDecimal(totalBruto.Text);
-            var porcentaje = porcentajeDet.Value;
-            var totalDet = Math.Round(totalBrutoVal * porcentaje / 100, 2);
-            var totalCobranza = totalBrutoVal - totalDet;
-            totalBruto.Text = totalCobranza.ToString();
 
-            factura.detraccion = new Detraccion
+            if (txtCambioSunat.Text != "")
             {
-                codBienDetraccion = "022",
-                codMedioPago = "001",
-                percent = porcentaje,
-                mount = cMoneda.Text == "Dolares"
-                    ? Math.Round(totalDet * generico.ObtenerDecimal(txtCambioSunat.Text))
-                    : Math.Round(totalDet)
-            };
+                var totalBrutoVal = generico.ObtenerDecimal(totalBruto.Text);
+                var porcentaje = porcentajeDet.Value;
+                var totalDet = Math.Round(totalBrutoVal * porcentaje / 100, 2);
+                var totalCobranza = totalBrutoVal - totalDet;
+                totalBruto.Text = totalCobranza.ToString();
 
-            var legends = factura.legends;
-            legends.Add(new Legends { code = "2006", value = "Operación sujeta al Sistema de Pago..." });
+                factura.detraccion = new Detraccion
+                {
+                    codBienDetraccion = "022",
+                    codMedioPago = "001",
+                    percent = porcentaje,
+                    mount = cMoneda.Text == "Dolares"
+                        ? Math.Round(totalDet * generico.ObtenerDecimal(txtCambioSunat.Text))
+                        : Math.Round(totalDet)
+                };
 
-            if (rdCredito.Checked)
-                legends.Add(new Legends { code = "2003", value = "Monto neto pendiente de pago " + totalCobranza });
+                var legends = factura.legends;
+                legends.Add(new Legends { code = "2006", value = "Operación sujeta al Sistema de Pago..." });
 
-            legends.Add(new Legends { code = "2004", value = "Porcentaje detracción: " + porcentaje + "%" });
+                if (rdCredito.Checked)
+                    legends.Add(new Legends { code = "2003", value = "Monto neto pendiente de pago " + totalCobranza });
 
-            legends.Add(new Legends
+                legends.Add(new Legends { code = "2004", value = "Porcentaje detracción: " + porcentaje + "%" });
+
+                legends.Add(new Legends
+                {
+                    code = "3001",
+                    value = "Nro. Cta. Banco de la Nación: " + (txtAgencia.Text == "AUROCO" ? Global.ctaRetraccion : Global.ctaDetOptimiza)
+                });
+
+                legends.Add(new Legends { code = "3000", value = "Bien o Servicio: 022 Otros servicios empresariales" });
+
+                var montoDetraccion = factura.detraccion.mount;
+                legends.Add(new Legends { code = "3002", value = "Monto detracción: S/ " + montoDetraccion });
+            }
+            else
             {
-                code = "3001",
-                value = "Nro. Cta. Banco de la Nación: " + (txtAgencia.Text == "AUROCO" ? Global.ctaRetraccion : Global.ctaDetOptimiza)
-            });
-
-            legends.Add(new Legends { code = "3000", value = "Bien o Servicio: 022 Otros servicios empresariales" });
-
-            var montoDetraccion = factura.detraccion.mount;
-            legends.Add(new Legends { code = "3002", value = "Monto detracción: S/ " + montoDetraccion });
+                MessageBox.Show("Dene ingresar el tipo de cambio Sunat", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         private async Task EnviarFacturaYMostrarPdf(Factura factura)

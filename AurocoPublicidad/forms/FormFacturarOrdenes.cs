@@ -57,7 +57,7 @@ namespace AurocoPublicidad.forms
 
         private async void cargaOrdenes()
         {
-            string apiUrl = Global.servicio + "/api-auroco/ordenes";
+            string apiUrl = Global.servicio + "/api-auroco/facturar";
             using (HttpClient client = new HttpClient())
 
             {
