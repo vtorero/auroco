@@ -785,13 +785,14 @@ namespace AurocoPublicidad.forms
             if (chkDetrac.Checked)
                 AgregarDetraccion(factura);
             string mensaje = "";
+            string estado = "";
 
             try
             {
 
                 string tokenApi = "";
 
-                if (txtAgencia.Text == "Auroco")
+                if (txtAgencia.Text == "AUROCO")
                 {
                     tokenApi = Global.TokenAuroco;
                 }
@@ -812,7 +813,8 @@ namespace AurocoPublicidad.forms
                      mensaje = objeto["error"]["message"].ToString();
 
                     MessageBox.Show(mensaje, "Error de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                   // MessageBox.Show(mensaje);
+                    // MessageBox.Show(mensaje);
+                    estado = "error";
 
                 }
                 else
@@ -820,34 +822,51 @@ namespace AurocoPublicidad.forms
                      mensaje = objeto["cdrResponse"]["description"].ToString();
                     //MessageBox.Show(mensaje);
                     MessageBox.Show(mensaje, "Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ActualizaEstado(txtNumero.Text);
+                    estado = "aceptado";
 
                 }
             }catch (Exception m) {
                 mensaje=m.Message;  
                 //MessageBox.Show(m.Message);
                 MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                estado = "error";
             }
-            InsertarFacturaEnMySQL(factura,mensaje);
+            InsertarFacturaEnMySQL(factura,mensaje,estado);
             this.Close();
         
 
         }
 
-        private void InsertarFacturaEnMySQL(Factura factura,string mensaje)
+        private void InsertarFacturaEnMySQL(Factura factura,string mensaje,string estado)
         {
             using (var conn = new MySqlConnection(Global.connectionString))
             {
                 conn.Open();
-                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha, total, ord_orden,mensaje) VALUES (@serie, @correlativo, @fecha, @total, @orden,@mensaje)", conn);
+                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha, total, ord_orden,estado,mensaje) VALUES (@serie, @correlativo, @fecha, @total, @orden,@estado,@mensaje)", conn);
                 cmd.Parameters.AddWithValue("@serie", factura.serie);
                 cmd.Parameters.AddWithValue("@correlativo", factura.correlativo);
                 cmd.Parameters.AddWithValue("@fecha", Convert.ToString(factura.fechaEmision).Substring(0, 11)); 
                 cmd.Parameters.AddWithValue("@total", factura.mtoImpVenta);
                 cmd.Parameters.AddWithValue("@orden",txtNumero.Text);
+                cmd.Parameters.AddWithValue("@estado", estado);
                 cmd.Parameters.AddWithValue("@mensaje", mensaje);
                 cmd.ExecuteNonQuery();
             }
         }
+
+
+        private void ActualizaEstado(string orden)
+        {
+            using (var conn = new MySqlConnection(Global.connectionString))
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("UPDATE ORD_ORDENES SET FACTURADA='SI' WHERE C_ORDEN=@C_ORDEN", conn);
+                cmd.Parameters.AddWithValue("@C_ORDEN", orden);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
 
         private async Task EnviarFacturaSunat()

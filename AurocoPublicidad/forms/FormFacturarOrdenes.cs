@@ -82,7 +82,7 @@ namespace AurocoPublicidad.forms
                     dgOrdenes.Rows.Clear();
                     foreach (Ordenes ord in lst)
                     {
-                        await Task.Delay(50);
+                       // await Task.Delay(50);
                         contador++;
                         int porcentaje = (int)((contador * 100.0) / total);
                         progressBar1.Value = porcentaje;
