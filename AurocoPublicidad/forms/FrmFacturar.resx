@@ -1030,7 +1030,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnEnviar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>762, 347</value>
+    <value>765, 347</value>
   </data>
   <data name="btnEnviar.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 45</value>
