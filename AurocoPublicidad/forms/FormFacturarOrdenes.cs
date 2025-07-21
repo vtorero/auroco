@@ -199,8 +199,7 @@ namespace AurocoPublicidad.forms
 
                 Cursor.Current = Cursors.WaitCursor;
                 dgOrdenes.Rows.Clear();
-                /*string url = Global.servicio + "/api-auroco/ordenes";
-                //string url = Global.servicio + "/api-auroco/buscaorden";
+                string url = Global.servicio + "/api-auroco/buscaorden";
                 Ordenes orden = new Ordenes();
                 orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
                 orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
@@ -208,11 +207,7 @@ namespace AurocoPublicidad.forms
                 orden.FIN_VIGENCIA = dtHasta.Value.ToString();
                 orden.C_ORDEN = txtOrden.Text;
                 string resultado = Send<Ordenes>(url, orden, "POST");
-                */
-
-                string respuesta = await GetService(Global.servicio + "/api-auroco/ordenes");
-                List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(respuesta);
-               // List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
+                List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
 
                 foreach (Ordenes ord in lst)
                 {
@@ -221,6 +216,7 @@ namespace AurocoPublicidad.forms
                     dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
                     dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
                     dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
+                    dgOrdenes.Rows[rowIndex].Cells["C_RUC"].Value = ord.C_RUC;
                     dgOrdenes.Rows[rowIndex].Cells["Cliente"].Value = ord.RAZON_SOCIAL;
                     dgOrdenes.Rows[rowIndex].Cells["C_MEDIO"].Value = ord.C_MEDIO;
                     dgOrdenes.Rows[rowIndex].Cells["Medio"].Value = ord.NOMBRE;
@@ -239,6 +235,7 @@ namespace AurocoPublicidad.forms
                     dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
                     dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
                     dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
+                    dgOrdenes.Rows[rowIndex].Cells["tipoCambio"].Value = ord.TIPO_CAMBIO;
 
 
 
@@ -254,6 +251,7 @@ namespace AurocoPublicidad.forms
                 MessageBox.Show("El criterio no tiene resultados pruebe otras opciones", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         public string Send<T>(string url, T ObjectRequest, string method = "POST")
