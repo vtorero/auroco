@@ -199,7 +199,7 @@ namespace AurocoPublicidad.forms
 
                 Cursor.Current = Cursors.WaitCursor;
                 dgOrdenes.Rows.Clear();
-                string url = Global.servicio + "/api-auroco/buscaorden";
+                string url = Global.servicio + "/api-auroco/buscafacturas";
                 Ordenes orden = new Ordenes();
                 orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
                 orden.C_MEDIO = Convert.ToString(comboMedio.SelectedValue);
@@ -294,5 +294,9 @@ namespace AurocoPublicidad.forms
             return result;
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            cargaOrdenes();
+        }
     }
 }
