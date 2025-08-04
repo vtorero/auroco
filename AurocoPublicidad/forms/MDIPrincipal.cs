@@ -252,5 +252,13 @@ namespace AurocoPublicidad.forms
             childForm.Text = "Facturación de Ordenes";
             childForm.Show();
         }
+
+        private void facturasConsultaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form childForm = new frmFacturado();
+            childForm.MdiParent = this;
+            childForm.Text = "Facturas emitidas";
+            childForm.Show();
+        }
     }
 }

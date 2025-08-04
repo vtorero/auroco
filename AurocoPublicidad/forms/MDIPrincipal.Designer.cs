@@ -75,6 +75,7 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturasConsultaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -317,7 +318,8 @@
             // contabilidadToolStripMenuItem
             // 
             this.contabilidadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.facturaciónToolStripMenuItem});
+            this.facturaciónToolStripMenuItem,
+            this.facturasConsultaToolStripMenuItem});
             this.contabilidadToolStripMenuItem.Name = "contabilidadToolStripMenuItem";
             this.contabilidadToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.contabilidadToolStripMenuItem.Text = "&Facturación";
@@ -460,6 +462,13 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(32, 19);
             // 
+            // facturasConsultaToolStripMenuItem
+            // 
+            this.facturasConsultaToolStripMenuItem.Name = "facturasConsultaToolStripMenuItem";
+            this.facturasConsultaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturasConsultaToolStripMenuItem.Text = "Facturas Consulta";
+            this.facturasConsultaToolStripMenuItem.Click += new System.EventHandler(this.facturasConsultaToolStripMenuItem_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,6 +542,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem contabilidadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facturasConsultaToolStripMenuItem;
     }
 }
 
