@@ -832,21 +832,22 @@ namespace AurocoPublicidad.forms
                 MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 estado = "error";
             }
-            InsertarFacturaEnMySQL(factura,mensaje,estado);
+            InsertarFacturaEnMySQL(factura,mensaje,estado,txtAgencia.Text);
             this.Close();
         
 
         }
 
-        private void InsertarFacturaEnMySQL(Factura factura,string mensaje,string estado)
+        private void InsertarFacturaEnMySQL(Factura factura,string mensaje,string estado,string agencia)
         {
             using (var conn = new MySqlConnection(Global.connectionString))
             {
                 conn.Open();
-                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha, total, ord_orden,estado,mensaje) VALUES (@serie, @correlativo, @fecha, @total, @orden,@estado,@mensaje)", conn);
+                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha,agencia,total, ord_orden,estado,mensaje) VALUES (@serie, @correlativo, @fecha,@agencia, @total, @orden,@estado,@mensaje)", conn);
                 cmd.Parameters.AddWithValue("@serie", factura.serie);
                 cmd.Parameters.AddWithValue("@correlativo", factura.correlativo);
-                cmd.Parameters.AddWithValue("@fecha", Convert.ToString(factura.fechaEmision).Substring(0, 11)); 
+                cmd.Parameters.AddWithValue("@fecha", Convert.ToString(factura.fechaEmision).Substring(0, 11));
+                cmd.Parameters.AddWithValue("@agencia",agencia);
                 cmd.Parameters.AddWithValue("@total", factura.mtoImpVenta);
                 cmd.Parameters.AddWithValue("@orden",txtNumero.Text);
                 cmd.Parameters.AddWithValue("@estado", estado);
