@@ -66,7 +66,7 @@
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(1043, 327);
+            this.dgOrdenes.Size = new System.Drawing.Size(1067, 327);
             this.dgOrdenes.TabIndex = 101;
             // 
             // comboCliente
@@ -107,13 +107,13 @@
             this.btnConsultar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnConsultar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultar.Image = global::AurocoPublicidad.Properties.Resources.buscar;
-            this.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConsultar.Location = new System.Drawing.Point(855, 14);
             this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(101, 39);
+            this.btnConsultar.Size = new System.Drawing.Size(84, 39);
             this.btnConsultar.TabIndex = 102;
             this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultar.UseVisualStyleBackColor = false;
             // 
             // Label1
@@ -147,53 +147,62 @@
             // 
             this.C_ORDEN.HeaderText = "Factura";
             this.C_ORDEN.Name = "C_ORDEN";
+            this.C_ORDEN.Width = 80;
             // 
             // agencia
             // 
             this.agencia.HeaderText = "Agencia";
             this.agencia.Name = "agencia";
+            this.agencia.Width = 75;
             // 
             // C_RUC
             // 
             this.C_RUC.HeaderText = "RUC";
             this.C_RUC.Name = "C_RUC";
+            this.C_RUC.Width = 90;
             // 
             // C_CLIENTE
             // 
             this.C_CLIENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.C_CLIENTE.HeaderText = "Cliente";
             this.C_CLIENTE.Name = "C_CLIENTE";
+            this.C_CLIENTE.Width = 250;
             // 
             // fecha
             // 
             this.fecha.HeaderText = "Fecha";
             this.fecha.Name = "fecha";
+            this.fecha.Width = 70;
             // 
             // MONEDA
             // 
             this.MONEDA.HeaderText = "Moneda";
             this.MONEDA.Name = "MONEDA";
+            this.MONEDA.Width = 70;
             // 
             // total
             // 
             this.total.HeaderText = "Total";
             this.total.Name = "total";
+            this.total.Width = 70;
             // 
             // estado
             // 
             this.estado.HeaderText = "Estado";
             this.estado.Name = "estado";
+            this.estado.Width = 70;
             // 
             // mensaje
             // 
             this.mensaje.HeaderText = "Mensaje Sunat";
             this.mensaje.Name = "mensaje";
+            this.mensaje.Width = 250;
             // 
             // frmFacturado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 423);
+            this.ClientSize = new System.Drawing.Size(1108, 423);
             this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.Label2);
             this.Controls.Add(this.dtDesde);
