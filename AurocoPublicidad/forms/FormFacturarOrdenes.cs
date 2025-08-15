@@ -194,9 +194,6 @@ namespace AurocoPublicidad.forms
         {
             try
             {
-
-
-
                 Cursor.Current = Cursors.WaitCursor;
                 dgOrdenes.Rows.Clear();
                 string url = Global.servicio + "/api-auroco/buscafacturas";
