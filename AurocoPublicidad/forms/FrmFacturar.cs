@@ -924,7 +924,7 @@ namespace AurocoPublicidad.forms
                 tipoDoc = "01",
                 serie = esAuroco ? "F001":"F002",
                 correlativo = generico.ObtenerSiguienteCorrelativo(esAuroco),
-                observacion = textObservaciones.Text,
+                observacion = textObservaciones.Text.Replace("\r", "").Replace("\n", ""),
                 fechaEmision = fechaEmision.Value.ToString("yyyy-MM-dd") + "T00:00:00-05:00",
                 tipoMoneda = cMoneda.Text == "Soles" ? "PEN" : "USD",
                 mtoOperGravadas = total,

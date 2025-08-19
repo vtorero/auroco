@@ -62,11 +62,11 @@
             this.total,
             this.estado,
             this.mensaje});
-            this.dgOrdenes.Location = new System.Drawing.Point(23, 76);
+            this.dgOrdenes.Location = new System.Drawing.Point(23, 84);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(1067, 327);
+            this.dgOrdenes.Size = new System.Drawing.Size(1083, 327);
             this.dgOrdenes.TabIndex = 101;
             // 
             // comboCliente
@@ -75,7 +75,7 @@
             this.comboCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboCliente.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(82, 13);
+            this.comboCliente.Location = new System.Drawing.Point(82, 14);
             this.comboCliente.Name = "comboCliente";
             this.comboCliente.Size = new System.Drawing.Size(459, 25);
             this.comboCliente.TabIndex = 108;
@@ -110,11 +110,12 @@
             this.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConsultar.Location = new System.Drawing.Point(855, 14);
             this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(84, 39);
+            this.btnConsultar.Size = new System.Drawing.Size(91, 39);
             this.btnConsultar.TabIndex = 102;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultar.UseVisualStyleBackColor = false;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // Label1
             // 
@@ -172,7 +173,7 @@
             // 
             this.fecha.HeaderText = "Fecha";
             this.fecha.Name = "fecha";
-            this.fecha.Width = 70;
+            this.fecha.Width = 80;
             // 
             // MONEDA
             // 
@@ -202,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1108, 423);
+            this.ClientSize = new System.Drawing.Size(1135, 423);
             this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.Label2);
             this.Controls.Add(this.dtDesde);

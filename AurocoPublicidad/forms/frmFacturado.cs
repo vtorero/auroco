@@ -1,4 +1,5 @@
 ﻿using AurocoPublicidad.models.request;
+using AurocoPublicidad.reportes;
 using AurocoPublicidad.util;
 using Newtonsoft.Json;
 using System;
@@ -12,6 +13,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -112,6 +114,89 @@ namespace AurocoPublicidad.forms
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+          
+                string url = Global.servicio + "/api-auroco/buscafacturas";
+                Ordenes orden = new Ordenes();
+                orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
+                orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
+                orden.FIN_VIGENCIA = dtHasta.Value.ToString();
+                
+                string resultado = Send<Ordenes>(url, orden, "POST");
+                List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
+                dgOrdenes.Rows.Clear();
+                foreach (Ordenes ord in lst)
+                {
+                    int rowIndex = dgOrdenes.Rows.Add();
+                    dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
+                    dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.RAZON_SOCIAL;
+                    dgOrdenes.Rows[rowIndex].Cells["C_RUC"].Value = ord.C_RUC;
+                    dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
+                    dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
+                    dgOrdenes.Rows[rowIndex].Cells["agencia"].Value = ord.AGENCIA;
+                    dgOrdenes.Rows[rowIndex].Cells["fecha"].Value = ord.F_CREACION;
+                    dgOrdenes.Rows[rowIndex].Cells["estado"].Value = ord.EJECUTIVO;
+                    dgOrdenes.Rows[rowIndex].Cells["mensaje"].Value = ord.MOTIVO;
+                }
+
+                Cursor.Current = Cursors.Default;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("El criterio no tiene resultados pruebe otras opciones", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
+        public string Send<T>(string url, T ObjectRequest, string method = "POST")
+        {
+            string result = "";
+
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                //serializar el objeto
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(ObjectRequest);
+
+                //peticion
+                WebRequest request = WebRequest.Create(url);
+                //header
+                request.Method = method;
+                request.PreAuthenticate = true;
+                request.ContentType = "application/json;charset=utf-8";
+                request.Timeout = 30000;
+
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    result = streamReader.ReadToEnd();
+                }
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+
+            return result;
         }
     }
 }
