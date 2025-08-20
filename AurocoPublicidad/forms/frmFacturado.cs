@@ -122,7 +122,7 @@ namespace AurocoPublicidad.forms
             {
                 Cursor.Current = Cursors.WaitCursor;
           
-                string url = Global.servicio + "/api-auroco/buscafacturas";
+                string url = Global.servicio + "/api-auroco/buscafacturados";
                 Ordenes orden = new Ordenes();
                 orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
                 orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
