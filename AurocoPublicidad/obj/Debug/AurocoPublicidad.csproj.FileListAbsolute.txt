@@ -133,3 +133,4 @@ D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInp
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPu.B3E24C9F.Up2Date
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb
+D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe.config
