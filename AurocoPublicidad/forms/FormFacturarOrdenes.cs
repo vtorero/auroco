@@ -185,7 +185,7 @@ namespace AurocoPublicidad.forms
                 orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
                                orden.INICIO_VIGENCIA = dtDesde.Value.ToString();
                 orden.FIN_VIGENCIA = dtHasta.Value.ToString();
-                orden.C_ORDEN = txtOrden.Text;
+                orden.C_CONTRATO = txtOrden.Text;
                 string resultado = Send<Ordenes>(url, orden, "POST");
                 List<models.request.Ordenes> lst = JsonConvert.DeserializeObject<List<models.request.Ordenes>>(resultado);
 
@@ -196,17 +196,14 @@ namespace AurocoPublicidad.forms
                     dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
                     dgOrdenes.Rows[rowIndex].Cells["ID"].Value = ord.ID;
                     dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.C_CLIENTE;
-                    dgOrdenes.Rows[rowIndex].Cells["CLIENTE"].Value = ord.NOMBRE;
+                    dgOrdenes.Rows[rowIndex].Cells["CLIENTE"].Value = ord.RAZON_SOCIAL;
                     dgOrdenes.Rows[rowIndex].Cells["C_RUC"].Value = ord.C_RUC;
                     dgOrdenes.Rows[rowIndex].Cells["f_creacion"].Value = ord.F_CREACION;
                     dgOrdenes.Rows[rowIndex].Cells["f_inicio"].Value = ord.INICIO_VIGENCIA;
                     dgOrdenes.Rows[rowIndex].Cells["f_fin"].Value = ord.FIN_VIGENCIA;
                     dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
                     dgOrdenes.Rows[rowIndex].Cells["total"].Value = ord.TOTAL;
-                    
                     dgOrdenes.Rows[rowIndex].Cells["observaciones"].Value = ord.OBSERVACIONES;
-                    dgOrdenes.Rows[rowIndex].Cells["revision"].Value = ord.REVISION;
-                    dgOrdenes.Rows[rowIndex].Cells["activa"].Value = ord.ACTIVA;
                     dgOrdenes.Rows[rowIndex].Cells["tipoCambio"].Value = ord.TIPO_CAMBIO;
 
                 }
