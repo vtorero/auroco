@@ -138,24 +138,17 @@ namespace AurocoPublicidad.forms
                 System.Threading.Thread.Sleep(500);
                 int pos;
                 pos = dgOrdenes.CurrentRow.Index;
-                var idOrden = dgOrdenes[1, pos].Value.ToString();
+                var idOrden = dgOrdenes[0, pos].Value.ToString();
+                var ccontrato = dgOrdenes[1, pos].Value.ToString();
                 var idCliente = dgOrdenes[2, pos].Value.ToString();
-                var ruc = dgOrdenes[3, pos].Value.ToString();
-                var fcreacion = dgOrdenes[9, pos].Value.ToString();
-                var idEjecutivo = dgOrdenes[7, pos].Value.ToString();
-                var finicio = dgOrdenes[9, pos].Value.ToString();
-                var ffin = dgOrdenes[10, pos].Value.ToString();
+                var ruc = dgOrdenes[4, pos].Value.ToString();
+                var fcreacion = dgOrdenes[5, pos].Value.ToString();
                 
-                var moneda = dgOrdenes[13, pos].Value.ToString();
-                var totalOrden = dgOrdenes[14, pos].Value.ToString();
-
-                var producto = dgOrdenes[15, pos].Value.ToString();
-                var motivo = dgOrdenes[16, pos].Value.ToString();
-                var duracion = dgOrdenes[17, pos].Value.ToString();
-                var observaciones = dgOrdenes[18, pos].Value.ToString();
-                var agencia = dgOrdenes[22, pos].Value.ToString();
-                var tipo_cambio = dgOrdenes[21, pos].Value.ToString();
-                FrmFacturar frmFacturar = new FrmFacturar(idOrden,idCliente,ruc,fcreacion, observaciones,moneda,producto,motivo, totalOrden, tipo_cambio);
+                var moneda = dgOrdenes[8, pos].Value.ToString();
+                var totalOrden = dgOrdenes[9, pos].Value.ToString();
+                var observaciones = dgOrdenes[10, pos].Value.ToString();
+                var tipo_cambio = dgOrdenes[11, pos].Value.ToString();
+                FrmFacturar frmFacturar = new FrmFacturar(idOrden,ccontrato, idCliente,ruc,fcreacion, observaciones,moneda,totalOrden, tipo_cambio);
                 frmFacturar.FormClosed += (s, args) => cargaOrdenes();
 
                 frmFacturar.ShowDialog();
@@ -277,6 +270,11 @@ namespace AurocoPublicidad.forms
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
         {
 
         }

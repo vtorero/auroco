@@ -50,7 +50,7 @@ namespace AurocoPublicidad.forms
         private string valortipocambio;
 
         private string apiUrl = Global.servicio + "/api-auroco/facturacion.php/test-factura";
-        public FrmFacturar(string id, string cliente, string ruc, string fecha, string observaciones, string moneda, string producto, string motivo, string total,string tipocambio)
+        public FrmFacturar(string id, string contrato, string cliente, string ruc, string fecha, string observaciones, string moneda,  string total,string tipocambio)
         {
 
             InitializeComponent();
@@ -60,9 +60,7 @@ namespace AurocoPublicidad.forms
             valorFecha = fecha;
             valorMoneda = moneda;
             valorTotal = total;
-            valorProducto = producto;
-            valorMotivo = motivo;
-            Console.Write(valorTotal);
+              Console.Write(valorTotal);
             valortipocambio = tipocambio;
             valorObservaciones = observaciones;
 
@@ -543,8 +541,7 @@ namespace AurocoPublicidad.forms
             cargaRuc(valorRuc);
             if (valorObservaciones != "" || valorProducto!="" || valorMotivo!="") textObservaciones.Text = valorProducto + " " + valorMotivo + " " + valorObservaciones;
             if (valorMoneda != "") cMoneda.Text = valorMoneda;
-            if (valorProducto != "") txtProducto.Text = valorProducto;
-            if (valorMotivo != "") txtMotivo.Text = valorMotivo;
+       
             if (valortipocambio != "") txtCambio.Text = valortipocambio;
 
 
@@ -979,14 +976,14 @@ namespace AurocoPublicidad.forms
             var total = generico.ObtenerDecimal(totalOrden.Text);
             var igv = generico.ObtenerDecimal(txtIgv.Text);
 
-            var descripcion = $"Orden Nro:{txtNumero.Text} {txtProducto.Text} {txtMotivo.Text}";
+           // var descripcion = $"Orden Nro:{txtNumero.Text} {txtProducto.Text} {txtMotivo.Text}";
            // textObservaciones.Text = descripcion;
 
             return new Details
             {
                 unidad = "NIU",
                 codProducto = "P001",
-                descripcion = descripcion,
+                descripcion = textObservaciones.Text,
                 cantidad = 1,
                 mtoValorUnitario = total,
                 mtoValorVenta = total,
@@ -1157,6 +1154,16 @@ namespace AurocoPublicidad.forms
                     UseShellExecute = true // importante para .NET Core/.NET 5+ y para abrir con el navegador
                 });
             }
+        }
+
+        private void dataCuentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void fechaEmision_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

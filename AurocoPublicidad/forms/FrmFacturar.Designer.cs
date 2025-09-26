@@ -42,8 +42,6 @@
             this.LblNumero = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textObservaciones = new System.Windows.Forms.RichTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCambio = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -62,9 +60,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdContado = new System.Windows.Forms.RadioButton();
             this.rdCredito = new System.Windows.Forms.RadioButton();
-            this.txtMotivo = new System.Windows.Forms.TextBox();
             this.btnEnviar = new System.Windows.Forms.Button();
-            this.txtProducto = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtDistrito = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -102,6 +98,7 @@
             // 
             // totalBruto
             // 
+            this.totalBruto.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.totalBruto, "totalBruto");
             this.totalBruto.Name = "totalBruto";
             this.totalBruto.ReadOnly = true;
@@ -113,6 +110,7 @@
             // 
             // txtIgv
             // 
+            this.txtIgv.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.txtIgv, "txtIgv");
             this.txtIgv.Name = "txtIgv";
             this.txtIgv.ReadOnly = true;
@@ -129,9 +127,9 @@
             // 
             // totalOrden
             // 
+            this.totalOrden.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             resources.ApplyResources(this.totalOrden, "totalOrden");
             this.totalOrden.Name = "totalOrden";
-            this.totalOrden.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -172,16 +170,6 @@
             this.textObservaciones.Name = "textObservaciones";
             this.textObservaciones.TextChanged += new System.EventHandler(this.textObservaciones_TextChanged);
             // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtCambio);
@@ -193,9 +181,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dataCuentas);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.txtMotivo);
             this.groupBox1.Controls.Add(this.btnEnviar);
-            this.groupBox1.Controls.Add(this.txtProducto);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.txtDistrito);
             this.groupBox1.Controls.Add(this.label11);
@@ -218,8 +204,6 @@
             this.groupBox1.Controls.Add(this.LblNumero);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.textObservaciones);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cMoneda);
             this.groupBox1.Controls.Add(this.fechaEmision);
@@ -310,6 +294,7 @@
             this.monto});
             resources.ApplyResources(this.dataCuentas, "dataCuentas");
             this.dataCuentas.Name = "dataCuentas";
+            this.dataCuentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellContentClick);
             this.dataCuentas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataCuentas_CellValueChanged);
             this.dataCuentas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataCuentas_RowsAdded);
             // 
@@ -342,22 +327,12 @@
             this.rdCredito.UseVisualStyleBackColor = true;
             this.rdCredito.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // txtMotivo
-            // 
-            resources.ApplyResources(this.txtMotivo, "txtMotivo");
-            this.txtMotivo.Name = "txtMotivo";
-            // 
             // btnEnviar
             // 
             resources.ApplyResources(this.btnEnviar, "btnEnviar");
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.UseVisualStyleBackColor = true;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
-            // 
-            // txtProducto
-            // 
-            resources.ApplyResources(this.txtProducto, "txtProducto");
-            this.txtProducto.Name = "txtProducto";
             // 
             // label15
             // 
@@ -456,6 +431,7 @@
             resources.ApplyResources(this.fechaEmision, "fechaEmision");
             this.fechaEmision.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fechaEmision.Name = "fechaEmision";
+            this.fechaEmision.ValueChanged += new System.EventHandler(this.fechaEmision_ValueChanged);
             // 
             // comboCliente
             // 
@@ -513,8 +489,6 @@
         private System.Windows.Forms.Label LblNumero;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RichTextBox textObservaciones;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox cMoneda;
@@ -537,8 +511,6 @@
         private System.Windows.Forms.TextBox txtDistrito;
         private System.Windows.Forms.ComboBox txtAgencia;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtMotivo;
-        private System.Windows.Forms.TextBox txtProducto;
         private System.Windows.Forms.RadioButton rdCredito;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton rdContado;

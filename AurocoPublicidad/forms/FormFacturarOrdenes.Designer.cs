@@ -42,6 +42,18 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgOrdenes = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_RUC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.f_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.f_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.f_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoCambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblPorcentaje = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,18 +79,6 @@
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_RUC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.f_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.f_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.f_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoCambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
@@ -96,7 +96,7 @@
             this.groupBox1.Controls.Add(this.Label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1210, 107);
+            this.groupBox1.Size = new System.Drawing.Size(1067, 107);
             this.groupBox1.TabIndex = 106;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Criterios";
@@ -121,7 +121,7 @@
             this.comboCliente.FormattingEnabled = true;
             this.comboCliente.Location = new System.Drawing.Point(89, 21);
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(662, 25);
+            this.comboCliente.Size = new System.Drawing.Size(559, 25);
             this.comboCliente.TabIndex = 91;
             // 
             // Label2
@@ -147,7 +147,7 @@
             this.dtDesde.CustomFormat = "dd/MM/yyyy";
             this.dtDesde.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDesde.Location = new System.Drawing.Point(838, 22);
+            this.dtDesde.Location = new System.Drawing.Point(712, 21);
             this.dtDesde.Name = "dtDesde";
             this.dtDesde.Size = new System.Drawing.Size(91, 22);
             this.dtDesde.TabIndex = 83;
@@ -159,7 +159,7 @@
             this.btnConsultar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultar.Image = global::AurocoPublicidad.Properties.Resources.buscar;
             this.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultar.Location = new System.Drawing.Point(1082, 19);
+            this.btnConsultar.Location = new System.Drawing.Point(956, 18);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(101, 49);
             this.btnConsultar.TabIndex = 80;
@@ -169,7 +169,7 @@
             // Label1
             // 
             this.Label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(792, 23);
+            this.Label1.Location = new System.Drawing.Point(666, 22);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(56, 16);
             this.Label1.TabIndex = 82;
@@ -181,7 +181,7 @@
             this.dtHasta.CustomFormat = "dd/MM/yyyy";
             this.dtHasta.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtHasta.Location = new System.Drawing.Point(968, 21);
+            this.dtHasta.Location = new System.Drawing.Point(842, 20);
             this.dtHasta.Name = "dtHasta";
             this.dtHasta.Size = new System.Drawing.Size(91, 22);
             this.dtHasta.TabIndex = 85;
@@ -190,7 +190,7 @@
             // Label3
             // 
             this.Label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(936, 24);
+            this.Label3.Location = new System.Drawing.Point(810, 23);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(26, 16);
             this.Label3.TabIndex = 84;
@@ -208,7 +208,7 @@
             // btnRefresh
             // 
             this.btnRefresh.Image = global::AurocoPublicidad.Properties.Resources.refresh_arrow_1546;
-            this.btnRefresh.Location = new System.Drawing.Point(1228, 88);
+            this.btnRefresh.Location = new System.Drawing.Point(1085, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(35, 35);
             this.btnRefresh.TabIndex = 104;
@@ -218,7 +218,7 @@
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNuevo.Location = new System.Drawing.Point(1065, 477);
+            this.btnNuevo.Location = new System.Drawing.Point(940, 469);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(157, 30);
             this.btnNuevo.TabIndex = 101;
@@ -242,13 +242,78 @@
             this.total,
             this.observaciones,
             this.tipoCambio});
-            this.dgOrdenes.Location = new System.Drawing.Point(-19, 129);
+            this.dgOrdenes.Location = new System.Drawing.Point(12, 129);
             this.dgOrdenes.MultiSelect = false;
             this.dgOrdenes.Name = "dgOrdenes";
             this.dgOrdenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrdenes.Size = new System.Drawing.Size(1241, 327);
+            this.dgOrdenes.Size = new System.Drawing.Size(1095, 327);
             this.dgOrdenes.TabIndex = 100;
             this.dgOrdenes.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgOrdenes_CellMouseDoubleClick);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // C_CONTRATO
+            // 
+            this.C_CONTRATO.HeaderText = "Contrato";
+            this.C_CONTRATO.Name = "C_CONTRATO";
+            // 
+            // C_CLIENTE
+            // 
+            this.C_CLIENTE.HeaderText = "C_CLIENTE";
+            this.C_CLIENTE.Name = "C_CLIENTE";
+            this.C_CLIENTE.Visible = false;
+            // 
+            // CLIENTE
+            // 
+            this.CLIENTE.HeaderText = "Cliente";
+            this.CLIENTE.Name = "CLIENTE";
+            this.CLIENTE.Width = 350;
+            // 
+            // C_RUC
+            // 
+            this.C_RUC.HeaderText = "RUC";
+            this.C_RUC.Name = "C_RUC";
+            // 
+            // f_creacion
+            // 
+            this.f_creacion.HeaderText = "Fecha";
+            this.f_creacion.Name = "f_creacion";
+            // 
+            // f_inicio
+            // 
+            this.f_inicio.HeaderText = "fechainicio";
+            this.f_inicio.Name = "f_inicio";
+            this.f_inicio.Visible = false;
+            // 
+            // f_fin
+            // 
+            this.f_fin.HeaderText = "fechafin";
+            this.f_fin.Name = "f_fin";
+            this.f_fin.Visible = false;
+            // 
+            // moneda
+            // 
+            this.moneda.HeaderText = "Moneda";
+            this.moneda.Name = "moneda";
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            // 
+            // observaciones
+            // 
+            this.observaciones.HeaderText = "Observaciones";
+            this.observaciones.Name = "observaciones";
+            // 
+            // tipoCambio
+            // 
+            this.tipoCambio.HeaderText = "Tipo Cambio";
+            this.tipoCambio.Name = "tipoCambio";
             // 
             // lblPorcentaje
             // 
@@ -260,10 +325,11 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(484, 485);
+            this.progressBar1.Location = new System.Drawing.Point(424, 472);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(257, 10);
             this.progressBar1.TabIndex = 108;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -387,77 +453,12 @@
             this.dataGridViewTextBoxColumn23.HeaderText = "AGENCIA";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // C_CONTRATO
-            // 
-            this.C_CONTRATO.HeaderText = "Contrato";
-            this.C_CONTRATO.Name = "C_CONTRATO";
-            // 
-            // C_CLIENTE
-            // 
-            this.C_CLIENTE.HeaderText = "C_CLIENTE";
-            this.C_CLIENTE.Name = "C_CLIENTE";
-            this.C_CLIENTE.Visible = false;
-            // 
-            // CLIENTE
-            // 
-            this.CLIENTE.HeaderText = "Cliente";
-            this.CLIENTE.Name = "CLIENTE";
-            this.CLIENTE.Width = 350;
-            // 
-            // C_RUC
-            // 
-            this.C_RUC.HeaderText = "RUC";
-            this.C_RUC.Name = "C_RUC";
-            // 
-            // f_creacion
-            // 
-            this.f_creacion.HeaderText = "Fecha";
-            this.f_creacion.Name = "f_creacion";
-            // 
-            // f_inicio
-            // 
-            this.f_inicio.HeaderText = "fechainicio";
-            this.f_inicio.Name = "f_inicio";
-            this.f_inicio.Visible = false;
-            // 
-            // f_fin
-            // 
-            this.f_fin.HeaderText = "fechafin";
-            this.f_fin.Name = "f_fin";
-            this.f_fin.Visible = false;
-            // 
-            // moneda
-            // 
-            this.moneda.HeaderText = "Moneda";
-            this.moneda.Name = "moneda";
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            // 
-            // observaciones
-            // 
-            this.observaciones.HeaderText = "Observaciones";
-            this.observaciones.Name = "observaciones";
-            // 
-            // tipoCambio
-            // 
-            this.tipoCambio.HeaderText = "Tipo Cambio";
-            this.tipoCambio.Name = "tipoCambio";
-            // 
             // FormFacturarOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1281, 519);
+            this.ClientSize = new System.Drawing.Size(1143, 519);
             this.Controls.Add(this.lblPorcentaje);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
