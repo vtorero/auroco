@@ -279,9 +279,6 @@
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="totalOrden.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="totalOrden.Location" type="System.Drawing.Point, System.Drawing">
     <value>803, 256</value>
   </data>

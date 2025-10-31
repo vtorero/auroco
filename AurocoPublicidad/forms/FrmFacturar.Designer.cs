@@ -130,6 +130,7 @@
             this.totalOrden.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             resources.ApplyResources(this.totalOrden, "totalOrden");
             this.totalOrden.Name = "totalOrden";
+            this.totalOrden.TextChanged += new System.EventHandler(this.totalOrden_TextChanged);
             // 
             // groupBox2
             // 
@@ -212,6 +213,7 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtCambio
             // 

@@ -1,0 +1,6 @@
+D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe
+D:\proy\auroco\AurocoPublicidad\bin\Debug\Newtonsoft.Json.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\x64\pdfium.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\MySql.Data.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\PdfiumViewer.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.pdb

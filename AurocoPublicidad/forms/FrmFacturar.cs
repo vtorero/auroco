@@ -60,7 +60,7 @@ namespace AurocoPublicidad.forms
             valorFecha = fecha;
             valorMoneda = moneda;
             valorTotal = total;
-              Console.Write(valorTotal);
+              //Console.Write(valorTotal);
             valortipocambio = tipocambio;
             valorObservaciones = observaciones;
 
@@ -78,7 +78,7 @@ namespace AurocoPublicidad.forms
                 txtNumero.Text = id;
                 btnEnviar.Visible = true;
 
-                pintaDias();
+                //pintaDias();
 
 
             }
@@ -1164,6 +1164,32 @@ namespace AurocoPublicidad.forms
         private void fechaEmision_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void totalOrden_TextChanged(object sender, EventArgs e)
+        {
+            //  = Convert.ToDouble(valorTotal) * 0.18;
+            if (totalOrden.Text != "") {
+                var total = Convert.ToDouble(ObtenerDecimal(totalOrden.Text));
+                var totalIGV = Convert.ToDouble(ObtenerDecimal(totalOrden.Text)) * 0.18;
+            var simboloMoneda = "S/";
+
+            if (valorTotal != "") { 
+                    txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, totalIGV);
+                    totalBruto.Text= string.Format("{0}{1:N2}", simboloMoneda, total+ totalIGV);
+                }
+
+            }
+        }
+
+        public static decimal ObtenerDecimal(string input)
+        {
+            return Convert.ToDecimal(input.Replace("$", "").Replace("S/.", "").Trim());
         }
     }
 
