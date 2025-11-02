@@ -78,7 +78,7 @@ namespace AurocoPublicidad
 
         public static  decimal ObtenerDecimal(string input)
         {
-            return Convert.ToDecimal(input.Replace("$", "").Replace("S/.", "").Trim());
+            return Convert.ToDecimal(input.Replace("$", "").Replace("S/", "").Trim());
         }
 
         private static string ConvertirNumero(long numero)

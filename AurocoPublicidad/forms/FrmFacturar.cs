@@ -519,7 +519,7 @@ namespace AurocoPublicidad.forms
             string simboloMoneda = "";
             if (valorMoneda == "Soles")
             {
-                simboloMoneda = "S/.";
+                simboloMoneda = "S/";
             }
             else
             {
@@ -1189,7 +1189,7 @@ namespace AurocoPublicidad.forms
 
         public static decimal ObtenerDecimal(string input)
         {
-            return Convert.ToDecimal(input.Replace("$", "").Replace("S/.", "").Trim());
+            return Convert.ToDecimal(input.Replace("$", "").Replace("S/", "").Trim());
         }
     }
 
