@@ -355,10 +355,10 @@
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="txtNumero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 19</value>
+    <value>74, 19</value>
   </data>
   <data name="txtNumero.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+    <value>99, 20</value>
   </data>
   <data name="txtNumero.TabIndex" type="System.Int32, mscorlib">
     <value>61</value>
@@ -388,16 +388,16 @@
     <value>NoControl</value>
   </data>
   <data name="LblNumero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 20</value>
+    <value>13, 20</value>
   </data>
   <data name="LblNumero.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 16</value>
+    <value>60, 16</value>
   </data>
   <data name="LblNumero.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
   </data>
   <data name="LblNumero.Text" xml:space="preserve">
-    <value>Orden:</value>
+    <value>Contrato:</value>
   </data>
   <data name="LblNumero.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -585,6 +585,27 @@
   <data name="&gt;&gt;txtUbigeo.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabel1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="linkLabel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 46</value>
+  </data>
+  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>91</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>TC. SUNAT</value>
+  </data>
   <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
     <value>linkLabel1</value>
   </data>
@@ -596,6 +617,18 @@
   </data>
   <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="txtCambioSunat.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtCambioSunat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 43</value>
+  </data>
+  <data name="txtCambioSunat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 20</value>
+  </data>
+  <data name="txtCambioSunat.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
   </data>
   <data name="&gt;&gt;txtCambioSunat.Name" xml:space="preserve">
     <value>txtCambioSunat</value>
@@ -609,6 +642,18 @@
   <data name="&gt;&gt;txtCambioSunat.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="porcentajeDet.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="porcentajeDet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 16</value>
+  </data>
+  <data name="porcentajeDet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="porcentajeDet.TabIndex" type="System.Int32, mscorlib">
+    <value>89</value>
+  </data>
   <data name="&gt;&gt;porcentajeDet.Name" xml:space="preserve">
     <value>porcentajeDet</value>
   </data>
@@ -621,6 +666,27 @@
   <data name="&gt;&gt;porcentajeDet.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9.75pt</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 18</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 16</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>88</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Porcentaje:</value>
+  </data>
   <data name="&gt;&gt;label16.Name" xml:space="preserve">
     <value>label16</value>
   </data>
@@ -632,6 +698,24 @@
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="chkDetrac.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkDetrac.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkDetrac.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 19</value>
+  </data>
+  <data name="chkDetrac.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 17</value>
+  </data>
+  <data name="chkDetrac.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkDetrac.Text" xml:space="preserve">
+    <value>Si</value>
   </data>
   <data name="&gt;&gt;chkDetrac.Name" xml:space="preserve">
     <value>chkDetrac</value>
@@ -735,6 +819,9 @@
   <metadata name="monto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="monto.HeaderText" xml:space="preserve">
+    <value>Monto</value>
+  </data>
   <data name="dataCuentas.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -762,6 +849,27 @@
   <data name="&gt;&gt;dataCuentas.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="rdContado.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdContado.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
+  </data>
+  <data name="rdContado.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rdContado.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 17</value>
+  </data>
+  <data name="rdContado.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 17</value>
+  </data>
+  <data name="rdContado.TabIndex" type="System.Int32, mscorlib">
+    <value>85</value>
+  </data>
+  <data name="rdContado.Text" xml:space="preserve">
+    <value>Con&amp;tado:</value>
+  </data>
   <data name="&gt;&gt;rdContado.Name" xml:space="preserve">
     <value>rdContado</value>
   </data>
@@ -773,6 +881,24 @@
   </data>
   <data name="&gt;&gt;rdContado.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="rdCredito.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdCredito.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rdCredito.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 18</value>
+  </data>
+  <data name="rdCredito.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
+  </data>
+  <data name="rdCredito.TabIndex" type="System.Int32, mscorlib">
+    <value>84</value>
+  </data>
+  <data name="rdCredito.Text" xml:space="preserve">
+    <value>&amp;Credito</value>
   </data>
   <data name="&gt;&gt;rdCredito.Name" xml:space="preserve">
     <value>rdCredito</value>
@@ -1430,219 +1556,6 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel1.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="linkLabel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 46</value>
-  </data>
-  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
-  </data>
-  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
-  </data>
-  <data name="linkLabel1.Text" xml:space="preserve">
-    <value>TC. SUNAT</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
-    <value>linkLabel1</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtCambioSunat.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="txtCambioSunat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 43</value>
-  </data>
-  <data name="txtCambioSunat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 20</value>
-  </data>
-  <data name="txtCambioSunat.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.Name" xml:space="preserve">
-    <value>txtCambioSunat</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;txtCambioSunat.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="porcentajeDet.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="porcentajeDet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 16</value>
-  </data>
-  <data name="porcentajeDet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="porcentajeDet.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.Name" xml:space="preserve">
-    <value>porcentajeDet</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;porcentajeDet.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9.75pt</value>
-  </data>
-  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 18</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 16</value>
-  </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Porcentaje:</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="chkDetrac.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkDetrac.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkDetrac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 19</value>
-  </data>
-  <data name="chkDetrac.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 17</value>
-  </data>
-  <data name="chkDetrac.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="chkDetrac.Text" xml:space="preserve">
-    <value>Si</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.Name" xml:space="preserve">
-    <value>chkDetrac</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;chkDetrac.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="monto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="monto.HeaderText" xml:space="preserve">
-    <value>Monto</value>
-  </data>
-  <data name="rdContado.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdContado.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomLeft</value>
-  </data>
-  <data name="rdContado.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rdContado.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 17</value>
-  </data>
-  <data name="rdContado.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 17</value>
-  </data>
-  <data name="rdContado.TabIndex" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="rdContado.Text" xml:space="preserve">
-    <value>Con&amp;tado:</value>
-  </data>
-  <data name="&gt;&gt;rdContado.Name" xml:space="preserve">
-    <value>rdContado</value>
-  </data>
-  <data name="&gt;&gt;rdContado.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdContado.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;rdContado.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rdCredito.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdCredito.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rdCredito.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 18</value>
-  </data>
-  <data name="rdCredito.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 17</value>
-  </data>
-  <data name="rdCredito.TabIndex" type="System.Int32, mscorlib">
-    <value>84</value>
-  </data>
-  <data name="rdCredito.Text" xml:space="preserve">
-    <value>&amp;Credito</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.Name" xml:space="preserve">
-    <value>rdCredito</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;rdCredito.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
     <value>Monto</value>

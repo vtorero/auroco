@@ -1177,12 +1177,19 @@ namespace AurocoPublicidad.forms
             if (totalOrden.Text != "") {
                 var total = Convert.ToDouble(ObtenerDecimal(totalOrden.Text));
                 var totalIGV = Convert.ToDouble(ObtenerDecimal(totalOrden.Text)) * 0.18;
-            var simboloMoneda = "S/";
 
-            if (valorTotal != "") { 
+                if (cMoneda.Text == "Soles"  && valorTotal != "") {
+                    var simboloMoneda = "S/";
                     txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, totalIGV);
-                    totalBruto.Text= string.Format("{0}{1:N2}", simboloMoneda, total+ totalIGV);
+                    totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, total + totalIGV);
                 }
+                else
+                {
+                    var simboloMoneda = "$";
+                    txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, totalIGV);
+                    totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, total + totalIGV);
+                }
+
 
             }
         }
