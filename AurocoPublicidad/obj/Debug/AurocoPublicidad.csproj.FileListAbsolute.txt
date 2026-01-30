@@ -1,13 +1,11 @@
 D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe
 D:\proy\auroco\AurocoPublicidad\bin\Debug\Newtonsoft.Json.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\x64\pdfium.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\MySql.Data.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\PdfiumViewer.dll
-D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.pdb
 D:\proy\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x64\msvcr120.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x86\msvcr120.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\x64\pdfium.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe.config
 D:\proy\auroco\AurocoPublicidad\bin\Debug\BouncyCastle.Cryptography.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
@@ -26,6 +24,8 @@ D:\proy\auroco\AurocoPublicidad\bin\Debug\Microsoft.ReportViewer.Design.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\Microsoft.ReportViewer.WinForms.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\MySql.Data.dll
+D:\proy\auroco\AurocoPublicidad\bin\Debug\PdfiumViewer.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\SAPBusinessObjects.WPF.Viewer.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\SAPBusinessObjects.WPF.ViewerShared.dll
 D:\proy\auroco\AurocoPublicidad\bin\Debug\System.Buffers.dll
@@ -132,5 +132,4 @@ D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.csproj.CoreCompileInp
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPu.B3E24C9F.Up2Date
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe
 D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.pdb
-D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.exe.config
-D:\proy\auroco\AurocoPublicidad\obj\Debug\AurocoPublicidad.exe.config
+D:\proy\auroco\AurocoPublicidad\bin\Debug\AurocoPublicidad.pdb

@@ -85,6 +85,7 @@ namespace AurocoPublicidad.forms
                        
                         int rowIndex = dgOrdenes.Rows.Add();
                         dgOrdenes.Rows[rowIndex].Cells["C_ORDEN"].Value = ord.C_ORDEN;
+                        dgOrdenes.Rows[rowIndex].Cells["C_CONTRATO"].Value = ord.C_CONTRATO;
                         dgOrdenes.Rows[rowIndex].Cells["C_CLIENTE"].Value = ord.RAZON_SOCIAL;
                         dgOrdenes.Rows[rowIndex].Cells["C_RUC"].Value = ord.C_RUC;
                         dgOrdenes.Rows[rowIndex].Cells["moneda"].Value = ord.C_MONEDA;
@@ -158,6 +159,7 @@ namespace AurocoPublicidad.forms
 
         }
 
+       
 
         public string Send<T>(string url, T ObjectRequest, string method = "POST")
         {
@@ -197,6 +199,29 @@ namespace AurocoPublicidad.forms
             }
 
             return result;
+        }
+
+        private void dgOrdenes_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgOrdenes.Columns[e.ColumnIndex].Name == "estado")
+            {
+                var valor = e.Value?.ToString();
+
+                if (valor == "error")
+                {
+                    dgOrdenes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSalmon;
+                }
+                else if (valor == "aceptado")
+                {
+                    dgOrdenes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                    //dgOrdenes.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    dgOrdenes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    dgOrdenes.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
         }
     }
 }
