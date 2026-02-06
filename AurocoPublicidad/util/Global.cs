@@ -21,8 +21,8 @@ namespace AurocoPublicidad.util
         public static string nombreAuroco = "AUROCO PUBLICIDAD S A";
         public static string nombreOptimiza = "OPTIMIZA MEDIA SAC";
 
-        public static string DireccionAuroco = "JR. TRINIDAD MORAN 362 ALT. EDIFICIO EL DORADO";
-        public static string DireccionOptimiza = "CAL. TRINIDAD MORAN NRO. 362 LIMA LIMA LINCE";
+        public static string DireccionAuroco = "JR.TRINIDAD MORAN 362 ALT. EDIFICIO EL DORADO";
+        public static string DireccionOptimiza = "CAL.TRINIDAD MORAN NRO. 362 LIMA LIMA LINCE";
         
         public static string dptoAuroco = "LIMA";
         public static string ProvinciaAuroco = "LIMA";

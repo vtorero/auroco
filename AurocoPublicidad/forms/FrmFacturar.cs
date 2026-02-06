@@ -822,14 +822,19 @@ namespace AurocoPublicidad.forms
                     ActualizaEstado(txtNumero.Text);
                     estado = "aceptado";
 
-                }
-            }catch (Exception m) {
+                    string datos = SendDos<Factura>(Global.servicio + "/api-auroco/facturar", factura, "POST", tokenApi);
+
+
+                
+               }
+            }
+            catch (Exception m) {
                 mensaje=m.Message;  
                 //MessageBox.Show(m.Message);
                 MessageBox.Show(m.Message,"Información",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 estado = "error";
             }
-            InsertarFacturaEnMySQL(factura,mensaje,estado,txtAgencia.Text);
+           // InsertarFacturaEnMySQL(factura,mensaje,estado,txtAgencia.Text);
             this.Close();
         
 
@@ -840,13 +845,13 @@ namespace AurocoPublicidad.forms
             using (var conn = new MySqlConnection(Global.connectionString))
             {
                 conn.Open();
-                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha,agencia,total, ord_orden,estado,mensaje) VALUES (@serie, @correlativo, @fecha,@agencia, @total, @orden,@estado,@mensaje)", conn);
+                var cmd = new MySqlCommand("INSERT INTO facturas (serie, correlativo, fecha,agencia,total, c_contrato,estado,mensaje) VALUES (@serie, @correlativo, @fecha,@agencia, @total, @contrato,@estado,@mensaje)", conn);
                 cmd.Parameters.AddWithValue("@serie", factura.serie);
                 cmd.Parameters.AddWithValue("@correlativo", factura.correlativo);
                 cmd.Parameters.AddWithValue("@fecha", Convert.ToString(factura.fechaEmision).Substring(0, 11));
                 cmd.Parameters.AddWithValue("@agencia",agencia);
                 cmd.Parameters.AddWithValue("@total", factura.mtoImpVenta);
-                cmd.Parameters.AddWithValue("@orden",txtNumero.Text);
+                cmd.Parameters.AddWithValue("@contrato",txtNumero.Text);
                 cmd.Parameters.AddWithValue("@estado", estado);
                 cmd.Parameters.AddWithValue("@mensaje", mensaje);
                 cmd.ExecuteNonQuery();
@@ -859,8 +864,8 @@ namespace AurocoPublicidad.forms
             using (var conn = new MySqlConnection(Global.connectionString))
             {
                 conn.Open();
-                var cmd = new MySqlCommand("UPDATE ORD_ORDENES SET FACTURADA='SI' WHERE C_ORDEN=@C_ORDEN", conn);
-                cmd.Parameters.AddWithValue("@C_ORDEN", orden);
+                var cmd = new MySqlCommand("UPDATE ORD_CONTRATOS SET ESTADO_FACTURA='SI' WHERE ID=@C_CONTRATO", conn);
+                cmd.Parameters.AddWithValue("@C_CONTRATO", orden);
                 cmd.ExecuteNonQuery();
             }
         }
