@@ -148,6 +148,41 @@ $app->post("/ejecutivo",function() use($db,$app){
 
 
 
+$app->get("/facturados",function() use ($app,$db){
+
+    $json = $app->request->getBody();
+
+   $data = json_decode($json, true);
+
+
+
+   $resultado = $db->query("SELECT f.id,CONCAT(f.serie,f.correlativo) AS C_ORDEN,O.C_CONTRATO,f.agencia,C.RAZON_SOCIAL,C.RUC AS C_RUC,f.fecha as F_CREACION,O.C_MONEDA,f.total,f.estado as EJECUTIVO,f.mensaje as MOTIVO FROM facturas f, ORD_CONTRATOS O,ORD_CLIENTES C WHERE f.c_contrato=O.id AND O.C_CLIENTE=C.C_CLIENTE order by id desc");
+
+   $cliente=array();
+
+   while ($fila = $resultado->fetch_object()) {
+
+   $cliente[]=$fila;
+
+   }
+
+   if(count($cliente)>0){
+
+       $data = array("status"=>true,"rows"=>1,"data"=>$cliente);
+
+   }else{
+
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+
+   }
+
+   echo  json_encode($cliente);
+
+
+
+});
+
+
 $app->get("/medios",function() use ($app,$db){
 
     $json = $app->request->getBody();
@@ -828,6 +863,47 @@ $app->post("/contrato",function() use($db,$app){
 
 });
 
+$app->post("/buscafacturados",function() use($db,$app){
+    $json = $app->request->getBody();
+   $data = json_decode($json, false);
+   $fecha1 = explode("/", $data->INICIO_VIGENCIA);
+   $fecha2= explode("/", $data->FIN_VIGENCIA);
+   $ano1=explode(" ",$fecha1[2]);
+   $ano2=explode(" ",$fecha2[2]);
+   $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
+   $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
+
+$sql="SELECT f.id,CONCAT(f.serie,f.correlativo) AS C_ORDEN,f.agencia,C.RAZON_SOCIAL,C.RUC AS C_RUC,f.fecha AS F_CREACION,f.total AS TOTAL,f.estado AS EJECUTIVO,f.mensaje AS MOTIVO  FROM facturas f, ORD_ORDENES O,ORD_CLIENTES C WHERE f.ord_orden=O.C_ORDEN AND O.C_CLIENTE=C.C_CLIENTE";
+
+
+if($data->C_CLIENTE!="0"){
+    $sql.=" AND C.C_CLIENTE='{$data->C_CLIENTE}' ";
+}
+
+
+if($data->INICIO_VIGENCIA!="" && $data->FIN_VIGENCIA!="") {
+    $sql.=" AND f.fecha BETWEEN '{$inicio}' and '{$fin}'";
+}
+
+
+$sql.=" order by id desc";
+
+//print_r($sql);
+//die;
+   $resultado = $db->query($sql);
+   $ordenes=array();
+   while ($fila = $resultado->fetch_object()) {
+   $ordenes[]=$fila;
+   }
+   if(count($ordenes)>0){
+       $data = array("status"=>true,"rows"=>1,"data"=>$ordenes);
+   }else{
+       $data = array("status"=>false,"rows"=>0,"data"=>null);
+   }
+   echo  json_encode($ordenes);
+});
+
+
 
 $app->post("/buscafacturas",function() use($db,$app){
     $json = $app->request->getBody();
@@ -839,25 +915,25 @@ $app->post("/buscafacturas",function() use($db,$app){
    $inicio=$ano1[0]."-".$fecha1[1]."-".$fecha1[0];
    $fin=$ano2[0]."-".$fecha2[1]."-".$fecha2[0];
 
-$sql="SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,C.RAZON_SOCIAL,C.RUC AS C_RUC,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,C_CONTRATO,INICIO_VIGENCIA,O.F_CREACION,FIN_VIGENCIA,O.C_MONEDA,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,O.REVISION,O.ACTIVA,O.AGENCIA,O.INVERSION AS TOTAL,(select TIPO_CAMBIO FROM ORD_CONTRATOS WHERE C_CONTRATO=O.C_CONTRATO) AS TIPO_CAMBIO FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.ACTIVA='SI' AND FACTURADA IS NULL AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO";
+$sql="SELECT T.ID,T.C_CONTRATO,T.NRO_FISICO,C.C_CLIENTE,C.RAZON_SOCIAL,C.RUC AS C_RUC,T.INICIO_VIGENCIA,T.F_CREACION,T.FIN_VIGENCIA,T.OBSERVACIONES,T.C_MONEDA,T.INVERSION TOTAL,T.MONTO_ORDENAR ,TIPO_CAMBIO 
+FROM ORD_CONTRATOS T,ORD_CLIENTES C
+WHERE T.C_CLIENTE=C.C_CLIENTE  ";
 
 
 if($data->C_CLIENTE!="0"){
-    $sql.=" AND O.C_CLIENTE='{$data->C_CLIENTE}' ";
-}
-if($data->C_MEDIO!="") {
-    $sql.=" AND M.C_MEDIO = '{$data->C_MEDIO}' ";
+    $sql.=" AND C.C_CLIENTE='{$data->C_CLIENTE}' ";
 }
 
-if($data->INICIO_VIGENCIA!="" && $data->FIN_VIGENCIA!="" && $data->C_ORDEN=="") {
-    $sql.=" AND O.INICIO_VIGENCIA BETWEEN '{$inicio}' and '{$fin}'";
+
+if($data->INICIO_VIGENCIA!="" && $data->FIN_VIGENCIA!="" && $data->C_CONTRATO=="") {
+    $sql.=" AND T.INICIO_VIGENCIA BETWEEN '{$inicio}' and '{$fin}'";
 }
 
-if($data->C_ORDEN!=""){
-    $sql.=" AND O.C_ORDEN LIKE '%{$data->C_ORDEN}%'";
+if($data->C_CONTRATO!=""){
+    $sql.=" AND T.C_CONTRATO LIKE '%{$data->C_CONTRATO}%'";
 }
 
-$sql.=" ORDER  by O.F_CREACION DESC";
+$sql.=" ORDER  by T.F_CREACION DESC";
 
 //print_r($sql);
 //die;
@@ -1634,8 +1710,38 @@ $app->get("/orden/:id",function($id) use ($app,$db){
 
 
 });
+//enviar facturas
+$app->post("/facturar",function() use ($app,$db){
+ $json = $app->request->getBody();
+   $data = json_decode($json, true);
+   echo  json_encode($data);
+
+   
+  /* try {
+
+    $sql="call SP_FACTURAR('{$data->DNI_EJECUTIVO}','{$data->NOMBRES}','{$data->USUARIO}')";
+
+   $stmt = mysqli_prepare($db,$sql);
+
+    mysqli_stmt_execute($stmt);
+
+   $result = array("status"=>true,"message"=>"Ejecutivo registrado correctamente");
+
+   }
+
+   catch(PDOException $e) {
+
+    $result = array("STATUS"=>false,"message"=>$e->getMessage());
+
+   }
+
+      echo  json_encode($result);
+*/
+
+});
 
 
+//listar contratos para facturar
 $app->get("/facturar",function() use ($app,$db){
 
     $json = $app->request->getBody();
@@ -1644,7 +1750,9 @@ $app->get("/facturar",function() use ($app,$db){
 
 
 
-   $resultado = $db->query("SELECT O.ID,O.C_ORDEN,O.C_MEDIO,M.NOMBRE,O.C_CLIENTE,O.REVISION,O.ACTIVA,C.RAZON_SOCIAL,C.RUC AS C_RUC,E.C_EJECUTIVO,E.NOMBRES EJECUTIVO,PRODUCTO,MOTIVO,O.C_CONTRATO,O.INICIO_VIGENCIA,O.F_CREACION,O.FIN_VIGENCIA,O.C_MONEDA,O.AGENCIA,O.PRODUCTO,O.MOTIVO,O.DURACION,O.OBSERVACIONES,O.INVERSION AS TOTAL,(select TIPO_CAMBIO FROM ORD_CONTRATOS WHERE C_CONTRATO=O.C_CONTRATO) AS TIPO_CAMBIO FROM ORD_ORDENES O,ORD_CLIENTES C,ORD_MEDIOS M,ORD_EJECUTIVOS E WHERE O.C_CLIENTE=C.C_CLIENTE AND O.C_MEDIO=M.C_MEDIO AND O.C_EJECUTIVO=E.C_EJECUTIVO AND O.AGENCIA IN('AUROCO','OPTIMIZA') AND O.ACTIVA='SI' AND FACTURADA IS NULL  ORDER  by O.F_CREACION DESC limit 80");
+   $resultado = $db->query("SELECT T.ID,T.C_CONTRATO,T.NRO_FISICO,C.C_CLIENTE,C.RAZON_SOCIAL,C.RUC AS C_RUC,T.INICIO_VIGENCIA,T.F_CREACION,T.FIN_VIGENCIA,T.OBSERVACIONES,T.C_MONEDA,T.INVERSION TOTAL,T.MONTO_ORDENAR ,TIPO_CAMBIO 
+FROM ORD_CONTRATOS T,ORD_CLIENTES C
+WHERE T.C_CLIENTE=C.C_CLIENTE  ORDER  by T.F_CREACION DESC limit 80");
 
    $ordenes=array();
 

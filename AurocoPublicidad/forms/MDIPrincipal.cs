@@ -249,7 +249,7 @@ namespace AurocoPublicidad.forms
         {
             Form childForm = new FormFacturarOrdenes();
             childForm.MdiParent = this;
-            childForm.Text = "Facturación de Ordenes";
+            childForm.Text = "Facturación de Contratos";
             childForm.Show();
         }
 

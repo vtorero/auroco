@@ -222,7 +222,7 @@
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(157, 30);
             this.btnNuevo.TabIndex = 101;
-            this.btnNuevo.Text = "F&acturar Orden";
+            this.btnNuevo.Text = "F&acturar Contrato";
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
@@ -467,7 +467,7 @@
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.dgOrdenes);
             this.Name = "FormFacturarOrdenes";
-            this.Text = "Facturar Ordenes";
+            this.Text = "Facturar Contratos";
             this.Load += new System.EventHandler(this.FormFacturarOrdenes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

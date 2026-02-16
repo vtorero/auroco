@@ -29,6 +29,17 @@
         private void InitializeComponent()
         {
             this.dgOrdenes = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_RUC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONEDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mensaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboCliente = new System.Windows.Forms.ComboBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.dtDesde = new System.Windows.Forms.DateTimePicker();
@@ -46,17 +57,6 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_ORDEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_RUC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MONEDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mensaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,6 +82,72 @@
             this.dgOrdenes.Size = new System.Drawing.Size(1165, 327);
             this.dgOrdenes.TabIndex = 101;
             this.dgOrdenes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgOrdenes_CellFormatting_1);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // C_ORDEN
+            // 
+            this.C_ORDEN.HeaderText = "Factura";
+            this.C_ORDEN.Name = "C_ORDEN";
+            this.C_ORDEN.Width = 80;
+            // 
+            // C_CONTRATO
+            // 
+            this.C_CONTRATO.HeaderText = "Contrato";
+            this.C_CONTRATO.Name = "C_CONTRATO";
+            // 
+            // agencia
+            // 
+            this.agencia.HeaderText = "Agencia";
+            this.agencia.Name = "agencia";
+            this.agencia.Width = 75;
+            // 
+            // C_RUC
+            // 
+            this.C_RUC.HeaderText = "RUC";
+            this.C_RUC.Name = "C_RUC";
+            this.C_RUC.Width = 90;
+            // 
+            // C_CLIENTE
+            // 
+            this.C_CLIENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.C_CLIENTE.HeaderText = "Cliente";
+            this.C_CLIENTE.Name = "C_CLIENTE";
+            this.C_CLIENTE.Width = 150;
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.Width = 80;
+            // 
+            // MONEDA
+            // 
+            this.MONEDA.HeaderText = "Moneda";
+            this.MONEDA.Name = "MONEDA";
+            this.MONEDA.Width = 70;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.Width = 70;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.Width = 70;
+            // 
+            // mensaje
+            // 
+            this.mensaje.HeaderText = "Mensaje Sunat";
+            this.mensaje.Name = "mensaje";
+            this.mensaje.Width = 350;
             // 
             // comboCliente
             // 
@@ -218,72 +284,6 @@
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.Width = 200;
             // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // C_ORDEN
-            // 
-            this.C_ORDEN.HeaderText = "Factura";
-            this.C_ORDEN.Name = "C_ORDEN";
-            this.C_ORDEN.Width = 80;
-            // 
-            // C_CONTRATO
-            // 
-            this.C_CONTRATO.HeaderText = "Contrato";
-            this.C_CONTRATO.Name = "C_CONTRATO";
-            // 
-            // agencia
-            // 
-            this.agencia.HeaderText = "Agencia";
-            this.agencia.Name = "agencia";
-            this.agencia.Width = 75;
-            // 
-            // C_RUC
-            // 
-            this.C_RUC.HeaderText = "RUC";
-            this.C_RUC.Name = "C_RUC";
-            this.C_RUC.Width = 90;
-            // 
-            // C_CLIENTE
-            // 
-            this.C_CLIENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.C_CLIENTE.HeaderText = "Cliente";
-            this.C_CLIENTE.Name = "C_CLIENTE";
-            this.C_CLIENTE.Width = 150;
-            // 
-            // fecha
-            // 
-            this.fecha.HeaderText = "Fecha";
-            this.fecha.Name = "fecha";
-            this.fecha.Width = 80;
-            // 
-            // MONEDA
-            // 
-            this.MONEDA.HeaderText = "Moneda";
-            this.MONEDA.Name = "MONEDA";
-            this.MONEDA.Width = 70;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            this.total.Width = 70;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.Width = 70;
-            // 
-            // mensaje
-            // 
-            this.mensaje.HeaderText = "Mensaje Sunat";
-            this.mensaje.Name = "mensaje";
-            this.mensaje.Width = 350;
-            // 
             // frmFacturado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +297,7 @@
             this.Controls.Add(this.dtHasta);
             this.Controls.Add(this.dgOrdenes);
             this.Name = "frmFacturado";
-            this.Text = "frmFacturado";
+            this.Text = "Contratos Facturados";
             this.Load += new System.EventHandler(this.frmFacturado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgOrdenes)).EndInit();
             this.ResumeLayout(false);
