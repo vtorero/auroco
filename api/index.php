@@ -156,7 +156,8 @@ $app->get("/facturados",function() use ($app,$db){
 
 
 
-   $resultado = $db->query("SELECT f.id,CONCAT(f.serie,f.correlativo) AS C_ORDEN,O.C_CONTRATO,f.agencia,C.RAZON_SOCIAL,C.RUC AS C_RUC,f.fecha as F_CREACION,O.C_MONEDA,f.total,f.estado as EJECUTIVO,f.mensaje as MOTIVO FROM facturas f, ORD_CONTRATOS O,ORD_CLIENTES C WHERE f.c_contrato=O.id AND O.C_CLIENTE=C.C_CLIENTE order by id desc");
+   $resultado = $db->query("SELECT concat(f.serie,f.correlativo) C_ORDEN,c.c_contrato,agencia,t.ruc C_RUC,t.RAZON_SOCIAL,f.fecha as F_CREACION,c.C_MONEDA,c.inversion,f.total,f.estado EJECUTIVO,f.mensaje MOTIVO FROM facturas f,ORD_CONTRATOS c,ORD_CLIENTES t  
+where CONCAT('T0',f.c_contrato)=c.C_CONTRATO and c.C_CLIENTE=t.C_CLIENTE");
 
    $cliente=array();
 
