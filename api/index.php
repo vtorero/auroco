@@ -1504,189 +1504,58 @@ $app->get("/orden/:id",function($id) use ($app,$db){
 
    $data = json_decode($json, true);
 
-   $resultado = $db->query("SELECT ORD.ID,ORD.PERIODO TEMA,ORD.C_MEDIO,ORD.INVERSION_TOTAL,SUM(IF(DAY(ORD.FECHA)=01,XCONT,'')) d1,
-
-         SUM(IF(DAY(ORD.FECHA)=02,XCONT,'')) d2,
-
-         SUM(IF(DAY(ORD.FECHA)=03,XCONT,'')) d3,
-
-         SUM(IF(DAY(ORD.FECHA)=04,XCONT,'')) d4,
-
-         SUM(IF(DAY(ORD.FECHA)=05,XCONT,'')) d5,
-
-         SUM(IF(DAY(ORD.FECHA)=06,XCONT,'')) d6,
-
-         SUM(IF(DAY(ORD.FECHA)=07,XCONT,'')) d7,
-
-         SUM(IF(DAY(ORD.FECHA)=08,XCONT,'')) d8,
-
-         SUM(IF(DAY(ORD.FECHA)=09,XCONT,'')) d9,
-
-         SUM(IF(DAY(ORD.FECHA)=10,XCONT,'')) d10,
-
-         SUM(IF(DAY(ORD.FECHA)=11,XCONT,'')) d11,
-
-         SUM(IF(DAY(ORD.FECHA)=12,XCONT,'')) d12,
-
-         SUM(IF(DAY(ORD.FECHA)=13,XCONT,'')) d13,
-
-         SUM(IF(DAY(ORD.FECHA)=14,XCONT,'')) d14,
-
-         SUM(IF(DAY(ORD.FECHA)=15,XCONT,'')) d15,
-
-         SUM(IF(DAY(ORD.FECHA)=16,XCONT,'')) d16,
-
-         SUM(IF(DAY(ORD.FECHA)=17,XCONT,'')) d17,
-
-         SUM(IF(DAY(ORD.FECHA)=18,XCONT,'')) d18,
-
-         SUM(IF(DAY(ORD.FECHA)=19,XCONT,'')) d19,
-
-         SUM(IF(DAY(ORD.FECHA)=20,XCONT,'')) d20,
-
-         SUM(IF(DAY(ORD.FECHA)=21,XCONT,'')) d21,
-
-         SUM(IF(DAY(ORD.FECHA)=22,XCONT,'')) d22,
-
-         SUM(IF(DAY(ORD.FECHA)=23,XCONT,'')) d23,
-
-         SUM(IF(DAY(ORD.FECHA)=24,XCONT,'')) d24,
-
-         SUM(IF(DAY(ORD.FECHA)=25,XCONT,'')) d25,
-
-         SUM(IF(DAY(ORD.FECHA)=26,XCONT,'')) d26,
-
-         SUM(IF(DAY(ORD.FECHA)=27,XCONT,'')) d27,
-
-         SUM(IF(DAY(ORD.FECHA)=28,XCONT,'')) d28,
-
-         SUM(IF(DAY(ORD.FECHA)=29,XCONT,'')) d29,
-
-         SUM(IF(DAY(ORD.FECHA)=30,XCONT,'')) d30,
-
-         SUM(IF(DAY(ORD.FECHA)=31,XCONT,'')) d31
-
-       FROM
-
-   (select O.C_ORDEN,CL.RAZON_SOCIAL,O.C_MEDIO,M.NOMBRE,O.OBSERVACIONES,
-
-                  month(O.INICIO_VIGENCIA)  AS  INICIO_VIGENCIA,
-
-                  P.ID,
-
-                  P.PROGRAMA,
-
-                  P.PERIODO,
-
-                  sum(l.inversion_total) COSTO,
-
-                  O.PRODUCTO,
-
-                  O.MOTIVO,
-
-                  l.RATING,
-
-                  l.MILES,
-
-                  O.DURACION,
-
-                  l.INVERSION_TOTAL,
-
-                  FECHA,
-
-                  count(*)  XCONT
-
-             from ORDEN_LINEAS l,
-
-                  ORD_ORDENES        O,
-
-                  ORD_MEDIOS         M,
-
-                  ORD_PROGRAMAS_AUT  P,
-
-                  ORD_CONTRATOS      CO,
-
-                  ORD_CLIENTES       CL
-
-            where
-
-              CL.C_CLIENTE = CO.C_CLIENTE
-
-              and O.C_MEDIO=M.C_MEDIO
-
-              AND O.C_ORDEN = l.C_ORDEN
-
-             AND l.idPrograma = P.ID
-
-              AND O.C_CONTRATO=CO.C_CONTRATO AND l.C_ORDEN='{$id}'
-
-              group by O.C_ORDEN,
-
-               P.ID,
-
-                     CL.RAZON_SOCIAL,
-
-                     O.C_MEDIO,
-
-                     M.NOMBRE,
-
-                     O.OBSERVACIONES,
-
-                     O.INICIO_VIGENCIA,
-
-                     P.PROGRAMA,
-
-                     P.PERIODO,
-
-                     O.PRODUCTO,
-
-                     O.MOTIVO,
-
-                     l.RATING,
-
-                     l.MILES,
-
-                     O.DURACION,
-
-                     l.INVERSION_TOTAL,
-
-                     FECHA) ORD
-
-                     GROUP BY ORD.C_ORDEN,
-
-                     ORD.ID,
-
-                       ORD.RAZON_SOCIAL,
-
-           ORD.RAZON_SOCIAL,
-
-              ORD.C_MEDIO,
-
-          ORD.NOMBRE,
-
-          ORD.OBSERVACIONES,
-
-          ORD.INICIO_VIGENCIA,
-
-          ORD.PROGRAMA,
-
-          ORD.PERIODO,
-
-        ORD.PRODUCTO,
-
-             ORD.MOTIVO,
-
-             ORD.RATING,
-
-             ORD.MILES,
-
-             ORD.DURACION,
-
-             ORD.INVERSION_TOTAL
-
-
-
-             ");
+   $resultado = $db->query("SELECT
+   p.ID,
+    p.PERIODO AS TEMA,
+    o.C_MEDIO,
+    l.INVERSION_TOTAL,
+    SUM(CASE WHEN DAY(l.FECHA) = 1  THEN 1 ELSE 0 END) AS d1,
+    SUM(CASE WHEN DAY(l.FECHA) = 2  THEN 1 ELSE 0 END) AS d2,
+    SUM(CASE WHEN DAY(l.FECHA) = 3  THEN 1 ELSE 0 END) AS d3,
+    SUM(CASE WHEN DAY(l.FECHA) = 4  THEN 1 ELSE 0 END) AS d4,
+    SUM(CASE WHEN DAY(l.FECHA) = 5  THEN 1 ELSE 0 END) AS d5,
+    SUM(CASE WHEN DAY(l.FECHA) = 6  THEN 1 ELSE 0 END) AS d6,
+    SUM(CASE WHEN DAY(l.FECHA) = 7  THEN 1 ELSE 0 END) AS d7,
+    SUM(CASE WHEN DAY(l.FECHA) = 8  THEN 1 ELSE 0 END) AS d8,
+    SUM(CASE WHEN DAY(l.FECHA) = 9  THEN 1 ELSE 0 END) AS d9,
+    SUM(CASE WHEN DAY(l.FECHA) = 10 THEN 1 ELSE 0 END) AS d10,
+    SUM(CASE WHEN DAY(l.FECHA) = 11 THEN 1 ELSE 0 END) AS d11,
+    SUM(CASE WHEN DAY(l.FECHA) = 12 THEN 1 ELSE 0 END) AS d12,
+    SUM(CASE WHEN DAY(l.FECHA) = 13 THEN 1 ELSE 0 END) AS d13,
+    SUM(CASE WHEN DAY(l.FECHA) = 14 THEN 1 ELSE 0 END) AS d14,
+    SUM(CASE WHEN DAY(l.FECHA) = 15 THEN 1 ELSE 0 END) AS d15,
+    SUM(CASE WHEN DAY(l.FECHA) = 16 THEN 1 ELSE 0 END) AS d16,
+    SUM(CASE WHEN DAY(l.FECHA) = 17 THEN 1 ELSE 0 END) AS d17,
+    SUM(CASE WHEN DAY(l.FECHA) = 18 THEN 1 ELSE 0 END) AS d18,
+    SUM(CASE WHEN DAY(l.FECHA) = 19 THEN 1 ELSE 0 END) AS d19,
+    SUM(CASE WHEN DAY(l.FECHA) = 20 THEN 1 ELSE 0 END) AS d20,
+    SUM(CASE WHEN DAY(l.FECHA) = 21 THEN 1 ELSE 0 END) AS d21,
+    SUM(CASE WHEN DAY(l.FECHA) = 22 THEN 1 ELSE 0 END) AS d22,
+    SUM(CASE WHEN DAY(l.FECHA) = 23 THEN 1 ELSE 0 END) AS d23,
+    SUM(CASE WHEN DAY(l.FECHA) = 24 THEN 1 ELSE 0 END) AS d24,
+    SUM(CASE WHEN DAY(l.FECHA) = 25 THEN 1 ELSE 0 END) AS d25,
+    SUM(CASE WHEN DAY(l.FECHA) = 26 THEN 1 ELSE 0 END) AS d26,
+    SUM(CASE WHEN DAY(l.FECHA) = 27 THEN 1 ELSE 0 END) AS d27,
+    SUM(CASE WHEN DAY(l.FECHA) = 28 THEN 1 ELSE 0 END) AS d28,
+    SUM(CASE WHEN DAY(l.FECHA) = 29 THEN 1 ELSE 0 END) AS d29,
+    SUM(CASE WHEN DAY(l.FECHA) = 30 THEN 1 ELSE 0 END) AS d30,
+    SUM(CASE WHEN DAY(l.FECHA) = 31 THEN 1 ELSE 0 END) AS d31
+
+FROM ORD_ORDENES o
+JOIN ORDEN_LINEAS l       ON l.C_ORDEN   = o.C_ORDEN
+JOIN ORD_MEDIOS m         ON m.C_MEDIO   = o.C_MEDIO
+JOIN ORD_PROGRAMAS_AUT p  ON p.ID        = l.idPrograma
+JOIN ORD_CONTRATOS co     ON co.C_CONTRATO = o.C_CONTRATO
+JOIN ORD_CLIENTES cl      ON cl.C_CLIENTE  = co.C_CLIENTE
+
+WHERE l.C_ORDEN = '{$id}'
+
+GROUP BY
+    o.C_ORDEN,
+    p.ID,
+    p.PERIODO,
+    o.C_MEDIO,
+    l.INVERSION_TOTAL");
 
    $datos=array();
 
