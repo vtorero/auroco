@@ -11,6 +11,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+
+
+
+
+
 
 namespace AurocoPublicidad.forms
 {
@@ -34,27 +41,10 @@ namespace AurocoPublicidad.forms
         private string valorAgencia;
 
         private string apiUrl = Global.servicio + "/api-auroco/orden";
-
-        public FrmOrden(
-            string id,
-            string medio,
-            string cliente,
-            string contrato,
-            int revision,
-            string ejecutivo,
-            string fecha,
-            string fechainicio,
-            string fechafin,
-            string moneda,
-            string total,
-            string producto,
-            string motivo,
-            string duracion,
-            string observaciones,
-            string agencia)
+        public FrmOrden(string id, string medio, string cliente, string contrato, int revision, string ejecutivo, string fecha, string fechainicio, string fechafin, string moneda, string total, string producto, string motivo, string duracion, string observaciones, string agencia)
         {
-            InitializeComponent();
 
+            InitializeComponent();
             valorIdOrden = id;
             valorRecibido = medio;
             valorRevision = revision;
@@ -70,10 +60,15 @@ namespace AurocoPublicidad.forms
             valorMotivo = motivo;
             valorDuracion = duracion;
             valorAgencia = agencia;
+
             valorObservaciones = observaciones;
+
 
             if (id != "")
             {
+
+
+             //   cargaprograma(medio);
                 LblNumero.Visible = true;
                 txtNumero.Visible = true;
                 chkRevisar.Visible = true;
@@ -83,6 +78,8 @@ namespace AurocoPublicidad.forms
                 btnPrint.Visible = true;
                 numRevision.Value = valorRevision;
                 pintaDias();
+               // cargarLineas(id);
+
             }
             else
             {
@@ -93,9 +90,9 @@ namespace AurocoPublicidad.forms
                 chkRevisar.Visible = false;
                 btnPrint.Visible = false;
                 txtNumero.Text = "";
-
                 DateTime primerDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DateTime ultimoDiaDelMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+                // Establecer el valor del DateTimePicker al primer día del mes actual
                 inicioVigencia.Value = primerDiaDelMes;
                 finVigencia.Value = ultimoDiaDelMes;
                 pintaDias();
@@ -104,272 +101,293 @@ namespace AurocoPublicidad.forms
             dataGridOrden.EditingControlShowing += dataGridOrden_EditingControlShowing;
         }
 
+
         private async void FrmOrden_Load(object sender, EventArgs e)
         {
-            try
+
+            if (!string.IsNullOrEmpty(valorRecibido))
             {
-                comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
-                comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
-
-                string simboloMoneda = valorMoneda == "Soles" ? "S/." : "$";
-                double igv = 0;
-                double totalOrd = 0;
-
-                if (!string.IsNullOrWhiteSpace(valorTotal))
-                {
-                    double totalTmp = ToDoubleSafe(valorTotal);
-                    igv = totalTmp * 0.18;
-                    totalOrd = totalTmp + igv;
-                    totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, totalTmp);
-                    txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, igv);
-                    totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
-                }
-
-                if (!string.IsNullOrWhiteSpace(valorInicio))
-                    inicioVigencia.Value = Convert.ToDateTime(valorInicio);
-
-                if (!string.IsNullOrWhiteSpace(valorFin))
-                    finVigencia.Value = Convert.ToDateTime(valorFin);
-
-                if (!string.IsNullOrWhiteSpace(valorProducto))
-                    textProducto.Text = valorProducto;
-
-                if (!string.IsNullOrWhiteSpace(valorMotivo))
-                    textMotivo.Text = valorMotivo;
-
-                if (!string.IsNullOrWhiteSpace(valorDuracion))
-                    textDuracion.Text = valorDuracion;
-
-                if (!string.IsNullOrWhiteSpace(valorObservaciones))
-                    textObservaciones.Text = valorObservaciones;
-
-                string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
-                List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes) ?? new List<models.request.Cliente>();
-                comboCliente.DataSource = lstC;
-                comboCliente.DisplayMember = "RAZON_SOCIAL";
-                comboCliente.ValueMember = "C_CLIENTE";
-
-                if (!string.IsNullOrWhiteSpace(valorCliente))
-                    comboCliente.SelectedValue = valorCliente;
-
-                string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
-                List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios) ?? new List<models.request.Medio>();
-                comboMedio.DataSource = lstM;
-                comboMedio.DisplayMember = "NOMBRE";
-                comboMedio.ValueMember = "C_MEDIO";
-
-                if (!string.IsNullOrWhiteSpace(valorRecibido))
-                {
-                    comboMedio.SelectedValue = valorRecibido;
-                    btnGuardar.Text = "&Actualizar";
-                }
-
-                string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
-                List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos) ?? new List<models.request.Ejecutivo>();
-                cmbEjecutivo.DataSource = lstE;
-                cmbEjecutivo.DisplayMember = "NOMBRES";
-                cmbEjecutivo.ValueMember = "C_EJECUTIVO";
-
-                if (!string.IsNullOrWhiteSpace(valorEjecutivo))
-                    cmbEjecutivo.SelectedValue = valorEjecutivo;
-
-                string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
-                List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas) ?? new List<models.request.Monedas>();
-                comboCambio.DataSource = lstMo;
-                comboCambio.DisplayMember = "NOMBRE";
-                comboCambio.ValueMember = "VALOR";
-
-                if (!string.IsNullOrWhiteSpace(valorMoneda))
-                    comboCambio.SelectedValue = valorMoneda;
-
-                comboIgv.Items.Clear();
-                comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
-                comboIgv.Items.Add(new ListItem("Si", "Si"));
-                comboIgv.Items.Add(new ListItem("No", "No"));
-                comboIgv.SelectedIndex = 1;
-
-                txtAgencia.Items.Clear();
-                txtAgencia.Items.Add(new ListItem("0", "Seleccionar"));
-                txtAgencia.Items.Add(new ListItem("AUROCO", "AUROCO"));
-                txtAgencia.Items.Add(new ListItem("OPTIMIZA", "OPTIMIZA"));
-
-                if (valorAgencia == "AUROCO")
-                    txtAgencia.SelectedIndex = 1;
-                else if (valorAgencia == "OPTIMIZA")
-                    txtAgencia.SelectedIndex = 2;
-                else
-                    txtAgencia.SelectedIndex = 1;
-
-                // Carga ordenada: primero programas, luego líneas
-                if (!string.IsNullOrWhiteSpace(valorRecibido))
-                    await cargaprograma(valorRecibido);
-
-                if (!string.IsNullOrWhiteSpace(valorIdOrden))
-                    await cargarLineas(valorIdOrden);
+                await cargaprograma(valorRecibido);
             }
-            catch (Exception ex)
+
+            if (!string.IsNullOrEmpty(valorIdOrden))
             {
-                MessageBox.Show("Error al cargar la orden: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                await cargarLineas(valorIdOrden);
             }
+
+            comboCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboCliente.KeyDown += ComboBoxAutocomplete_TextChanged;
+            string simboloMoneda = "";
+            if (valorMoneda == "Soles")
+            {
+                simboloMoneda = "S/.";
+            }
+            else
+            {
+                simboloMoneda = "$";
+            }
+            Double igv = 0;
+            Double totalOrd = 0;
+            if (valorTotal != "")
+            {
+                igv = Convert.ToDouble(valorTotal) * 0.18;
+
+                totalOrd = Convert.ToDouble(valorTotal) + igv;
+            }
+            if (valorTotal != "") totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, valorTotal);
+            if (valorTotal != "") txtIgv.Text = string.Format("{0}{1:N2}", simboloMoneda, igv);
+            if (valorTotal != "") totalBruto.Text = string.Format("{0}{1:N2}", simboloMoneda, totalOrd);
+
+
+
+            if (valorInicio != "") inicioVigencia.Value = Convert.ToDateTime(valorInicio);
+            if (valorFin != "") finVigencia.Value = Convert.ToDateTime(valorFin);
+            if (valorProducto != "") textProducto.Text = valorProducto;
+            if (valorMotivo != "") textMotivo.Text = valorMotivo;
+            if (valorDuracion != "") textDuracion.Text = valorDuracion;
+            if (valorObservaciones != "") textObservaciones.Text = valorObservaciones;
+
+
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            comboCliente.SelectedValue = "0";
+            if (valorCliente != "")
+                comboCliente.SelectedValue = valorCliente;
+
+            string medios = await GetService(Global.servicio + "/api-auroco/tabla/ORD_MEDIOS/NOMBRE");
+            List<models.request.Medio> lstM = JsonConvert.DeserializeObject<List<models.request.Medio>>(medios);
+            comboMedio.DataSource = lstM;
+            comboMedio.DisplayMember = "NOMBRE";
+            comboMedio.ValueMember = "C_MEDIO";
+            comboMedio.SelectedValue = "0";
+            if (valorRecibido != "")
+            {
+                comboMedio.SelectedValue = valorRecibido;
+                //btnGuardar.Enabled = true;
+                btnGuardar.Text = "&Actualizar";
+            }
+
+
+            string ejecutivos = await GetService(Global.servicio + "/api-auroco/tabla/ORD_EJECUTIVOS/NOMBRES");
+            List<models.request.Ejecutivo> lstE = JsonConvert.DeserializeObject<List<models.request.Ejecutivo>>(ejecutivos);
+            cmbEjecutivo.DataSource = lstE;
+            cmbEjecutivo.DisplayMember = "NOMBRES";
+            cmbEjecutivo.ValueMember = "C_EJECUTIVO";
+            if (valorEjecutivo != "")
+                cmbEjecutivo.SelectedValue = valorEjecutivo;
+
+            string monedas = await GetService(Global.servicio + "/api-auroco/monedas");
+            List<models.request.Monedas> lstMo = JsonConvert.DeserializeObject<List<models.request.Monedas>>(monedas);
+            comboCambio.DataSource = lstMo;
+            comboCambio.DisplayMember = "NOMBRE";
+            comboCambio.ValueMember = "VALOR";
+            if (valorMoneda != "")
+                comboCambio.SelectedValue = valorMoneda;
+
+            comboIgv.Items.Add(new ListItem("0", "Seleccionar"));
+            comboIgv.Items.Add(new ListItem("Si", "Si"));
+            comboIgv.Items.Add(new ListItem("No", "No"));
+            // Seleccionar el primer elemento por defecto
+            comboIgv.SelectedIndex = 1;
+
+            txtAgencia.Items.Add(new ListItem("0", "Seleccionar"));
+            txtAgencia.Items.Add(new ListItem("AUROCO", "AUROCO"));
+            txtAgencia.Items.Add(new ListItem("OPTIMIZA", "OPTIMIZA"));
+            // Seleccionar el primer elemento por defecto
+
+            if (valorAgencia != "" && valorAgencia == "AUROCO")
+                txtAgencia.SelectedIndex = 1;
+            else if (valorAgencia != "" && valorAgencia == "OPTIMIZA")
+                txtAgencia.SelectedIndex = 2;
+            else
+                txtAgencia.SelectedIndex = 1;
         }
-
         private async void ComboBoxAutocomplete_TextChanged(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && comboCliente.Text != "")
             {
                 Cursor.Current = Cursors.WaitCursor;
-                try
-                {
-                    string clientes = await GetService(Global.servicio + "/api-auroco/cliente_buscar/" + comboCliente.Text);
-                    List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes) ?? new List<models.request.Cliente>();
-                    comboCliente.DataSource = lstC;
-                    comboCliente.DisplayMember = "RAZON_SOCIAL";
-                    comboCliente.ValueMember = "C_CLIENTE";
-                    comboCliente.DroppedDown = true;
-                }
-                finally
-                {
-                    Cursor.Current = Cursors.Default;
-                }
+                string clientes = await GetService(Global.servicio + "/api-auroco/cliente_buscar/" + comboCliente.Text);
+                List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+                comboCliente.DataSource = lstC;
+                comboCliente.DisplayMember = "RAZON_SOCIAL";
+                comboCliente.ValueMember = "C_CLIENTE";
+                comboCliente.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
             }
-
             if (e.KeyCode == Keys.Enter && comboCliente.Text == "")
             {
                 fillClientes();
             }
+
+
+
         }
+
 
         private async void fillClientes()
         {
             Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-                string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
-                List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes) ?? new List<models.request.Cliente>();
-                comboCliente.DataSource = lstC;
-                comboCliente.DisplayMember = "RAZON_SOCIAL";
-                comboCliente.ValueMember = "C_CLIENTE";
-            }
-            finally
-            {
-                Cursor.Current = Cursors.Default;
-            }
+            string clientes = await GetService(Global.servicio + "/api-auroco/clientes_orden");
+            List<models.request.Cliente> lstC = JsonConvert.DeserializeObject<List<models.request.Cliente>>(clientes);
+            comboCliente.DataSource = lstC;
+            comboCliente.DisplayMember = "RAZON_SOCIAL";
+            comboCliente.ValueMember = "C_CLIENTE";
+            Cursor.Current = Cursors.Default;
         }
+
 
         private void inicioVigencia_Validated(object sender, EventArgs e)
         {
+
             pintaDias();
+
+
+
         }
 
         private async Task<List<OrdenesLinea>> cargarLineas(string id)
         {
-            dataGridOrden.Rows.Clear();
 
             string ordenes = await GetService(Global.servicio + "/api-auroco/orden/" + id);
-            List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes) ?? new List<models.request.OrdenesLinea>();
+            List<models.request.OrdenesLinea> lstC = JsonConvert.DeserializeObject<List<models.request.OrdenesLinea>>(ordenes);
 
             foreach (OrdenesLinea ord in lstC)
             {
                 int rowIndex = dataGridOrden.Rows.Add();
-
                 dataGridOrden.Rows[rowIndex].Cells["idprograma"].Value = ord.ID;
-
-                if (dataGridOrden.Columns.Contains("programa"))
-                    dataGridOrden.Rows[rowIndex].Cells["programa"].Value = ord.ID;
-
+                dataGridOrden.Rows[rowIndex].Cells["programa"].Value = ord.ID;
                 dataGridOrden.Rows[rowIndex].Cells["horario"].Value = ord.TEMA;
-                dataGridOrden.Rows[rowIndex].Cells["costo"].Value = ToDoubleSafe(ord.INVERSION_TOTAL);
+                dataGridOrden.Rows[rowIndex].Cells["costo"].Value = ord.INVERSION_TOTAL;
+                if (ord.d1 != "0") { dataGridOrden.Rows[rowIndex].Cells["d1"].Value = ord.d1; }
+                ;
+                if (ord.d2 != "0") { dataGridOrden.Rows[rowIndex].Cells["d2"].Value = ord.d2; }
+                ;
+                if (ord.d3 != "0") { dataGridOrden.Rows[rowIndex].Cells["d3"].Value = ord.d3; }
+                ;
+                if (ord.d4 != "0") { dataGridOrden.Rows[rowIndex].Cells["d4"].Value = ord.d4; }
+                ;
+                if (ord.d5 != "0") { dataGridOrden.Rows[rowIndex].Cells["d5"].Value = ord.d5; }
+                ;
+                if (ord.d6 != "0") { dataGridOrden.Rows[rowIndex].Cells["d6"].Value = ord.d6; }
+                ;
+                if (ord.d7 != "0") { dataGridOrden.Rows[rowIndex].Cells["d7"].Value = ord.d7; }
+                ;
+                if (ord.d8 != "0") { dataGridOrden.Rows[rowIndex].Cells["d8"].Value = ord.d8; }
+                ;
+                if (ord.d9 != "0") { dataGridOrden.Rows[rowIndex].Cells["d9"].Value = ord.d9; }
+                ;
+                if (ord.d10 != "0") { dataGridOrden.Rows[rowIndex].Cells["d10"].Value = ord.d10; }
+                ;
+                if (ord.d11 != "0") { dataGridOrden.Rows[rowIndex].Cells["d11"].Value = ord.d11; }
+                ;
+                if (ord.d12 != "0") { dataGridOrden.Rows[rowIndex].Cells["d12"].Value = ord.d12; }
+                ;
+                if (ord.d13 != "0") { dataGridOrden.Rows[rowIndex].Cells["d13"].Value = ord.d13; }
+                ;
+                if (ord.d14 != "0") { dataGridOrden.Rows[rowIndex].Cells["d14"].Value = ord.d14; }
+                ;
+                if (ord.d15 != "0") { dataGridOrden.Rows[rowIndex].Cells["d15"].Value = ord.d15; }
+                ;
+                if (ord.d16 != "0") { dataGridOrden.Rows[rowIndex].Cells["d16"].Value = ord.d16; }
+                ;
+                if (ord.d17 != "0") { dataGridOrden.Rows[rowIndex].Cells["d17"].Value = ord.d17; }
+                ;
+                if (ord.d18 != "0") { dataGridOrden.Rows[rowIndex].Cells["d18"].Value = ord.d18; }
+                ;
+                if (ord.d19 != "0") { dataGridOrden.Rows[rowIndex].Cells["d19"].Value = ord.d19; }
+                ;
+                if (ord.d20 != "0") { dataGridOrden.Rows[rowIndex].Cells["d20"].Value = ord.d20; }
+                ;
+                if (ord.d21 != "0") { dataGridOrden.Rows[rowIndex].Cells["d21"].Value = ord.d21; }
+                ;
+                if (ord.d22 != "0") { dataGridOrden.Rows[rowIndex].Cells["d22"].Value = ord.d22; }
+                ;
+                if (ord.d23 != "0") { dataGridOrden.Rows[rowIndex].Cells["d23"].Value = ord.d23; }
+                ;
+                if (ord.d24 != "0") { dataGridOrden.Rows[rowIndex].Cells["d24"].Value = ord.d24; }
+                ;
+                if (ord.d25 != "0") { dataGridOrden.Rows[rowIndex].Cells["d25"].Value = ord.d25; }
+                ;
+                if (ord.d26 != "0") { dataGridOrden.Rows[rowIndex].Cells["d26"].Value = ord.d26; }
+                ;
+                if (ord.d27 != "0") { dataGridOrden.Rows[rowIndex].Cells["d27"].Value = ord.d27; }
+                ;
+                if (ord.d28 != "0") { dataGridOrden.Rows[rowIndex].Cells["d28"].Value = ord.d28; }
+                ;
+                if (ord.d29 != "0") { dataGridOrden.Rows[rowIndex].Cells["d29"].Value = ord.d29; }
+                ;
+                if (ord.d30 != "0") { dataGridOrden.Rows[rowIndex].Cells["d30"].Value = ord.d30; }
+                ;
+                if (ord.d31 != "0") { dataGridOrden.Rows[rowIndex].Cells["d31"].Value = ord.d31; }
+                ;
+                dataGridOrden.Rows[rowIndex].Cells["avisos"].Value = Convert.ToDouble(ord.d1) + Convert.ToDouble(ord.d2) + Convert.ToDouble(ord.d3) + Convert.ToDouble(ord.d4) +
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7) + Convert.ToDouble(ord.d8) + Convert.ToDouble(ord.d9)
+                    + Convert.ToDouble(ord.d10) + Convert.ToDouble(ord.d11) + Convert.ToDouble(ord.d12) + Convert.ToDouble(ord.d13) + Convert.ToDouble(ord.d14) + Convert.ToDouble(ord.d15)
+                    + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
+                    + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
+                    + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31);
+                dataGridOrden.Rows[rowIndex].Cells["total"].Value = (Convert.ToDouble(ord.d1) + Convert.ToDouble(ord.d2) + Convert.ToDouble(ord.d3) + Convert.ToDouble(ord.d4) +
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7) + Convert.ToDouble(ord.d8) + Convert.ToDouble(ord.d9)
+                    + Convert.ToDouble(ord.d10) + Convert.ToDouble(ord.d11) + Convert.ToDouble(ord.d12) + Convert.ToDouble(ord.d13) + Convert.ToDouble(ord.d14) + Convert.ToDouble(ord.d15)
+                    + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
+                    + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
+                    + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31)) * Convert.ToDouble(ord.INVERSION_TOTAL);
+                dataGridOrden.Rows[rowIndex].Cells["totalcalculo"].Value = (Convert.ToDouble(ord.d1) + Convert.ToDouble(ord.d2) + Convert.ToDouble(ord.d3) + Convert.ToDouble(ord.d4) +
+                    Convert.ToDouble(ord.d5) + Convert.ToDouble(ord.d6) + Convert.ToDouble(ord.d7) + Convert.ToDouble(ord.d8) + Convert.ToDouble(ord.d9)
+                    + Convert.ToDouble(ord.d10) + Convert.ToDouble(ord.d11) + Convert.ToDouble(ord.d12) + Convert.ToDouble(ord.d13) + Convert.ToDouble(ord.d14) + Convert.ToDouble(ord.d15)
+                    + Convert.ToDouble(ord.d16) + Convert.ToDouble(ord.d17) + Convert.ToDouble(ord.d18) + Convert.ToDouble(ord.d19) + Convert.ToDouble(ord.d20) + Convert.ToDouble(ord.d21)
+                    + Convert.ToDouble(ord.d22) + Convert.ToDouble(ord.d23) + Convert.ToDouble(ord.d24) + Convert.ToDouble(ord.d25) + Convert.ToDouble(ord.d26) + Convert.ToDouble(ord.d27)
+                    + Convert.ToDouble(ord.d28) + Convert.ToDouble(ord.d29) + Convert.ToDouble(ord.d30) + Convert.ToDouble(ord.d31)) * Convert.ToDouble(ord.INVERSION_TOTAL);
 
-                SetDayCellValue(rowIndex, "d1", ord.d1);
-                SetDayCellValue(rowIndex, "d2", ord.d2);
-                SetDayCellValue(rowIndex, "d3", ord.d3);
-                SetDayCellValue(rowIndex, "d4", ord.d4);
-                SetDayCellValue(rowIndex, "d5", ord.d5);
-                SetDayCellValue(rowIndex, "d6", ord.d6);
-                SetDayCellValue(rowIndex, "d7", ord.d7);
-                SetDayCellValue(rowIndex, "d8", ord.d8);
-                SetDayCellValue(rowIndex, "d9", ord.d9);
-                SetDayCellValue(rowIndex, "d10", ord.d10);
-                SetDayCellValue(rowIndex, "d11", ord.d11);
-                SetDayCellValue(rowIndex, "d12", ord.d12);
-                SetDayCellValue(rowIndex, "d13", ord.d13);
-                SetDayCellValue(rowIndex, "d14", ord.d14);
-                SetDayCellValue(rowIndex, "d15", ord.d15);
-                SetDayCellValue(rowIndex, "d16", ord.d16);
-                SetDayCellValue(rowIndex, "d17", ord.d17);
-                SetDayCellValue(rowIndex, "d18", ord.d18);
-                SetDayCellValue(rowIndex, "d19", ord.d19);
-                SetDayCellValue(rowIndex, "d20", ord.d20);
-                SetDayCellValue(rowIndex, "d21", ord.d21);
-                SetDayCellValue(rowIndex, "d22", ord.d22);
-                SetDayCellValue(rowIndex, "d23", ord.d23);
-                SetDayCellValue(rowIndex, "d24", ord.d24);
-                SetDayCellValue(rowIndex, "d25", ord.d25);
-                SetDayCellValue(rowIndex, "d26", ord.d26);
-                SetDayCellValue(rowIndex, "d27", ord.d27);
-                SetDayCellValue(rowIndex, "d28", ord.d28);
-                SetDayCellValue(rowIndex, "d29", ord.d29);
-                SetDayCellValue(rowIndex, "d30", ord.d30);
-                SetDayCellValue(rowIndex, "d31", ord.d31);
 
-                double avisos = SumDias(ord);
-                double costo = ToDoubleSafe(ord.INVERSION_TOTAL);
-                double total = avisos * costo;
 
-                dataGridOrden.Rows[rowIndex].Cells["avisos"].Value = avisos;
-                dataGridOrden.Rows[rowIndex].Cells["total"].Value = total;
-                dataGridOrden.Rows[rowIndex].Cells["totalcalculo"].Value = total;
             }
 
             foreach (DataGridViewRow row in dataGridOrden.Rows)
             {
-                var cellValue = row.Cells["programa"]?.Value?.ToString();
-                var codigo = row.Cells["idprograma"]?.Value?.ToString();
-
-                if (!string.IsNullOrWhiteSpace(cellValue) && cellValue == codigo)
+                var cellValue = row.Cells["programa"].Value?.ToString();
+                //int milliseconds2 = 50; Thread.Sleep(milliseconds2);
+                var codigo = row.Cells["idprograma"].Value?.ToString();
+                if (cellValue == codigo)
                 {
-                    row.Selected = true;
-                    if (row.Cells["programa"] != null)
-                    {
-                        row.Cells["programa"].Selected = true;
-                        dataGridOrden.CurrentCell = row.Cells["programa"];
-                    }
+                    row.Selected = true; // Selecciona la fila
+                    row.Cells["programa"].Selected = true; // Selecciona la celda específica
+                    dataGridOrden.CurrentCell = row.Cells["programa"]; // Establece la celda actual
                 }
             }
 
-            RecalcularTotalesGenerales();
+
+
             return lstC;
         }
 
-        private void SetDayCellValue(int rowIndex, string cellName, string value)
-        {
-            if (dataGridOrden.Columns.Contains(cellName) && value != "0" && !string.IsNullOrWhiteSpace(value))
-            {
-                dataGridOrden.Rows[rowIndex].Cells[cellName].Value = ToDoubleSafe(value);
-            }
-        }
 
-        private double SumDias(OrdenesLinea ord)
-        {
-            return ToDoubleSafe(ord.d1) + ToDoubleSafe(ord.d2) + ToDoubleSafe(ord.d3) + ToDoubleSafe(ord.d4) +
-                   ToDoubleSafe(ord.d5) + ToDoubleSafe(ord.d6) + ToDoubleSafe(ord.d7) + ToDoubleSafe(ord.d8) +
-                   ToDoubleSafe(ord.d9) + ToDoubleSafe(ord.d10) + ToDoubleSafe(ord.d11) + ToDoubleSafe(ord.d12) +
-                   ToDoubleSafe(ord.d13) + ToDoubleSafe(ord.d14) + ToDoubleSafe(ord.d15) + ToDoubleSafe(ord.d16) +
-                   ToDoubleSafe(ord.d17) + ToDoubleSafe(ord.d18) + ToDoubleSafe(ord.d19) + ToDoubleSafe(ord.d20) +
-                   ToDoubleSafe(ord.d21) + ToDoubleSafe(ord.d22) + ToDoubleSafe(ord.d23) + ToDoubleSafe(ord.d24) +
-                   ToDoubleSafe(ord.d25) + ToDoubleSafe(ord.d26) + ToDoubleSafe(ord.d27) + ToDoubleSafe(ord.d28) +
-                   ToDoubleSafe(ord.d29) + ToDoubleSafe(ord.d30) + ToDoubleSafe(ord.d31);
-        }
+
 
         private string pintaDias()
         {
             var fecha = inicioVigencia.Value;
 
+            if (valorInicio != "")
+            {
+                fecha = Convert.ToDateTime(valorInicio);
+            }
+
+
+
+            /* if (fecha.DayOfWeek() = 'S') { 
+             }
+            */
+            // if(fecha.DayOfWeek.ToString().Equals("Friday"))
             d1.HeaderCell.Style.ForeColor = Color.Red;
             dataGridOrden.Columns[4].HeaderCell.Style.ForeColor = Color.Red;
-
             d1.HeaderText = generico.traduceDia(fecha.DayOfWeek.ToString()) + " " + fecha.Day.ToString();
+
             d2.HeaderText = generico.traduceDia(fecha.AddDays(1).DayOfWeek.ToString()) + " " + fecha.AddDays(1).Day.ToString();
             d3.HeaderText = generico.traduceDia(fecha.AddDays(2).DayOfWeek.ToString()) + " " + fecha.AddDays(2).Day.ToString();
             d4.HeaderText = generico.traduceDia(fecha.AddDays(3).DayOfWeek.ToString()) + " " + fecha.AddDays(3).Day.ToString();
@@ -401,17 +419,18 @@ namespace AurocoPublicidad.forms
             d30.HeaderText = generico.traduceDia(fecha.AddDays(29).DayOfWeek.ToString()) + " " + fecha.AddDays(29).Day.ToString();
             d31.HeaderText = generico.traduceDia(fecha.AddDays(30).DayOfWeek.ToString()) + " " + fecha.AddDays(30).Day.ToString();
 
+
             return fecha.ToString();
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if ((!string.IsNullOrWhiteSpace(textProducto.Text)) &&
-                (!string.IsNullOrWhiteSpace(textMotivo.Text)) &&
-                (!string.IsNullOrWhiteSpace(comboIgv.Text)) &&
-                (cmbEjecutivo.SelectedValue != null && cmbEjecutivo.SelectedValue.ToString() != "0") &&
-                (comboCambio.SelectedValue != null && comboCambio.SelectedValue.ToString() != "0") &&
-                (txtAgencia.SelectedIndex != 0))
+
+            if ((!string.IsNullOrWhiteSpace(textProducto.Text)) && (!string.IsNullOrWhiteSpace(textMotivo.Text))
+       && (!string.IsNullOrWhiteSpace(comboIgv.Text)) && (cmbEjecutivo.SelectedValue.ToString() != "0") && (comboCambio.SelectedValue.ToString() != "0") &&
+       (txtAgencia.SelectedIndex != 0))
+
             {
                 Cursor.Current = Cursors.WaitCursor;
                 progressBar1.Visible = true;
@@ -421,23 +440,25 @@ namespace AurocoPublicidad.forms
                 progressBar1.Value = 20;
                 System.Threading.Thread.Sleep(200);
                 progressBar1.Value = 50;
-
                 try
                 {
+                    // Obtén los datos del DataGridView
                     List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
-
-                    string metodo = "";
+                    //MessageBox.Show(datos + "");
+                    Console.Write(datos);
+                    // Envía los datos al API REST
+                    var metodo = "";
 
                     Orden orden = new Orden();
                     orden.C_ORDEN = txtNumero.Text;
-                    orden.C_CLIENTE = comboCliente.SelectedValue?.ToString();
-                    orden.C_CONTRATO = comboContratos.SelectedValue?.ToString();
-                    orden.C_MEDIO = comboMedio.SelectedValue?.ToString();
-                    orden.IGV = comboIgv.SelectedItem?.ToString();
-                    orden.C_MONEDA = comboCambio.SelectedValue?.ToString();
+                    orden.C_CLIENTE = comboCliente.SelectedValue.ToString();
+                    orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
+                    orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+                    orden.IGV = comboIgv.SelectedItem.ToString();
+                    orden.C_MONEDA = comboCambio.SelectedValue.ToString();
                     orden.FECHA_INICIO = inicioVigencia.Value.ToString();
                     orden.FECHA_FIN = finVigencia.Value.ToString();
-                    orden.C_EJECUTIVO = cmbEjecutivo.SelectedValue?.ToString();
+                    orden.C_EJECUTIVO = cmbEjecutivo.SelectedValue.ToString();
                     orden.PRODUCTO = textProducto.Text;
                     orden.MOTIVO = textMotivo.Text;
                     orden.DURACION = textDuracion.Text;
@@ -445,22 +466,44 @@ namespace AurocoPublicidad.forms
                     orden.AGENCIA = txtAgencia.Text;
                     orden.orden = datos;
                     orden.C_USUARIO = Global.sessionUsuario.ToString();
-
-                    decimal suma = 0;
+                    //SUMAR TOTAL DATAGID
+                    Decimal suma = 0;
                     foreach (DataGridViewRow row in dataGridOrden.Rows)
                     {
-                        if (!row.IsNewRow)
+                        // Asegúrate de que la celda tiene datos
+                        if (row.Cells["totalcalculo"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["totalcalculo"].Value.ToString()))
                         {
-                            suma += ToDecimalSafe(row.Cells["totalcalculo"]?.Value);
+                            // Suma los valores, convirtiéndolos a double
+                            suma += Convert.ToDecimal(row.Cells["totalcalculo"].Value);
                         }
                     }
 
+                    // Mostrar la suma en el Label
                     orden.INVERSION = suma;
 
-                    bool isChecked = chkRevisar.Checked;
-                    orden.REVISION = isChecked ? numRevision.Value.ToString() : valorRevision.ToString();
 
-                    metodo = string.IsNullOrWhiteSpace(valorRecibido) ? "POST" : "PUT";
+
+                    bool isChecked = chkRevisar.Checked;
+                    if (isChecked)
+                    {
+                        orden.REVISION = numRevision.Value.ToString();
+                    }
+                    else
+                    {
+                        orden.REVISION = valorRevision.ToString();
+                    }
+
+                    if (valorRecibido == "")
+                    {
+                        metodo = "POST";
+                    }
+                    else
+                    {
+                        metodo = "PUT";
+
+
+
+                    }
 
                     System.Threading.Thread.Sleep(100);
                     progressBar1.Value = 100;
@@ -468,32 +511,64 @@ namespace AurocoPublicidad.forms
                     string resultado = Send<Orden>(apiUrl, orden, metodo);
 
                     JObject jObject = JObject.Parse(resultado);
-                    string status = (string)jObject["status"];
-                    string codigo = (string)jObject["codigo"];
+                    JToken objeto = jObject["status"];
+                    JToken objcodigo = jObject["codigo"];
+                    string status = (string)objeto;
+                    string codigo = (string)objcodigo;
 
                     if (status == "True")
                     {
+
                         MessageBox.Show((string)jObject["message"], "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cargarContratos();
                         valorIdOrden = codigo;
                         txtNumero.Visible = true;
                         txtNumero.Text = codigo;
                         btnPrint.Visible = true;
+                        Cursor.Current = Cursors.Default;
+                        progressBar1.Visible = false;
+                        // comboCliente.SelectedIndex = 0;
+                        /*if (valorIdOrden == "") { 
+                        comboMedio.SelectedIndex = 0;
+                        comboContratos.SelectedIndex = 0;   
+                        comboCliente.SelectedIndex = 0;
+                        cmbEjecutivo.SelectedIndex = 0;
+                        comboIgv.SelectedIndex = 0;
+                        comboCambio.SelectedIndex = 0;
+                        textProducto.Text = "";
+                        textMotivo.Text = "";
+                        textDuracion.Text = "";
+                        textObservaciones.Text = "";
+                        dataGridOrden.Rows.Clear();
+                        totalOrden.Text = "";
+                        cInicioVigencia.Text = "";
+                        cFinVigencia.Text = "";
+                        cNumeroFisico.Text = "";
+                        cTipoCambio.Text = "";
+                        cSaldo.Text = "";
+                            btnPrint.Visible = true;
+    
+                        }*/
+
                     }
+
+
                     else
                     {
+
                         MessageBox.Show((string)jObject["message"], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cursor.Current = Cursors.Default;
+
+                        progressBar1.Visible = false;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
                     Cursor.Current = Cursors.Default;
                     progressBar1.Visible = false;
                 }
+
             }
             else
             {
@@ -501,23 +576,30 @@ namespace AurocoPublicidad.forms
                 Cursor.Current = Cursors.Default;
                 progressBar1.Visible = false;
             }
+
+            //progressBar1.Visible = false;
         }
 
         private List<Dictionary<string, object>> ObtenerDatosDataGridView(DataGridView dgv)
         {
             List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
 
+            // Itera a través de las filas del DataGridView
             foreach (DataGridViewRow fila in dgv.Rows)
             {
+                // Verifica si la fila no es nueva y no es la fila de encabezado
                 if (!fila.IsNewRow)
                 {
                     Dictionary<string, object> filaDatos = new Dictionary<string, object>();
 
+                    // Itera a través de las celdas en la fila
                     foreach (DataGridViewCell celda in fila.Cells)
                     {
+                        // Usa el nombre de la columna como clave y el valor de la celda como valor
                         filaDatos[dgv.Columns[celda.ColumnIndex].Name] = celda.Value;
                     }
 
+                    // Agrega la fila de datos a la lista
                     datos.Add(filaDatos);
                 }
             }
@@ -531,27 +613,56 @@ namespace AurocoPublicidad.forms
             WebResponse oResponse = await oRequest.GetResponseAsync();
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
+
         }
+
 
         private async Task EnviarDatosAlApi(List<Dictionary<string, object>> datos)
         {
             using (HttpClient cliente = new HttpClient())
             {
+                // Serializa los datos a formato JSON
                 Orden orden = new Orden();
-                orden.C_MEDIO = comboMedio.SelectedValue?.ToString();
-                orden.C_CONTRATO = comboContratos.SelectedValue?.ToString();
+                orden.C_MEDIO = comboMedio.SelectedValue.ToString();
+                orden.C_CONTRATO = comboContratos.SelectedValue.ToString();
                 orden.orden = datos;
+
+
+
+                string datosJson = Newtonsoft.Json.JsonConvert.SerializeObject(orden);
+
+                // Crea el contenido de la solicitud HTTP
+                StringContent resultado = new StringContent(Send(apiUrl, orden, "POST"));
+
+                //StringContent contenido = new StringContent(datosJson, Encoding.UTF8, "application/json");
 
                 try
                 {
-                    StringContent resultado = new StringContent(Send(apiUrl, orden, "POST"));
+                    // Realiza la solicitud POST al API REST
+                    //  HttpResponseMessage respuesta = await cliente.PostAsync(apiUrl, contenido);
+
+
+                    // JObject jObject = JObject.Parse(resultado);
+
+                    // Maneja la respuesta según sea necesario
+                    /*  if (respuesta.IsSuccessStatusCode)
+                      {
+                          MessageBox.Show("Datos enviados correctamente al API REST.");
+                      }
+                      else
+                      {
+                          MessageBox.Show($"Error al enviar datos al API REST. Código de estado: {respuesta.StatusCode}");
+                      }*/
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error al enviar datos al API REST: {ex.Message}");
                 }
             }
+
         }
+
+
 
         private void comboCliente_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -560,41 +671,43 @@ namespace AurocoPublicidad.forms
 
         private void cargarContratos()
         {
-            try
+            comboContratos.DataSource = null;
+            comboContratos.Items.Clear();
+            string url = "";
+            if (valorContrato != "")
             {
-                comboContratos.DataSource = null;
-                comboContratos.Items.Clear();
+                url = Global.servicio + "/api-auroco/contrato_cliente";
+            }
+            else
+            {
+                url = Global.servicio + "/api-auroco/contratos_clientes";
+            }
+            if (comboCliente.SelectedValue != null)
+            {
+                string cod_cliente = comboCliente.SelectedValue.ToString();
 
-                string url = !string.IsNullOrWhiteSpace(valorContrato)
-                    ? Global.servicio + "/api-auroco/contrato_cliente"
-                    : Global.servicio + "/api-auroco/contratos_clientes";
-
-                if (comboCliente.SelectedValue != null)
+                if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
                 {
-                    string cod_cliente = comboCliente.SelectedValue.ToString();
-
-                    if (cod_cliente != "0" && cod_cliente != "AurocoPublicidad.models.request.Cliente")
+                    Cliente cliente = new Cliente();
+                    cliente.C_CLIENTE = cod_cliente;
+                    string resultado = Send<Cliente>(url, cliente, "POST");
+                    List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado);
+                    comboContratos.DataSource = lstC;
+                    comboContratos.DisplayMember = "C_CONTRATO";
+                    comboContratos.ValueMember = "C_CONTRATO";
+                    if (valorContrato != "")
                     {
-                        Cliente cliente = new Cliente();
-                        cliente.C_CLIENTE = cod_cliente;
-
-                        string resultado = Send<Cliente>(url, cliente, "POST");
-                        List<Contrato> lstC = JsonConvert.DeserializeObject<List<models.request.Contrato>>(resultado) ?? new List<Contrato>();
-
-                        comboContratos.DataSource = lstC;
-                        comboContratos.DisplayMember = "C_CONTRATO";
-                        comboContratos.ValueMember = "C_CONTRATO";
-
-                        if (!string.IsNullOrWhiteSpace(valorContrato))
-                        {
-                            comboContratos.SelectedValue = valorContrato;
-                        }
+                        comboContratos.SelectedValue = valorContrato;
                     }
+
+
                 }
+
+
+
             }
-            catch
-            {
-            }
+
+
         }
 
         public string Send<T>(string url, T ObjectRequest, string method = "POST")
@@ -604,9 +717,13 @@ namespace AurocoPublicidad.forms
             try
             {
                 JavaScriptSerializer js = new JavaScriptSerializer();
+
+                //serializar el objeto
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(ObjectRequest);
 
+                //peticion
                 WebRequest request = WebRequest.Create(url);
+                //header
                 request.Method = method;
                 request.PreAuthenticate = true;
                 request.ContentType = "application/json;charset=utf-8";
@@ -620,10 +737,13 @@ namespace AurocoPublicidad.forms
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();
 
+
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     result = streamReader.ReadToEnd();
+
                 }
+
             }
             catch (Exception e)
             {
@@ -632,6 +752,10 @@ namespace AurocoPublicidad.forms
 
             return result;
         }
+
+
+
+
 
         private async void comboContratos_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -643,52 +767,66 @@ namespace AurocoPublicidad.forms
                 cTipoCambio.Text = "";
                 cSaldo.Text = "";
 
-                HttpClient clienteHttp = new HttpClient();
 
+
+                HttpClient clienteHttp = new HttpClient();
                 if (comboContratos.SelectedValue != null)
                 {
                     string codigo_contrato = comboContratos.SelectedValue.ToString();
-                    string urlApi = Global.servicio + "/api-auroco/index.php/contrato_detalle/" + codigo_contrato;
+
+                    string urlApi = Global.servicio + "/api-auroco/index.php/contrato_detalle/" + codigo_contrato; // URL de tu servicio API con parámetros   
 
                     HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
 
                     if (respuesta.IsSuccessStatusCode)
                     {
                         string contenido = await respuesta.Content.ReadAsStringAsync();
+                        // Procesar el contenido recibido y mostrarlo en TextBoxes
+                        // Supongamos que el contenido es un objeto JSON y queremos mostrar algunos de sus campos en TextBoxes
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
+                        cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
+                        cFinVigencia.Text = (data[0].FIN_VIGENCIA);
+                        cMoneda.Text = data[0].C_MONEDA;
 
-                        if (data != null && data.Count > 0)
+                        cNumeroFisico.Text = data[0].NRO_FISICO;
+
+                        string simboloMoneda = "";
+                        if (data[0].C_MONEDA == "Soles")
                         {
-                            cInicioVigencia.Text = (data[0].INICIO_VIGENCIA);
-                            cFinVigencia.Text = (data[0].FIN_VIGENCIA);
-                            cMoneda.Text = data[0].C_MONEDA;
-                            cNumeroFisico.Text = data[0].NRO_FISICO;
-
-                            string simboloMoneda = data[0].C_MONEDA == "Soles" ? "S/." : "$";
-
-                            cTipoCambio.Text = string.Format("{0}{1:N2}", "$", ToDoubleSafe((string)data[0].TIPO_CAMBIO));
-                            cSaldo.Text = string.Format("{0}{1:N2}", simboloMoneda, ToDoubleSafe((string)data[0].SALDO_ACTUAL));
+                            simboloMoneda = "S/.";
                         }
+                        else
+                        {
+                            simboloMoneda = "$";
+                        }
+
+
+                        cTipoCambio.Text = string.Format("{0}{1:N2}", "$", data[0].TIPO_CAMBIO);
+
+                        cSaldo.Text = string.Format("{0}{1:N2}", simboloMoneda, data[0].SALDO_ACTUAL);
                     }
+
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                // MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
+
+
 
         public async Task cargaprograma(string canal)
         {
-            if (string.IsNullOrWhiteSpace(canal))
-                return;
-
             if (dataGridOrden.Columns.Contains("programa"))
             {
                 dataGridOrden.Columns.Remove("programa");
+
             }
 
             string programas = await GetService(Global.servicio + "/api-auroco/medio_programas/" + canal);
-            List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas) ?? new List<models.request.Programa>();
+            List<models.request.Programa> lstC = JsonConvert.DeserializeObject<List<models.request.Programa>>(programas);
 
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Programa";
@@ -700,16 +838,24 @@ namespace AurocoPublicidad.forms
             comboBoxColumn.AutoComplete = true;
 
             dataGridOrden.Columns.Insert(0, comboBoxColumn);
+
+
+            // Obtén los datos del DataGridView
+            List<Dictionary<string, object>> datos = ObtenerDatosDataGridView(dataGridOrden);
+            //MessageBox.Show(datos + "");
+            //  Console.Write(datos);
         }
 
         private void dataGridOrden_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
+            // Verificar si la celda actual es la que contiene un ComboBox
             if (dataGridOrden.CurrentCell is DataGridViewComboBoxCell)
             {
+                // Obtener el ComboBox
                 System.Windows.Forms.ComboBox comboBox = e.Control as System.Windows.Forms.ComboBox;
                 if (comboBox != null)
                 {
-                    comboBox.SelectedIndexChanged -= ComboBox_SelectedIndexChanged;
+                    // Suscribirse al evento de selección del ComboBox
                     comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
                 }
             }
@@ -717,143 +863,174 @@ namespace AurocoPublicidad.forms
 
         private async void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Obtener el ComboBox que disparó el evento
             System.Windows.Forms.ComboBox comboBox = sender as System.Windows.Forms.ComboBox;
 
             if (comboBox != null)
             {
+                // Obtener el valor seleccionado
+
                 comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
                 comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                if (comboBox.SelectedValue != null && dataGridOrden.CurrentCell != null)
+                if (comboBox.SelectedValue != null)
                 {
                     string selectedValue = comboBox.SelectedValue.ToString();
+
+
+
                     HttpClient clienteHttp = new HttpClient();
-                    string urlApi = Global.servicio + "/api-auroco/programa/" + selectedValue;
+
+
+                    string urlApi = Global.servicio + "/api-auroco/programa/" + selectedValue; // URL de tu servicio API con parámetros   
 
                     HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
-
                     if (respuesta.IsSuccessStatusCode)
                     {
                         string contenido = await respuesta.Content.ReadAsStringAsync();
+
                         int currentRow = dataGridOrden.CurrentCell.RowIndex;
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(contenido);
 
+
+
+
                         foreach (var ansValue in data)
                         {
-                            dataGridOrden.Rows[currentRow].Cells["horario"].Value =
-                                Convert.ToString(ansValue["DIAS"]) + " " + Convert.ToString(ansValue["PERIODO"]);
-
-                            dataGridOrden.Rows[currentRow].Cells["costo"].Value =
-                                ToDoubleSafe(Convert.ToString(ansValue["COSTO"]));
+                            dataGridOrden.Rows[currentRow].Cells[1].Value = Convert.ToString(ansValue["DIAS"]) + " " + Convert.ToString(ansValue["PERIODO"]);
+                            dataGridOrden.Rows[currentRow].Cells[3].Value = Convert.ToString(ansValue["COSTO"]);
                         }
 
-                        RecalcularFila(currentRow);
-                        RecalcularTotalesGenerales();
+
+
+
                     }
+
                 }
+
             }
+
         }
 
         private void dataGridOrden_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+
             try
             {
-                if ((e.ColumnIndex >= 3 && e.ColumnIndex <= 34) ||
-                    e.ColumnIndex == dataGridOrden.Columns["costo"].Index)
+                double totalorden = 0;
+                if (e.ColumnIndex >= 3 && e.ColumnIndex <= 34 ||
+            e.ColumnIndex == dataGridOrden.Columns["costo"].Index)
                 {
-                    RecalcularFila(e.RowIndex);
-                    RecalcularTotalesGenerales();
+                    // Recorrer todas las filas
+
+                    foreach (DataGridViewRow fila in dataGridOrden.Rows)
+                    {
+                        totalorden += Convert.ToDouble(fila.Cells["totalcalculo"].Value);
+
+
+                        // Obtener valores de cantidad y costo de la fila actual
+                        double d1 = Convert.ToDouble(fila.Cells["d1"].Value);
+                        double d2 = Convert.ToDouble(fila.Cells["d2"].Value);
+                        double d3 = Convert.ToDouble(fila.Cells["d3"].Value);
+                        double d4 = Convert.ToDouble(fila.Cells["d4"].Value);
+                        double d5 = Convert.ToDouble(fila.Cells["d5"].Value);
+                        double d6 = Convert.ToDouble(fila.Cells["d6"].Value);
+                        double d7 = Convert.ToDouble(fila.Cells["d7"].Value);
+                        double d8 = Convert.ToDouble(fila.Cells["d8"].Value);
+                        double d9 = Convert.ToDouble(fila.Cells["d9"].Value);
+                        double d10 = Convert.ToDouble(fila.Cells["d10"].Value);
+                        double d11 = Convert.ToDouble(fila.Cells["d11"].Value);
+                        double d12 = Convert.ToDouble(fila.Cells["d12"].Value);
+                        double d13 = Convert.ToDouble(fila.Cells["d13"].Value);
+                        double d14 = Convert.ToDouble(fila.Cells["d14"].Value);
+                        double d15 = Convert.ToDouble(fila.Cells["d15"].Value);
+                        double d16 = Convert.ToDouble(fila.Cells["d16"].Value);
+                        double d17 = Convert.ToDouble(fila.Cells["d17"].Value);
+                        double d18 = Convert.ToDouble(fila.Cells["d18"].Value);
+                        double d19 = Convert.ToDouble(fila.Cells["d19"].Value);
+                        double d20 = Convert.ToDouble(fila.Cells["d20"].Value);
+                        double d21 = Convert.ToDouble(fila.Cells["d21"].Value);
+                        double d22 = Convert.ToDouble(fila.Cells["d22"].Value);
+                        double d23 = Convert.ToDouble(fila.Cells["d23"].Value);
+                        double d24 = Convert.ToDouble(fila.Cells["d24"].Value);
+                        double d25 = Convert.ToDouble(fila.Cells["d25"].Value);
+                        double d26 = Convert.ToDouble(fila.Cells["d26"].Value);
+                        double d27 = Convert.ToDouble(fila.Cells["d27"].Value);
+                        double d28 = Convert.ToDouble(fila.Cells["d28"].Value);
+                        double d29 = Convert.ToDouble(fila.Cells["d29"].Value);
+                        double d30 = Convert.ToDouble(fila.Cells["d30"].Value);
+                        double d31 = Convert.ToDouble(fila.Cells["d31"].Value);
+                        double costo = Convert.ToDouble(fila.Cells["costo"].Value);
+
+                        // Calcular el total
+                        double total = (d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15 + d16 + d17 + d18 + d19 + d20 + d21 + d22 + d23 + d24 + d25 + d26 + d27 + d28 + d29 + d30 + d31) * costo;
+                        double avisos = (d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15 + d16 + d17 + d18 + d19 + d20 + d21 + d22 + d23 + d24 + d25 + d26 + d27 + d28 + d29 + d30 + d31);
+                        // Asignar el total a la columna "Total" de la fila actual
+                        string simboloM = "";
+                        if (comboCambio.SelectedValue.ToString() == "Soles")
+                        {
+                            simboloM = "S/.";
+                        }
+                        else
+                        {
+                            simboloM = "$";
+                        }
+
+
+                        fila.Cells["total"].Value = string.Format("{0}{1:N2}", simboloM, total);
+                        fila.Cells["totalcalculo"].Value = total;
+
+                        fila.Cells["avisos"].Value = avisos;
+
+
+                    }
+                    totalorden = 0;
+                    foreach (DataGridViewRow fila in dataGridOrden.Rows)
+                    {
+                        totalorden += Convert.ToDouble(fila.Cells["totalcalculo"].Value);
+
+
+                    }
+                    string simboloMoneda = "";
+                    if (comboCambio.SelectedValue.ToString() == "Soles")
+                    {
+                        simboloMoneda = "S/.";
+                    }
+                    else
+                    {
+                        simboloMoneda = "$";
+                    }
+
+
+                    totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, totalorden.ToString());
+
+
+
                 }
 
                 if (dataGridOrden.Rows.Count == 0)
                 {
+                    // Si está vacío, desactivar el botón
                     btnGuardar.Enabled = false;
+                }
+                else
+                {
+                    // Si no está vacío, activar el botón
+                    //  btnGuardar.Enabled = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        }
 
-        private void RecalcularFila(int rowIndex)
-        {
-            if (rowIndex < 0 || rowIndex >= dataGridOrden.Rows.Count)
-                return;
-
-            DataGridViewRow fila = dataGridOrden.Rows[rowIndex];
-            if (fila.IsNewRow)
-                return;
-
-            double d1v = ToDoubleSafe(fila.Cells["d1"]?.Value);
-            double d2v = ToDoubleSafe(fila.Cells["d2"]?.Value);
-            double d3v = ToDoubleSafe(fila.Cells["d3"]?.Value);
-            double d4v = ToDoubleSafe(fila.Cells["d4"]?.Value);
-            double d5v = ToDoubleSafe(fila.Cells["d5"]?.Value);
-            double d6v = ToDoubleSafe(fila.Cells["d6"]?.Value);
-            double d7v = ToDoubleSafe(fila.Cells["d7"]?.Value);
-            double d8v = ToDoubleSafe(fila.Cells["d8"]?.Value);
-            double d9v = ToDoubleSafe(fila.Cells["d9"]?.Value);
-            double d10v = ToDoubleSafe(fila.Cells["d10"]?.Value);
-            double d11v = ToDoubleSafe(fila.Cells["d11"]?.Value);
-            double d12v = ToDoubleSafe(fila.Cells["d12"]?.Value);
-            double d13v = ToDoubleSafe(fila.Cells["d13"]?.Value);
-            double d14v = ToDoubleSafe(fila.Cells["d14"]?.Value);
-            double d15v = ToDoubleSafe(fila.Cells["d15"]?.Value);
-            double d16v = ToDoubleSafe(fila.Cells["d16"]?.Value);
-            double d17v = ToDoubleSafe(fila.Cells["d17"]?.Value);
-            double d18v = ToDoubleSafe(fila.Cells["d18"]?.Value);
-            double d19v = ToDoubleSafe(fila.Cells["d19"]?.Value);
-            double d20v = ToDoubleSafe(fila.Cells["d20"]?.Value);
-            double d21v = ToDoubleSafe(fila.Cells["d21"]?.Value);
-            double d22v = ToDoubleSafe(fila.Cells["d22"]?.Value);
-            double d23v = ToDoubleSafe(fila.Cells["d23"]?.Value);
-            double d24v = ToDoubleSafe(fila.Cells["d24"]?.Value);
-            double d25v = ToDoubleSafe(fila.Cells["d25"]?.Value);
-            double d26v = ToDoubleSafe(fila.Cells["d26"]?.Value);
-            double d27v = ToDoubleSafe(fila.Cells["d27"]?.Value);
-            double d28v = ToDoubleSafe(fila.Cells["d28"]?.Value);
-            double d29v = ToDoubleSafe(fila.Cells["d29"]?.Value);
-            double d30v = ToDoubleSafe(fila.Cells["d30"]?.Value);
-            double d31v = ToDoubleSafe(fila.Cells["d31"]?.Value);
-            double costo = ToDoubleSafe(fila.Cells["costo"]?.Value);
-
-            double avisos = d1v + d2v + d3v + d4v + d5v + d6v + d7v + d8v + d9v + d10v +
-                            d11v + d12v + d13v + d14v + d15v + d16v + d17v + d18v + d19v + d20v +
-                            d21v + d22v + d23v + d24v + d25v + d26v + d27v + d28v + d29v + d30v + d31v;
-
-            double total = avisos * costo;
-
-            string simboloM = (comboCambio.SelectedValue != null && comboCambio.SelectedValue.ToString() == "Soles") ? "S/." : "$";
-
-            fila.Cells["total"].Value = string.Format("{0}{1:N2}", simboloM, total);
-            fila.Cells["totalcalculo"].Value = total;
-            fila.Cells["avisos"].Value = avisos;
-        }
-
-        private void RecalcularTotalesGenerales()
-        {
-            double totalorden = 0;
-
-            foreach (DataGridViewRow fila in dataGridOrden.Rows)
-            {
-                if (!fila.IsNewRow)
-                {
-                    totalorden += ToDoubleSafe(fila.Cells["totalcalculo"]?.Value);
-                }
-            }
-
-            string simboloMoneda = (comboCambio.SelectedValue != null && comboCambio.SelectedValue.ToString() == "Soles") ? "S/." : "$";
-            totalOrden.Text = string.Format("{0}{1:N2}", simboloMoneda, totalorden);
         }
 
         private void comboMedio_Leave(object sender, EventArgs e)
         {
-            if (comboMedio.SelectedValue != null)
-            {
-                _ = cargaprograma(comboMedio.SelectedValue.ToString());
-            }
+
+            cargaprograma(comboMedio.SelectedValue.ToString());
         }
 
         public class ListItem
@@ -875,70 +1052,72 @@ namespace AurocoPublicidad.forms
 
         private void label20_Click(object sender, EventArgs e)
         {
+
         }
 
         private void dataGridOrden_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.dataGridOrden.Columns[e.ColumnIndex].HeaderText.Contains("S") ||
-                this.dataGridOrden.Columns[e.ColumnIndex].HeaderText.Contains("D"))
+            if (this.dataGridOrden.Columns[e.ColumnIndex].HeaderText.Contains("S") || this.dataGridOrden.Columns[e.ColumnIndex].HeaderText.Contains("D"))
             {
+
                 e.CellStyle.ForeColor = Color.Red;
+
             }
 
             if (e.ColumnIndex == dataGridOrden.Columns["total"].Index && e.Value != null)
             {
                 if (decimal.TryParse(e.Value.ToString(), out decimal valor))
                 {
-                    string simboloMoneda = "S/.";
-                    if (!string.IsNullOrWhiteSpace(valorMoneda) && valorMoneda.Equals("Dolares"))
+                    // Aplicar formato de moneda según la moneda deseada
+                    string monedaFormateada = "";
+
+                    // Seleccionar el símbolo de la moneda según el caso (dólares o soles)
+                    string simboloMoneda = "S/."; // Símbolo del Nuevo Sol peruano
+                    if (valorMoneda.Equals("Dolares")) // Puedes definir tus propias condiciones para determinar si es en dólares
                     {
-                        simboloMoneda = "$";
+                        simboloMoneda = "$"; // Símbolo del dólar estadounidense
                     }
 
-                    e.Value = string.Format("{0}{1:N2}", simboloMoneda, valor);
-                    e.FormattingApplied = true;
+
+
+                    // Aplicar formato de moneda con el símbolo seleccionado
+                    monedaFormateada = string.Format("{0}{1:N2}", simboloMoneda, valor); // "N2" indica dos dígitos decimales
+
+                    e.Value = monedaFormateada;
+                    e.FormattingApplied = true; // Indicar que se ha aplicado el formato
                 }
             }
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Form childForm = new formReportes(valorIdOrden, inicioVigencia.Value.ToString(), txtAgencia.Text);
+
             childForm.Text = "Orden nro: " + valorIdOrden;
             childForm.Show();
+
         }
 
         private void dataGridOrden_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            //btnGuardar.Enabled = true;
         }
 
         private void dataGridOrden_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
+            // btnGuardar.Enabled = true;
         }
 
         private void dataGridOrden_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
+            //btnGuardar.Enabled = true;
         }
 
         private void dataGridOrden_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnGuardar.Enabled = true;
-        }
-
-        private double ToDoubleSafe(object value)
-        {
-            if (value == null) return 0;
-
-            double resultado;
-            return double.TryParse(value.ToString(), out resultado) ? resultado : 0;
-        }
-
-        private decimal ToDecimalSafe(object value)
-        {
-            if (value == null) return 0;
-
-            decimal resultado;
-            return decimal.TryParse(value.ToString(), out resultado) ? resultado : 0;
         }
     }
 }
