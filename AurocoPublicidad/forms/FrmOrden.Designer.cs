@@ -387,6 +387,7 @@
             resources.ApplyResources(this.cInicioVigencia, "cInicioVigencia");
             this.cInicioVigencia.Name = "cInicioVigencia";
             this.cInicioVigencia.ReadOnly = true;
+            this.cInicioVigencia.TextChanged += new System.EventHandler(this.cInicioVigencia_TextChanged);
             // 
             // finVigencia
             // 

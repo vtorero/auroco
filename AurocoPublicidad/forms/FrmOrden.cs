@@ -774,7 +774,7 @@ namespace AurocoPublicidad.forms
                 {
                     string codigo_contrato = comboContratos.SelectedValue.ToString();
 
-                    string urlApi = Global.servicio + "/api-auroco/index.php/contrato_detalle/" + codigo_contrato; // URL de tu servicio API con parámetros   
+                    string urlApi = Global.servicio + "/api-auroco/contrato_detalle/" + codigo_contrato; // URL de tu servicio API con parámetros   
 
                     HttpResponseMessage respuesta = await clienteHttp.GetAsync(urlApi);
 
@@ -1118,6 +1118,11 @@ namespace AurocoPublicidad.forms
         private void dataGridOrden_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnGuardar.Enabled = true;
+        }
+
+        private void cInicioVigencia_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
